@@ -1,0 +1,34 @@
+With the surge in digital text media, text classification has become increasingly important.
+Text classification techniques can assist in junk e-mail detection [SDHH98], allow
+medical doctors to more rapidly find relevant research [HBLH94], aid in patent searches
+[Lar99], improve web searches [CD00], and serve as a backend in a multitude of other
+applications. The interested reader should see Sebastiani [Seb02] for a survey of recent
+applications of machine learning to text classification.
+
+[DHS01, Wol95]indicate there is no a priori choice of algorithm
+which will perform the best over all problems,
+
+
+[DHS01] Richard Duda, Peter Hart, and David Stork. Pattern Classification. John
+Wiley & Sons, Inc., New York, NY, 2001
+
+
+[DGL96] Luc Devroye, L´aszl´o Gy¨orfi, and G´abor Lugosi. A Probabilistic
+Pattern Recognition. Springer-Verlag, New York, NY, 1996.
+
+[Seb02] Fabrizio Sebastiani. Machine learning in automated text categorization. ACM
+Computing Surveys, 34(1):1–47, March 2002.
+
+
+[CD00] Hao Chen and Susan T. Dumais. Bringing order to the web: Automatically
+categorizing search results. In CHI ’00, pages 145–152, 2000.
+
+[Yan99] Yiming Yang. An evaluation of statistical approaches to text categorization.
+Information Retrieval, 1(1/2):67–88, 1999.
+
+[YL99] Yiming Yang and Xin Liu. A re-examination of text categorization methods.
+In SIGIR ’99, Proceedings of the 22nd Annual International ACM Conference
+on Research and Development in Information Retrieval, pages 42–49, 1999.
+
+[SS00] Robert E. Schapire and Yoram Singer. BoosTexter: A boosting-based system
+for text categorization. Machine Learning, 39:135–168, 2000.
