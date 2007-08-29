@@ -2,4 +2,5 @@ joachims97text.pdf "Text Categorization with Suport Vector Machines: Learning wi
 joachims99c        "Transductive Inference for Text Classification using Support Vector Machines"
 Zanni2006 - Parallel Software for Training Large Scale Support Vector Machines on Multiprocessor System
 Collbert 2006 -Large Scale Transductive SVMs
+Joachims Making large-Scale {SVM} Learning Practical
 

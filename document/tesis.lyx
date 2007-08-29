@@ -37,7 +37,18 @@
 \begin_body
 
 \begin_layout Title
-Paralell Training of Transductive SVMs for Automated Document Categorization
+Paralell Training of Transductive 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{SVM}
+\end_layout
+
+\end_inset
+
+s for Automated Document Categorization
 \end_layout
 
 \begin_layout Author
@@ -98,7 +109,7 @@ Introduction
 \begin_layout Standard
 Text classification is a key aspect of text filtering and document managment
  and retrieval tasks.
- Spam detection, web search improvement, automated metadata generation,
+ Spam detection, Web search improvement, automated metadata generation,
  are just a few examples of the tasks that can be accomplished using automatic
  techniques for document classification
 \begin_inset LatexCommand \cite{Sebastiani02}
@@ -161,6 +172,15 @@ An approach to cope with this limitation is to divide the problem into chunks
 \end_inset
 
 
+\begin_inset LatexCommand \cite{osunaetal97}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Basurilla
 \end_layout
 
 \begin_layout Standard
