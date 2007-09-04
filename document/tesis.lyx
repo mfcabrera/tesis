@@ -141,7 +141,7 @@ Add here the fact that the manual classification is at best expensive or
 \end_inset
 
 .
- An especial type of SVM, based on transductive inference has demostrated
+ An special type of SVM, based on transductive inference has demostrated
  being more effective for document classification than the common inductive
  inference based SVMs
 \begin_inset LatexCommand \cite{Joachims99c}
@@ -152,7 +152,7 @@ Add here the fact that the manual classification is at best expensive or
 \end_layout
 
 \begin_layout Standard
-One characteristic of the SVM is that in it's formal definition the computation
+One characteristic of the SVM is that in its formal definition the computation
  and storage requirements increase rapidly with the number of training vectors.
  This is due the fact that the SVM classification problem is a Quadratic
  Programming problem (QP) that finds the support vectors in all training
@@ -176,11 +176,23 @@ An approach to cope with this limitation is to divide the problem into chunks
 
 \end_inset
 
+ and train those subproblems
+\end_layout
+
+\begin_layout Chapter
+Literature Review
+\end_layout
+
+\begin_layout Section
+Machine Learning
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
 \begin_layout Section*
-Basurilla
+Draft
 \end_layout
 
 \begin_layout Standard
