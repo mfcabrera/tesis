@@ -10,7 +10,7 @@
 \inputencoding auto
 \fontscheme default
 \graphics default
-\paperfontsize 12
+\paperfontsize 11
 \spacing single
 \papersize letterpaper
 \use_geometry true
@@ -37,7 +37,7 @@
 \begin_body
 
 \begin_layout Title
-Paralell Training of Transductive 
+Paralell Training of Linear Transductive 
 \begin_inset ERT
 status collapsed
 
@@ -107,9 +107,25 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-Text classification is a key aspect of text filtering and document managment
+Text classification is one of the most basic and important part of document
+ management and retrieval system, with the increasingly amount of digital
+ documents available for moderm information system
+\end_layout
+
+\begin_layout Standard
+Some of these tasks can be achived by a human 
+\emph on
+expert
+\emph default
+s, but this manual classification is at best expensive or practical impossible
+ for large quantities of documents as the usded nowadays in inforamtion
+ systems.
+\end_layout
+
+\begin_layout Standard
+Text classification is a key aspect of text filtering, document management
  and retrieval tasks.
- Spam detection, Web search improvement, automated metadata generation,
+ Spam detection, Web search improvement and automated metadata generation
  are just a few examples of the tasks that can be accomplished using automatic
  techniques for document classification
 \begin_inset LatexCommand \cite{Sebastiani02}
@@ -117,6 +133,7 @@ Text classification is a key aspect of text filtering and document managment
 \end_inset
 
 .
+ 
 \begin_inset Note Note
 status collapsed
 
@@ -128,7 +145,18 @@ Add here the fact that the manual classification is at best expensive or
 
 \end_inset
 
- Support Vector Machine
+ 
+\end_layout
+
+\begin_layout Standard
+A text classification technique uses example documents that have been previously
+ categorized in classes by an authority to learn a model that, with a associated
+ error vale, can automatically predict the class the authority would have
+ given to future documents.
+\end_layout
+
+\begin_layout Standard
+Support Vector Machine
 \begin_inset LatexCommand \cite{Vapnik99}
 
 \end_inset
@@ -176,7 +204,31 @@ An approach to cope with this limitation is to divide the problem into chunks
 
 \end_inset
 
- and train those subproblems
+ and train those subproblems.
+ Even with those optimizations, the problem still has large computational
+ requirements, and the required time to train grows sufficiently enough
+ to be not useful for real-time training, therefore ways to optimize the
+ process have to be developed.
+ For a transductive learning algorithm where the SVM training has to be
+ repeated many times while finding the optimal classifier, the situation
+ gets worst.
+\end_layout
+
+\begin_layout Standard
+Taking advantage actual trends in processor technologies, where the multi-core
+ processor is becoming the norm[CitationHere] paralell implementation of
+ such algortithm will help to make the application of the technique practical
+ in real world situations
+\end_layout
+
+\begin_layout Standard
+In this work shows an implementation of a the implmentation of and parallel
+ SVM using the cascade model described in 
+\begin_inset LatexCommand \cite{GrafCBDV04}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -185,10 +237,6 @@ Literature Review
 
 \begin_layout Section
 Machine Learning
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Section*
@@ -227,6 +275,19 @@ The current society of information is facing a new challenge: Thousand of
  of the TSVM algorithm.
  Finally, section 5 presents conclusions and recommendations drawn from
  the realisation of this project.
+\end_layout
+
+\begin_layout Standard
+A text classification algorithm uses example documents that have been tagged
+ with classes by an authority1 to learn a model that, with high accuracy,
+ can automatically predict the class the authority would have assigned to
+ future documents.
+ In cases like topic classifica- tion (Figure 1.1) where each example can
+ belong to multiple topics, the problem is usually reduced to a series of
+ binary classification tasks, Corporate Acquisitions vs.
+ not Corporate Acquisitions, Earnings vs.
+ not Earnings, etc.
+ 
 \end_layout
 
 \begin_layout Standard

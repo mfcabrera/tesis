@@ -72,6 +72,16 @@ tv = index.reader.term_vector(14,:text)
 #puts Analysis::FULL_SPANISH_STOP_WORDS
 #x = MiguelBiAnalyzer.new
 
+sum_nk = 0
+te.each {|term, doc_freq| 
+		puts "#{term} occured #{doc_freq} times" 
+		sum_nk =  sum_nk + doc_freq
 
-te.each {|term, doc_freq| puts "#{term} occured #{doc_freq} times" }
+}
+
+
+puts "Sum Nk = #{sum_nk}"
+
+
+
 
