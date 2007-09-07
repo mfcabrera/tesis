@@ -32,3 +32,11 @@ on Research and Development in Information Retrieval, pages 42–49, 1999.
 
 [SS00] Robert E. Schapire and Yoram Singer. BoosTexter: A boosting-based system
 for text categorization. Machine Learning, 39:135–168, 2000.
+
+
+
+Need for Paralellization:
+
+- Transductive Learning requires to solve the same problem many times!
+- There actual trends in Computer Processor are multi-core architetures, allowing and encoraging to
+  create parallel solutions to standard problems.
