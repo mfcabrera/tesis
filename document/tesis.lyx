@@ -10,7 +10,7 @@
 \inputencoding auto
 \fontscheme default
 \graphics default
-\paperfontsize 11
+\paperfontsize 10
 \spacing single
 \papersize letterpaper
 \use_geometry true
@@ -48,11 +48,45 @@ status collapsed
 
 \end_inset
 
-s for Automated Document Categorization
+s for Automated Text Categorization
 \end_layout
 
 \begin_layout Author
-Miguel Cabrera Granados
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+DRAFT
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\series bold
+Miguel Fernando Cabrera Granados
+\series default
+
 \begin_inset ERT
 status collapsed
 
@@ -63,10 +97,6 @@ status collapsed
 
 \backslash
 mfcabrer@unal.edu.co
-\backslash
-
-\backslash
-
 \end_layout
 
 \begin_layout Standard
@@ -77,13 +107,31 @@ mfcabrer@unal.edu.co
 
 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Standard
 
 
 \backslash
-it School of Informatics and Systems
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
 \backslash
 
 \backslash
@@ -92,9 +140,91 @@ it School of Informatics and Systems
 
 \begin_layout Standard
 
+Jairo Jose Espinosa, 
+\backslash
+it Supervisor 
+\backslash
 
 \backslash
-it National University of Colombia - Campus Medellín
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Standard
+
+Presented in Partial Fulfillment 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Standard
+
+of the Requirements 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Standard
+
+for the Degree of 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Standard
+
+Ingeniero de Sistemas e Informatica 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Standard
+
+Escuela de Sistemas - Facultad de Minas
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Standard
+
+Universidad Nacional de Colombia - Sede Medellín
+\backslash
+
+\backslash
+
 \end_layout
 
 \end_inset
@@ -102,32 +232,40 @@ it National University of Colombia - Campus Medellín
 
 \end_layout
 
-\begin_layout Section*
+\begin_layout Standard
+\begin_inset LatexCommand \tableofcontents{}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Overview
+\end_layout
+
+\begin_layout Section
 Introduction
-\end_layout
-
-\begin_layout Standard
-Text classification is one of the most basic and important part of document
- management and retrieval system, with the increasingly amount of digital
- documents available for moderm information system
-\end_layout
-
-\begin_layout Standard
-Some of these tasks can be achived by a human 
-\emph on
-expert
-\emph default
-s, but this manual classification is at best expensive or practical impossible
- for large quantities of documents as the usded nowadays in inforamtion
- systems.
 \end_layout
 
 \begin_layout Standard
 Text classification is a key aspect of text filtering, document management
  and retrieval tasks.
+ Besides basic document classification, many problems can be see as instances
+ of Text Categorization (TC).
  Spam detection, Web search improvement and automated metadata generation
- are just a few examples of the tasks that can be accomplished using automatic
- techniques for document classification
+ are just a few examples this
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Standard
+of the tasks that can be accomplished using automatic techniques for document
+ classification
+\end_layout
+
+\end_inset
+
+ 
 \begin_inset LatexCommand \cite{Sebastiani02}
 
 \end_inset
@@ -145,33 +283,40 @@ Add here the fact that the manual classification is at best expensive or
 
 \end_inset
 
+ Some of those tasks can be achieved by human
+\emph on
  
+\emph default
+beings, but a manual classification is at best expensive and practically
+ impossible for large quantities of documents as found in modern information
+ systems.
 \end_layout
 
 \begin_layout Standard
 A text classification technique uses example documents that have been previously
- categorized in classes by an authority to learn a model that, with a associated
- error vale, can automatically predict the class the authority would have
- given to future documents.
+ categorized in classes by an authority in order to learn a model that,
+ with a associated error value, can automatically predict the class the
+ authority would have given to future documents.
+ 
 \end_layout
 
 \begin_layout Standard
-Support Vector Machine
-\begin_inset LatexCommand \cite{Vapnik99}
+Support Vector Machine 
+\begin_inset LatexCommand \cite{Vapnik98}
 
 \end_inset
 
- is a powerful tool for classifiying large datasets, and due the nature
- of the common text representation model, it has been applied succesfuly
- for automated document classification
+ is a powerful tool for classifying large datasets, and due the nature of
+ the common text representation model, it has been applied successfully
+ for automated document classification 
 \begin_inset LatexCommand \cite{Joachims98}
 
 \end_inset
 
 .
- An special type of SVM, based on transductive inference has demostrated
- being more effective for document classification than the common inductive
- inference based SVMs
+ An special type of SVM, based on transductive inference (TSVM), has demonstrate
+d to be more effective for document classification than the common inductive
+ inference based SVMs 
 \begin_inset LatexCommand \cite{Joachims99c}
 
 \end_inset
@@ -180,7 +325,7 @@ Support Vector Machine
 \end_layout
 
 \begin_layout Standard
-One characteristic of the SVM is that in its formal definition the computation
+One characteristic of the SVM is that, in its formal definition, the computation
  and storage requirements increase rapidly with the number of training vectors.
  This is due the fact that the SVM classification problem is a Quadratic
  Programming problem (QP) that finds the support vectors in all training
@@ -207,40 +352,272 @@ An approach to cope with this limitation is to divide the problem into chunks
  and train those subproblems.
  Even with those optimizations, the problem still has large computational
  requirements, and the required time to train grows sufficiently enough
- to be not useful for real-time training, therefore ways to optimize the
- process have to be developed.
- For a transductive learning algorithm where the SVM training has to be
- repeated many times while finding the optimal classifier, the situation
- gets worst.
+ for making it not useful for real-time training.
+ The implementation of Transductive inference for a SVM requires to solve
+ the same problem many times over generally large datasets, until finding
+ the optimal classifier.
+ This makes the scaling problem for transductive SVM even more difficult,
+ therefore, methods for optimizing the training process have to be developed.
 \end_layout
 
 \begin_layout Standard
 Taking advantage actual trends in processor technologies, where the multi-core
- processor is becoming the norm[CitationHere] paralell implementation of
- such algortithm will help to make the application of the technique practical
- in real world situations
+ processor is becoming the norm[CitationHere] parallel implementation of
+ such algorithm along with other optimization will help make the application
+ of this technique practical in real world situations.
 \end_layout
 
 \begin_layout Standard
-In this work shows an implementation of a the implmentation of and parallel
- SVM using the cascade model described in 
+This work describes an implementation of a parallel SVM using the cascade
+ model described in 
 \begin_inset LatexCommand \cite{GrafCBDV04}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Chapter
-Literature Review
+ using a transductive learning algortithm.
+ The first part, Overview introduces the basic concepts a Machine Learning,
+ Information Retrieval and Text Categorization......
 \end_layout
 
 \begin_layout Section
 Machine Learning
 \end_layout
 
-\begin_layout Section*
-Draft
+\begin_layout Standard
+Machine Learning (
+\noun on
+ML
+\noun default
+) is concerned with the question of how to construct computer programs that
+ automatically improve with experience 
+\begin_inset LatexCommand \cite{Mitchell97}
+
+\end_inset
+
+.
+ In order to to develop such programs 
+\noun on
+ML
+\noun default
+ borrows concepts from many areas suchs Statistics, Information Theory,
+ Biology and Control Theory.The learning problem is defined formally in 
+\begin_inset LatexCommand \cite{Mitchell97}
+
+\end_inset
+
+ as follows:
+\end_layout
+
+\begin_layout Description
+Learning: A computer program is said to 
+\emph on
+learn 
+\emph default
+from experience 
+\begin_inset Formula $E$
+\end_inset
+
+ with respect to some class of Task 
+\begin_inset Formula $T$
+\end_inset
+
+ and performace measuer 
+\begin_inset Formula $P$
+\end_inset
+
+, if its performace at tasks in 
+\begin_inset Formula $T$
+\end_inset
+
+, as measured by 
+\begin_inset Formula $P$
+\end_inset
+
+ improves with 
+\begin_inset Formula $E$
+\end_inset
+
+.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In other words, the program learns from an experience commonly represented
+ by a group of data belonging to a universe on which the result of Task
+ 
+\begin_inset Formula $T$
+\end_inset
+
+ is known.
+ Using this information the computer program tries to generalize for the
+ universe, thus learning a representation of the universe.
+ 
+\end_layout
+
+\begin_layout Standard
+The way in which an actual computer program realizes the task of learning
+ from the experience can different, there are serveral modes with of learning:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Supervised Learning
+\emph default
+: In wich the program generates an internal representation that maps inputs,
+ to desired ouputs.
+ Classification problems can be seen as an instance of this type of learning,
+ where the desired output is a binary value stating wheter the input belongs
+ to a specific category.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Semi-supevised Learning
+\emph default
+: Combines both labeled and unlabeled examples to generate the representation.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Unsupervised Learning: 
+\emph default
+Combines both labeled and unlabeled examples to generate the representation
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Reinforcement Learning
+\emph default
+: In wich the algorithm learns a policy of how to act given an observation
+ of the world.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Transductive Learning
+\emph default
+: Similar to Semi-supervised Learning, but does not explicitly construct
+ a function: instead, tries to predict new outputs based on training inputs,
+ training outputs and test input wich are available while training.
+
+\emph on
+ 
+\end_layout
+
+\begin_layout Standard
+In accordance with the previous definition, this thesis will refer to ML
+ in this work, we ar
+\end_layout
+
+\begin_layout Standard
+Some techniques commonly classified under ML are Artificial Neural Networks,
+ Genetics Algorithm, k-Nearest Neighbor, Bayesian Networks and and SVM.
+\end_layout
+
+\begin_layout Standard
+In recent years many techniques and algorithm have been developed to 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Standard
+* overview
+\end_layout
+
+\begin_layout Standard
+* Learning taxonomy
+\end_layout
+
+\begin_layout Standard
+Machine learning algorithms are organized into a taxonomy, based on the
+ desired outcome of the algorithm.
+ Common algorithm types include:
+\end_layout
+
+\begin_layout Standard
+* Supervised learning ? in which the algorithm generates a function that
+ maps inputs to desired outputs.
+ One standard formulation of the supervised learning task is the classification
+ problem: the learner is required to learn (to approximate) the behavior
+ of a function which maps a vector [X_1, X_2, 
+\backslash
+ldots X_N]
+\backslash
+, into one of several classes by looking at several input-output examples
+ of the function.
+ * Unsupervised learning ? which models a set of inputs: labeled examples
+ are not available.
+ * Semi-supervised learning ? which combines both labeled and unlabeled
+ examples to generate an appropriate function or classifier.
+ * Reinforcement learning ? in which the algorithm learns a policy of how
+ to act given an observation of the world.
+ Every action has some impact in the environment, and the environment provides
+ feedback that guides the learning algorithm.
+ * Transduction ? similar to supervised learning, but does not explicitly
+ construct a function: instead, tries to predict new outputs based on training
+ inputs, training outputs, and test inputs which are available while training.
+ * Learning to learn ? in which the algorithm learns its own inductive bias
+ based on previous experience.
+\end_layout
+
+\begin_layout Standard
+The computational analysis of machine learning algorithms and their performance
+ is a branch of theoretical computer science known as computational learning
+ theory.
+\end_layout
+
+\begin_layout Standard
+* differences 
+\end_layout
+
+\begin_layout Standard
+* statistical machine learning
+\end_layout
+
+\begin_layout Standard
+* the natural application of machine learning to information retrieval
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Information Retrieval
+\end_layout
+
+\begin_layout Subsection
+Models of Text and Text Representation
+\end_layout
+
+\begin_layout Section
+Text Categorization
+\end_layout
+
+\begin_layout Subsection
+Techniques
+\end_layout
+
+\begin_layout Section
+Parallelization Methods
 \end_layout
 
 \begin_layout Standard
@@ -282,12 +659,56 @@ A text classification algorithm uses example documents that have been tagged
  with classes by an authority1 to learn a model that, with high accuracy,
  can automatically predict the class the authority would have assigned to
  future documents.
- In cases like topic classifica- tion (Figure 1.1) where each example can
- belong to multiple topics, the problem is usually reduced to a series of
- binary classification tasks, Corporate Acquisitions vs.
+ In cases like topic classification (Figure 1.1) where each example can belong
+ to multiple topics, the problem is usually reduced to a series of binary
+ classification tasks, Corporate Acquisitions vs.
  not Corporate Acquisitions, Earnings vs.
  not Earnings, etc.
  
+\end_layout
+
+\begin_layout Subsection
+Tools
+\end_layout
+
+\begin_layout Chapter
+Text Categorization With SVM
+\end_layout
+
+\begin_layout Section
+Support Vector Machines
+\end_layout
+
+\begin_layout Subsection
+Linear SVM for Text Categorization
+\end_layout
+
+\begin_layout Subsection
+Transductive Learning for SVM
+\end_layout
+
+\begin_layout Section
+Paralell Method for Training Transuductive SVM
+\end_layout
+
+\begin_layout Subsection
+Transductive Parallel Linear SVM
+\end_layout
+
+\begin_layout Section
+Experiments and Results
+\end_layout
+
+\begin_layout Subsection
+Software
+\end_layout
+
+\begin_layout Subsection
+Data Sets
+\end_layout
+
+\begin_layout Section
+Conclusions
 \end_layout
 
 \begin_layout Standard

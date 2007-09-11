@@ -1,0 +1,105 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language spanish
+\inputencoding default
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 4cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language swedish
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Clasificación Automática de Textos usando Redes Neuronales y Lógica Difuzza
+\end_layout
+
+\begin_layout Author
+Miguel Fernando Cabrera
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\emph on
+mfcabrer@unal.edu.co
+\end_layout
+
+\begin_layout Abstract
+La clasificación es una de las tareas más importante dentro del area conocida
+ como Recuperación de Información (Information Retrieval) y aunque muchas
+ de estas tareas pueden ser realizadas por humanos, cuando la cantidad de
+ documentos es grande, hacerlo manualmente se vuelve imposible.
+ Por tanto técnicas que automatizen esta tarea deben ser desarrolladas.
+ Este docuemento presenta una revisión de la literatura las tecnicas basadas
+ en Lógica Difusa (LD) y Redes Neuronales Artificiales (RNA) para lograr
+ este objetivo.
+\end_layout
+
+\begin_layout Section
+Introducción
+\end_layout
+
+\begin_layout Standard
+En los ultimos años la categorización de textos se ha vuelto una herramienta
+ importante para el filtrado de información.
+ Con cada vez más documentos de texto en formato digital y repositorios
+ cada vez más grande, herramientas para la clasificación de estos documentos
+ se vuelve una necesidad.
+ Otras aplicaciones no menos importantes de la categorizacion de textos
+ incluyen, filtros de correo basura (Spam), Sistemas de recomendación y
+ generación automatica de metadatos.
+\begin_inset LatexCommand \cite{Sebastiani02}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definimos clasificación de textos como
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[plain]{rv}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
