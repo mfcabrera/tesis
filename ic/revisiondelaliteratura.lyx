@@ -35,6 +35,34 @@
 
 \begin_layout Title
 Clasificación Automática de Textos usando Redes Neuronales y Lógica Difuzza
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\backslash
+it Una Revisión de La Literatura}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Author
@@ -90,7 +118,133 @@ En los ultimos años la categorización de textos se ha vuelto una herramienta
 \end_layout
 
 \begin_layout Standard
-Definimos clasificación de textos como
+Definimos clasificación de textos como la tarea de asignar valores Booleanos
+ a cada par 
+\begin_inset Formula $\left\langle d_{j},c_{i}\right\rangle \,\in D\times C$
+\end_inset
+
+ donde 
+\begin_inset Formula $D$
+\end_inset
+
+ es un dominio de documentos y 
+\begin_inset Formula $C=\{ c_{1},\ldots,c_{|C|}\}$
+\end_inset
+
+ es un conjunto de categorias predefinidas un valor de 
+\begin_inset Formula $T$
+\end_inset
+
+ asignado a 
+\begin_inset Formula $\left\langle d_{j},c_{i}\right\rangle $
+\end_inset
+
+indica la desición de categorizar 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ bajo 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+.
+ 
+\begin_inset LatexCommand \cite{Sebastiani02}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Más formalmente, la tarea is aproximar la función objetivo desconocida 
+\begin_inset Formula $\check{\Phi}:D\times C\,\{ T,F\}$
+\end_inset
+
+ que describe como los documentos debe ser deben ser clasificados por medio
+ de la función 
+\begin_inset Formula $\Phi:D\times C\,\{ T,F\}$
+\end_inset
+
+ llamado el clasificador (también conocido como hipótesis, regla o modelo)
+ tal que 
+\begin_inset Formula $\check{\Phi}$
+\end_inset
+
+ y 
+\begin_inset Formula $\Phi$
+\end_inset
+
+ coincidan lo mas posible.
+ 
+\end_layout
+
+\begin_layout Standard
+En este trabajo haré una revisión del estado del arte de como se han herramienta
+s basadas en 
+\noun on
+RNA
+\noun default
+ y 
+\noun on
+LD.
+\end_layout
+
+\begin_layout Section
+Categorización de Textos con RNA
+\end_layout
+
+\begin_layout Subsection
+Categorización Jerárquica con RNA
+\end_layout
+
+\begin_layout Standard
+Tal vez la aplicación más conocida para la categorización de textos es la
+ de Ruíz y Srinivasan 
+\begin_inset LatexCommand \cite{ruiz02hierarchical}
+
+\end_inset
+
+ en la cual aunque basado en 
+\noun on
+RNA, 
+\noun default
+internamente usa un conjunto de técnicas para lograr una clasificación de
+ textos.
+ La técnica desarrollada por Ruíz usa técnicas de divide y vencerás.
+ El esquema está basado en un conjunto predeterminado de jerarquias.
+ Al final del entrenamiento se tiene un conjunto de RNA que son las que
+ ultimamente realizan la clasificación.
+ Está técnica es comparada con una versión optimizada del algoritmo deRocchio[RE
+F], el cual es uno de los algoritmos más utilizador para esta tarea.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Standard
+Text categorization is the task of assigning a Boolean value to each pair
+ d j , ci ? D × C, where D is a domain of documents and.
+ C = {c1 , .
+ .
+ .
+ , c|C| } is a set of predefined cat- egories.
+ A value of T assigned to d j , ci indicates a decision to file d j under
+ ci , while a value of F indicates a decision not to file d j under ci .
+ More formally, the task is to approximate the unknown tar- get function
+ ? : D × C ? {T, F } (that de- scribes how documents ought to be classi-
+ fied) by means of a function : D × C ? {T, F } called the classifier (aka
+ rule, or hypothesis, or model) such that ? and ?coincide as much as possible.?
+ How to pre- cisely define and measure this coincidence (called effectiveness)
+ will be discussed in Section 7.1.
+ From now on we will assume that: 
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard

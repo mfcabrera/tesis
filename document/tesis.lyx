@@ -53,7 +53,7 @@ s for Automated Text Categorization
 
 \begin_layout Author
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Standard
 
@@ -88,7 +88,7 @@ Miguel Fernando Cabrera Granados
 \series default
 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Standard
 
@@ -142,7 +142,7 @@ status open
 
 Jairo Jose Espinosa, 
 \backslash
-it Supervisor 
+it Advisor 
 \backslash
 
 \backslash
@@ -194,7 +194,7 @@ for the Degree of
 
 \begin_layout Standard
 
-Ingeniero de Sistemas e Informatica 
+Ingeniero de Sistemas e Informática 
 \backslash
 
 \backslash
@@ -459,8 +459,8 @@ In other words, the program learns from an experience commonly represented
 \end_inset
 
  is known.
- Using this information the computer program tries to generalize for the
- universe, thus learning a representation of the universe.
+ Using this information the computer program tries to generalize for over
+ the available data, thus learning a representation of the universe.
  
 \end_layout
 
@@ -535,7 +535,7 @@ In recent years many techniques and algorithm have been developed to
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Standard
 * overview
