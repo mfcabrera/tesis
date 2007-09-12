@@ -1,15 +1,17 @@
 Work Experience:
 
 * Web Developer
-National University of Colombia Campus Medellín, 2007 - 2006 Version.
+National University of Colombia Campus Medellín
 An Academic Event in the National University.
-I mantained the web page of the Systems school of colombia, among the task I developed
-was the migration to a MVC model and the implmentation of a system to submit
+I mantained the web page of the Systems school of colombia, among the tasks I performed
+was the migration to a MVC  model and the implmentation of a system to submit homework.
 
 * Undergraduate Research Assistant
 Civil Engineering School
 
-* Research Assistant
+* Undergrad Research Assistant
+ Worked in the Setup, Running and Modification of the NOAA WaveWatch III Model
+ for Wave height prediction on the Caribbean Sea.
 
 * Web Developer
 School of Systems - National University of Colombia Campus Medellín.

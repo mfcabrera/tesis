@@ -10,12 +10,32 @@ include Ferret
 
 #Ferret extension
 
-class Index::Index 
-  def tf(term,docId)
+class Index::IndexReader 
+  def tf(docId)
     #te = index.reader.terms(:text)
-    #tv = index.reader.term_vector(docId,:text)
-    #tv.terms.each {|t| puts "term #{t.text}  with  #{t.positions.size}" }
+    tv = self.term_vector(docId,:text)
+    vect = Hash.new
+    tv.terms.each {
+        |t| puts "term #{t.text}  with  #{t.positions.size}" 
+        vect[t.text] = t.positions.size
+    }
+    vect
   end
+  
+  def sum_nk      
+  te = self.terms(:text)
+  sum_nk = 0
+    te.each {|term, doc_freq| 
+		puts "#{term} occured #{doc_freq} times" 
+		sum_nk =  sum_nk + doc_freq
+
+    }   
+  end 
+  
+  def cololo 
+  end
+ 
+  
 end
 
 
@@ -66,21 +86,25 @@ Dir.entries(data_directory).each do |entry|
 end
 
 te = index.reader.terms(:text)
-tv = index.reader.term_vector(14,:text)
+#tv = index.reader.term_vector(14,:text)
   
 #tv.terms.each {|t| puts "term #{t.text}  with  #{t.positions.size}" }
 #puts Analysis::FULL_SPANISH_STOP_WORDS
 #x = MiguelBiAnalyzer.new
-
 sum_nk = 0
-te.each {|term, doc_freq| 
+te.each {
+        #Here we should create all VECTOR META-HASH so we can save Database information about it.. it will a big big hash
+
+        |term, doc_freq| 
 		puts "#{term} occured #{doc_freq} times" 
 		sum_nk =  sum_nk + doc_freq
 
 }
 
 
+
 puts "Sum Nk = #{sum_nk}"
+index.reader.tf(1).each_pair {|k,v| puts "#{k}:\t#{v}" }
 
 
 
