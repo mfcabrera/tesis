@@ -51,13 +51,13 @@ status collapsed
 
  
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Standard
 
 {
 \backslash
-it Una Revisión de La Literatura}
+large Una Revisión de La Literatura}
 \end_layout
 
 \end_inset
@@ -207,17 +207,58 @@ Tal vez la aplicación más conocida para la categorización de textos es la
 
  en la cual aunque basado en 
 \noun on
-RNA, 
+RNA
+\begin_inset LatexCommand \cite{kohonen-88a}
+
+\end_inset
+
+, 
 \noun default
 internamente usa un conjunto de técnicas para lograr una clasificación de
  textos.
  La técnica desarrollada por Ruíz usa técnicas de divide y vencerás.
- El esquema está basado en un conjunto predeterminado de jerarquias.
+ 
+\end_layout
+
+\begin_layout Standard
+El esquema está basado en un conjunto predeterminado de jerarquias.
  Al final del entrenamiento se tiene un conjunto de RNA que son las que
  ultimamente realizan la clasificación.
- Está técnica es comparada con una versión optimizada del algoritmo deRocchio[RE
-F], el cual es uno de los algoritmos más utilizador para esta tarea.
+ Está técnica es comparada con una versión optimizada del algoritmo de Rocchio
+\begin_inset LatexCommand \cite{rocchio71relevance}
+
+\end_inset
+
+, el cual es uno de los algoritmos más utilizador para esta tarea pero en
+ su modalidad plana, es decir, una clasificación Booleana.
+\end_layout
+
+\begin_layout Standard
+El Metodo usado los llaman Hierarquical Mixture of Experts (
+\noun on
+HME
+\noun default
+) que consiste basicamente en un arreglo en forma de arbol de redes neuronales
+ el cual divide el problema del entrenamiento y categorización en subproblemas.
  
+\end_layout
+
+\begin_layout Standard
+El método, en comparación al algoritmo de Rocchio se comporta mejor dado
+ que utiliza la información de una estructura jerarquica previamente definida,
+ sin embargo aunque el 
+\noun on
+HME
+\noun default
+ se comporta de manera similar de que el algoritmo de Rocchio optimizado
+ en promedio para todas las categorias, el algoritmo de Rocchio se comporta
+ mucho mejor para categorias de alta y media frecuencia, siendo el HME mejor
+ para los categorias con menor frecuencia.
+\end_layout
+
+\begin_layout Standard
+Los resultados del HME son similares a los expuestos en literatura previa,
+ aunque mucho mejores que usando una RNA plana.
 \end_layout
 
 \begin_layout Standard
@@ -247,7 +288,39 @@ Text categorization is the task of assigning a Boolean value to each pair
  
 \end_layout
 
+\begin_layout Subsection
+Categorización Multi-Etiqueta con RNA
+\end_layout
+
 \begin_layout Standard
+En el trabajo de Zhang y Zhou 
+\begin_inset LatexCommand \cite{journals/tkde/ZhangZ06}
+
+\end_inset
+
+ una implementación de RNA para categorización multi-etiqueta con RNA es
+ expuesta.
+ La categorización multi-etiqueta difiere de la categoriazación Booleana
+ en que los documentos pueden pertenecer a más de una categoría.
+ Generalmente en implmentaciones de sistemas de categorización multi-etiqueta
+ se miran como casos especiales de categorización Booleana, donde se tiene
+ un clasificador por cada categoría, en este caso en particular, otra aproximaci
+ón es usada.
+\end_layout
+
+\begin_layout Standard
+Este trabajo presenta una modificación al algoritmo de 
+\emph on
+Backpropagation
+\emph default
+
+\begin_inset LatexCommand \cite{rumel:parity}
+
+\end_inset
+
+ eligiendo una función modificada diseñada para capturar las particularidades
+ de el aprendizaje multi-etiqueta.
+ 
 \begin_inset LatexCommand \bibtex[plain]{rv}
 
 \end_inset
