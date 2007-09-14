@@ -16,7 +16,7 @@ class Index::IndexReader
     tv = self.term_vector(docId,:text)
     vect = Hash.new
     tv.terms.each {
-        |t| puts "term #{t.text}  with  #{t.positions.size}" 
+        |t| puts "index::tf:  #{t.text}  with  #{t.positions.size}" 
         vect[t.text] = t.positions.size
     }
     vect
@@ -31,19 +31,49 @@ class Index::IndexReader
 
     }   
   end 
-  
-  def cololo 
-  end
- 
-  
+      
 end
 
 
+#personalized classes... I should extend Ferret
+#but well... some day I'll do it properly
+class TermInfo
+    attr_accessor :idf
+    attr_accessor :word_freq
+    attr_accessor :tf
+    
+    def initialize(termstr)
+         @term = termstr
+    end       
+end
 
-class VSM
+class DocumentInfo
+    attr_accessor :words,:id,:total_words
+    def initialize(id,words,ireader)
+        self.id = id
+        self.words = words
+        self.total_words = 0
+        
+        ireader.term_vector(id,:text).terms.each do |t| 
+                self.words[t.text].word_freq = t.positions.size
+                self.total_words = self.total_words + self.words[t.text].word_freq
+                puts "#{t.text} - #{t.positions.size}" 
+        end
+       
+        calculate_tf_df
+               
+    end 
+    
+    def calculate_tf
+             
+        self.words.each  { |k,v| 
+            v.tf = v.word_freq/(self.total_words.to_f)    
+            puts "#{k} - #{v.tf}"
+        }
+                    
+    end    
 end
   
-
   
 class MiguelBiAnalyzer <  Ferret::Analysis::Analyzer
   include Ferret::Analysis
@@ -92,19 +122,26 @@ te = index.reader.terms(:text)
 #puts Analysis::FULL_SPANISH_STOP_WORDS
 #x = MiguelBiAnalyzer.new
 sum_nk = 0
-te.each {
+
+#write into IndexReader
+all_words = Hash.new
+te.each {|term,doc_freq|
         #Here we should create all VECTOR META-HASH so we can save Database information about it.. it will a big big hash
-
-        |term, doc_freq| 
-		puts "#{term} occured #{doc_freq} times" 
-		sum_nk =  sum_nk + doc_freq
-
+        all_words[term] = TermInfo.new(term)
+        all_words[term].idf = Math::log(index.reader.num_docs.to_f/doc_freq.to_f)
+        all_words[term].word_freq = 0.0
+              
+        #|term, doc_freq| 
+		puts "#{term} idf-> #{all_words[term].idf}" 
+		#sum_nk =  sum_nk + doc_freq
 }
 
+#now for aeach document we find the words hash but sorted
 
+#doc = DocumentInfo.new(1,all_words.clone,index.reader)
 
-puts "Sum Nk = #{sum_nk}"
-index.reader.tf(1).each_pair {|k,v| puts "#{k}:\t#{v}" }
+#make it an inter function
+
 
 
 

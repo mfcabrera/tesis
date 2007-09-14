@@ -10,7 +10,7 @@
 \inputencoding auto
 \fontscheme default
 \graphics default
-\paperfontsize 10
+\paperfontsize default
 \spacing single
 \papersize letterpaper
 \use_geometry true
@@ -88,7 +88,7 @@ Miguel Fernando Cabrera Granados
 \series default
 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Standard
 
@@ -107,7 +107,7 @@ mfcabrer@unal.edu.co
 
 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Standard
 
@@ -140,9 +140,18 @@ status open
 
 \begin_layout Standard
 
-Jairo Jose Espinosa, 
+Advisor
 \backslash
-it Advisor 
+
+\backslash
+
+\end_layout
+
+\begin_layout Standard
+
+Jairo Jos
+\backslash
+'{e} Espinosa  
 \backslash
 
 \backslash
@@ -242,6 +251,10 @@ Universidad Nacional de Colombia - Sede Medellín
 
 \begin_layout Chapter
 Overview
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Section
