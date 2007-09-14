@@ -320,6 +320,21 @@ Backpropagation
 
  eligiendo una función modificada diseñada para capturar las particularidades
  de el aprendizaje multi-etiqueta.
+ El algoritmo es bautizado como 
+\noun on
+BP-mll
+\noun default
+ por los autores.
+ El método logra superar en comportamiento a muchas de las técnicas ya conocidas
+, como 
+\noun on
+Rank-SVM, ADTBoost.MH 
+\noun default
+y 
+\noun on
+BasicBp.
+
+\noun default
  
 \begin_inset LatexCommand \bibtex[plain]{rv}
 
