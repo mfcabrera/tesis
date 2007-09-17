@@ -51,13 +51,15 @@ status collapsed
 
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Standard
 
 {
 \backslash
-large Una Revisión de La Literatura}
+large Una Revisi
+\backslash
+'{o}n de La Literatura}
 \end_layout
 
 \end_inset
@@ -333,8 +335,95 @@ Rank-SVM, ADTBoost.MH
 y 
 \noun on
 BasicBp.
+\end_layout
 
-\noun default
+\begin_layout Section
+Clasificación de Textos Usando LD
+\end_layout
+
+\begin_layout Standard
+La lógica difusa de la misma manera que las redes neuronales ha sido usada
+ muy esporadicamente para la clasificación automática de textos.
+ A continuación se presenta una revisión de algunas aproximaciones para
+ la clasificación de texto usando este paradigma.
+\end_layout
+
+\begin_layout Subsection
+Similaridad Difusa para Clasificación de Textos
+\end_layout
+
+\begin_layout Standard
+Widyantoro and Yen 
+\begin_inset LatexCommand \cite{widyantoro-fuzzy}
+
+\end_inset
+
+ utilizan una versión adaptada de el algoritmo de Rocchio
+\begin_inset LatexCommand \cite{rocchio71relevance}
+
+\end_inset
+
+ para clasificar los textos.
+ Basicamente se usa rochio para clasificar crear un 
+\emph on
+cluster
+\emph default
+ de categorias centrado en Rocchio para los documentos de entrenamiento
+ y la similaridad entre las categorias y los documentos de prueba es medida
+ usando el coeficiente de coseo 
+\begin_inset LatexCommand \cite{rocchio71relevance}
+
+\end_inset
+
+.
+ Con la aproximación de Similaridad difusa se crea un conjunto de una relacion
+ entre un termino y una categoria es creada, donde el conjunto de grados
+ de membresias de palabras a una categoria particular representa el hipótesis
+ aprendida.
+ Basandose en esta relacion, la similaridad entre un documento y el centro
+ del cluster de una categoria es calculado usando los operadores difusion
+ de conjunción y disjunción.
+ 
+\end_layout
+
+\begin_layout Standard
+En etsa aproximación la manera en que se representan los textos es crucial
+ para el comportamiento del modelo, los autores prueban una gran variedad
+ de tecnicas pasando por LSI e TF-IDF pero concluyen que para este modelo,
+ la representacion Boleeana de vectores de terminos es la más adecuada.
+ El autor no hace un Benchmark con otras técnicas luego no es posible lograr
+ una comparación.
+\end_layout
+
+\begin_layout Section
+Conclusión
+\end_layout
+
+\begin_layout Standard
+Vemos que existe considerable trabajo en torno a las clasificación de texto
+ usando tanto RNA como LD.
+ Sin embargo, otras técnicas basadas en aprendizaje de máquinas han demostrado
+ mejor comportamiento en contextos generales y aunque pueden ser superados
+ por estas técnicas en conceptos especifícos, el ajuste de parámetros para
+ estas técnicas pueden hacerlas demasiado dificil de aplicar en contextos
+ reales.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Standard
+In the fuzzy similarity approach, a fuzzy term-category relation is developed,
+ where the set of membership degree of words to a particular category represents
+ the cluster prototype of the learned model.
+ Based on this relation, the similarity between a document and a category's
+ cluster center is calculated using fuzzy conjunction and disjunction operators,
+ and the
+\end_layout
+
+\end_inset
+
  
 \begin_inset LatexCommand \bibtex[plain]{rv}
 

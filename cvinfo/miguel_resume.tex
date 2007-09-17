@@ -12,7 +12,8 @@
 %%
 
 %this assumes that res_yy.sty is in some path
-\documentstyle[hyperref, margin, line]{res_yy}
+\documentstyle[hyperref, margin, line,textcomp]{res_yy}
+
 
 \hypersetup{backref,pdfpagemode=Full,colorlinks=true,backref}
 
@@ -64,7 +65,7 @@
 %% This section of code is inelegant, but I'm too lazy to fix it
 %%
 
-\section{\textsc{Research Interest}}
+\section{\textsc{Research\\ Interest}}
 My research interests lie primarily in Machine Learning and its applications, specially but  not limited to Information Retrieval and Filtering, Intelligent Information Systems, Recommender Systems, Desktop and Enterprise Search.
 \newline
 
@@ -72,15 +73,15 @@ My research interests lie primarily in Machine Learning and its applications, sp
 \textbf{National University of Colombia - Campus Medell\'{i}n} \hfill 2003 - Present \\
 {\large Informatics and Systems Engineer} \hfill Graduation Date: December 2007\\
 
-\section{\textsc{Course Work}}
+\section{\textsc{Course\\ Work}}
   \begin{tabular}{lllll}
 Information Networks   & \ \ &  Operation Research   & \ \ &
 Multiagent Systems  \\ 
 Digital Image Processing     & \ \ & Complex Systems  & \ \ & Programming Languages \\
 Software Engineering   & \ \ & Algorithms          & \ \ & Artificial Intelligence     \\
-Operating Systems      & \ \ & Databases - 2 Courses          & \ \ & Computer Architecture \\
+Operating Systems      & \ \ & Databases I and II          & \ \ & Computer Architecture \\
 Numerical Methods      & \ \ & Macroeconomics       & \ \ & Differential Equations      \\
-Basic Probability      & \ \ & Microeconomics      & \ \ & Linear and Dynamic Systems      \\
+Basic Probability      & \ \ & Microeconomics      & \ \ & Dynamic Linear Systems      \\
 Advanced Calculus      & \ \ & Linear Algebra    & \ \ & Computational Intelligence   \\
 \end{tabular}
 \newline
@@ -88,7 +89,7 @@ Advanced Calculus      & \ \ & Linear Algebra    & \ \ & Computational Intellige
 
 
 \section{\textsc{Awards}}
-\textbf{Medal Andr\'{e}s Bello} \hfill  Bogot\'{a} Colombia - 1999 \\
+\textbf{Andr\'{e}s Bello Medal} \hfill  Bogot\'{a} Colombia - 1999 \\
 Given by the Education Ministry to the best scores in the ICFES National pre-university exam \hfill \\
 \newline
 
@@ -105,7 +106,7 @@ Given by the Education Ministry to the best scores in the ICFES National pre-uni
 \section{\textsc{Work\\ Experience}}
 
 \employer{\textbf{March 2007 - Present }}
-\title{\textbf{Web Developer}}
+\title{\textbf{Web Developer} (Part time)}
 \location{School of System and Informatics, National University of Colombia} 
 \dates{Medell\'{i}n, Colombia }
 \begin{position}
@@ -128,8 +129,9 @@ for high performance wave height prediction on the Caribbean Sea.
 \location{{Soluciones Kazak}}
 \dates{Medell\'{i}n, Colombia}
 \begin{position}
-Me and my team  developed custom version of Linux distribution fitting
-our clients needs, I also worked on  the set-up of many enterprise servers ranging from small companies to medium size ISP.
+Me and my team  developed custom  Linux distribution fitting
+our clients needs, I also worked on  the set-up of many enterprise
+servers ranging from small companies to medium size ISP. http://www.kazak.com.co
 %I worked with Ubuntu, CentOS Linux distribution and NetBSD. 
 %Programming languages used: Perl and Ruby.
 \end{position}
@@ -203,39 +205,36 @@ to computer rooms users and coordinate the computer room maintenance.
 %% \end{position}
 
 
-\section{\textsc{Other Projects}}
+\section{\textsc{Other\\  Projects}}
 
-\employer{\textbf{Finding Influential Blogs via Link Predictio---n}}
-\dates{Spring 2006}
+\employer{\textbf{Parallel Training of 
+Linear Transductive SVMs for  Document Classification}}
+\dates{May 2007 - Present}
 \begin{position}
-Used machine learning and link analysis techniques to determine the amount of influence blogs exert on each other.
+Undergrad thesis project. Ongoing.
 \end{position}
 
-\employer{\textbf{Loss-Minimizing Voting for Machine Learning Ensembles}}
-\dates{Spring 2006}
+\employer{\textbf{Web based Repository of Range Images}}
+\dates{June-July 2006}
 \begin{position}
-Explored voting schemes which minimizes a loss function for an ensemble of learning models. 
+ I developed a Web based repository for Range Images, the goal of the
+ project was to create a centralized repostitory for all the range
+ images generated from research projects around world in the field of
+ object recontruction and surface fitting. The application was
+ developed using Ruby on Rails with a MySQL database.
+
 \end{position}
 
-\employer{\textbf{Parameter Estimation for MRF-Stereo with Occlusions}}
-\dates{Fall 2005}
+\employer{\textbf{Beagle CHM Filter}}
+\dates{May-July 2005}
 \begin{position}
-Used an EM-method to iteratively compute superior parameters for the baseline MRF-stereo algorithm with occlusions.
+Beagle a Desktop search tool  for Linux similar to
+Google\texttrademark  \  Desktop
+Search. I developed a filter for CHM (Windows' Help format) indexing.
+http://www.beagle-project.org
 \end{position}
 
-\employer{\textbf{Illini Book Exchange}}
-\dates{2002-2005}
-\begin{position}
-http://www.illinibookexchange.com\\
-Worked on development, management and marketing of Illini Book Exchange for the Technology and Management Club at UIUC. 
-\end{position}
 
-\employer{\textbf{Reflections Projections}}
-\dates{Fall 2004}
-\begin{position}
-http://www.acm.uiuc.edu/conference/\\
-Helped plan and manage Reflections Projections 2004 as Treasurer of ACM @ UIUC.
-\end{position}
 
 
 %%
@@ -254,30 +253,54 @@ Helped plan and manage Reflections Projections 2004 as Treasurer of ACM @ UIUC.
 %% We only have one row of information now, instead of two
 %%
 
-\section{\textsc{Activities}}
+\section{\textsc{Extracurricular\\ Activities}}
 
 \begin{formatb}
   \employer{l}\dates{r}\\
   \body\\
 \end{formatb}
 
-\employer{\textbf{Cornell Teaching Assistant (TA Excellence Award)}}
-\dates{Fall 2005 - Spring 2006}
+\employer{\textbf{UNALIX - Founder and Coordinator}}
+\dates{June 2003 - January 2006}
 \begin{position}
-Taught two sections of CS 100M during the Fall and Spring semesters of the 2005-6 academic year.  Received award in recognition of performance.
+UNALIX is the University's Linux and Open Source User Group, I was one
+of the founder member  and general coordinator until January of
+2006. I'm still an active member. UNALIX is both an user group and academica group where we
+discuss the technology and the applicability of Open Source Software
+in the University's environment. http://www.unalix.org
 \end{position}
 
-\employer{\textbf{UIUC ACM Treasurer}}
-\dates{Fall 2004 - Spring 2005}
+\employer{\textbf{ParqueSoft Medell\'{i}n}}
+\dates{January 2007 -  June 2007}
 \begin{position}
-Managed all financial responsibilities of local chapter of ACM.  Assisted the Chair in general management of ACM.
+I was on of the founder of ParqueSoft Medell\'{i}n, A local branch of
+ParqueSoft located at the city of Cali. ParqueSoft techonology cluster
+that fosters enterpreneurship. I was part of the local directive board
+as representative of the entrepeneurs.
+
 \end{position}
 
-\employer{\textbf{UIUC ACM SIGGRAPH Chair}}
-\dates{Spring 2004}
+
+
+
+\section{\textsc{Professional\\ Memberships}}
+
+\begin{formatb}
+  \employer{l}\dates{r}\\
+  \body\\
+\end{formatb}
+
+\employer{{UNALIX - University Linux User Group}}
+\employer{{ACM Student Member
+}}
+\dates{}
 \begin{position}
-Managed the local chapter of SIGGRAPH, organized projects and workshops/tutorials
 \end{position}
+
+
+
+
+
 
 
 
