@@ -103,7 +103,7 @@ mfcabrer@unal.edu.co
 
 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Standard
 
@@ -565,9 +565,9 @@ The question of how good the function
  can generalize has spawned an entire subfield of machine learning called
  computational learning theory.
  Many of the techniques classified in this field have come from development
- of frameworks in this particular subfield, altough no stating how good
- is going to perform an algorithm but creating probabilistic bounds to the
- performace.
+ of frameworks in this particular subfield.
+ These framewors generally don't state how good is going to perform an algorithm
+, instead create a probabilistic bound to the performace.
 \end_layout
 
 \begin_layout Standard
