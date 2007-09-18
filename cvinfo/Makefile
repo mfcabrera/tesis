@@ -25,6 +25,7 @@ CFLAGS  = $(OBJOPT) $(IPATH)
 LDFLAGS = $(EXEOPT) $(LPATH)
 
 NAME=miguel_resume.dvi
+PDF=miguel_resume.pdf
 SRC=miguel_resume.tex
 
 
@@ -36,4 +37,8 @@ all:	$(NAME)
 $(NAME): $(SRC)  
 	latex $(SRC) && evince $(NAME)
 #	$(STRIP) ./$(NAME) # if you debug ,don't strip ...
+
+pdf:	$(PDF)
+$(PDF): $(SRC)  
+	pdflatex $(SRC) && evince $(PDF)
 
