@@ -103,7 +103,7 @@ mfcabrer@unal.edu.co
 
 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Standard
 
@@ -566,8 +566,8 @@ The question of how good the function
  computational learning theory.
  Many of the techniques classified in this field have come from development
  of frameworks in this particular subfield.
- These framewors generally don't state how good is going to perform an algorithm
-, instead create a probabilistic bound to the performace.
+ These frameworks generally don't state how good is going to perform an
+ algorithm, instead create a probabilistic bound to the performace.
 \end_layout
 
 \begin_layout Standard
@@ -786,6 +786,11 @@ GENERAL NOTES:
 \begin_layout Standard
 * In Information retrieval justify the usage of automatic techiques using
  the citation on the CMU Phd Thesis.
+\end_layout
+
+\begin_layout Standard
+* Justify the usage of SVM for text classification for the reason exhibited
+ in Sebastini's survey
 \end_layout
 
 \end_inset
