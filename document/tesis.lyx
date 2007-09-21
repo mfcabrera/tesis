@@ -249,10 +249,6 @@ Universidad Nacional de Colombia - Sede Medellín
 Overview
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
 \begin_layout Section
 Introduction
 \end_layout
@@ -385,7 +381,15 @@ This work describes an implementation of a parallel SVM using the cascade
 
  using a transductive learning algortithm.
  The first part, Overview introduces the basic concepts a Machine Learning,
- Information Retrieval and Text Categorization......
+ Information Retrieval and Text Categorization.
+ Later we describe the SVM algorithm and justify the reason of using SVM
+ for text classification over other techniques.
+ In 
+\begin_inset LatexCommand \vref{cha:Experiments-and-Results}
+
+\end_inset
+
+ we exhibit our experimental set-up and the results.
 \end_layout
 
 \begin_layout Section
@@ -530,9 +534,9 @@ Transductive Learning
 
 \begin_layout Standard
 In this thesis we are going to use a restricted definition in order to ilustrate
- the concept described above.
- I these pages machine learning will refer to a generalized regression character
-izing a set of label events 
+ the concepts described above.
+ In these pages machine learning will refer to a generalized regression
+ characterizing a set of label events 
 \begin_inset Formula $\left\{ (x_{1},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})\right\} $
 \end_inset
 
@@ -659,6 +663,12 @@ The computational analysis of machine learning algorithms and their performance
 Information Retrieval
 \end_layout
 
+\begin_layout Standard
+Information Retrieval (IR) is very big term that comprises a lot of concepts
+ regarding data manipulation, where data can be anything from text to videos.
+ 
+\end_layout
+
 \begin_layout Subsection
 Models of Text and Text Representation
 \end_layout
@@ -755,8 +765,17 @@ Paralell Method for Training Transuductive SVM
 Transductive Parallel Linear SVM
 \end_layout
 
-\begin_layout Section
+\begin_layout Chapter
 Experiments and Results
+\begin_inset LatexCommand \label{cha:Experiments-and-Results}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Experimental Setting
 \end_layout
 
 \begin_layout Subsection
@@ -767,13 +786,21 @@ Software
 Data Sets
 \end_layout
 
+\begin_layout Subsection
+The Cascade SVM
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
 \begin_layout Section
 Conclusions
 \end_layout
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Standard
 GENERAL NOTES:
