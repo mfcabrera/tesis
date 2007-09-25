@@ -39,4 +39,15 @@ Need for Paralellization:
 
 - Transductive Learning requires to solve the same problem many times!
 - There actual trends in Computer Processor are multi-core architetures, allowing and encoraging to
+
+
   create parallel solutions to standard problems.
+
+
+About Machine Learning Framework:
+
+- Writte about what kind of problem solves machine learning 
+- Write about empirical riks minimization
+-  Write about text representation .
+
+
