@@ -4,7 +4,8 @@
 \begin_header
 \textclass book
 \begin_preamble
-
+\renewcommand\[{\begin{equation}}
+\renewcommand\]{\end{equation}} 
 \end_preamble
 \language english
 \inputencoding auto
@@ -26,7 +27,7 @@
 \tocdepth 3
 \paragraph_separation indent
 \defskip smallskip
-\quotes_language swedish
+\quotes_language english
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -84,7 +85,7 @@ DRAFT
 
  Miguel Fernando Cabrera Granados
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Standard
 
@@ -199,7 +200,9 @@ for the Degree of
 
 \begin_layout Standard
 
-Ingeniero de Sistemas e Informática 
+Ingeniero de Sistemas e Inform
+\backslash
+'{a}tica 
 \backslash
 
 \backslash
@@ -225,7 +228,9 @@ Escuela de Sistemas - Facultad de Minas
 
 \begin_layout Standard
 
-Universidad Nacional de Colombia - Sede Medellín
+Universidad Nacional de Colombia - Sede Medell
+\backslash
+'{i}n
 \backslash
 
 \backslash
@@ -245,6 +250,59 @@ Universidad Nacional de Colombia - Sede Medellín
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Standard
+GENERAL NOTES:
+\end_layout
+
+\begin_layout Standard
+* When in Transductive take the example of web un-categorized data.
+\end_layout
+
+\begin_layout Standard
+Find application of text categorization (Joachims Mentions many)
+\end_layout
+
+\begin_layout Standard
+* In Information retrieval justify the usage of automatic techiques using
+ the citation on the CMU Phd Thesis.
+\end_layout
+
+\begin_layout Standard
+* Justify the usage of SVM for text classification for the reason exhibited
+ in Sebastini's survey
+\end_layout
+
+\begin_layout Standard
+* Justify the paralellization because collobert paper about generalization
+ improvement through paralellization (CITE THEM)
+\end_layout
+
+\begin_layout Standard
+* The Thesis of This girl check out the part of Text Representation and
+ Empirical Risk Minization Principle
+\end_layout
+
+\begin_layout Standard
+* Say in Paralell SVM that the parallelization of is difficult cause the
+ dependency of the steps altoguh there have been approach to deal with this
+ problem (Zanni paper)
+\end_layout
+
+\begin_layout Standard
+* Change the parallell part of a review fof the tendency of parallell multicore
+ processors and HPC systems.
+ and basic parallelization vector and paraellization
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Overview
 \end_layout
@@ -256,10 +314,11 @@ Introduction
 \begin_layout Standard
 Text classification is a key aspect of text filtering, document management
  and retrieval tasks.
- Besides basic document classification, many problems can be see as instances
- of Text Categorization (TC).
+ Besides basic document classification for somekind of digital library,
+ many problems can be seen as instances of the Text Categorization (TC)
+ problem .
  Spam detection, Web search improvement and automated metadata generation
- are just a few examples this
+ are just a few examples of this
 \begin_inset Note Note
 status collapsed
 
@@ -293,28 +352,33 @@ Add here the fact that the manual classification is at best expensive or
  
 \emph default
 beings, but a manual classification is at best expensive and practically
- impossible for large quantities of documents as found in modern information
+ impossible for large amounts of documents found today in modern information
  systems.
 \end_layout
 
 \begin_layout Standard
-A text classification technique uses example documents that have been previously
- categorized in classes by an authority in order to learn a model that,
- with a associated error value, can automatically predict the class the
- authority would have given to future documents.
+A TC technique uses example documents that have been previously categorized
+ in classes by an authority in order to learn a model that, with an associated
+ error value, can automatically predict the class that the authority would
+ have given to future documents.
  
 \end_layout
 
 \begin_layout Standard
-Support Vector Machine 
+Support Vector Machines 
 \begin_inset LatexCommand \cite{Vapnik98}
 
 \end_inset
 
- is a powerful tool for classifying large datasets, and due the nature of
- the common text representation model, it has been applied successfully
- for automated document classification 
+ are a powerful tool for classifying large datasets, and due the nature
+ of the classical text representation models, it has been applied successfully
+ in automated document classification tasks 
 \begin_inset LatexCommand \cite{Joachims98}
+
+\end_inset
+
+
+\begin_inset LatexCommand \cite{Joachims99c}
 
 \end_inset
 
@@ -343,8 +407,8 @@ One characteristic of the SVM is that, in its formal definition, the computation
 \end_layout
 
 \begin_layout Standard
-An approach to cope with this limitation is to divide the problem into chunks
- 
+One approach to cope with this limitation is to divide the problem into
+ chunks 
 \begin_inset LatexCommand \cite{Joachims/99a}
 
 \end_inset
@@ -355,9 +419,9 @@ An approach to cope with this limitation is to divide the problem into chunks
 \end_inset
 
  and train those subproblems.
- Even with those optimizations, the problem still has large computational
+ Even with these optimizations, the problem still has large computational
  requirements, and the required time to train grows sufficiently enough
- for making it not useful for real-time training.
+ for making it not useful for real-time training when using large datasets.
  The implementation of Transductive inference for a SVM requires to solve
  the same problem many times over generally large datasets, until finding
  the optimal classifier.
@@ -367,9 +431,22 @@ An approach to cope with this limitation is to divide the problem into chunks
 
 \begin_layout Standard
 Taking advantage actual trends in processor technologies, where the multi-core
- processor is becoming the norm[CitationHere] parallel implementation of
- such algorithm along with other optimization will help make the application
- of this technique practical in real world situations.
+ processor is becoming the norm[CitationHere] 
+\begin_inset LatexCommand \cite{Marowka07}
+
+\end_inset
+
+ parallel implementation of such algorithm along with other optimization
+ will help make the application of this technique practical in real world
+ situations.
+ Also, as an extra motivation, empirical results have showed that some parallel
+ settings for SVM have achieved better generalization than their classic
+ counterparts 
+\begin_inset LatexCommand \cite{citeulike:935557|Collobert2002}
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -384,7 +461,7 @@ This work describes an implementation of a parallel SVM using the cascade
  Information Retrieval and Text Categorization.
  Later we describe the SVM algorithm and justify the reason of using SVM
  for text classification over other techniques.
- In 
+ In chapter 
 \begin_inset LatexCommand \vref{cha:Experiments-and-Results}
 
 \end_inset
@@ -408,12 +485,17 @@ ML
 \end_inset
 
 .
+ The experience encounter by the computer program are examples that it takes
+ as input.
  In order to to develop such programs 
 \noun on
 ML
 \noun default
  borrows concepts from many areas suchs Statistics, Information Theory,
- Biology and Control Theory.The learning problem is defined formally in 
+ Biology and Control Theory, futhermore, given the amount of statistical
+ based ML algorithms developed in the last years, many scientists see ML
+ as a crossroad between Statistics and Computer Science.
+ The learning problem is defined formally in 
 \begin_inset LatexCommand \cite{Mitchell97}
 
 \end_inset
@@ -479,7 +561,13 @@ In other words, the program learns from an experience commonly represented
 
 \begin_layout Standard
 The way in which an actual computer program realizes the task of learning
- from the experience can different, there are serveral modes with of learning:
+ from the experience can different, there are serveral modes in which the
+ learning task can be accomplished 
+\begin_inset LatexCommand \cite{citeulike:755348|Heibrich2001Lkernel}
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Itemize
@@ -497,17 +585,9 @@ Supervised Learning
 \begin_layout Itemize
 
 \emph on
-Semi-supevised Learning
-\emph default
-: Combines both labeled and unlabeled examples to generate the representation.
-\end_layout
-
-\begin_layout Itemize
-
-\emph on
 Unsupervised Learning: 
 \emph default
-Combines both labeled and unlabeled examples to generate the representation
+Combines both labeled and unlabeled examples to generate the representation.
 \end_layout
 
 \begin_layout Itemize
@@ -517,6 +597,19 @@ Reinforcement Learning
 \emph default
 : In wich the algorithm learns a policy of how to act given an observation
  of the world.
+\end_layout
+
+\begin_layout Standard
+Besides these three main ways of learning, there are others that can be
+ seen as variations of the ones mentioned above.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Semi-supevised Learning
+\emph default
+: Combines both labeled and unlabeled examples to generate the representation.
 \end_layout
 
 \begin_layout Itemize
@@ -664,26 +757,44 @@ Information Retrieval
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Standard
 Information Retrieval (IR) is branch of computer science whose originally
  objective was to obtain information, only text in early stages, from generally
  large amounts of data.
-\end_layout
-
-\begin_layout Standard
-Information Retrieval (IR) is very big term that comprises a lot of concepts
+ Information Retrieval (IR) is very big term that comprises a lot of concepts
  regarding data manipulation, where data can be anything from text to videos.
  
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-Information Retrieval (IR) is branch of computer science whose originally
- objective was to obtain information, only text in early stages, from generally
- large amounts of data.
- 
+Information Retrieval (IR) is branch of computer science whose original
+ objective was to obtain information from generally large amounts of data.
+ Today modern IR deals with content-based document managment task, no only
+ including retrieval, but also document filtering, translation and summarization
+ as well.
+ These last task can be seen as "Knowledge" retrieval
+\end_layout
+
+\begin_layout Standard
+Altough we could generalize document to be any kind of data such as video,
+ music and images, in this document when we refer to IR we will be refereing
+ to text based documents.
 \end_layout
 
 \begin_layout Subsection
 Models of Text and Text Representation
+\end_layout
+
+\begin_layout Subsection
+Dimensionality Reduction
 \end_layout
 
 \begin_layout Section
@@ -693,6 +804,23 @@ Text Categorization
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The goal of text categorization is to automatically assign, for each documents,
+ categories selected among a predefined set.
+ In opposition to the machine learning typical multi-class classification
+ task which aims at attributing one class among the possible ones to each
+ example, documents in a text categorization task may belong to several
+ categories 
+\end_layout
+
+\begin_layout Subsection
+Applications of Text Categorization
+\end_layout
+
+\begin_layout Subsection
+Taxonomy of Text Categorization Techniques
 \end_layout
 
 \begin_layout Subsection
@@ -762,12 +890,267 @@ Text Categorization With SVM
 Support Vector Machines
 \end_layout
 
+\begin_layout Standard
+Support Vector Machines (SVMs) 
+\begin_inset LatexCommand \cite{Vapnik98}
+
+\end_inset
+
+ are powerful classification and regresion tools that have been widely applied
+ in the solutions of many problem, generally yielding comparable or even
+ better performance that other algortihms.
+ 
+\end_layout
+
+\begin_layout Standard
+The SVM algorithm is based in the principle of empirical risk minimization
+ developed by Vapnik 
+\begin_inset LatexCommand \cite{Vapnik98}
+
+\end_inset
+
+
+\begin_inset LatexCommand \cite{Vapnik99}
+
+\end_inset
+
+, the main idea of the principle is to find an hypothesis 
+\begin_inset Formula $h$
+\end_inset
+
+ from an hypothesis space 
+\begin_inset Formula $H$
+\end_inset
+
+ for which the lowest probability of error is guaranteed for a given set
+ of training examples.
+ For classification problems this is equivalent to find the discrimination
+ function that maximizes the distances within the classes, assuring the
+ lowerst probability of error.
+ The aim of the Support Vector classification is to devise a computationally
+ efficient way of learning the optimal separating hyperplanes in high dimensiona
+l feature space 
+\begin_inset LatexCommand \cite{citeulike:114719|Cristianini2000introSVM}
+
+\end_inset
+
+, defining optimal hyperplane as the one that has both, the minimum empirical
+ risk and VC dimension.
+ 
+\begin_inset LatexCommand \cite{citeulike:368926|Haykin1998}
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Finding the Optimal Hyperplane
+\end_layout
+
+\begin_layout Standard
+Let us consider a training sample 
+\begin_inset Formula $\{(x_{i},d_{i})\}_{i=1}^{N}$
+\end_inset
+
+, where x is a point in 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+ that belongs to the group of training examples or input patterns for 
+\begin_inset Formula $i$
+\end_inset
+
+th example and 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ is the corresponded, desired response.
+ In this case we are gonna simplifly the setting by stating that 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ can only take two values 
+\begin_inset Formula $\{+1,-1\}$
+\end_inset
+
+ for the positive and negative classification case respectively.
+ This is case of a binary classification problem, for multiclass classification
+ problem as described back in [INT-REF HERE] we can transform the problem
+ in different binary classification ones.
+ We also assume that the class represented by 
+\begin_inset Formula $d_{i}=\{+1,-1\}$
+\end_inset
+
+ are lineary separable.
+ The equation of a decision hyperplane that separates the data is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+w^{T}x+b=0\label{eq:}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/svms-1-basic.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+The circles are the training data, the filled ones for 
+\begin_inset Formula $d_{i}=+1$
+\end_inset
+
+ class and the empty ones for the 
+\begin_inset Formula $d_{i}=-1$
+\end_inset
+
+ class.
+ The points on 
+\begin_inset Formula $H1$
+\end_inset
+
+ and 
+\begin_inset Formula $H2$
+\end_inset
+
+ are the support vector that maximize the distance between the data and
+ the hyperplane defined by 
+\begin_inset Formula $w$
+\end_inset
+
+, a normal vector to the hyperplane and the offset 
+\begin_inset Formula $-b/|w|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\end_layout
+
+\begin_layout Standard
+Where 
+\begin_inset Formula $x$
+\end_inset
+
+ is an input vector, 
+\begin_inset Formula $w$
+\end_inset
+
+ is the weight vector, normal to the separation hyperplane, and 
+\begin_inset Formula $b$
+\end_inset
+
+ is the offset or bias:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{multline*}
+\\w^{T}x+b\geq0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, d_{i}=+1\\
+\\w^{T}x+b<0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, d_{i}=-1\\
+\\\end{multline*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For a given vector 
+\begin_inset Formula $w$
+\end_inset
+
+ and offset 
+\begin_inset Formula $b$
+\end_inset
+
+ the distance between the the hyperplane defined in and a point 
+\begin_inset Formula $x$
+\end_inset
+
+ is called margin of separation represented by the equation
+\begin_inset LatexCommand \ref{eq:}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Then we can write the discriminat function:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+{g(x)=w}^{T}x+b\label{eq:2}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This equation gives a mesuare of the distance from x to the optimal hyperplane,
+ in order 
+\end_layout
+
+\begin_layout Section
+SVM and Text Categorization
+\end_layout
+
+\begin_layout Standard
+The usage of SVM was first introduced by Joachims 
+\begin_inset LatexCommand \cite{Joachims98}
+
+\end_inset
+
+
+\begin_inset LatexCommand \cite{Joachims99c}
+
+\end_inset
+
+ and similar setups have been used in posterior literature[CITATIONS HERE!]
+ .
+ the TC task using SVM can bee seen geometrically as finding an hyperplane
+ that separates two grous of points has 
+\end_layout
+
 \begin_layout Subsection
 Linear SVM for Text Categorization
 \end_layout
 
 \begin_layout Subsection
 Transductive Learning for SVM
+\end_layout
+
+\begin_layout Subsection
+Linear Transductive Learning SVM for Text Categorization
 \end_layout
 
 \begin_layout Section
@@ -803,39 +1186,21 @@ Data Sets
 The Cascade SVM
 \end_layout
 
+\begin_layout Standard
+For the experiment we use cascade SVM 
+\begin_inset LatexCommand \cite{GrafCBDV04}
+
+\end_inset
+
+ 
+\end_layout
+
 \begin_layout Section
 Results
 \end_layout
 
 \begin_layout Section
 Conclusions
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Standard
-GENERAL NOTES:
-\end_layout
-
-\begin_layout Standard
-* When in Transductive take the example of web un-categorized data.
-\end_layout
-
-\begin_layout Standard
-* In Information retrieval justify the usage of automatic techiques using
- the citation on the CMU Phd Thesis.
-\end_layout
-
-\begin_layout Standard
-* Justify the usage of SVM for text classification for the reason exhibited
- in Sebastini's survey
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
