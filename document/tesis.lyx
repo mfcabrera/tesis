@@ -22,7 +22,7 @@
 \leftmargin 3cm
 \topmargin 3cm
 \rightmargin 3cm
-\bottommargin 5cm
+\bottommargin 3cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -85,7 +85,7 @@ DRAFT
 
  Miguel Fernando Cabrera Granados
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Standard
 
@@ -298,6 +298,19 @@ Find application of text categorization (Joachims Mentions many)
  and basic parallelization vector and paraellization
 \end_layout
 
+\begin_layout Standard
+* Usage of MapReduce to Parallelize ML Algorithm
+\end_layout
+
+\begin_layout Standard
+* Complete IR part with thesis of the guy from CMU, Austrlia and the girla
+ from IDIAP.
+\end_layout
+
+\begin_layout Standard
+* Potter Stemmer reference
+\end_layout
+
 \end_inset
 
 
@@ -462,7 +475,7 @@ This work describes an implementation of a parallel SVM using the cascade
  Later we describe the SVM algorithm and justify the reason of using SVM
  for text classification over other techniques.
  In chapter 
-\begin_inset LatexCommand \vref{cha:Experiments-and-Results}
+\begin_inset LatexCommand \ref{cha:Experiments-and-Results}
 
 \end_inset
 
@@ -682,7 +695,7 @@ output").
 
  Some of techniques generally classified under ML are Artificial Neural
  Networks, Genetics Algorithm, k-Nearest Neighbor, Bayesian Networks and
- and Support Vector Machines (SVM).
+ and Support Vector Machines (SVM) and has been succesfully applied to.
 \end_layout
 
 \begin_layout Standard
@@ -777,16 +790,67 @@ Information Retrieval (IR) is branch of computer science whose originally
 \begin_layout Standard
 Information Retrieval (IR) is branch of computer science whose original
  objective was to obtain information from generally large amounts of data.
- Today modern IR deals with content-based document managment task, no only
- including retrieval, but also document filtering, translation and summarization
- as well.
- These last task can be seen as "Knowledge" retrieval
+ Today modern IR deals with content-based document managment task, including
+ document filtering, translation, summarization, question answering among
+ others.
+ These last tasks can be seen as "knowledge" retrieval instead of pure 
+\begin_inset Quotes eld
+\end_inset
+
+information
+\begin_inset Quotes erd
+\end_inset
+
+, therefore the application of Artificial Intelligence (AI), specifically
+ Machine Learning to improve or to help automatize these tasks is natural.
+ The research that involves AI techniques for improving IR systems is known
+ as Intelligent Information Systems.
 \end_layout
 
 \begin_layout Standard
 Altough we could generalize document to be any kind of data such as video,
- music and images, in this document when we refer to IR we will be refereing
+ music and images, when I refer to IR in this document I will will be refereing
  to text based documents.
+\end_layout
+
+\begin_layout Standard
+IR Systems makes large amounts of text accessible to people that need the
+ information, A user the apporaches to the system with a vague idea of what
+ is looking for, so the goal of the system is to provide the information
+ required.
+ The user provides generally provides some information about what kind of
+ documents is looking for, in the form of keywords or, in systems with a
+ categorical arrangement, 
+\emph on
+browse through a 
+\emph default
+the tree of categories.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Standard
+Information storage and retrieval systems make large volumes of text accessible
+ to people with information needs (van Rijsbergen, 1979; Salton and McGill,
+ 1983).
+ A person approaches such a system with some idea of what they want to find
+ out, and the goal of the system is to fulfill that need.
+ The person (hereafter referred to as the user) provides an outline of their
+ requirements?perhaps a list of keywords relating to the topic in question,
+ or even an example document.
+ The system searches its database for documents that are related to the
+ user?s query, and presents those that are most relevant.
+ General texts relating to information retrieval and computer implementation
+ of retrieval systems are Salton (1988), Frakes (1992a), Baeza-Yates (1992),
+ and Witten et al.
+ (1994).
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -828,54 +892,7 @@ Techniques
 \end_layout
 
 \begin_layout Section
-Parallelization Methods
-\end_layout
-
-\begin_layout Standard
-The current society of information is facing a new challenge: Thousand of
- Megabytes of information are available not only in the public Internet
- but also in private networks.
- This information is used continuously, but tools for accessing and manipulation
- of data do not fulfil the expectations of the users, hence efficient tools
- are becoming a necessity.
- Text classification becomes a key tool in order to deal with such amounts
- of information.
- Text classification can be used to organize document databases, filter
- Spam from e-mail accounts, or even to learn user?s news reading preferences.
- Search engines for On-line information are a kind of text classifier but
- they often retrieve results far from ?perfect?.
- Most of the results obtained are irrelevant, and in many case the number
- of results and their ranking is far from the desired criteria.
- Techniques derived from Artificial Intelligence and Machine-learning theory
- have contributed to the improvement of such search engines, leading to
- better, faster and more accurate results.
- Kernel methods have become one reliable and robust technique well suited
- to deal with high dimensional problems, ideal for facing text-mining tasks.
- More precisely, the Support Vector Machines have been tested in such tasks
- leading to interesting results.
- These results have been obtained based on the paradigm of Inductive Inference.
- This report contains the results of an application of Support Vector Machines
- to text classification, but now based on the paradigm of Transductive Inference.
- Section 3 summarizes the theoretical background needed to understand how
- Transductive Support Vector Machines (TSVM) work and how they can be used
- to classify text.
- Section 4 includes the different test made in order to evaluate the performance
- of the TSVM algorithm.
- Finally, section 5 presents conclusions and recommendations drawn from
- the realisation of this project.
-\end_layout
-
-\begin_layout Standard
-A text classification algorithm uses example documents that have been tagged
- with classes by an authority1 to learn a model that, with high accuracy,
- can automatically predict the class the authority would have assigned to
- future documents.
- In cases like topic classification (Figure 1.1) where each example can belong
- to multiple topics, the problem is usually reduced to a series of binary
- classification tasks, Corporate Acquisitions vs.
- not Corporate Acquisitions, Earnings vs.
- not Earnings, etc.
- 
+Paralell Machine Learning
 \end_layout
 
 \begin_layout Subsection
@@ -903,8 +920,13 @@ Support Vector Machines (SVMs)
 \end_layout
 
 \begin_layout Standard
-The SVM algorithm is based in the principle of empirical risk minimization
- developed by Vapnik 
+The SVM algorithm is based on the concept of VC Dimension
+\begin_inset LatexCommand \cite{vapnik71uniform}
+
+\end_inset
+
+ and on the principle of empirical risk minimization developed by Vapnik
+ 
 \begin_inset LatexCommand \cite{Vapnik98}
 
 \end_inset
@@ -914,19 +936,48 @@ The SVM algorithm is based in the principle of empirical risk minimization
 
 \end_inset
 
-, the main idea of the principle is to find an hypothesis 
-\begin_inset Formula $h$
+.
+ Roughly, the VC dimension is a metric of how complex a classifier machine
+ is, complex classifier has more capacity to fit the training data, thus,
+ overfitting is more likely to occur, therefore, is prefered a classifier
+ with minimum VC Dimension.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Standard
+Shoud I add the formula of Empirical Risk Minimization
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The basic idea of empirical risk minimization principle is to find an hypothesis
+ 
+\begin_inset Formula $s$
 \end_inset
 
  from an hypothesis space 
-\begin_inset Formula $H$
+\begin_inset Formula $S$
 \end_inset
 
  for which the lowest probability of error is guaranteed for a given set
  of training examples.
- For classification problems this is equivalent to find the discrimination
+ 
+\end_layout
+
+\begin_layout Standard
+For linear classification problems this is equivalent to find the discrimination
  function that maximizes the distances within the classes, assuring the
- lowerst probability of error.
+ lowest probability of error
+\begin_inset LatexCommand \cite{citeulike:368926|Haykin1998}
+
+\end_inset
+
+.
  The aim of the Support Vector classification is to devise a computationally
  efficient way of learning the optimal separating hyperplanes in high dimensiona
 l feature space 
@@ -934,15 +985,20 @@ l feature space
 
 \end_inset
 
-, defining optimal hyperplane as the one that has both, the minimum empirical
+, 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Standard
+efining optimal hyperplane as the one that has both, the minimum empirical
  risk and VC dimension.
+ .
  
-\begin_inset LatexCommand \cite{citeulike:368926|Haykin1998}
+\end_layout
 
 \end_inset
 
-.
- 
+
 \end_layout
 
 \begin_layout Subsection
@@ -1049,12 +1105,6 @@ The circles are the training data, the filled ones for
 \end_layout
 
 \begin_layout Standard
-
-\newpage
-
-\end_layout
-
-\begin_layout Standard
 Where 
 \begin_inset Formula $x$
 \end_inset
@@ -1071,10 +1121,9 @@ Where
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula \begin{multline*}
-\\w^{T}x+b\geq0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, d_{i}=+1\\
-\\w^{T}x+b<0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, d_{i}=-1\\
-\\\end{multline*}
+\begin_inset Formula \begin{eqnarray*}
+ & w^{T}x+b\geq0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, d_{i}=+1\\
+ & w^{T}x+b<0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, d_{i}=-1\end{eqnarray*}
 
 \end_inset
 
@@ -1116,8 +1165,191 @@ Then we can write the discriminat function:
 \end_layout
 
 \begin_layout Standard
-This equation gives a mesuare of the distance from x to the optimal hyperplane,
- in order 
+An the classification function as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+sing\{ g(x)=w^{T}x+b\}\label{eq:3}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equation 
+\begin_inset LatexCommand \ref{eq:2}
+
+\end_inset
+
+ gives a measure of the distance from x to the optimal hyperplane, and 
+\begin_inset LatexCommand \ref{eq:3}
+
+\end_inset
+
+ assing a category for a specific point.
+ 
+\end_layout
+
+\begin_layout Standard
+As described above, the complexity of the classifier should be minimized
+ in order to achieve a good generalization, for linear classifier this equivalen
+t lowering that complexity is to maximize the margin of separation between
+ the points and the hyperplane.
+ An approach to find this separator is to maximize the margin between two
+ parallel supporting planes, if we define the margin as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray*}
+ & w^{T}x+b=\,\,\,1\\
+ & w^{T}x+b=-1\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then the margin of separation is equal then to 
+\begin_inset Formula $\rho=\frac{2}{w}$
+\end_inset
+
+ .
+ Figure [TALES#1] shows this approach.
+ Now our problem becomes maximize 
+\begin_inset Formula $\frac{2}{w}$
+\end_inset
+
+ which is equivalent to minimize 
+\begin_inset Formula $||w||_{2}/2$
+\end_inset
+
+ in the following quadratic programming problem:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+ & \underset{w,b}{min} & \frac{1}{2}||w||^{2}\nonumber \\
+s.t &  & d_{i}(w^{T}x_{i}+b)\geq1\label{eq:min0.5w2}\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Condition 
+\begin_inset Formula $d_{i}(w^{T}x_{i}+b)\geq1$
+\end_inset
+
+ spcify that all the data points have to be classified correctly.
+ In order to solve this problem we introduce the lagrangian formulation:
+\end_layout
+
+\begin_layout Standard
+\SpecialChar \-
+
+\begin_inset Formula \begin{eqnarray}
+\,\underset{\alpha}{max}\,\underset{w,b}{min}\,\, J(w,b,\alpha) & = & \frac{1}{2}w^{T}w-\sum_{i=1}^{N}\alpha_{i}[d_{i}(w^{T}x_{i}+b)-1]\label{eq:lagrangian}\\
+s.t &  & \alpha_{i}\geq0\nonumber \end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now the conditions of optimality for 
+\begin_inset Formula $J(w,b,\alpha)$
+\end_inset
+
+ are given by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+\,\,\,\,\,\frac{\delta J(w,b,\alpha)}{\delta w}=0\longrightarrow w=\sum_{i=1}^{N}\alpha_{i}d_{i}x_{i}\label{eq:weqsumadx}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+\frac{\delta J(w,b,\alpha)}{\delta b}=0\longrightarrow\sum_{i=1}^{N}\alpha_{i}d_{i}=0\label{eq:sumadeq0}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Replacing 
+\begin_inset LatexCommand \ref{eq:weqsumadx}
+
+\end_inset
+
+ and 
+\begin_inset LatexCommand \ref{eq:sumadeq0}
+
+\end_inset
+
+ into 
+\begin_inset LatexCommand \ref{eq:lagrangian}
+
+\end_inset
+
+ and defining the cost function as 
+\begin_inset Formula $J(w,b,\alpha)=Q(\alpha)$
+\end_inset
+
+ yields:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+min\, Q(\alpha) & = & \sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}d_{i}d_{j}x_{i}^{T}x_{j}\label{eq:minq}\\
+s.t &  & \alpha\geq0\,\, and\,\,\,\sum_{i=1}^{N}\alpha_{i}d_{i}=0\nonumber \end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Which is a quadratic programming problem (QP).
+ Notice that the dual problem is cast entirely in terms of the training
+ data.
+ The fact that this is a QP problem is one of the streght of this methodology
+ and also a weakness.
+ It's a streght because as 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+opposed to others techniques such as Neural Networks, the optimization problem
+ is convex and a global optimum is always reached in a finite amount of
+ time.[WHERE IN HELL CAN I CITE THIS???'] On the other hand, a QP is a computatio
+nally expensive problem, this property has led to the development of both,
+ novel ways of solving the problem described in equation 
+\begin_inset LatexCommand \ref{eq:minq}
+
+\end_inset
+
+ and alternative formulations for solving the same optimization problem
+ 
+\begin_inset LatexCommand \cite{Joachims/06a}
+
+\end_inset
+
+ , with variying degrees of performace.
 \end_layout
 
 \begin_layout Section

@@ -98,6 +98,16 @@ class DocumentInfo
                     
     end    
     
+    def full_s
+        s = "#{@label} "
+        i = 1;
+        @terms.each do |k,v| 
+           s = s + "#{i}:#{v.tf_idf} "
+           i = i + 1    
+        end
+        s = s + "# #{@id}"
+    end
+
     def to_s
         s = "#{@label} "
         i = 1;
