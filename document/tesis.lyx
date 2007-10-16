@@ -1056,7 +1056,7 @@ w^{T}x+b=0\label{eq:}\end{equation}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Standard
 \align center
@@ -1246,6 +1246,10 @@ Condition
 
  spcify that all the data points have to be classified correctly.
  In order to solve this problem we introduce the lagrangian formulation:
+\begin_inset Formula $ $
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1349,7 +1353,31 @@ nally expensive problem, this property has led to the development of both,
 
 \end_inset
 
- , with variying degrees of performace.
+ 
+\begin_inset LatexCommand \cite{Suykens-et-al2002}
+
+\end_inset
+
+, with variying degrees of performace.
+ For no linear separator case a error bound is added and after a similar
+ procedure 
+\begin_inset LatexCommand \ref{eq:minq}
+
+\end_inset
+
+ becomes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray*}
+min\, Q(\alpha) & =\sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}d_{i}d_{j}x_{i}^{T}x_{j}+C\sum_{i=1}^{N}\alpha\\
+s.t & \alpha\geq0\,\,\,\\
+ & \sum_{i=1}^{N}\alpha_{i}d_{i}=0\\
+ & 0<\alpha\leq C\end{eqnarray*}
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Section
