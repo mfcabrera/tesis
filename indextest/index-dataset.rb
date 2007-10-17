@@ -13,10 +13,17 @@ cat2 = "comp.graphics"
 
 dsidx = DataSetIndexer.new(dir)
 dsidx.create_index("datasets")
-dsidx.index_category(cat1,CATEGORY_STARTNUMBER[cat1],50,"1")
-dsidx.index_category(cat2,CATEGORY_STARTNUMBER[cat2],50,"-1")
-dsidx.write_vects_category("alt.atheism")
+dsidx.index_category_new(cat1,100)
+dsidx.index_category_new(cat2,100)
+#dsidx.index_category_no_label(cat1,CATEGORY_STARTNUMBER[cat1],100)
+#dsidx.index_category_no_label(cat2,CATEGORY_STARTNUMBER[cat2],100)
+dsidx.write_vects_category("alt.atheism","alt.atheism-positive","1")
+dsidx.write_vects_category("comp.graphics","alt.atheism-positive","-1")
 
+#dsidx.index_category(cat1,CATEGORY_STARTNUMBER[cat1],50,"1")
+#dsidx.index_category(cat2,CATEGORY_STARTNUMBER[cat2],50,"-1")
+
+#dsidx.write_vects_category("alt.atheism")
   
 #dsidx.index.search_each('text:"god"') do |id, score|
 #     puts "Document #{id} found with a score of #{score}"

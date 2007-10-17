@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'ferret'
+require 'find'
 include Ferret
 
 
@@ -32,10 +33,11 @@ end
 class Index::IndexReader 
     @changed = true
    # @all_words = nil		
-    
+    @all_words = nil
          
    def all_terms
 	   
+   
        	   @all_words = Hash.new
 	   ndocs = num_docs.to_f
            terms(:text).each do |term,doc_freq|
@@ -46,8 +48,9 @@ class Index::IndexReader
 	   @all_words[term].tf_idf = 0.0                              
       		   #puts "#{term} idf-> #{all_words[term].idf}"   
 	   end
-        
-        @all_words
+     
+   
+        @all_words.clone
    end 
              
 end
@@ -152,7 +155,7 @@ class DataSetIndexer
                 	                    :index => :no,
 					    :term_vector => :no)
 		@index.field_infos.add_field(:category, :store => :yes,
-                	                    :index => :no,
+                	                    :index => :yes,
 					    :term_vector => :no)
 		@index.field_infos.add_field(:text, :store => :yes,
                 	                    :index => :yes,
@@ -189,10 +192,39 @@ class DataSetIndexer
 		
 		start.upto(start + n-1)  do |i|
 			#puts "indexing #{i}"
-			@index << { :id=>i.to_s,:filename =>i.to_s, :category =>category, :text => IO.readlines(@dir+"/"+category+"/"+i.to_s) }	
+			begin
+			@index << { :id=>i.to_s,:filename =>i.to_s, :category =>category, :text => IO.readlines(@dir+"/"+category+"/"+i.to_s) }
+			rescue
+				puts "File #{i} does not exist"
+				n = n+1
+				i = i+1
+			retry
+			end				
 			
 		end
 			
+		@indexed = true		
+
+	end
+
+	def index_category_new(category,nds)
+		limit = true
+		if nds == "-1" then limit=false end
+		@categories << category
+		i = 1
+		Find.find(@dir+"/"+category) do |path|
+			  if FileTest.file? path 
+				i = i + 1			
+	    			File.open(path) do |file|
+				#puts "Indexing file (#-#{i} - #{file.name}"
+				@index << { :id=>file,:filename =>file, :category =>category, :text => file.readlines }				 
+			 	end
+			  end
+
+		   if(i > nds && limit) then break end			
+		end
+		puts "Total Indexed Files in category #{category}: #{i-1}"
+					
 		@indexed = true		
 
 	end
@@ -216,10 +248,16 @@ class DataSetIndexer
 			
 	end
 
-	def write_vects_category(category_desc)
-		@index.search_each('category:#{category_desc}') do |id, score|
-		    puts "Document #{id} found with a score of #{score}"
+	def write_vects_category(category_desc,filename,label="-1")
+		vecfile = File.open(filename+".vec", File::WRONLY | File::APPEND | File::CREAT)
+		labfile = File.open(filename+".lab", File::WRONLY | File::APPEND | File::CREAT)  
+		@index.search_each("category:#{category_desc}",:limit=>:all) do |id, score|
+		    doc = DocumentInfo.new(id,@index.reader)
+			vecfile.write(doc.full_s+"\n")
+	                labfile.write(label+"\n")
 	  	end
+		vecfile.close
+		labfile.close
 
 	end
 end

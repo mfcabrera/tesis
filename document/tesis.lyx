@@ -252,7 +252,7 @@ Universidad Nacional de Colombia - Sede Medell
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Standard
 GENERAL NOTES:
@@ -386,12 +386,7 @@ Support Vector Machines
  are a powerful tool for classifying large datasets, and due the nature
  of the classical text representation models, it has been applied successfully
  in automated document classification tasks 
-\begin_inset LatexCommand \cite{Joachims98}
-
-\end_inset
-
-
-\begin_inset LatexCommand \cite{Joachims99c}
+\begin_inset LatexCommand \cite{Joachims98,Joachims99c}
 
 \end_inset
 
@@ -422,12 +417,7 @@ One characteristic of the SVM is that, in its formal definition, the computation
 \begin_layout Standard
 One approach to cope with this limitation is to divide the problem into
  chunks 
-\begin_inset LatexCommand \cite{Joachims/99a}
-
-\end_inset
-
-
-\begin_inset LatexCommand \cite{osunaetal97}
+\begin_inset LatexCommand \cite{Joachims/99a,osunaetal97}
 
 \end_inset
 
@@ -498,8 +488,8 @@ ML
 \end_inset
 
 .
- The experience encounter by the computer program are examples that it takes
- as input.
+ The experience encountered by the computer program are examples that it
+ takes as input.
  In order to to develop such programs 
 \noun on
 ML
@@ -508,7 +498,10 @@ ML
  Biology and Control Theory, futhermore, given the amount of statistical
  based ML algorithms developed in the last years, many scientists see ML
  as a crossroad between Statistics and Computer Science.
- The learning problem is defined formally in 
+\end_layout
+
+\begin_layout Standard
+The learning problem is defined formally in 
 \begin_inset LatexCommand \cite{Mitchell97}
 
 \end_inset
@@ -803,8 +796,7 @@ information
 
 , therefore the application of Artificial Intelligence (AI), specifically
  Machine Learning to improve or to help automatize these tasks is natural.
- The research that involves AI techniques for improving IR systems is known
- as Intelligent Information Systems.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -814,10 +806,16 @@ Altough we could generalize document to be any kind of data such as video,
 \end_layout
 
 \begin_layout Standard
+In today's information society where digital text is becoming more and more
+ available, and this trend boosted by the usage of the Internet and more
+ 
+\end_layout
+
+\begin_layout Standard
 IR Systems makes large amounts of text accessible to people that need the
- information, A user the apporaches to the system with a vague idea of what
- is looking for, so the goal of the system is to provide the information
- required.
+ information.
+ A user the apporaches to the system with a vague idea of what is looking
+ for, so the goal of the system is to provide the information required.
  The user provides generally provides some information about what kind of
  documents is looking for, in the form of keywords or, in systems with a
  categorical arrangement, 
@@ -855,6 +853,11 @@ Information storage and retrieval systems make large volumes of text accessible
 
 \begin_layout Subsection
 Models of Text and Text Representation
+\end_layout
+
+\begin_layout Standard
+One of the problems that IR focuses is the best way of represent text for
+ easily manipulation, 
 \end_layout
 
 \begin_layout Subsection
@@ -927,12 +930,7 @@ The SVM algorithm is based on the concept of VC Dimension
 
  and on the principle of empirical risk minimization developed by Vapnik
  
-\begin_inset LatexCommand \cite{Vapnik98}
-
-\end_inset
-
-
-\begin_inset LatexCommand \cite{Vapnik99}
+\begin_inset LatexCommand \cite{Vapnik99,vapnik71uniform}
 
 \end_inset
 
@@ -1170,7 +1168,7 @@ An the classification function as:
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-sing\{ g(x)=w^{T}x+b\}\label{eq:3}\end{equation}
+y=sign\{ w^{T}x+b\}\label{eq:3}\end{equation}
 
 \end_inset
 
@@ -1316,7 +1314,7 @@ Replacing
 \begin_layout Standard
 \begin_inset Formula \begin{eqnarray}
 min\, Q(\alpha) & = & \sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}d_{i}d_{j}x_{i}^{T}x_{j}\label{eq:minq}\\
-s.t &  & \alpha\geq0\,\, and\,\,\,\sum_{i=1}^{N}\alpha_{i}d_{i}=0\nonumber \end{eqnarray}
+s.t &  & \alpha_{i}\geq0\,\, and\,\,\,\sum_{i=1}^{N}\alpha_{i}d_{i}=0\nonumber \end{eqnarray}
 
 \end_inset
 
@@ -1349,19 +1347,27 @@ nally expensive problem, this property has led to the development of both,
 
  and alternative formulations for solving the same optimization problem
  
-\begin_inset LatexCommand \cite{Joachims/06a}
-
-\end_inset
-
- 
-\begin_inset LatexCommand \cite{Suykens-et-al2002}
+\begin_inset LatexCommand \cite{Suykens-et-al2002,Joachims/06a}
 
 \end_inset
 
 , with variying degrees of performace.
- For no linear separator case a error bound is added and after a similar
- procedure 
-\begin_inset LatexCommand \ref{eq:minq}
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+When all points cannot be shattered by one Hyperplane an error bound is
+ added in the form of a nonnegative slack variable, the primal problem described
+ in 
+\begin_inset LatexCommand \ref{eq:min0.5w2}
 
 \end_inset
 
@@ -1369,15 +1375,181 @@ nally expensive problem, this property has led to the development of both,
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula \begin{eqnarray*}
-min\, Q(\alpha) & =\sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}d_{i}d_{j}x_{i}^{T}x_{j}+C\sum_{i=1}^{N}\alpha\\
-s.t & \alpha\geq0\,\,\,\\
- & \sum_{i=1}^{N}\alpha_{i}d_{i}=0\\
- & 0<\alpha\leq C\end{eqnarray*}
+\begin_inset Formula \begin{eqnarray}
+ & \underset{w,b}{min} & \frac{1}{2}||w||^{2}+C\sum_{i=1}^{N}\xi_{i}\nonumber \\
+ &  & d_{i}(w^{T}x_{i}+b)+\xi_{i}\geq1\label{eq:min0.5w2plusc}\\
+s.t\nonumber \\
+ &  & \xi_{i}\geq0\,\,\,\, i=1,...,m\nonumber \end{eqnarray}
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+Where 
+\begin_inset Formula $C$
+\end_inset
+
+ is a user-specified positive parameter and depends on the data, empirical
+ ways of finding the adequate C exist.
+ After following a similar procedure to the one that lead us to 
+\begin_inset LatexCommand \ref{eq:minq}
+
+\end_inset
+
+ we now have:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+min\, Q(\alpha) & = & \sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}d_{i}d_{j}x_{i}^{T}x_{j}\nonumber \\
+s.t\nonumber \\
+ &  & \alpha\geq0\nonumber \\
+ &  & \sum_{i=1}^{N}\alpha_{i}d_{i}=0\label{eq:minwithc}\\
+ &  & 0<\alpha_{i}\leq C\,\,\,\, i=1,...,m\nonumber \end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The C param defines the error bound, and in plain words in states how 
+\begin_inset Quotes eld
+\end_inset
+
+hard
+\begin_inset Quotes erd
+\end_inset
+
+ the classifier should try to correctly separate a given point before {SACARLO}
+ from the training set.
+ Once calculated the 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ the optimal weight vector 
+\begin_inset Formula $w_{o}$
+\end_inset
+
+ and offset 
+\begin_inset Formula $b_{o}$
+\end_inset
+
+ can be calculated as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+ & w_{o}= & \sum_{i=1}^{N}\alpha_{i}d_{i}x_{i}\nonumber \\
+\label{eq:w0b0}\\ & b{}_{o}= & 1-w_{o}^{T}x^{(s)}\nonumber \end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where 
+\begin_inset Formula $x^{(s)}$
+\end_inset
+
+ is any support vector.
+ We can also write the discriminat function as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+y=sign\{\sum_{i=1}^{N}d_{i}\alpha_{i}x_{i}^{T}x+b_{0}\}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Many times a linear separator is not enough to classify the data properly,
+ geometrically speaking, a more complex surface is needed in order to separate
+ the data correctly.
+ In order to classify the data a non-liner mapping into a high-dimensional
+ feature space where the data is lineary separable, the Cover's theorem
+ on separability supports this procedure.
+ in order to accomplish this, SVM uses the so called 
+\begin_inset Quotes eld
+\end_inset
+
+Kernel Trick
+\begin_inset Quotes erd
+\end_inset
+
+ which consist in the usage of a Kernel function that maps the input data
+ into a higher dimensional space.
+ The reader may consult the appropiate literature 
+\begin_inset LatexCommand \cite{citeulike:368926|Haykin1998,citeulike:755348|Heibrich2001Lkernel,citeulike:114719|Cristianini2000introSVM}
+
+\end_inset
+
+ for more information on this method.
+ The dual for formulation using this approach is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+min\, Q(\alpha) & = & \sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}d_{i}d_{j}K(x_{i},x_{j})\nonumber \\
+s.t\nonumber \\
+ &  & \alpha\geq0\nonumber \\
+ &  & \sum_{i=1}^{N}\alpha_{i}d_{i}=0\label{eq:minwithckernel}\\
+ &  & 0<\alpha_{i}\leq C\,\,\,\, i=1,...,m\nonumber \end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And the discriminant function is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+y=sign\{\sum_{i=1}^{N}d_{i}\alpha_{i}K(x_{i},x)+b_{0}\}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are many available Kernel functions, and they depend on the characteristic
+s of the input data.
+ In this work we are going to center in linear SVM as defined in 
+\begin_inset LatexCommand \ref{eq:minwithc}
+
+\end_inset
+
+, which can be viewed as 
+\begin_inset LatexCommand \ref{eq:minwithc}
+
+\end_inset
+
+ equation using the kernel function: 
+\begin_inset Formula $K(x_{i,}x_{j})=x_{i}^{T}x_{j}$
+\end_inset
+
+.
  
+\end_layout
+
+\begin_layout Subsection
+Transductive Learning for SVM
+\end_layout
+
+\begin_layout Standard
+So far with the formulations described in the last section we are using
+ what is called inductive learning, in other word we start from a set of
+ examples, and based on them we try to find a classificator that classifies
+ correctly the data.
 \end_layout
 
 \begin_layout Section
@@ -1386,27 +1558,22 @@ SVM and Text Categorization
 
 \begin_layout Standard
 The usage of SVM was first introduced by Joachims 
-\begin_inset LatexCommand \cite{Joachims98}
+\begin_inset LatexCommand \cite{Joachims98,Joachims99c}
 
 \end_inset
 
-
-\begin_inset LatexCommand \cite{Joachims99c}
+ and similar setups have been used in posterior literature
+\begin_inset LatexCommand \cite{DumaisPHS98}
 
 \end_inset
 
- and similar setups have been used in posterior literature[CITATIONS HERE!]
- .
+(More citations?) .
  the TC task using SVM can bee seen geometrically as finding an hyperplane
  that separates two grous of points has 
 \end_layout
 
 \begin_layout Subsection
 Linear SVM for Text Categorization
-\end_layout
-
-\begin_layout Subsection
-Transductive Learning for SVM
 \end_layout
 
 \begin_layout Subsection
