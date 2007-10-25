@@ -10,15 +10,18 @@ CATEGORY_STARTNUMBER = {"alt.atheism" => 51119,"comp.graphics"=> 37913}
 dir = "20_newsgroups"
 cat1 = "alt.atheism"
 cat2 = "comp.graphics"
+cat3 = "comp.sys.mac.hardware"
+cat4 = "comp.sys.ibm.pc.hardware"
 
 dsidx = DataSetIndexer.new(dir)
-dsidx.create_index("datasets")
-dsidx.index_category_new(cat1,100)
-dsidx.index_category_new(cat2,100)
+dsidx.create_index("dataset-test2")
+dsidx.index_category_new(cat3,200)
+dsidx.index_category_new(cat4,200)
 #dsidx.index_category_no_label(cat1,CATEGORY_STARTNUMBER[cat1],100)
 #dsidx.index_category_no_label(cat2,CATEGORY_STARTNUMBER[cat2],100)
-dsidx.write_vects_category("alt.atheism","alt.atheism-positive","1")
-dsidx.write_vects_category("comp.graphics","alt.atheism-positive","-1")
+
+dsidx.write_vects_category(cat3,"comp.sys.mac-positive","1")
+dsidx.write_vects_category(cat4,"comp.sys.mac-positive","-1")
 
 #dsidx.index_category(cat1,CATEGORY_STARTNUMBER[cat1],50,"1")
 #dsidx.index_category(cat2,CATEGORY_STARTNUMBER[cat2],50,"-1")

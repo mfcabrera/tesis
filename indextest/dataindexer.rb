@@ -250,7 +250,8 @@ class DataSetIndexer
 
 	def write_vects_category(category_desc,filename,label="-1")
 		vecfile = File.open(filename+".vec", File::WRONLY | File::APPEND | File::CREAT)
-		labfile = File.open(filename+".lab", File::WRONLY | File::APPEND | File::CREAT)  
+		labfile = File.open(filename+".lab", File::WRONLY | File::APPEND | File::CREAT) 
+		puts "Writing outfiles for categoy #{category_desc}"
 		@index.search_each("category:#{category_desc}",:limit=>:all) do |id, score|
 		    doc = DocumentInfo.new(id,@index.reader)
 			vecfile.write(doc.full_s+"\n")
