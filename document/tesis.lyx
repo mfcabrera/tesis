@@ -828,18 +828,6 @@ information
 \end_layout
 
 \begin_layout Standard
-Altough we could generalize document to be any kind of data such as video,
- music and images, when I refer to IR in this document I will will be refereing
- to text based documents.
-\end_layout
-
-\begin_layout Standard
-In today's information society where digital text is becoming more and more
- available, and this trend boosted by the usage of the Internet and more
- and more fast networks and larger capacities.
-\end_layout
-
-\begin_layout Standard
 IR Systems makes large amounts of text accessible to people that need the
  information.
  A user the apporaches to the system with a vague idea of what is looking
@@ -849,8 +837,45 @@ IR Systems makes large amounts of text accessible to people that need the
 \end_layout
 
 \begin_layout Standard
-And information retrieval system comprises several modules, Figure [TALES]
- shows 
+And information retrieval system comprises several modules, Figure 
+\begin_inset LatexCommand \ref{fig:ir-kelle}
+
+\end_inset
+
+ shows the basic scheme of work of a basic IR sytem.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/keller-ir-diagram.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+Information Retrieval system parts as described in [keller-THESIS]
+\begin_inset LatexCommand \label{fig:ir-kelle}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -877,6 +902,16 @@ Information storage and retrieval systems make large volumes of text accessible
 \end_inset
 
  
+\end_layout
+
+\begin_layout Standard
+In today's information society where digital text is becoming more and more
+ available, boosted by the usage of the Internet and more and more fast
+ networks and larger capacities of storage, the need of better information
+ retrieval techniques becomes everyday more strong.
+ Altough IR task has been automated only in the last decade Artificial Inteligen
+ce, namely Machine Learning techniques has been applied to IR systems.
+ ML techniques have shown to be 
 \end_layout
 
 \begin_layout Subsection
@@ -1233,7 +1268,7 @@ t lowering that complexity is to maximize the margin of separation between
 
 \begin_layout Standard
 Then the margin of separation is equal then to 
-\begin_inset Formula $\rho=\frac{2}{w}$
+\begin_inset Formula $\gamma=\frac{2}{w}$
 \end_inset
 
  .
@@ -1266,10 +1301,6 @@ Condition
 
  spcify that all the data points have to be classified correctly.
  In order to solve this problem we introduce the lagrangian formulation:
-\begin_inset Formula $ $
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1566,13 +1597,12 @@ y=sign\{\sum_{i=1}^{N}d_{i}\alpha_{i}K(x_{i},x)+b_{0}\}\]
 \begin_layout Standard
 There are many available Kernel functions, and they depend on the characteristic
 s of the input data.
- In this work we are going to center in linear SVM as defined in equation
- 
+ In this work we are going to use a linear SVM as defined in equation 
 \begin_inset LatexCommand \ref{eq:minwithc}
 
 \end_inset
 
-, which can be viewed as 
+, which also can be viewed as 
 \begin_inset LatexCommand \ref{eq:minwithckernel}
 
 \end_inset
