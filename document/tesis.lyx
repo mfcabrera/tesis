@@ -254,7 +254,7 @@ Universidad Nacional de Colombia - Sede Medell
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Standard
 GENERAL NOTES:
@@ -327,6 +327,11 @@ Find application of text categorization (Joachims Mentions many)
 \begin_layout Standard
 * Cite the need of parallelization as multiclass problem becomes a 2*n problems
  of binary classification
+\end_layout
+
+\begin_layout Standard
+* Representation in ONe Class SVM for text categorization and teh perfomance
+ en Both Dumais and This guy
 \end_layout
 
 \end_inset
