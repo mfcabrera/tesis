@@ -15,13 +15,13 @@ cat4 = "comp.sys.ibm.pc.hardware"
 
 dsidx = DataSetIndexer.new(dir)
 dsidx.create_index("dataset-test2")
-dsidx.index_category_new(cat3,200)
-dsidx.index_category_new(cat4,200)
+dsidx.index_category_new(cat1,1000)
+dsidx.index_category_new(cat2,1000)
 #dsidx.index_category_no_label(cat1,CATEGORY_STARTNUMBER[cat1],100)
 #dsidx.index_category_no_label(cat2,CATEGORY_STARTNUMBER[cat2],100)
 
-dsidx.write_vects_category(cat3,"comp.sys.mac-positive","1")
-dsidx.write_vects_category(cat4,"comp.sys.mac-positive","-1")
+dsidx.write_vects_category(cat3,"atheism_vs_compgraphics","1")
+dsidx.write_vects_category(cat4,"atheism_vs_compgraphics","-1")
 
 #dsidx.index_category(cat1,CATEGORY_STARTNUMBER[cat1],50,"1")
 #dsidx.index_category(cat2,CATEGORY_STARTNUMBER[cat2],50,"-1")

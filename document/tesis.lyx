@@ -1,5 +1,5 @@
-#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
-\lyxformat 245
+#LyX 1.5.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 276
 \begin_document
 \begin_header
 \textclass book
@@ -9,13 +9,21 @@
 \end_preamble
 \language english
 \inputencoding auto
-\fontscheme default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
 \graphics default
 \paperfontsize default
 \spacing single
 \papersize letterpaper
 \use_geometry true
 \use_amsmath 1
+\use_esint 0
 \cite_engine basic
 \use_bibtopic false
 \paperorientation portrait
@@ -35,6 +43,8 @@
 \paperpagestyle headings
 \tracking_changes false
 \output_changes false
+\author "" 
+\author "" 
 \end_header
 
 \begin_body
@@ -245,7 +255,7 @@ Universidad Nacional de Colombia - Sede Medell
 \end_layout
 
 \begin_layout Standard
-\begin_inset LatexCommand \tableofcontents{}
+\begin_inset LatexCommand tableofcontents
 
 \end_inset
 
@@ -316,7 +326,7 @@ Find application of text categorization (Joachims Mentions many)
 
 \begin_layout Standard
 * Usar el paper de Magnus para justificar el uso de BOW sobre otras maneras
- de representaci�n de Textos
+ de representación de Textos
 \end_layout
 
 \begin_layout Standard
@@ -366,7 +376,8 @@ of the tasks that can be accomplished using automatic techniques for document
 \end_inset
 
  
-\begin_inset LatexCommand \cite{Sebastiani02}
+\begin_inset LatexCommand cite
+key "Sebastiani02"
 
 \end_inset
 
@@ -383,13 +394,9 @@ Add here the fact that the manual classification is at best expensive or
 
 \end_inset
 
- Some of those tasks can be achieved by human
-\emph on
- 
-\emph default
-beings, but a manual classification is at best expensive and practically
- impossible for large amounts of documents found today in modern information
- systems.
+ Some of those tasks can be achieved by human beings, but a manual classificatio
+n is at best expensive and practically impossible for large amounts of documents
+ found today in modern information systems.
 \end_layout
 
 \begin_layout Standard
@@ -402,14 +409,16 @@ A TC technique uses example documents that have been previously categorized
 
 \begin_layout Standard
 Support Vector Machines 
-\begin_inset LatexCommand \cite{Vapnik98}
+\begin_inset LatexCommand cite
+key "Vapnik98"
 
 \end_inset
 
  are a powerful tool for classifying large datasets, and due the nature
  of the classical text representation models, it has been applied successfully
  in automated document classification tasks 
-\begin_inset LatexCommand \cite{Joachims98,Joachims99c}
+\begin_inset LatexCommand cite
+key "Joachims98,Joachims99c"
 
 \end_inset
 
@@ -417,7 +426,8 @@ Support Vector Machines
  An special type of SVM, based on transductive inference (TSVM), has demonstrate
 d to be more effective for document classification than the common inductive
  inference based SVMs 
-\begin_inset LatexCommand \cite{Joachims99c}
+\begin_inset LatexCommand cite
+key "Joachims99c"
 
 \end_inset
 
@@ -440,7 +450,8 @@ One characteristic of the SVM is that, in its formal definition, the computation
 \begin_layout Standard
 One approach to cope with this limitation is to divide the problem into
  chunks 
-\begin_inset LatexCommand \cite{Joachims/99a,osunaetal97}
+\begin_inset LatexCommand cite
+key "Joachims/99a,osunaetal97"
 
 \end_inset
 
@@ -458,7 +469,8 @@ One approach to cope with this limitation is to divide the problem into
 \begin_layout Standard
 Taking advantage actual trends in processor technologies, where the multi-core
  processor is becoming the norm[CitationHere] 
-\begin_inset LatexCommand \cite{Marowka07}
+\begin_inset LatexCommand cite
+key "Marowka07"
 
 \end_inset
 
@@ -468,7 +480,8 @@ Taking advantage actual trends in processor technologies, where the multi-core
  Also, as an extra motivation, empirical results have showed that some parallel
  settings for SVM have achieved better generalization than their classic
  counterparts 
-\begin_inset LatexCommand \cite{citeulike:935557|Collobert2002}
+\begin_inset LatexCommand cite
+key "citeulike:935557|Collobert2002"
 
 \end_inset
 
@@ -478,7 +491,8 @@ Taking advantage actual trends in processor technologies, where the multi-core
 \begin_layout Standard
 This work describes an implementation of a parallel SVM using the cascade
  model described in 
-\begin_inset LatexCommand \cite{GrafCBDV04}
+\begin_inset LatexCommand cite
+key "GrafCBDV04"
 
 \end_inset
 
@@ -488,7 +502,8 @@ This work describes an implementation of a parallel SVM using the cascade
  Later we describe the SVM algorithm and justify the reason of using SVM
  for text classification over other techniques.
  In chapter 
-\begin_inset LatexCommand \ref{cha:Experiments-and-Results}
+\begin_inset LatexCommand ref
+reference "cha:Experiments-and-Results"
 
 \end_inset
 
@@ -506,7 +521,8 @@ ML
 \noun default
 ) is concerned with the question of how to construct computer programs that
  automatically improve with experience 
-\begin_inset LatexCommand \cite{Mitchell97}
+\begin_inset LatexCommand cite
+key "Mitchell97"
 
 \end_inset
 
@@ -525,7 +541,8 @@ ML
 
 \begin_layout Standard
 The learning problem is defined formally in 
-\begin_inset LatexCommand \cite{Mitchell97}
+\begin_inset LatexCommand cite
+key "Mitchell97"
 
 \end_inset
 
@@ -535,9 +552,9 @@ The learning problem is defined formally in
 \begin_layout Description
 Learning: A computer program is said to 
 \emph on
-learn 
+learn
 \emph default
-from experience 
+ from experience 
 \begin_inset Formula $E$
 \end_inset
 
@@ -592,7 +609,8 @@ In other words, the program learns from an experience commonly represented
 The way in which an actual computer program realizes the task of learning
  from the experience can different, there are serveral modes in which the
  learning task can be accomplished 
-\begin_inset LatexCommand \cite{citeulike:755348|Heibrich2001Lkernel}
+\begin_inset LatexCommand cite
+key "citeulike:755348|Heibrich2001Lkernel"
 
 \end_inset
 
@@ -614,9 +632,9 @@ Supervised Learning
 \begin_layout Itemize
 
 \emph on
-Unsupervised Learning: 
+Unsupervised Learning:
 \emph default
-Combines both labeled and unlabeled examples to generate the representation.
+ Combines both labeled and unlabeled examples to generate the representation.
 \end_layout
 
 \begin_layout Itemize
@@ -649,8 +667,6 @@ Transductive Learning
 : Similar to Semi-supervised Learning, but does not explicitly construct
  a function: instead, tries to predict new outputs based on training inputs,
  training outputs and test input wich are available while training.
-
-\emph on
  
 \end_layout
 
@@ -668,14 +684,16 @@ In this thesis we are going to use a restricted definition in order to ilustrate
 
  from event to label .
  Many researcher has used this setting with success 
-\begin_inset LatexCommand \cite{Berger2001}
+\begin_inset LatexCommand cite
+key "Berger2001"
 
 \end_inset
 
  .
  The reader will notice the similarity between this definition and the definitio
 n of text categorization described in section 
-\begin_inset LatexCommand \vref{sec:Text-Categorization}
+\begin_inset LatexCommand vref
+reference "sec:Text-Categorization"
 
 \end_inset
 
@@ -843,7 +861,8 @@ IR Systems makes large amounts of text accessible to people that need the
 
 \begin_layout Standard
 And information retrieval system comprises several modules, Figure 
-\begin_inset LatexCommand \ref{fig:ir-kelle}
+\begin_inset LatexCommand ref
+reference "fig:ir-kelle"
 
 \end_inset
 
@@ -869,9 +888,18 @@ status open
 
 \end_layout
 
-\begin_layout Caption
+\begin_layout Standard
+\begin_inset Caption
+
+\begin_layout Standard
 Information Retrieval system parts as described in [keller-THESIS]
-\begin_inset LatexCommand \label{fig:ir-kelle}
+\begin_inset LatexCommand label
+name "fig:ir-kelle"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -914,9 +942,33 @@ In today's information society where digital text is becoming more and more
  available, boosted by the usage of the Internet and more and more fast
  networks and larger capacities of storage, the need of better information
  retrieval techniques becomes everyday more strong.
- Altough IR task has been automated only in the last decade Artificial Inteligen
-ce, namely Machine Learning techniques has been applied to IR systems.
- ML techniques have shown to be 
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Standard
+Altough IR task has been already automated only in the last decade Machine
+ Learning techniques has been applied to IR systems.
+ ML techniques have shown to be very useful even surpassing in performance
+ classical classification methods such as 
+\begin_inset Quotes eld
+\end_inset
+
+ROCHIO
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm.
+ In the next sections of the chapter we show how textual information is
+ handled and prepared for the Text Categorization task.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -924,8 +976,266 @@ Models of Text and Text Representation
 \end_layout
 
 \begin_layout Standard
-One of the problems that IR focuses is the best way of represent text for
- easily manipulation, 
+Usually in a digital library database a set of words that defines the topics
+ or the main characteristics of a document is manually defined.
+ The main objective of this is to help the search of the physical document
+ (e.g books, papers,etc.).
+ This list of terms or keywords enables the user to query documents related
+ to one or more concepts.
+ One of the main problems of this is that only few keywords are associated
+ with a defined document, and generally this assignation is made at hand,
+ making it expensive and error prone.
+ Genrally this querying these systems was limited to the numbers of keywords
+ assigned and some metadata like title, author and dates of publication,
+ being the user unable to query the whole document, making the retrieval
+ task significally harder.
+\end_layout
+
+\begin_layout Standard
+Nowadays in digital libraries and similar systems where the all the text
+ is available in digital form automatic keyword extraction makes sense because
+ these keywords are tigthly associated with the content.
+ This keywords are called indexes and the task of associating each document
+ with a set of keywords is called 
+\emph on
+indexing
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Indexing is based is predefined group of keywords: the dictionary or vocabulary.
+ As mentioned above, in a digitalized text database (also called a corpus)
+ the dictionary is usually extracted from the set of words present in the
+ corpus and the expensive manual indexing can be avoided by representing
+ the documents by the dictionary terms they are made of.
+\end_layout
+
+\begin_layout Standard
+Given that all the full text is avalaible for querying it, one of the problems
+ that IR focuses is the best way of represent text in order to extract the
+ more important words, that is, the keywords, through the last few decades
+ many representation forms have been developed ranging from simple word
+ appareance binary representation to a concept 
+\begin_inset LatexCommand cite
+key "deerwester90indexing"
+
+\end_inset
+
+, probabilistic 
+\begin_inset LatexCommand cite
+key "keller-theme"
+
+\end_inset
+
+ and even Neural Networks 
+\begin_inset LatexCommand cite
+key "DBLP:conf/icann/KellerB05"
+
+\end_inset
+
+ based ones.
+ Altough a large variety of representaion have been developed, we will describe
+ only the relevant representation to our work and the common methodologies
+ for them.
+\end_layout
+
+\begin_layout Standard
+Maybe the most common approachg to automatically extact the index terms
+ from a corpues is called vector space model 
+\begin_inset LatexCommand cite
+key "361220"
+
+\end_inset
+
+.
+ In this model each document 
+\begin_inset Formula $d$
+\end_inset
+
+ is representes as a vector
+\begin_inset Formula $(\theta_{1},...,\theta_{M})$
+\end_inset
+
+ where 
+\begin_inset Formula $\theta_{j}$
+\end_inset
+
+ is a funtion of the frecuancy in 
+\begin_inset Formula $d$
+\end_inset
+
+ of the 
+\begin_inset Formula $j^{th}$
+\end_inset
+
+ word of a chosen dictionary 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Based in this definition various forms of 
+\begin_inset Formula $\theta(j)$
+\end_inset
+
+have been defined:
+\end_layout
+
+\begin_layout Description
+Binary In which 
+\begin_inset Formula $\theta_{j}$
+\end_inset
+
+ is equal to 1 if the 
+\begin_inset Formula $j^{th}$
+\end_inset
+
+ word appears in the document or 0 otherwise.
+\end_layout
+
+\begin_layout Description
+Frecuency In which 
+\begin_inset Formula $\theta_{j}$
+\end_inset
+
+ is equal to the number of times 
+\begin_inset Formula $j^{th}$
+\end_inset
+
+ word appears in the document.
+\end_layout
+
+\begin_layout Description
+
+\emph on
+TF-IDF
+\emph default
+ In which 
+\begin_inset Formula $\theta_{j}$
+\end_inset
+
+ is equal to the 
+\emph on
+tf-idf
+\emph default
+ formula:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+\theta_{j}=tf_{j}(d)\centerdot log(\frac{N}{df_{j}}),\,\,\,\,\forall j\in\{1,\ldots,M\}\label{eq:tf-idf}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The equation 
+\begin_inset LatexCommand ref
+reference "eq:tf-idf"
+
+\end_inset
+
+ was defined proposed by Salton and Buckley 
+\begin_inset LatexCommand cite
+key "866292"
+
+\end_inset
+
+ and it is the more complexof the three.
+ the 
+\begin_inset Formula $tf_{j}(d)$
+\end_inset
+
+ (term frecuency) is the number of times that the 
+\begin_inset Formula $j^{th}$
+\end_inset
+
+ word appears in the document 
+\begin_inset Formula $d$
+\end_inset
+
+, 
+\begin_inset Formula $df_{j}$
+\end_inset
+
+ is the number of documents the term appears in all the corpus and 
+\begin_inset Formula $N$
+\end_inset
+
+ is the total number of documents in the corpus.
+ The main reason behind this formulation is that in the context of document
+ retrieval it is considered that words appearing too frequently across the
+ corpus may not be discriminant, therefore this formula gives more importance
+ to terms appearing more frecuently in the documents while penalizing the
+ ones that appears in to many documents.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Standard
+In this model, each document d is represented as a vector (1, ..., M), where
+ j is a function of the frequency in d of the jth word wj of a chosen dictionary
+ of size M.
+ Note that the VSM does not take into account the order of the words in
+ the document.
+ For that reason it is often referred to as bag-of-words representation.
+ The simplest choice for the weights .
+ corresponds to the binary indexing, where: j = ( 1 if the word wj appears
+ in d, 0 otherwise 8j 2 {1, .
+ .
+ .
+ ,M}.
+ The more complex term frequency inverse document frequency (TFIDF) weighting
+ scheme was proposed by Salton and Buckley (1988) in the context of document
+ retrieval where it is considered that words appearing too frequently across
+ the corpus may not be discriminant.
+ In its standard form it is defined by the following formula:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Standard
+approaches for feature selection, others than the design of a stop-list
+ and the stemming of words.
+ These approaches attempt to select from the original vocabulary V, the
+ sub-set V0 of terms (with V0 V) that, when used for document representation,
+ provides the best results.
+ As stated in Sebastiani (2002), the choice of this subset is generally
+ done by a filtering approach, that is selecting the terms that reach the
+ highest scores according to a function that measures the “importance” of
+ each term for the task.
+ This function can simply be the document frequency (Yang and Pedersen,
+ 1997; Dumais et al., 1998), or a more complex information-theoretic function
+ such as information gain (Yang and Pedersen, 1997; Yang and Liu, 1999)
+ , mutual information (Yang and Pedersen, 1997; Dumais et al., 1998), chi-square
+ (Schutze et al., 1995; Yang and Pedersen, 1997; Yang and Liu, 1999), etc.
+ Nevertheless, Joachims (1998) shows that the performance of a system trained
+ without the “best” features according to mutual information criterion are
+ still better than a random system.
+ This result proves that even the “worst” features still contain discriminant
+ information, and thus suggest that all features should be selected, when
+ possible.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -934,7 +1244,8 @@ Dimensionality Reduction
 
 \begin_layout Section
 Text Categorization
-\begin_inset LatexCommand \label{sec:Text-Categorization}
+\begin_inset LatexCommand label
+name "sec:Text-Categorization"
 
 \end_inset
 
@@ -980,7 +1291,8 @@ Support Vector Machines
 
 \begin_layout Standard
 Support Vector Machines (SVMs) 
-\begin_inset LatexCommand \cite{Vapnik98}
+\begin_inset LatexCommand cite
+key "Vapnik98"
 
 \end_inset
 
@@ -992,13 +1304,15 @@ Support Vector Machines (SVMs)
 
 \begin_layout Standard
 The SVM algorithm is based on the concept of VC Dimension
-\begin_inset LatexCommand \cite{vapnik71uniform}
+\begin_inset LatexCommand cite
+key "vapnik71uniform"
 
 \end_inset
 
  and on the principle of empirical risk minimization developed by Vapnik
  
-\begin_inset LatexCommand \cite{Vapnik99,vapnik71uniform}
+\begin_inset LatexCommand cite
+key "Vapnik99,vapnik71uniform"
 
 \end_inset
 
@@ -1039,7 +1353,8 @@ The basic idea of empirical risk minimization principle is to find an hypothesis
 For linear classification problems this is equivalent to find the discrimination
  function that maximizes the distances within the classes, assuring the
  lowest probability of error
-\begin_inset LatexCommand \cite{citeulike:368926|Haykin1998}
+\begin_inset LatexCommand cite
+key "citeulike:368926|Haykin1998"
 
 \end_inset
 
@@ -1047,7 +1362,8 @@ For linear classification problems this is equivalent to find the discrimination
  The aim of the Support Vector classification is to devise a computationally
  efficient way of learning the optimal separating hyperplanes in high dimensiona
 l feature space 
-\begin_inset LatexCommand \cite{citeulike:114719|Cristianini2000introSVM}
+\begin_inset LatexCommand cite
+key "citeulike:114719|Cristianini2000introSVM"
 
 \end_inset
 
@@ -1073,7 +1389,7 @@ Finding the Optimal Hyperplane
 
 \begin_layout Standard
 Let us consider a training sample 
-\begin_inset Formula $\{(x_{i},d_{i})\}_{i=1}^{N}$
+\begin_inset Formula $\{(x_{i},y_{i})\}_{i=1}^{N}$
 \end_inset
 
 , where x is a point in 
@@ -1102,7 +1418,7 @@ th example and
  problem as described back in [INT-REF HERE] we can transform the problem
  in different binary classification ones.
  We also assume that the class represented by 
-\begin_inset Formula $d_{i}=\{+1,-1\}$
+\begin_inset Formula $y_{i}=\{+1,-1\}$
 \end_inset
 
  are lineary separable.
@@ -1136,14 +1452,17 @@ status open
 
 \end_layout
 
-\begin_layout Caption
+\begin_layout Standard
+\begin_inset Caption
+
+\begin_layout Standard
 The red circles and blue x's are the training data, the red circles for
  the 
-\begin_inset Formula $d_{i}=-1$
+\begin_inset Formula $y_{i}=-1$
 \end_inset
 
  class and the blue x's for the 
-\begin_inset Formula $d_{i}=+1$
+\begin_inset Formula $y_{i}=+1$
 \end_inset
 
  class.
@@ -1154,6 +1473,11 @@ The red circles and blue x's are the training data, the red circles for
 
 , a normal vector to the hyperplane and the offset 
 \begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -1182,8 +1506,8 @@ Where
 
 \begin_layout Standard
 \begin_inset Formula \begin{eqnarray*}
- & w^{T}x+b\geq0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, d_{i}=+1\\
- & w^{T}x+b<0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, d_{i}=-1\end{eqnarray*}
+ & w^{T}x+b\geq0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, y_{i}=+1\\
+ & w^{T}x+b<0\mbox{\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}for\,\,\,\,\,\,\, y_{i}=-1\end{eqnarray*}
 
 \end_inset
 
@@ -1204,7 +1528,8 @@ For a given vector
 \end_inset
 
  is called margin of separation represented by the equation
-\begin_inset LatexCommand \ref{eq:}
+\begin_inset LatexCommand ref
+reference "eq:"
 
 \end_inset
 
@@ -1230,7 +1555,7 @@ An the classification function as:
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-y=sign\{ w^{T}x+b\}\label{eq:3}\end{equation}
+y=sign\{w^{T}x+b\}\label{eq:3}\end{equation}
 
 \end_inset
 
@@ -1239,12 +1564,14 @@ y=sign\{ w^{T}x+b\}\label{eq:3}\end{equation}
 
 \begin_layout Standard
 Equation 
-\begin_inset LatexCommand \ref{eq:2}
+\begin_inset LatexCommand ref
+reference "eq:2"
 
 \end_inset
 
  gives a measure of the distance from x to the optimal hyperplane, and 
-\begin_inset LatexCommand \ref{eq:3}
+\begin_inset LatexCommand ref
+reference "eq:3"
 
 \end_inset
 
@@ -1292,7 +1619,7 @@ Then the margin of separation is equal then to
 \begin_layout Standard
 \begin_inset Formula \begin{eqnarray}
  & \underset{w,b}{min} & \frac{1}{2}||w||^{2}\nonumber \\
-s.t &  & d_{i}(w^{T}x_{i}+b)\geq1\label{eq:min0.5w2}\end{eqnarray}
+s.t &  & y_{i}(w^{T}x_{i}+b)\geq1\label{eq:min0.5w2}\end{eqnarray}
 
 \end_inset
 
@@ -1312,7 +1639,7 @@ Condition
 \SpecialChar \-
 
 \begin_inset Formula \begin{eqnarray}
-\,\underset{\alpha}{max}\,\underset{w,b}{min}\,\, J(w,b,\alpha) & = & \frac{1}{2}w^{T}w-\sum_{i=1}^{N}\alpha_{i}[d_{i}(w^{T}x_{i}+b)-1]\label{eq:lagrangian}\\
+\,\underset{\alpha}{max}\,\underset{w,b}{min}\,\, J(w,b,\alpha) & = & \frac{1}{2}w^{T}w-\sum_{i=1}^{N}\alpha_{i}[y_{i}(w^{T}x_{i}+b)-1]\label{eq:lagrangian}\\
 s.t &  & \alpha_{i}\geq0\nonumber \end{eqnarray}
 
 \end_inset
@@ -1330,7 +1657,7 @@ Now the conditions of optimality for
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\,\,\,\,\,\frac{\delta J(w,b,\alpha)}{\delta w}=0\longrightarrow w=\sum_{i=1}^{N}\alpha_{i}d_{i}x_{i}\label{eq:weqsumadx}\end{equation}
+\,\,\,\,\,\frac{\delta J(w,b,\alpha)}{\delta w}=0\longrightarrow w=\sum_{i=1}^{N}\alpha_{i}y_{i}x_{i}\label{eq:weqsumadx}\end{equation}
 
 \end_inset
 
@@ -1339,7 +1666,7 @@ Now the conditions of optimality for
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\frac{\delta J(w,b,\alpha)}{\delta b}=0\longrightarrow\sum_{i=1}^{N}\alpha_{i}d_{i}=0\label{eq:sumadeq0}\end{equation}
+\frac{\delta J(w,b,\alpha)}{\delta b}=0\longrightarrow\sum_{i=1}^{N}\alpha_{i}y_{i}=0\label{eq:sumadeq0}\end{equation}
 
 \end_inset
 
@@ -1348,17 +1675,20 @@ Now the conditions of optimality for
 
 \begin_layout Standard
 Replacing 
-\begin_inset LatexCommand \ref{eq:weqsumadx}
+\begin_inset LatexCommand ref
+reference "eq:weqsumadx"
 
 \end_inset
 
  and 
-\begin_inset LatexCommand \ref{eq:sumadeq0}
+\begin_inset LatexCommand ref
+reference "eq:sumadeq0"
 
 \end_inset
 
  into 
-\begin_inset LatexCommand \ref{eq:lagrangian}
+\begin_inset LatexCommand ref
+reference "eq:lagrangian"
 
 \end_inset
 
@@ -1371,8 +1701,8 @@ Replacing
 
 \begin_layout Standard
 \begin_inset Formula \begin{eqnarray}
-min\, Q(\alpha) & = & \sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}d_{i}d_{j}x_{i}^{T}x_{j}\label{eq:minq}\\
-s.t &  & \alpha_{i}\geq0\,\, and\,\,\,\sum_{i=1}^{N}\alpha_{i}d_{i}=0\nonumber \end{eqnarray}
+min\, Q(\alpha) & = & \sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}y_{i}y_{j}x_{i}^{T}x_{j}\label{eq:minq}\\
+s.t &  & \alpha_{i}\geq0\,\, and\,\,\,\sum_{i=1}^{N}\alpha_{i}y_{i}=0\nonumber \end{eqnarray}
 
 \end_inset
 
@@ -1397,7 +1727,8 @@ Which is a quadratic programming problem (QP).
 opposed to others techniques such as Neural Networks, the optimization problem
  is convex and a global optimum is always reached in a finite amount of
  time 
-\begin_inset LatexCommand \cite{Joachims98}
+\begin_inset LatexCommand cite
+key "Joachims98"
 
 \end_inset
 
@@ -1405,13 +1736,15 @@ opposed to others techniques such as Neural Networks, the optimization problem
  On the other hand, a QP is a computationally expensive problem, this property
  has led to the development of both, novel ways of solving the problem described
  in equation 
-\begin_inset LatexCommand \ref{eq:minq}
+\begin_inset LatexCommand ref
+reference "eq:minq"
 
 \end_inset
 
  and alternative formulations for solving the same optimization problem
  
-\begin_inset LatexCommand \cite{Suykens-et-al2002,Joachims/06a}
+\begin_inset LatexCommand cite
+key "Suykens-et-al2002,Joachims/06a"
 
 \end_inset
 
@@ -1441,7 +1774,8 @@ opposed to others techniques such as Neural Networks, the optimization problem
 When all points cannot be shattered by one Hyperplane an error bound is
  added in the form of a nonnegative slack variable, the primal problem described
  in 
-\begin_inset LatexCommand \ref{eq:min0.5w2}
+\begin_inset LatexCommand ref
+reference "eq:min0.5w2"
 
 \end_inset
 
@@ -1451,7 +1785,7 @@ When all points cannot be shattered by one Hyperplane an error bound is
 \begin_layout Standard
 \begin_inset Formula \begin{eqnarray}
  & \underset{w,b}{min} & \frac{1}{2}||w||^{2}+C\sum_{i=1}^{N}\xi_{i}\nonumber \\
- &  & d_{i}(w^{T}x_{i}+b)+\xi_{i}\geq1\label{eq:min0.5w2plusc}\\
+ &  & y_{i}(w^{T}x_{i}+b)+\xi_{i}\geq1\label{eq:min0.5w2plusc}\\
 s.t\nonumber \\
  &  & \xi_{i}\geq0\,\,\,\, i=1,...,m\nonumber \end{eqnarray}
 
@@ -1468,7 +1802,8 @@ Where
  is a user-specified positive parameter and depends on the data, empirical
  ways of finding the adequate C exist.
  After following a similar procedure to the one that lead us to 
-\begin_inset LatexCommand \ref{eq:minq}
+\begin_inset LatexCommand ref
+reference "eq:minq"
 
 \end_inset
 
@@ -1477,10 +1812,10 @@ Where
 
 \begin_layout Standard
 \begin_inset Formula \begin{eqnarray}
-min\, Q(\alpha) & = & \sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}d_{i}d_{j}x_{i}^{T}x_{j}\nonumber \\
+min\, Q(\alpha) & = & \sum_{i=1}^{N}\alpha-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}y_{i}y_{j}x_{i}^{T}x_{j}\nonumber \\
 s.t\nonumber \\
  &  & \alpha\geq0\nonumber \\
- &  & \sum_{i=1}^{N}\alpha_{i}d_{i}=0\label{eq:minwithc}\\
+ &  & \sum_{i=1}^{N}\alpha_{i}y_{i}=0\label{eq:minwithc}\\
  &  & 0<\alpha_{i}\leq C\,\,\,\, i=1,...,m\nonumber \end{eqnarray}
 
 \end_inset
@@ -1516,7 +1851,7 @@ hard
 
 \begin_layout Standard
 \begin_inset Formula \begin{eqnarray}
- & w_{o}= & \sum_{i=1}^{N}\alpha_{i}d_{i}x_{i}\nonumber \\
+ & w_{o}= & \sum_{i=1}^{N}\alpha_{i}y_{i}x_{i}\nonumber \\
 \label{eq:w0b0}\\ & b{}_{o}= & 1-w_{o}^{T}x^{(s)}\nonumber \end{eqnarray}
 
 \end_inset
@@ -1549,7 +1884,8 @@ Many times a linear separator is not enough to classify the data properly,
  In order to classify the data a non-liner mapping into a high-dimensional
  feature space where the data is lineary separable, the Cover's theorem
  on separability 
-\begin_inset LatexCommand \cite{Cover65a|citeulike:1803784}
+\begin_inset LatexCommand cite
+key "Cover65a|citeulike:1803784"
 
 \end_inset
 
@@ -1565,7 +1901,8 @@ Kernel Trick
  which consist in the usage of a Kernel function that maps the input data
  into a higher dimensional space.
  The reader may consult the appropiate literature 
-\begin_inset LatexCommand \cite{citeulike:368926|Haykin1998,citeulike:755348|Heibrich2001Lkernel,citeulike:114719|Cristianini2000introSVM}
+\begin_inset LatexCommand cite
+key "citeulike:368926|Haykin1998,citeulike:755348|Heibrich2001Lkernel,citeulike:114719|Cristianini2000introSVM"
 
 \end_inset
 
@@ -1603,12 +1940,14 @@ y=sign\{\sum_{i=1}^{N}d_{i}\alpha_{i}K(x_{i},x)+b_{0}\}\]
 There are many available Kernel functions, and they depend on the characteristic
 s of the input data.
  In this work we are going to use a linear SVM as defined in equation 
-\begin_inset LatexCommand \ref{eq:minwithc}
+\begin_inset LatexCommand ref
+reference "eq:minwithc"
 
 \end_inset
 
 , which also can be viewed as 
-\begin_inset LatexCommand \ref{eq:minwithckernel}
+\begin_inset LatexCommand ref
+reference "eq:minwithckernel"
 
 \end_inset
 
@@ -1631,6 +1970,7 @@ So far with the formulations described in the last section we are using
  correctly the data.
  This is called Inference learning, that is, going from particular examples
  to a general hypothesis.
+ The transductive setting on the other hand tries to use the knowledge 
 \end_layout
 
 \begin_layout Section
@@ -1639,12 +1979,14 @@ SVM and Text Categorization
 
 \begin_layout Standard
 The usage of SVM was first introduced by Joachims 
-\begin_inset LatexCommand \cite{Joachims98,Joachims99c}
+\begin_inset LatexCommand cite
+key "Joachims98,Joachims99c"
 
 \end_inset
 
  and similar setups have been used in posterior literature
-\begin_inset LatexCommand \cite{DumaisPHS98}
+\begin_inset LatexCommand cite
+key "DumaisPHS98"
 
 \end_inset
 
@@ -1671,7 +2013,8 @@ Transductive Parallel Linear SVM
 
 \begin_layout Chapter
 Experiments and Results
-\begin_inset LatexCommand \label{cha:Experiments-and-Results}
+\begin_inset LatexCommand label
+name "cha:Experiments-and-Results"
 
 \end_inset
 
@@ -1696,7 +2039,8 @@ The Cascade SVM
 
 \begin_layout Standard
 For the experiment we use cascade SVM 
-\begin_inset LatexCommand \cite{GrafCBDV04}
+\begin_inset LatexCommand cite
+key "GrafCBDV04"
 
 \end_inset
 
@@ -1712,7 +2056,9 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
-\begin_inset LatexCommand \bibtex[acm]{bibblio}
+\begin_inset LatexCommand bibtex
+options "acm"
+bibfiles "bibblio"
 
 \end_inset
 
