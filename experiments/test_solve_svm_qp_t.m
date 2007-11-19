@@ -1,10 +1,7 @@
 %% Test the implementation of solve_svm_qp_t
 %loading the data
 
-load('csm_train_vec.data');
-load('csm_train_lab.data');
-load('csm_test_vec.data');
-load('csm_test_lab.data');
+
 
 %% Test 1: Simple Linear SVM Solving
 d = csm_train_lab; %% train labels
@@ -18,7 +15,7 @@ C = 10;
 [w0,b0,nsv] = solve_svm_qp_t(x,d,0,0,C,0,0);
 
 nsv;
-%clp = svm_test(w0,b0,testx,testd)
+clp = svm_test(w0,b0,testx,testd)
 
 
 %% Test 2: Simple Linear Transductive 
