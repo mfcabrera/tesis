@@ -947,7 +947,7 @@ In today's information society where digital text is becoming more and more
 
 \begin_layout Standard
 \begin_inset Note Comment
-status open
+status collapsed
 
 \begin_layout Standard
 Altough IR task has been already automated only in the last decade Machine
@@ -993,8 +993,8 @@ Usually in a digital library database a set of words that defines the topics
 
 \begin_layout Standard
 Nowadays in digital libraries and similar systems where the all the text
- is available in digital form automatic keyword extraction makes sense because
- these keywords are tigthly associated with the content.
+ is available in digital form, automatic keyword extraction makes sense
+ because these keywords are tigthly associated with the content.
  This keywords are called indexes and the task of associating each document
  with a set of keywords is called 
 \emph on
@@ -1008,16 +1008,18 @@ indexing
 Indexing is based is predefined group of keywords: the dictionary or vocabulary.
  As mentioned above, in a digitalized text database (also called a corpus)
  the dictionary is usually extracted from the set of words present in the
- corpus and the expensive manual indexing can be avoided by representing
+ corpus, and the expensive manual indexing can be avoided by representing
  the documents by the dictionary terms they are made of.
+ Given that all the full text is avalaible for querying it, now problem
+ is to find the best way of representing the text in order to extract the
+ more important words, that is, the keywords that define it.
+ 
 \end_layout
 
 \begin_layout Standard
-Given that all the full text is avalaible for querying it, one of the problems
- that IR focuses is the best way of represent text in order to extract the
- more important words, that is, the keywords, through the last few decades
- many representation forms have been developed ranging from simple word
- appareance binary representation to a concept 
+During the last few decades many representation forms have been developed
+ ranging from simple word appareance binary representation to a concept
+ 
 \begin_inset LatexCommand cite
 key "deerwester90indexing"
 
@@ -1036,14 +1038,12 @@ key "DBLP:conf/icann/KellerB05"
 \end_inset
 
  based ones.
- Altough a large variety of representaion have been developed, we will describe
- only the relevant representation to our work and the common methodologies
- for them.
+ 
 \end_layout
 
 \begin_layout Standard
-Maybe the most common approachg to automatically extact the index terms
- from a corpues is called vector space model 
+The most common approachg to automatically extact the index terms from a
+ corpues is called vector space model 
 \begin_inset LatexCommand cite
 key "361220"
 
@@ -1148,7 +1148,7 @@ key "866292"
 
 \end_inset
 
- and it is the more complexof the three.
+ and it is the more complex of the three.
  the 
 \begin_inset Formula $tf_{j}(d)$
 \end_inset
@@ -1175,11 +1175,15 @@ key "866292"
  corpus may not be discriminant, therefore this formula gives more importance
  to terms appearing more frecuently in the documents while penalizing the
  ones that appears in to many documents.
+ The reader may have noticed that this representation of text does not take
+ into account the actual order of the words inside the document, despite
+ this t, vector space model have performed well and it still used in someway
+ in the majority of IR systems.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Standard
 In this model, each document d is represented as a vector (1, ..., M), where
@@ -1238,8 +1242,161 @@ approaches for feature selection, others than the design of a stop-list
 
 \end_layout
 
+\begin_layout Standard
+the vector space model representation described above may seem simplistic
+ in comparision with the more complex represenation mentioned first, nevertheles
+s, it seems that for some tasks like text categorization, the classical
+ tf-idf works just well and more complex representations of the text do
+ not significantly affect the performance of the methods.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/joachims-text-vect.jpg
+	lyxscale 50
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Caption
+
+\begin_layout Standard
+Representing text as a feature vector 
+\begin_inset LatexCommand cite
+key "Joachims98"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
-Dimensionality Reduction
+Feature Selection and Dimensionality Reduction
+\end_layout
+
+\begin_layout Standard
+Due to the fact that the represenation of the text can have impact in any
+ retrieval task, any strategy to enhace the representation of text should
+ be studied.
+ With the years, many techniques have been developed in the field of Information
+ Retrieval in order to get a better performance on the representation of
+ the text made.
+ IR research shows us that the word stems work well as representation units
+ 
+\begin_inset LatexCommand cite
+key "Joachims98"
+
+\end_inset
+
+.
+ The word stemming process (sometimes called term coflation) consists in
+ removing the case and flection information from a word 
+\begin_inset LatexCommand cite
+key "Porter80"
+
+\end_inset
+
+.
+ For example words as 
+\begin_inset Quotes eld
+\end_inset
+
+engine
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+engineer
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+engineering
+\begin_inset Quotes erd
+\end_inset
+
+ becomes the same term 
+\begin_inset Quotes eld
+\end_inset
+
+engin
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Generally this techniques are applied to the document before the transforming
+ it into a term vector representation, thus making the resulting document
+ vector notably smaller.
+\end_layout
+
+\begin_layout Standard
+Another technique used to avoid innecesary large feature vectors is removed
+ the so-called 
+\begin_inset Quotes eld
+\end_inset
+
+stop-words
+\begin_inset Quotes erd
+\end_inset
+
+, or the words that for their common use is known that are not significant
+ for the text.
+ Words like 
+\begin_inset Quotes eld
+\end_inset
+
+and
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+or
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+of
+\begin_inset Quotes erd
+\end_inset
+
+, etc are removed from the original text.
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Section
@@ -1279,6 +1436,78 @@ Paralell Machine Learning
 
 \begin_layout Subsection
 Tools
+\end_layout
+
+\begin_layout Standard
+Parallel machine learning is a subject rarely addressed at machine learning
+ conferences.
+ Nevertheless, it seems likely to increase in importance because:
+\end_layout
+
+\begin_layout Standard
+1.
+ Data set sizes appear to be growing substantially faster than computation.
+ Essentially, this happens because more and more sensors of various sorts
+ are being hooked up to the internet.
+ 2.
+ Serial speedups of processors seem are relatively stalled.
+ The new trend is to make processors more powerful by making them multicore.
+ 1.
+ Both AMD and Intel are making dual core designs standard, with plans for
+ more parallelism in the future.
+ 2.
+ IBM’s Cell processor has (essentially) 9 cores.
+ 3.
+ Modern graphics chips can have an order of magnitude more separate execution
+ units.
+\end_layout
+
+\begin_layout Standard
+The meaning of ‘core’ varies a bit from processor to processor, but the
+ overall trend seems quite clear.
+ 
+\end_layout
+
+\begin_layout Standard
+So, how do we parallelize machine learning algorithms?
+\end_layout
+
+\begin_layout Standard
+1.
+ The simplest and most common technique is to simply run the same learning
+ algorithm with different parameters on different processors.
+ Cluster management software like OpenMosix, Condor, or Torque are helpful
+ here.
+ This approach doesn’t speed up any individual run of a learning algorithm.
+ 2.
+ The next simplest technique is to decompose a learning algorithm into an
+ adaptive sequence of statistical queries and parallelize the queries over
+ the sample.
+ This paper (updated from the term paper according to a comment) points
+ out that statistical integration can be implemented via MapReduce which
+ Google popularized (the open source version is Hadoop).
+ The general technique of parallel statistical integration is already used
+ by many people including IBM’s Parallel Machine Learning Toolbox.
+ The disadvantage of this approach is that it is particularly good at speeding
+ up slow algorithms.
+ One example of a fast sequential algorithm is perceptron.
+ The perceptron works on a per example basis making individual updates extremely
+ fast.
+ It is explicitly not a statistical query algorithm.
+ 3.
+ The most difficult method for speeding up an algorithm is fine-grained
+ structural parallelism.
+ The brain works in this way: each individual neuron operates on it’s own.
+ The reason why this is difficult is that the programming is particularly
+ tricky—you must carefully optimize to avoid latency in network communication.
+ The full complexity of parallel programming is exposed.
+\end_layout
+
+\begin_layout Standard
+A basic question is: are there other approaches to speeding up learning
+ algorithms which don’t incur the full complexity of option (3)? One approach
+ is discussed here.
+ 
 \end_layout
 
 \begin_layout Chapter
