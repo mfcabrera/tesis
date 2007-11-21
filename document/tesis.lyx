@@ -287,6 +287,7 @@ Find application of text categorization (Joachims Mentions many)
 * Justify the usage of SVM for text classification for the reason exhibited
  in Sebastini's survey and Joachims Papers, and The other Reference of That
  Dumais et Al.
+ and the other bechmark
 \end_layout
 
 \begin_layout Standard
@@ -497,7 +498,7 @@ key "GrafCBDV04"
 \end_inset
 
  using a transductive learning algortithm.
- The first part, Overview introduces the basic concepts a Machine Learning,
+ The first part, Overview, introduces the basic concepts a Machine Learning,
  Information Retrieval and Text Categorization.
  Later we describe the SVM algorithm and justify the reason of using SVM
  for text classification over other techniques.
@@ -507,7 +508,7 @@ reference "cha:Experiments-and-Results"
 
 \end_inset
 
- we exhibit our experimental set-up and the results.
+ we exhibit our experimental set-up and the show the analisys of the results.
 \end_layout
 
 \begin_layout Section
@@ -1113,7 +1114,7 @@ Frecuency In which
 \begin_layout Description
 
 \emph on
-TF-IDF
+tf-idf
 \emph default
  In which 
 \begin_inset Formula $\theta_{j}$
@@ -1183,7 +1184,7 @@ key "866292"
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Standard
 In this model, each document d is represented as a vector (1, ..., M), where
@@ -1212,7 +1213,7 @@ In this model, each document d is represented as a vector (1, ..., M), where
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Standard
 approaches for feature selection, others than the design of a stop-list
@@ -1358,16 +1359,8 @@ engin
 
 \begin_layout Standard
 Another technique used to avoid innecesary large feature vectors is removed
- the so-called 
-\begin_inset Quotes eld
-\end_inset
-
-stop-words
-\begin_inset Quotes erd
-\end_inset
-
-, or the words that for their common use is known that are not significant
- for the text.
+ the so-called stop-words, or the words that for their common use is known
+ that are not significant for the text.
  Words like 
 \begin_inset Quotes eld
 \end_inset
@@ -1396,7 +1389,41 @@ of
 \end_layout
 
 \begin_layout Standard
+There are other approaches for selecting the most important features other
+ than the described above, these approaches try to select the most important
+ features (the 
+\begin_inset Quotes eld
+\end_inset
 
+best
+\begin_inset Quotes erd
+\end_inset
+
+ words) from the dictionary 
+\begin_inset Formula $M$
+\end_inset
+
+, creating a subset 
+\begin_inset Formula $M0$
+\end_inset
+
+, that used for document representartion provides better results.
+ However Joachims 
+\begin_inset LatexCommand cite
+key "Joachims98"
+
+\end_inset
+
+ shows that the 
+\begin_inset Quotes eld
+\end_inset
+
+worst
+\begin_inset Quotes erd
+\end_inset
+
+ features still contain importan information, therefore suggest that all
+ features should be selected, when it is possible.
 \end_layout
 
 \begin_layout Section
@@ -1410,12 +1437,71 @@ name "sec:Text-Categorization"
 \end_layout
 
 \begin_layout Standard
-The goal of text categorization is to automatically assign, for each documents,
- categories selected among a predefined set.
+The goal of text categorization (TC) is to automatically assign, for each
+ documents, categories selected among a predefined set.
  In opposition to the machine learning typical multi-class classification
  task which aims at attributing one class among the possible ones to each
  example, documents in a text categorization task may belong to several
- categories 
+ categories.
+ Sebastiani 
+\begin_inset LatexCommand cite
+key "Sebastiani02"
+
+\end_inset
+
+ formally defines TC as task of assigning a Boolean to each pair 
+\begin_inset Formula $\left\langle d_{j},c_{j}\right\rangle \in\mathcal{D}\,\, x\,\mathcal{\, C}$
+\end_inset
+
+ where 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ is a domain of documents and 
+\begin_inset Formula $\mathcal{C}=\{c_{1},\ldots,c_{|c|}\}$
+\end_inset
+
+ is a set of predefined categories.
+ a true value assigned to the pair 
+\begin_inset Formula $\left\langle d_{j},c_{j}\right\rangle $
+\end_inset
+
+ indicates the decision of filling 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ under category 
+\begin_inset Formula $c_{j}$
+\end_inset
+
+, and a false value the decision of not filling it under that category.
+ More formally the task is to approximate a function 
+\begin_inset Formula $\Phi:\mathcal{D}\,\, x\,\mathcal{\, C}\rightarrow\{T,F\}$
+\end_inset
+
+ called the classifier.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Standard
+C D fc1, : : : , cjCjg is a set of predefined categories.
+ A value of T assigned to hd j , cii indicates a decision to file d j under
+ ci , while a value of F indicates a decision not to file d j under ci .
+ More formally, the task is to approximate the unknown target function ˘8
+ : D£C ! fT, Fg (that describes how documents ought to be classified) by
+ means of a function 8 : D £ C ! fT, Fg called the classifier (aka rule,
+ or hypothesis, or model) such that ˘8 and 8 “coincide as much as possible.”
+ How to precisely define and measure this coincidence (called effectiveness)
+ will be discussed in Section 7.1.
+ From now on we will assume that:
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1432,6 +1518,62 @@ Techniques
 
 \begin_layout Section
 Paralell Machine Learning
+\end_layout
+
+\begin_layout Standard
+Only recently the topic of parallel implementation of machine learning algorithm
+s have come to importance, altough it is rarely addressed at major machine
+ learning conferences, many factors points that the importance of this factor
+ will increase.
+ In his popular weblog
+\begin_inset Foot
+status open
+
+\begin_layout Standard
+Machine Learning (Theory) - http://hunch.net/
+\end_layout
+
+\end_inset
+
+ Prof.
+ John Langford
+\begin_inset Foot
+status collapsed
+
+\begin_layout Standard
+http://hunch.net/~jl/
+\end_layout
+
+\end_inset
+
+ describes the main tendencies of computation that impulse the necessity
+ of paralell implementation of machine learning algorithms:
+\end_layout
+
+\begin_layout Enumerate
+Larger datasets available due to the avalability of more sensors on the
+ internet.
+\end_layout
+
+\begin_layout Enumerate
+Seems like serial processor speedups are stalled, the new tendency for improving
+ processor speed is to have more cores per processor, that is, creating
+ multicore processors.
+ [marokwa-cite here]
+\end_layout
+
+\begin_layout Standard
+: and also gives hint on how this may be accomplished
+\begin_inset Foot
+status collapsed
+
+\begin_layout Standard
+http://hunch.net/?p=249
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Subsection
