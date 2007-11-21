@@ -1,7 +1,7 @@
 % Solve SVM
 % Altough specialized for Linear TSVM with the right parameters
 % also solves linear SVM
-function [w0,b0,nsv,ALPHAS,svindex,E,East] = solve_svm_qp_t(x,d,xnl,dnl,C,Cp,Cm) 
+function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag] = solve_svm_qp_t(x,d,xnl,dnl,C,Cp,Cm) 
 
 nnorm = length(d);
 nplus = length(find(dnl > 0));
@@ -60,12 +60,12 @@ end
 Aeq = [dt'];
 beq = [0];
 
-
-
+faval = 0;
+exitflag =0;
 
 %% Fetch the support vector and calculate w0 and b0 and the error vector
 
-ALPHAS=quadprog(H,f,A,b,Aeq,beq); %% TODO: More info from QP Solver
+[ALPHAS,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq); %% TODO: More info from QP Solver
 %W
 w0= (diag(ALPHAS)*dt(:,1))'*xt;
 svindex = find(ALPHAS > eps);
@@ -81,6 +81,7 @@ for i = 1:nnorm
     else
         
       e = 1 - dt(i)*(w0*xt(i,:)' + b0);
+      
 
        if(e < 0) % never happens, only happens when ALPHA(i) == 0
           e = 0;   % here just for checkin   
@@ -93,7 +94,11 @@ if(tdctive)
     if(ALPHAS(i) <= eps)
         E(i-nnorm) = 0;
     else
-       e = 1 - dt(i)*(w0'*xt(i,:)' + b0) ;
+%       length(xt(i,:)')
+%      length(dt(i,:)')
+%      length(w0)
+       e = 1 - dt(i)*(w0*xt(i,:)' + b0) ;
+       
        if(e < 0) % never happens, only happens when ALPHA(i) == 0
            e = 0;   % here just for checkin   
        end

@@ -12,16 +12,16 @@ load('csm_test_lab.data');
 %lx  = csm_train_lab(1:10,:);
 %ld = [ld;csm_train_lab(101:110,:)];
 
-lx = csm_train_vec(1:99,:);
-lx = [lx;csm_train_vec(101:199,:)];
-ld  = csm_train_lab(1:99,:);
-ld = [ld;csm_train_lab(101:199,:)];
+lx = csm_train_vec(1:10,:);
+lx = [lx;csm_train_vec(101:110,:)];
+ld  = csm_train_lab(1:10,:);
+ld = [ld;csm_train_lab(101:110,:)];
 
 
-ulx = csm_test_vec(1:99,:);
-ulx = [ulx;csm_test_vec(101:199,:)];
-uld  = csm_test_lab(1:99,:);
-uld = [uld;csm_test_lab(101:199,:)];
+ulx = csm_test_vec;
+%ulx = [ulx;csm_test_vec(101:199,:)];
+uld  = csm_test_lab;
+%uld = [uld;csm_test_lab(101:199,:)];
 
 %ulx = csm_test_vec;
 %uld = csm_test_lab;

@@ -33,7 +33,7 @@ Easy Task: (2000 DOCUMENTS HALF POSTIVE AND HALF NEGATIVE)
 Groups 
 com.hardware
 vs
-atheism (25% For training and 75% For testing)????
+atheism (25% For training and 75% For testing)
 	Manylabels: 1000 labeled and 1000 unalabeled for testing
 	Few labels: 200 labeled 1800 unlabeld for testing
 

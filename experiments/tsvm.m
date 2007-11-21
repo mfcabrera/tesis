@@ -21,6 +21,7 @@ l = discriminant_ns(w0,b0,xnl);
 
 
 ntest = length(xnl(1:end,1));
+
 % num_plus = half half of the examples will be
 
 num_plus = ceil(ntest/2);
@@ -28,8 +29,8 @@ num_plus = ceil(ntest/2);
 
 poslidx = idxs(1:num_plus);
 neglidx = idxs(num_plus+1:end);
-length(poslidx)
-length(neglidx)
+length(poslidx);
+length(neglidx);
 
 
 yast = zeros(1,ntest)';
@@ -38,20 +39,29 @@ yast(neglidx) = -1;
 l(poslidx);
 
 CaP = 10e-5; %% some small numbers
-CaN = 10e-5*(num_plus/(ntest-num_plus)) ;
+CaN = 10e-5;
 
+%% Main looop
 while ((CaN < Cast) || (CaP < Cast)) %loop 1
   
-  [w1,b1,nsv,ALPHAS,svindex,E,East] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN);
+  [w1,b1,nsv,ALPHAS,svindex,E,East,outflag] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN);
+  
   in = 1;
   while(in > 0)
-      in = 1;
+    ntest
       for(m = 1:ntest)
         for(i = 1:ntest)
-               if(yast(m)*yast(i) < 0) && (East(i) > eps) && ( (East(m) + E(i)) > 2)
+               if(yast(m)*yast(i) < 0) && (East(i) > eps) && ( (East(m) + East(i)) > 2)
+                   %INSIDE=666
                    yast(m) = -yast(m); %% take a positive and negative test
                    yast(i) = -yast(i); %% switch their labels and retrain
-                   [w1,b1,nsv,ALPHAS,svindex,E,East] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN); 
+                   [w1,b1,nsv,ALPHAS,svindex,E,East,outflag] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN); 
+                   if(outflag == 0)
+                         % can be solved with this values of C
+                         % so we augment them.
+                         CaN = min(CaN*2,Cast);
+                         CaP = min(CaP*2,Cast); 
+                   end
                    in = in + 1;
                end    
                
@@ -59,8 +69,8 @@ while ((CaN < Cast) || (CaP < Cast)) %loop 1
       end
       in = in - 1;
   end 
-  CaN = min(CaN*2,Cast)
-  CaP = min(CaP*2,Cast)  
+  CaN = min(CaN*2,Cast);
+  CaP = min(CaP*2,Cast) ; 
 end
 
 
