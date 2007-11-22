@@ -1,7 +1,7 @@
 % Solve SVM
 % Altough specialized for Linear TSVM with the right parameters
 % also solves linear SVM
-function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag] = solve_svm_qp_t(x,d,xnl,dnl,C,Cp,Cm) 
+function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,H] = solve_svm_qp_t(x,d,xnl,dnl,C,Cp,Cm) 
 
 nnorm = length(d);
 nplus = length(find(dnl > 0));

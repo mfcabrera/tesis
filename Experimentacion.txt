@@ -55,7 +55,7 @@ Sample Table
 -------------
                  EASY TASK          |        HARD TASK
   
-                   PM1 |PFM2        |        PFM1 |PFM2
+                    P|R|F        |        P|R|F
 C-SVM (C=n)
 TSVM  (C,Caskt)
 P-TSVM (C,Caskt)
