@@ -35,7 +35,7 @@ uld  = csm_test_lab;
 %labels_i = svm_classify(w0,b0,ulx);
 
 %transductive
-w0  = solve_svm_qp_t_parallel(lx,ld,ulx,uld,10,5,5) 
+w0  = solve_svm_qp_t_parallel(lx,ld,ulx,uld,10,5,5);
 
 
 %% Results Inductive

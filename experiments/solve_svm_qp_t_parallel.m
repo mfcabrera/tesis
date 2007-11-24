@@ -2,7 +2,7 @@
 % Altough specialized for Linear TSVM with the right parameters
 % also solves linear SVM
 function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag] = solve_svm_qp_t_parallel(x,d,xnl,dnl,C,Cp,Cm) 
-w0 = 0;
+
 nnorm = length(d);
 nplus = length(find(dnl > 0));
 nminus = length(find(dnl < 0));
@@ -78,7 +78,7 @@ U4v =  [xnlplus(nplusp*3+1:nplusp*4,:);xnlminus(nminusp*3+1:nminusp*4,:)];
 U4d =  [dnlplus(nplusp*3+1:nplusp*4,:);dnlminus(nminusp*3+1:nminusp*4,:)]; 
 
 %% SPLIT LABELED DATA
-psize = nnorm/8
+psize = ceil(nnorm/8)
 %PART 1
 L1v = [ x(1:psize,:); x(psize*7+1:psize*8,:)];
 L1d = [ d(1:psize,:); d(psize*7+1:psize*8,:)];
@@ -105,38 +105,67 @@ L4d = [ d(psize*3+1:psize*4,:); d(psize*7+1:psize*8,:)];
 % TO PARALELIZE 
 
 ltrain2 = length(L1d) + length(L2d);
-ltest2 = length(L1d) + length(L2d);
-ltotal2 = ltest2 + ltrain2;
+ltest2 = length(U1d) + length(U2d);
+%ltotal2 = ltest2 + ltrain2;
 
 %we can made a function out of this
-%% SV5 = SV1 + SV2
+%% Second layer
+%%SV5 = SV1 + SV2
+%%SV6 = SV3 + SV4
 % LETS JOIN THE SV 
 %l = length(H1)/2;
-H12 = H1*H2;
-H21 = H2*H2;
-H5 = [H1 H12;H21 H2];
-
-E50 = [E1';East1';E2';East2']; % Initial error
-length(E50);
-X05 = -1/2*[ALPHAS1;ALPHAS2]'*H5*[ALPHAS1;ALPHAS2] + E50'*[ALPHAS1;ALPHAS2];
-
 % CREATE THE PROBLEM FORMULATIOn
-% CARING ABOUT THE C,Cp,Cm Values
+[H5,f5,A5,b5,Aeq5,beq5,X5] = join_sv_results(H1,H2,ALPHAS1,ALPHAS2,[L1d;U1d],[L2d;U2d],E1,E2,East1,East2,nplusp,nminusp,C,Cp,Cm,ltrain2,ltest2);
+[H6,f6,A6,b6,Aeq6,beq6,X6] = join_sv_results(H3,H4,ALPHAS3,ALPHAS3,[L3d;U3d],[L4d;U4d],E3,E4,East3,East4,nplusp,nminusp,C,Cp,Cm,ltrain2,ltest2);
 
-A5 = -diag(ones(ltotal2,1));
-A5 = [A5;-A5];
-f5 = -1*ones(ltotal2,1)';
-length(A5(1,:))
-length(f5(1,:))
-b5 = zeros(ltotal2,1);
-b5 = [b5;C.*ones(ltrain2,1);Cp.*ones(nplusp,1); Cm.*ones(nminusp,1);Cp.*ones(nplusp,1); Cm.*ones(nminusp,1) ];
-Aeq5 = [L1d;U1d;L2d;U1d]';
-beq5 = [0];
-[ALPHAS5,fval,exitflag5]=quadprog(H5,f5,A5,b5,Aeq5,beq5);
-%% SV6 = SV3 + SV4
+%% Solve the second layer
+[ALPHAS5,fval,exitflag5]=quadprog(H5,f5,A5,b5,Aeq5,beq5,-inf,inf,X5);
+[ALPHAS6,fval,exitflag6]=quadprog(H6,f6,A6,b6,Aeq6,beq6,-inf,inf,X6);
+
+%% LAST LAYER
+
+[H7,f7,A7,b7,Aeq7,beq7,X7] = join_sv_results(H5,H6,ALPHAS5,ALPHAS6,[L1d;U1d;L2d;U2d],[L3d;U3d;L4d;U4d],[E1 E2],[E3 E4],[East1 East2],[East3 East4],nplusp*2,nminusp*2,C,Cp,Cm,ltrain2*2,ltest2*2);
+
+[ALPHAS,fval,exitflag]=quadprog(H7,f7,A7,b7,Aeq7,beq7,-inf,inf,X7);
+
+xt = [x;xnl]; %x for training
+dt = [d;dnl]; %d for training   
+w0= (diag(ALPHAS)*dt(:,1))'*xt;
+svindex = find(ALPHAS > eps);
+nsv = length(find(ALPHAS > eps));
+b0 = 1 - w0*xt(svindex(1),:)' % Calculted with any svm
 
 
+for i = 1:nnorm
+    if(ALPHAS(i) <= eps)
+        E(i) = 0;
+    else
+        
+      e = 1 - dt(i)*(w0*xt(i,:)' + b0);
+      
 
-
+       if(e < 0) % never happens, only happens when ALPHA(i) == 0
+          e = 0;   % here just for checkin   
+       end
+    E(i) = e;
+    end
+end
+if(tdctive) 
+   for i = (nnorm+1):(nplus+nminus)
+    if(ALPHAS(i) <= eps)
+        E(i-nnorm) = 0;
+    else
+%       length(xt(i,:)')
+%      length(dt(i,:)')
+%      length(w0)
+       e = 1 - dt(i)*(w0*xt(i,:)' + b0) ;
+       
+       if(e < 0) % never happens, only happens when ALPHA(i) == 0
+           e = 0;   % here just for checkin   
+       end
+     East(i-nnorm) = e; 
+    end    
+   end 
+end
 
 
