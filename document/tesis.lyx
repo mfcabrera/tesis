@@ -28,7 +28,7 @@
 \use_bibtopic false
 \paperorientation portrait
 \leftmargin 3cm
-\topmargin 4cm
+\topmargin 5cm
 \rightmargin 3cm
 \bottommargin 3cm
 \headheight 5cm
@@ -1535,7 +1535,6 @@ Machine Learning (Theory) - http://hunch.net/
 
 \end_inset
 
- Prof.
  John Langford
 \begin_inset Foot
 status collapsed
@@ -1559,21 +1558,37 @@ Larger datasets available due to the avalability of more sensors on the
 Seems like serial processor speedups are stalled, the new tendency for improving
  processor speed is to have more cores per processor, that is, creating
  multicore processors.
- [marokwa-cite here]
-\end_layout
+ 
+\begin_inset LatexCommand cite
+key "Marowka07"
 
-\begin_layout Standard
-: and also gives hint on how this may be accomplished
+\end_inset
+
+ For example IBM cell processor
 \begin_inset Foot
 status collapsed
 
 \begin_layout Standard
-http://hunch.net/?p=249
+http://www.research.ibm.com/cell/
 \end_layout
 
 \end_inset
 
- 
+ has 9 cores.
+\end_layout
+
+\begin_layout Standard
+The following question then arises, how take advantage of this trend and
+ use all the parallel computing power of new processor for solving machine
+ learning problems?
+\end_layout
+
+\begin_layout Standard
+The basic approach is to run the same algorithm with different parameters
+ on different processors.
+ Cluster software like Open Mosix, Condor might be used in this situation.
+ As noticed by Langford, this particular approach does not speed up the
+ run of a particular machine learning algorithm.
 \end_layout
 
 \begin_layout Subsection
