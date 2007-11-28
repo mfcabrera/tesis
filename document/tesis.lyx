@@ -1523,8 +1523,8 @@ Paralell Machine Learning
 \begin_layout Standard
 Only recently the topic of parallel implementation of machine learning algorithm
 s have come to importance, altough it is rarely addressed at major machine
- learning conferences, many factors points that the importance of this factor
- will increase.
+ learning conferences, many factors points out that the importance of this
+ factor will increase.
  In his popular weblog
 \begin_inset Foot
 status open
@@ -1551,20 +1551,18 @@ http://hunch.net/~jl/
 
 \begin_layout Enumerate
 Larger datasets available due to the avalability of more sensors on the
- internet.
+ internet, making processor power a need in other to handle these large
+ amounts of information.
 \end_layout
 
 \begin_layout Enumerate
-Seems like serial processor speedups are stalled, the new tendency for improving
- processor speed is to have more cores per processor, that is, creating
- multicore processors.
- 
-\begin_inset LatexCommand cite
-key "Marowka07"
+Serial processor speedups are stalled as the result of the 
+\end_layout
 
-\end_inset
-
- For example IBM cell processor
+\begin_layout Enumerate
+ability to drive chips at ever higher clock rates due the new tendency for
+ improving processor speed is to have more cores per processor, that is,
+ creating multicore processors, for example, IBM cell processor
 \begin_inset Foot
 status collapsed
 
@@ -1578,9 +1576,21 @@ http://www.research.ibm.com/cell/
 \end_layout
 
 \begin_layout Standard
-The following question then arises, how take advantage of this trend and
- use all the parallel computing power of new processor for solving machine
- learning problems?
+In addition, since 2005 there is low-cost parallel hardware aimed to desktop
+ users 
+\begin_inset LatexCommand cite
+key "Marowka07"
+
+\end_inset
+
+ making even more important to take avantage of this architecture and learn
+ to use it the best way.
+\end_layout
+
+\begin_layout Standard
+With all these precedents the following question arises: how take advantage
+ of this trend and use all the parallel computing power of new processor
+ for solving machine learning problems?
 \end_layout
 
 \begin_layout Standard
