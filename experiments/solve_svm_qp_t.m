@@ -27,16 +27,16 @@ end
     
 %Transductive???|
 if(tdctive) 
-    xt = [x;xnl]; %x for training
-    dt = [d;dnl]; %d for training   
+    x = [x;xnl]; %x for training
+    d = [d;dnl]; %d for training   
 else
-    xt = x;
-    dt = d;
+    x = x;
+    d= d;
 end
 
-Y = diag(dt);  %% di (labels)
-n = length(dt) % number of training data
-H = Y*(xt*xt')*Y; %% Linear Kernel 
+Y = diag(d);  %% di (labels)
+n = length(d) % number of training data
+H = Y*(x*x')*Y; %% Linear Kernel 
 f = -1*ones(nnorm,1)';
 
 if(tdctive) 
@@ -57,7 +57,7 @@ else
 end
 
 % Formula Aeq*x = beq.
-Aeq = [dt'];
+Aeq = [d'];
 beq = [0];
 
 faval = 0;
@@ -67,12 +67,16 @@ exitflag =0;
 
 [ALPHAS,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq); %% TODO: More info from QP Solver
 %W
-w0= (diag(ALPHAS)*dt(:,1))'*xt;
+w0= (diag(ALPHAS)*d(:,1))'*x;
 svindex = find(ALPHAS > eps);
-nsv = length(find(ALPHAS > eps));
-b0 = 1 - w0*xt(svindex(1),:)' % Calculted with any svm
-
-
+if(numel(svindex) > 0)
+    nsv = length(find(ALPHAS > eps));
+    b0 = 1 - w0*x(svindex(1),:)' % Calculted with any svm
+else
+    b0 = 0;
+    nsv = 0;
+end
+   
 
 %% calculate the error for all both E and Easkt
 for i = 1:nnorm
@@ -80,7 +84,7 @@ for i = 1:nnorm
         E(i) = 0;
     else
         
-      e = 1 - dt(i)*(w0*xt(i,:)' + b0);
+      e = 1 - d(i)*(w0*x(i,:)' + b0);
       
 
        if(e < 0) % never happens, only happens when ALPHA(i) == 0
@@ -97,7 +101,7 @@ if(tdctive)
 %       length(xt(i,:)')
 %      length(dt(i,:)')
 %      length(w0)
-       e = 1 - dt(i)*(w0*xt(i,:)' + b0) ;
+       e = 1 - d(i)*(w0*x(i,:)' + b0) ;
        
        if(e < 0) % never happens, only happens when ALPHA(i) == 0
            e = 0;   % here just for checkin   
