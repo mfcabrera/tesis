@@ -87,3 +87,46 @@ well as the overall score for all 118 categories.
 
 
 
+Primer experimento pseudo largo.
+
+n =
+
+        1850
+
+
+ntest =
+
+        1500
+
+
+ri =
+
+    0.9440
+
+
+pi =
+
+    0.9986
+
+
+fi =
+
+    0.9705
+
+
+rt =
+
+    0.9867
+
+
+pt =
+
+    0.9867
+
+
+ft =
+
+    0.9867
+
+
+

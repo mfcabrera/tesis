@@ -35,7 +35,7 @@ testd = csm_test_lab; %% train data
 labels_i = svm_classify(w0,b0,ulx);
 
 %transductive
-labels_t = tsvm(lx,ld,ulx,10,10);
+%labels_t = tsvm(lx,ld,ulx,10,10);
 
 %transductive parallell
 labels_tp = tsvm_parallel(lx,ld,ulx,10,10);
@@ -47,9 +47,9 @@ fi = (2*ri*pi)/(ri+pi)
 
 
 %% Results transductive
-rt = recall(labels_t,testd)
-pt = precision(labels_t,testd)
-ft = (2*rt*pt)/(rt+pt)
+%rt = recall(labels_t,testd)
+%pt = precision(labels_t,testd)
+%ft = (2*rt*pt)/(rt+pt)
 
 %% Results transductive_paralell
 rtp = recall(labels_tp,testd)
