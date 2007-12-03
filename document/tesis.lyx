@@ -1527,7 +1527,7 @@ s have come to importance, altough it is rarely addressed at major machine
  factor will increase.
  In his popular weblog
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Standard
 Machine Learning (Theory) - http://hunch.net/
@@ -1556,13 +1556,11 @@ Larger datasets available due to the avalability of more sensors on the
 \end_layout
 
 \begin_layout Enumerate
-Serial processor speedups are stalled as the result of the 
-\end_layout
-
-\begin_layout Enumerate
-ability to drive chips at ever higher clock rates due the new tendency for
- improving processor speed is to have more cores per processor, that is,
- creating multicore processors, for example, IBM cell processor
+Serial processor speedups are stalled as the result of no having the ability
+ to drive chips at ever higher clock rates without incresing the cost.
+ The new tendency for improving processor speed is to have more cores per
+ processor, that is, creating multicore processors, for example, IBM cell
+ processor
 \begin_inset Foot
 status collapsed
 
@@ -1585,12 +1583,16 @@ key "Marowka07"
 
  making even more important to take avantage of this architecture and learn
  to use it the best way.
+ 
 \end_layout
 
 \begin_layout Standard
 With all these precedents the following question arises: how take advantage
  of this trend and use all the parallel computing power of new processor
- for solving machine learning problems?
+ for solving machine learning problems? We are in the beginning of the multicore
+ era and there is no easy answer to this question, mostly because there
+ is not even an unified general approach to take avantage ot this arquitecture,
+ altough some basic strategies can be described.
 \end_layout
 
 \begin_layout Standard
@@ -1599,6 +1601,9 @@ The basic approach is to run the same algorithm with different parameters
  Cluster software like Open Mosix, Condor might be used in this situation.
  As noticed by Langford, this particular approach does not speed up the
  run of a particular machine learning algorithm.
+ The next simplest technique is to descompose a learning algorithm into
+ an adaptive sequence of statistical queries and parallelize the queries
+ over the sample
 \end_layout
 
 \begin_layout Subsection
