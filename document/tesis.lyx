@@ -469,9 +469,9 @@ key "Joachims/99a,osunaetal97"
 
 \begin_layout Standard
 Taking advantage actual trends in processor technologies, where the multi-core
- processor is becoming the norm[CitationHere] 
+ processor is becoming the norm 
 \begin_inset LatexCommand cite
-key "Marowka07"
+key "Marowka07,1069628|Geer05"
 
 \end_inset
 
@@ -480,7 +480,7 @@ key "Marowka07"
  situations.
  Also, as an extra motivation, empirical results have showed that some parallel
  settings for SVM have achieved better generalization than their classic
- counterparts 
+ counterparts for some problems 
 \begin_inset LatexCommand cite
 key "citeulike:935557|Collobert2002"
 
@@ -1557,10 +1557,16 @@ Larger datasets available due to the avalability of more sensors on the
 
 \begin_layout Enumerate
 Serial processor speedups are stalled as the result of no having the ability
- to drive chips at ever higher clock rates without incresing the cost.
+ to drive chips at ever higher clock rates without excessingly incresing
+ the cost.
  The new tendency for improving processor speed is to have more cores per
- processor, that is, creating multicore processors, for example, IBM cell
- processor
+ processor 
+\begin_inset LatexCommand cite
+key "1069628|Geer05"
+
+\end_inset
+
+, that is, creating multicore processors, for example, IBM cell processor
 \begin_inset Foot
 status collapsed
 
@@ -1601,85 +1607,51 @@ The basic approach is to run the same algorithm with different parameters
  Cluster software like Open Mosix, Condor might be used in this situation.
  As noticed by Langford, this particular approach does not speed up the
  run of a particular machine learning algorithm.
- The next simplest technique is to descompose a learning algorithm into
- an adaptive sequence of statistical queries and parallelize the queries
- over the sample
-\end_layout
+ Other approaches includes the descomposition of the algorithm into statisitical
+ queries 
+\begin_inset LatexCommand cite
+key "167200"
 
-\begin_layout Subsection
-Tools
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Parallel machine learning is a subject rarely addressed at machine learning
- conferences.
- Nevertheless, it seems likely to increase in importance because:
-\end_layout
+ and paralellize the queries over the the samples, for example using map-reduce
+ 
+\begin_inset LatexCommand cite
+key "conf/nips/ChuKLYBNO06"
 
-\begin_layout Standard
-1.
- Data set sizes appear to be growing substantially faster than computation.
- Essentially, this happens because more and more sensors of various sorts
- are being hooked up to the internet.
- 2.
- Serial speedups of processors seem are relatively stalled.
- The new trend is to make processors more powerful by making them multicore.
- 1.
- Both AMD and Intel are making dual core designs standard, with plans for
- more parallelism in the future.
- 2.
- IBM’s Cell processor has (essentially) 9 cores.
- 3.
- Modern graphics chips can have an order of magnitude more separate execution
- units.
-\end_layout
+\end_inset
 
-\begin_layout Standard
-The meaning of ‘core’ varies a bit from processor to processor, but the
- overall trend seems quite clear.
+.
+ The last and most difficult way is to develop fine-grained parallism, which
+ is the way brain actually works.
  
 \end_layout
 
 \begin_layout Standard
-So, how do we parallelize machine learning algorithms?
-\end_layout
-
-\begin_layout Standard
-1.
- The simplest and most common technique is to simply run the same learning
- algorithm with different parameters on different processors.
- Cluster management software like OpenMosix, Condor, or Torque are helpful
- here.
- This approach doesn’t speed up any individual run of a learning algorithm.
- 2.
- The next simplest technique is to decompose a learning algorithm into an
- adaptive sequence of statistical queries and parallelize the queries over
- the sample.
- This paper (updated from the term paper according to a comment) points
- out that statistical integration can be implemented via MapReduce which
- Google popularized (the open source version is Hadoop).
- The general technique of parallel statistical integration is already used
- by many people including IBM’s Parallel Machine Learning Toolbox.
- The disadvantage of this approach is that it is particularly good at speeding
- up slow algorithms.
- One example of a fast sequential algorithm is perceptron.
- The perceptron works on a per example basis making individual updates extremely
- fast.
- It is explicitly not a statistical query algorithm.
- 3.
- The most difficult method for speeding up an algorithm is fine-grained
- structural parallelism.
- The brain works in this way: each individual neuron operates on it’s own.
- The reason why this is difficult is that the programming is particularly
- tricky—you must carefully optimize to avoid latency in network communication.
- The full complexity of parallel programming is exposed.
-\end_layout
-
-\begin_layout Standard
-A basic question is: are there other approaches to speeding up learning
- algorithms which don’t incur the full complexity of option (3)? One approach
- is discussed here.
+We have discussed the evident speed gain using parallel methods for running
+ but the question whether the a paralell algorithm fine-grained paralellized
+ implementation can achieve better performance is still unanswered.
+ Another question that arises is if there are methods that not necesarilly
+ incur in the complexity of disecting a specific algorithm and still harness
+ parallel architectures.
+ Graf et Al.
  
+\begin_inset LatexCommand cite
+key "GrafCBDV04"
+
+\end_inset
+
+ presents the Cascade SVM, an approach for parallelizing the SVM without
+ modifying the SVM problem at all but using a pyramid-like array of SVM
+ subproblem that are joined in each level until a the solution is found.
+ This approach is chosen for the experiments of this work and will be discussed
+ in depth in chapter 
+\begin_inset LatexCommand ref
+reference "cha:Experiments-and-Results"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
