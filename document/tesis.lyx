@@ -1178,8 +1178,8 @@ key "866292"
  ones that appears in to many documents.
  The reader may have noticed that this representation of text does not take
  into account the actual order of the words inside the document, despite
- this t, vector space model have performed well and it still used in someway
- in the majority of IR systems.
+ this, vector space model have performed well and it still used with some
+ variations in the majority of IR systems.
 \end_layout
 
 \begin_layout Standard
@@ -1632,8 +1632,8 @@ We have discussed the evident speed gain using parallel methods for running
  but the question whether the a paralell algorithm fine-grained paralellized
  implementation can achieve better performance is still unanswered.
  Another question that arises is if there are methods that not necesarilly
- incur in the complexity of disecting a specific algorithm and still harness
- parallel architectures.
+ incur in the complexity of disecting a specific algorithm and then paralleling
+ and still harness parallel architectures.
  Graf et Al.
  
 \begin_inset LatexCommand cite
@@ -2343,7 +2343,8 @@ So far with the formulations described in the last section we are using
  correctly the data.
  This is called Inference learning, that is, going from particular examples
  to a general hypothesis.
- The transductive setting on the other hand tries to use the knowledge 
+ The transductive setting on the other hand tries to use the known distribution
+ of the test data in order produce a classifier.
 \end_layout
 
 \begin_layout Section
