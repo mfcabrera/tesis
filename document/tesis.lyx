@@ -267,6 +267,30 @@ Universidad Nacional de Colombia - Sede Medell
 status open
 
 \begin_layout Standard
+POR HACER:
+\end_layout
+
+\begin_layout Standard
+- Abstract and Resume
+\end_layout
+
+\begin_layout Standard
+- Transductive Theory
+\end_layout
+
+\begin_layout Standard
+- Text Classification Theory
+\end_layout
+
+\begin_layout Standard
+- Experment setup
+\end_layout
+
+\begin_layout Standard
+- Text Categorization with SVM
+\end_layout
+
+\begin_layout Standard
 GENERAL NOTES:
 \end_layout
 
@@ -1475,11 +1499,109 @@ key "Sebastiani02"
 \end_inset
 
 , and a false value the decision of not filling it under that category.
- More formally the task is to approximate a function 
+ More formally the task is to approximate a unknown target function 
+\begin_inset Formula $\breve{\Phi}:\mathcal{D}\,\, x\,\mathcal{\, C}\rightarrow\{T,F\}$
+\end_inset
+
+ using 
 \begin_inset Formula $\Phi:\mathcal{D}\,\, x\,\mathcal{\, C}\rightarrow\{T,F\}$
 \end_inset
 
- called the classifier.
+ such that 
+\begin_inset Formula $\Phi$
+\end_inset
+
+and 
+\begin_inset Formula $\breve{\Phi}$
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+coincide as much as possible
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset LatexCommand cite
+key "Sebastiani02"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+A text categorization task can be performed in many ways, for instace one
+ might want to classify a document in just one category (single label case
+ or not overlapping categories) or from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $|\mathcal{C}|$
+\end_inset
+
+ categories (multilabel case or overlapping categories).
+ A special case of sigle label TC is the binary TC in which each 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ is assigned to category 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ or its complement 
+\begin_inset Formula $\widetilde{c}_{i}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+It is possible to percieve the multilabel case as different problem but
+ one can express the multilabeled TC task for a set of categories 
+\begin_inset Formula $\mathcal{C}=\{c_{1},\ldots,c_{k}\}$
+\end_inset
+
+ as a group of 
+\begin_inset Formula $k$
+\end_inset
+
+ binary case problems, this requiers that categories be stochastic independent
+ or each other altough some recent development in structured classification
+ 
+\begin_inset LatexCommand cite
+key "Tsochantaridis/etal/05a"
+
+\end_inset
+
+ might be useful to tackle multilabel interdependant TC task.
+ In this work we are going to deal with binary categorization tasks because
+ as stated by Sebastiani 
+\begin_inset LatexCommand cite
+key "Sebastiani02"
+
+\end_inset
+
+ many important TC applications are in fact binary categorization problems,
+ moreover as described above we can solve multilabel TC as many binary TC
+ task and assuming independent categories which is valid for most of the
+ problems.
+ 
+\end_layout
+
+\begin_layout Subsection
+Performance Measures
+\end_layout
+
+\begin_layout Standard
+One question that arises after reading the definition of TC is how to measure
+ the how well the classifier function (the approximation or hypothesis)
+ matches the unkwon target function.
 \end_layout
 
 \begin_layout Standard
@@ -2364,7 +2486,7 @@ key "DumaisPHS98"
 
 \end_inset
 
-(More citations?) .
+.
  the TC task using SVM can bee seen geometrically as finding an hyperplane
  that separates two grous of points has 
 \end_layout
