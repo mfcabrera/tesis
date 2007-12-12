@@ -264,7 +264,7 @@ Universidad Nacional de Colombia - Sede Medell
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Standard
 POR HACER:
@@ -2094,7 +2094,7 @@ w^{T}x+b=0\label{eq:}\end{equation}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Standard
 \align center
@@ -2631,6 +2631,55 @@ So far with the formulations described in the last section we are using
  [TODO]
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/joachims-algorithm.jpg
+	scale 42
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Caption
+
+\begin_layout Standard
+Algorithm for training Transductive Support Vector Machines 
+\begin_inset LatexCommand cite
+key "Joachims99c"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[TODO Description of the algorithm]
+\end_layout
+
 \begin_layout Section
 SVM and Text Categorization
 \end_layout
@@ -2662,7 +2711,7 @@ Transductive Parallel Linear SVM
 \end_layout
 
 \begin_layout Chapter
-Experiments and Results
+Paralell Methods for Training Transductive SVM 
 \begin_inset LatexCommand label
 name "cha:Experiments-and-Results"
 
@@ -2672,7 +2721,7 @@ name "cha:Experiments-and-Results"
 \end_layout
 
 \begin_layout Section
-Problem Description
+Introduction
 \end_layout
 
 \begin_layout Standard
@@ -2693,7 +2742,7 @@ Solving the transductive SVM using the algorithm described by joachims implies
 
 .
  It uses two nested loops to optimize a TSVM which solves a quadratic programmin
-g everytimes it changes a label from an unlabeled data.
+g everytime it changes a label from an unlabeled data.
  The convergence of the nested loop relies in the fact that there is only
  a finite number of finite number 
 \begin_inset Formula $2^{U}$
@@ -2703,87 +2752,175 @@ g everytimes it changes a label from an unlabeled data.
 \begin_inset Formula $U$
 \end_inset
 
- labeled points even if it is unlikely that all of them are examinated 
+ unlabeled points even if it is unlikely that all of them are examinated
+ 
 \begin_inset LatexCommand cite
 key "1248609"
 
 \end_inset
 
 .
- However given that the heuristic only swaps the label of two unlabeled
- examples at each nested loop iteration it might need (and in fact it does)
- many iterations to reach a minimum which makes it intractable for big datasets
+ However because the heuristic only swaps the label of two unlabeled examples
+ at each nested loop iteration it might need (and in fact it does) many
+ iterations to reach a minimum which makes it intractable for big datasets
  in practice.
- Furthermore, in the worst case TSVM have complexity of 
-\begin_inset Formula $O((L+U)^{3}$
+\end_layout
+
+\begin_layout Standard
+TSVM in the worst case have complexity of 
+\begin_inset Formula $O(L+U)^{3}$
 \end_inset
 
- altough it generally scales to square in 
-\series bold
+ with 
+\begin_inset Formula $U$
+\end_inset
 
+ labeled points, altough it generally scales to square in most practical
+ cases 
 \begin_inset LatexCommand cite
 key "Joachims/99a"
 
 \end_inset
 
-
-\series default
- most practical cases it still intractable for large datasets.
+ thus still intractable for large datasets.
 \end_layout
 
 \begin_layout Standard
 In order to optimize this kind problem one can try to modify the formulation,
  for instance example solving it in the primal rather than in the dual with
- an alternate technique 
-\begin_inset LatexCommand cite
-key "1248609,1148253"
-
-\end_inset
-
+ an alternate technique altough the question of how widely applicable are
+ these methods are remains to bee seen.
  or use any of the general approaches described in section 
 \begin_inset LatexCommand ref
 reference "sec:Paralell-Machine-Learning"
 
 \end_inset
 
- that makes use of the computation power given by the new .
- for the specific case of SVM and TSVM one could try to modify the problem
+ that makes use of the computation power given by the new multicore processors.
+ 
+\end_layout
+
+\begin_layout Standard
+For the specific case of SVM and TSVM one could try to modify the problem
  in a way that makes it easily parallelizable 
 \begin_inset LatexCommand cite
 key "1248601"
 
 \end_inset
 
- or enables it to be solved it in an alternate way.
  Generally this is acomplished through the use of decomposition technique
  of some kind.
- Another approach is to use a mixture of SVM in order to 
+ Another approach is to use a mixture of SVM 
+\begin_inset LatexCommand cite
+key "citeulike:935557|Collobert2002"
+
+\end_inset
+
+ in order to to train each of them with a subset and them using the mixture
+ of expert approach 
+\begin_inset LatexCommand cite
+key "Jacobs:Jordan:Nowlan:Hinton91"
+
+\end_inset
+
+ which is easily paralellizable.
+ All these approach modify in some manner the original formulation of the
+ problem.
+\end_layout
+
+\begin_layout Standard
+A recent approach called the Cascade SVM consist in an array of SVM solvers
+ arranged in pyramid form.
+ This structure allows an easy parallelization and does not modify the original
+ formulation at all 
+\begin_inset LatexCommand cite
+key "GrafCBDV04,ZhangZY05"
+
+\end_inset
+
+.
+ This is the approach selected for the parallelization of TSVM because there
+ is no need to modify the original quadratic programming probel and is straightf
+orward to implement altough some small modifications are needed in order
+ to be fully adapted to the transuductive algorithm described by Joachims.
+ 
+\end_layout
+
+\begin_layout Section
+The Cascade SVM
+\end_layout
+
+\begin_layout Standard
+The Cascade SVM was described by Bottou et al 
+\begin_inset LatexCommand cite
+key "GrafCBDV04"
+
+\end_inset
+
+ and further explored by Zhang et al 
+\begin_inset LatexCommand cite
+key "ZhangZY05"
+
+\end_inset
+
+ and is based in the strategy of early elimination of non-support vectors
+ from the training set 
+\begin_inset LatexCommand cite
+key "Joachims/99a"
+
+\end_inset
+
+.
+ The Cascade SVM is a distributed architecture wjere smaller optimization
+ problems are solved independently making them easily parallelizable.
+ The results of this smaller problems are then esembled in a way that is
+ ensure that eventually converges to globally optimal solution.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/graf-svm-cascade.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Caption
+
+\begin_layout Standard
+Schematic of a Cascade architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Software
+Cascade Transductive SVM
 \end_layout
 
 \begin_layout Subsection
 Data Sets
 \end_layout
 
-\begin_layout Subsection
-The Cascade SVM
-\end_layout
-
-\begin_layout Standard
-For the experiment we use cascade SVM 
-\begin_inset LatexCommand cite
-key "GrafCBDV04"
-
-\end_inset
-
- 
-\end_layout
-
 \begin_layout Section
-Results
+Experiments and Results
 \end_layout
 
 \begin_layout Section
