@@ -3,6 +3,7 @@ ltotal = ltest + ltrain;
 H12 = H1*H2;
 H21 = H2*H1;
 H = [H1 H12;H21 H2];
+
 En = [E1';East1';E2';East2']; % Initial error
 %length(En)
 %En
@@ -28,7 +29,7 @@ b = [b;C.*ones(ltrain,1);Cp.*ones(nplusp,1); Cm.*ones(nminusp,1);Cp.*ones(nplusp
 Aeq = [d1;d2]';
 beq = [0];
 
-length(A(:,1))
-length(b)
+%length(A(:,1))
+%length(b)
 
 

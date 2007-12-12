@@ -1,9 +1,9 @@
 %% File for testing the transductive setting
 
-load('csm_train_vec.data');
-load('csm_train_lab.data');
-load('csm_test_vec.data');
-load('csm_test_lab.data');
+%load('csm_train_vec.data');
+%load('csm_train_lab.data');
+%load('csm_test_vec.data');
+%load('csm_test_lab.data');
 
 lx = csm_train_vec;
 ld = csm_train_lab;

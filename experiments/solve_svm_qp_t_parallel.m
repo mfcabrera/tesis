@@ -12,6 +12,7 @@ tdctive  = false; %% whether
 
 %% Dummy values
 E = zeros(1,nnorm);
+
 East = zeros(1,nplus+nminus);
 %%b0 is the offset
 %%b is the matrix b in
@@ -54,7 +55,7 @@ end
 % TRAIN WITH 4 MACHINES
 
 %% SPLIT UNLABELED DATA
-nplus
+nplus;
 nplusp = nplus/4
 nminusp = nminus/4;
 
@@ -99,7 +100,16 @@ L4d = [ d(psize*3+1:psize*4,:); d(psize*7+1:psize*8,:)];
 %% NOW Solve the first 4 SVMs
 
 % TO PARALELIZE 
+%length(U3d)
+%length(U2d)
+%PARTE PAR
 [W,B,NSV,AL,SVINDEX,EV,EASTV,EXITF,HV] = dfeval(@solve_svm_qp_t,{L1v,L2v,L3v,L4v},{L1d,L2d,L3d,L4d},{U1v,U2v,U3v,U4v},{U1d,U2d,U3d,U4d},{C,C,C,C},{Cp,Cp,Cp,Cp},{Cm,Cm,Cm,Cm},'Configuration', 'local');
+%[w1,b1,nsv1,ALPHAS1,svindex1,E1,East1,exitflag1,H1] = solve_svm_qp_t(L1v,L1d,U1v,U1d,C,Cp,Cm);
+%[w4,b4,nsv4,ALPHAS4,svindex4,E4,East4,exitflag4,H4] =  solve_svm_qp_t(L4v,L4d,U4v,U4d,C,Cp,Cm);
+%[w2,b2,nsv2,ALPHAS2,svindex2,E2,East2,exitflag2,H2] = solve_svm_qp_t(L2v,L2d,U2v,U2d,C,Cp,Cm);
+%[w3,b3,nsv3,ALPHAS3,svindex3,E3,East3,exitflag3,H3] =  solve_svm_qp_t(L3v,L3d,U3v,U3d,C,Cp,Cm);
+
+
 
 w1 = W{2};
 w2 = W{3};
@@ -130,6 +140,11 @@ E1 = EV{1};
 E2 = EV{2};
 E3 = EV{3};
 E4 = EV{4};
+%length(E1)
+%length(E2)
+%length(E3)
+%length(E4)
+
 
 East1 = EASTV{1};
 East2 = EASTV{2};
@@ -190,9 +205,14 @@ xt = [x;xnl]; %x for training
 dt = [d;dnl]; %d for training   
 w0= (diag(ALPHAS)*dt(:,1))'*xt;
 svindex = find(ALPHAS > eps);
-nsv = length(find(ALPHAS > eps));
-b0 = 1 - w0*xt(svindex(1),:)' % Calculted with any svm
 
+if(numel(svindex) > 0)
+    nsv = length(find(ALPHAS > eps));
+    b0 = 1 - w0*x(svindex(1),:)' % Calculted with any svm
+else
+    b0 = 0;
+    nsv = 0;
+end
 
 for i = 1:nnorm
     if(ALPHAS(i) <= eps)

@@ -40,10 +40,11 @@ l(poslidx);
 
 CaP = 10e-5; %% some small numbers
 CaN = 10e-5;
-
+pase = 0
+  
 %% Main looop
 while ((CaN < Cast) || (CaP < Cast)) %loop 1
-  
+  pase = pase + 1
   [w1,b1,nsv,ALPHAS,svindex,E,East,outflag] = solve_svm_qp_t_parallel(x,d,xnl,yast,C,CaP,CaN);
   
   in = 1;

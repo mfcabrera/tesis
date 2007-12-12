@@ -44,14 +44,20 @@ x = ath_vs_cg_train_vec_sp;%[ath_vs_cg_train_vec(1:248,:);ath_vs_cg_train_vec(24
 testd = ath_vs_cg_test_lab; %% train data
 ulx = ath_vs_cg_test_vec_sp;
 %inductive
+tic;
 [w0,b0,nsv] = solve_svm_qp_t(x,d,0,0,9,0,0);
+time_inductive = toc
 labels_i = svm_classify(w0,b0,ulx);
 
 %transductive
-%labels_t = tsvm(x,d,ulx,10,10);
+tic;
+labels_t = tsvm(x,d,ulx,10,10);
+time_trans = toc;
 
 %transductive parallell
+tic;
 labels_tp = tsvm_parallel(x,d,ulx,10,10);
+time_trans_p = toc;
 
 %% Results Inductive
 ri = recall(labels_i,testd)

@@ -3,15 +3,19 @@
 % also solves linear SVM
 function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,H] = solve_svm_qp_t(x,d,xnl,dnl,C,Cp,Cm) 
 
-nnorm = length(d);
+nnorm = length(d)
+nnl = length(dnl);
 nplus = length(find(dnl > 0));
 nminus = length(find(dnl < 0));
 tdctive  = false; %% whether 
 
 
 %% Dummy values
+%nnorm
+%nplus+nminus
 E = zeros(1,nnorm);
-East = zeros(1,nplus+nminus);
+le =  length(E)
+East = zeros(1,nnl);
 %%b0 is the offset
 %%b is the matrix b in
 
@@ -80,23 +84,24 @@ end
 
 %% calculate the error for all both E and Easkt
 for i = 1:nnorm
+ %    i = i
     if(ALPHAS(i) <= eps)
         E(i) = 0;
+       
     else
         
       e = 1 - d(i)*(w0*x(i,:)' + b0);
       
 
-       if(e < 0) % never happens, only happens when ALPHA(i) == 0
-          e = 0;   % here just for checkin   
-       end
+       
     E(i) = e;
     end
+    
 end
 if(tdctive) 
    for i = (nnorm+1):(nplus+nminus)
     if(ALPHAS(i) <= eps)
-        E(i-nnorm) = 0;
+        East(i-nnorm) = 0;
     else
 %       length(xt(i,:)')
 %      length(dt(i,:)')
@@ -110,6 +115,8 @@ if(tdctive)
     end    
    end 
 end
-
+aja=1
+length(East)
+length(E)
 
 
