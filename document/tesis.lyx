@@ -1587,10 +1587,10 @@ key "Sebastiani02"
 
 \end_inset
 
- many important TC applications are in fact binary categorization problems,
- moreover as described above we can solve multilabel TC as many binary TC
- task and assuming independent categories which is valid for most of the
- problems.
+ many important TC applications are in fact binary categorization problems
+ and moreover, as described above we can solve multilabel TC as many binary
+ TC task assuming independent categories, which id a valid assumption for
+ most of the problems.
  
 \end_layout
 
@@ -1600,46 +1600,207 @@ Performance Measures
 
 \begin_layout Standard
 One question that arises after reading the definition of TC is how to measure
- the how well the classifier function (the approximation or hypothesis)
- matches the unkwon target function.
+ the how well the classifier function
+\begin_inset Formula $\breve{\Phi}$
+\end_inset
+
+ (the approximation or hypothesis) matches the unkwon target function 
+\begin_inset Formula $\Phi$
+\end_inset
+
+ (efectivness).
+ This is generally measured in terms of the classic IR metrics of precision
+ 
+\begin_inset Formula $P$
+\end_inset
+
+ and recall 
+\begin_inset Formula $R$
+\end_inset
+
+ but adapted to the specific case of TC.
+ 
+\begin_inset Formula $P$
+\end_inset
+
+ is defined as the probability that if a given a random document 
+\begin_inset Formula $d_{x}$
+\end_inset
+
+ is classified under the category 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ the classificaion is correct (
+\begin_inset Formula $P(\breve{\Phi}(d_{x},c_{i})=T\,\,|\,\, P(\Phi(d_{x},c_{i})=T)$
+\end_inset
+
+).
+ Analogously 
+\begin_inset Formula $R$
+\end_inset
+
+ is defined as the probability that if a random document 
+\begin_inset Formula $d_{x}$
+\end_inset
+
+ is ought to be classified under 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+, this decision is taken (
+\begin_inset Formula $P(\Phi(d_{x},c_{i})=T\,\,|\,\, P(\breve{\Phi}(d_{x},c_{i})=T)$
+\end_inset
+
+).
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
+In binary TC, with we can express the concepts of precisition and recall
+ mathematicaly using the numbers of true positive (
+\begin_inset Formula $TP$
+\end_inset
+
+), false positive (
+\begin_inset Formula $FP$
+\end_inset
+
+), true negative (
+\begin_inset Formula $TN$
+\end_inset
+
+) and false negative (
+\begin_inset Formula $TN$
+\end_inset
+
+) documents classified.
+ The true of false value means that the classification was performed correctly
+ or not, and the positive or negative define wheter it belonged to the evaluated
+ category or not.
+ Using these definitions we can write precision 
+\begin_inset Formula $P$
+\end_inset
+
+ and recall 
+\begin_inset Formula $R$
+\end_inset
+
+ as:
+\end_layout
 
 \begin_layout Standard
-C D fc1, : : : , cjCjg is a set of predefined categories.
- A value of T assigned to hd j , cii indicates a decision to file d j under
- ci , while a value of F indicates a decision not to file d j under ci .
- More formally, the task is to approximate the unknown target function ˘8
- : D£C ! fT, Fg (that describes how documents ought to be classified) by
- means of a function 8 : D £ C ! fT, Fg called the classifier (aka rule,
- or hypothesis, or model) such that ˘8 and 8 “coincide as much as possible.”
- How to precisely define and measure this coincidence (called effectiveness)
- will be discussed in Section 7.1.
- From now on we will assume that:
-\end_layout
+\begin_inset Formula \begin{eqnarray*}
+P=\frac{TP}{TP+FP} & ,\, & R=\frac{TP}{TP+FN}\end{eqnarray*}
 
 \end_inset
 
 
 \end_layout
 
+\begin_layout Standard
+For multilabeled classification this only would be local measures for a
+ single category c, in that case the local measures are averaged using different
+ methods such as 
+\emph on
+microaveraging 
+\emph default
+and 
+\emph on
+macroaveraging
+\emph default
+ 
+\begin_inset LatexCommand cite
+key "Sebastiani02"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The values of precisition and recall for TC vary in an inverse relation,
+ for that reason many articles about TC uses break-even point of 
+\begin_inset Formula $P$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ 
+\begin_inset LatexCommand cite
+key "Joachims98,DumaisPHS98,Lewis_et_al_2004"
+
+\end_inset
+
+ which generally implies to modify in some degree the hypothesis.
+ Another approach is to use the 
+\begin_inset Formula $F1$
+\end_inset
+
+ measure 
+\begin_inset LatexCommand cite
+key "citeulike:543360,Manevitz_et_al2002,112471"
+
+\end_inset
+
+ which combines both precision and recall and is defined as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+F1=\frac{2RP}{P+R}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This This implies that 
+\begin_inset Formula $F1$
+\end_inset
+
+, like 
+\begin_inset Formula $P$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ is bounded by 1 and the best results under this measure are the higher
+ values.
+ 
+\end_layout
+
 \begin_layout Subsection
 Applications of Text Categorization
 \end_layout
 
-\begin_layout Subsection
-Taxonomy of Text Categorization Techniques
+\begin_layout Standard
+TODO: List Applications such as Text Filtering, Automated metadata extraction,
+ Recommender Systems, Web Search Improvements.
 \end_layout
 
 \begin_layout Subsection
-Techniques
+Machine Learning Text Categorization Techniques
+\end_layout
+
+\begin_layout Standard
+TODO: List ML Techniques suchas Naive Bayes, SVM, DTress among othes and
+ shows some benchmarks.
 \end_layout
 
 \begin_layout Section
 Paralell Machine Learning
+\begin_inset LatexCommand label
+name "sec:Paralell-Machine-Learning"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2467,6 +2628,7 @@ So far with the formulations described in the last section we are using
  to a general hypothesis.
  The transductive setting on the other hand tries to use the known distribution
  of the test data in order produce a classifier.
+ [TODO]
 \end_layout
 
 \begin_layout Section
@@ -2488,19 +2650,11 @@ key "DumaisPHS98"
 
 .
  the TC task using SVM can bee seen geometrically as finding an hyperplane
- that separates two grous of points has 
-\end_layout
-
-\begin_layout Subsection
-Linear SVM for Text Categorization
-\end_layout
-
-\begin_layout Subsection
-Linear Transductive Learning SVM for Text Categorization
+ that separates two grous of points has (...) [TODO]
 \end_layout
 
 \begin_layout Section
-Paralell Method for Training Transuductive SVM
+Paralell Methods for Training SVM
 \end_layout
 
 \begin_layout Subsection
@@ -2518,7 +2672,92 @@ name "cha:Experiments-and-Results"
 \end_layout
 
 \begin_layout Section
-Experiment al Setting
+Problem Description
+\end_layout
+
+\begin_layout Standard
+Solving the transductive SVM using the algorithm described by joachims implies
+ solve many times an SVM inductive optimization problem.
+ The algorithm improves the objective function by swintching the labels
+ interactively of two unlabeled data points 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{j}$
+\end_inset
+
+ with 
+\begin_inset Formula $\xi_{i}+\xi_{j}>2$
+\end_inset
+
+.
+ It uses two nested loops to optimize a TSVM which solves a quadratic programmin
+g everytimes it changes a label from an unlabeled data.
+ The convergence of the nested loop relies in the fact that there is only
+ a finite number of finite number 
+\begin_inset Formula $2^{U}$
+\end_inset
+
+ of labeling of 
+\begin_inset Formula $U$
+\end_inset
+
+ labeled points even if it is unlikely that all of them are examinated 
+\begin_inset LatexCommand cite
+key "1248609"
+
+\end_inset
+
+.
+ However given that the heuristic only swaps the label of two unlabeled
+ examples at each nested loop iteration it might need (and in fact it does)
+ many iterations to reach a minimum which makes it intractable for big datasets
+ in practice.
+ Furthermore, in the worst case TSVM have complexity of 
+\begin_inset Formula $O((L+U)^{3}$
+\end_inset
+
+ altough it generally scales to square in 
+\series bold
+
+\begin_inset LatexCommand cite
+key "Joachims/99a"
+
+\end_inset
+
+
+\series default
+ most practical cases it still intractable for large datasets.
+\end_layout
+
+\begin_layout Standard
+In order to optimize this kind problem one can try to modify the formulation,
+ for instance example solving it in the primal rather than in the dual with
+ an alternate technique 
+\begin_inset LatexCommand cite
+key "1248609,1148253"
+
+\end_inset
+
+ or use any of the general approaches described in section 
+\begin_inset LatexCommand ref
+reference "sec:Paralell-Machine-Learning"
+
+\end_inset
+
+ that makes use of the computation power given by the new .
+ for the specific case of SVM and TSVM one could try to modify the problem
+ in a way that makes it easily parallelizable 
+\begin_inset LatexCommand cite
+key "1248601"
+
+\end_inset
+
+ or enables it to be solved it in an alternate way.
+ Generally this is acomplished through the use of decomposition technique
+ of some kind.
+ Another approach is to use a mixture of SVM in order to 
 \end_layout
 
 \begin_layout Subsection

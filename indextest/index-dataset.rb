@@ -14,12 +14,15 @@ cat3 = "comp.sys.mac.hardware"
 cat4 = "comp.sys.ibm.pc.hardware"
 
 dsidx = DataSetIndexer.new(dir)
-dsidx.create_index("ath_vs_graph")
-dsidx.index_category_new(cat1,1000)
-dsidx.index_category_new(cat2,1000)
+dsidx.create_index("mac_vs_ibm")
+dsidx.index_category_new(cat3,1000)
+dsidx.index_category_new(cat4,1000)
 
-dsidx.write_vects_category(cat1,"atheism_vs_compgraphics","1")
-dsidx.write_vects_category(cat2,"atheism_vs_compgraphics","-1")
+
+dsidx.print_words
+
+dsidx.write_vects_category(cat3,"machw_vs_ibmhw","1")
+dsidx.write_vects_category(cat4,"machw_vs_ibmhw","-1")
 
 
 #dsidx.index_category_no_label(cat1,CATEGORY_STARTNUMBER[cat1],1000)

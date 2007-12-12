@@ -52,7 +52,10 @@ class Index::IndexReader
    
         @all_words.clone
    end 
-             
+        
+   def all_words
+	@all_words
+   end	     
 end
 
 
@@ -260,5 +263,9 @@ class DataSetIndexer
 		vecfile.close
 		labfile.close
 
+	end
+	
+	def print_words
+		puts @index.reader.all_words	
 	end
 end
