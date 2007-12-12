@@ -2851,7 +2851,7 @@ The Cascade SVM
 \end_layout
 
 \begin_layout Standard
-The Cascade SVM was described by Bottou et al 
+The Cascade SVM was described by Graf et al 
 \begin_inset LatexCommand cite
 key "GrafCBDV04"
 
@@ -2874,11 +2874,12 @@ key "Joachims/99a"
  The Cascade SVM is a distributed architecture wjere smaller optimization
  problems are solved independently making them easily parallelizable.
  The results of this smaller problems are then esembled in a way that is
- ensure that eventually converges to globally optimal solution.
+ ensured that it eventually converges to globally optimal solution.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -2898,8 +2899,9 @@ status open
 \begin_inset Caption
 
 \begin_layout Standard
-Schematic of a Cascade architecture
-\end_layout
+Schematic of a Cascade architecture 
+\begin_inset LatexCommand cite
+key "GrafCBDV04"
 
 \end_inset
 
@@ -2909,6 +2911,34 @@ Schematic of a Cascade architecture
 \end_inset
 
 
+\begin_inset LatexCommand label
+name "fig:svm-cascade"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to find a minimum using this approach the problem is initialized
+ with a number of idependent smaller optimization whose results are combined
+ in later stages in a hierarchical fashion as shown in figure 
+\begin_inset LatexCommand ref
+reference "fig:svm-cascade"
+
+\end_inset
+
+.
+ The data is split into subsets and everyone of them is evaluated for to
+ find support vectors in the first layer, then the results are combined
+ two-by-two and entered as training set for the next layer.
+ Often a single pass through the cascade produces satsifactory approaches
+ 
 \end_layout
 
 \begin_layout Subsection
