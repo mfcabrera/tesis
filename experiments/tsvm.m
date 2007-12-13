@@ -38,8 +38,8 @@ yast(poslidx) = 1;
 yast(neglidx) = -1;
 l(poslidx);
 
-CaP = 10e-5; %% some small numbers
-CaN = 10e-5;
+CaP = 10e-3; %% some small numbers
+CaN = 10e-3;
 
 %% Main looop
 while ((CaN < Cast) || (CaP < Cast)) %loop 1
@@ -69,8 +69,8 @@ while ((CaN < Cast) || (CaP < Cast)) %loop 1
       end
       in = in - 1;
   end 
-  CaN = min(CaN*2,Cast);
-  CaP = min(CaP*2,Cast) ; 
+  CaN = min(CaN*2,Cast)
+  CaP = min(CaP*2,Cast); 
 end
 
 

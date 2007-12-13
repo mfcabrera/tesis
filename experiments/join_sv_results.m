@@ -7,7 +7,7 @@ H = [H1 H12;H21 H2];
 En = [E1';East1';E2';East2']; % Initial error
 %length(En)
 %En
-Xo = -1/2*[ALPHAS1; ALPHAS2]'*H + En';
+Xo = -1*[ALPHAS1; ALPHAS2]'*H  + -1*ones(ltotal,1)';
 
 
 

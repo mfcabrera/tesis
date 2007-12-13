@@ -1,7 +1,7 @@
 % Solve SVM
 % Altough specialized for Linear TSVM with the right parameters
 % also solves linear SVM
-function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag] = solve_svm_qp_t_parallel(x,d,xnl,dnl,C,Cp,Cm) 
+function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,times] = solve_svm_qp_t_parallel(x,d,xnl,dnl,C,Cp,Cm) 
 
 nnorm = length(d);
 nplus = length(find(dnl > 0));
@@ -12,7 +12,6 @@ tdctive  = false; %% whether
 
 %% Dummy values
 E = zeros(1,nnorm);
-
 East = zeros(1,nplus+nminus);
 %%b0 is the offset
 %%b is the matrix b in
@@ -98,68 +97,70 @@ L4d = [ d(psize*3+1:psize*4,:); d(psize*7+1:psize*8,:)];
 
 
 %% NOW Solve the first 4 SVMs
-
+times = 0;
 % TO PARALELIZE 
 %length(U3d)
 %length(U2d)
 %PARTE PAR
-[W,B,NSV,AL,SVINDEX,EV,EASTV,EXITF,HV] = dfeval(@solve_svm_qp_t,{L1v,L2v,L3v,L4v},{L1d,L2d,L3d,L4d},{U1v,U2v,U3v,U4v},{U1d,U2d,U3d,U4d},{C,C,C,C},{Cp,Cp,Cp,Cp},{Cm,Cm,Cm,Cm},'Configuration', 'local');
-%[w1,b1,nsv1,ALPHAS1,svindex1,E1,East1,exitflag1,H1] = solve_svm_qp_t(L1v,L1d,U1v,U1d,C,Cp,Cm);
-%[w4,b4,nsv4,ALPHAS4,svindex4,E4,East4,exitflag4,H4] =  solve_svm_qp_t(L4v,L4d,U4v,U4d,C,Cp,Cm);
-%[w2,b2,nsv2,ALPHAS2,svindex2,E2,East2,exitflag2,H2] = solve_svm_qp_t(L2v,L2d,U2v,U2d,C,Cp,Cm);
-%[w3,b3,nsv3,ALPHAS3,svindex3,E3,East3,exitflag3,H3] =  solve_svm_qp_t(L3v,L3d,U3v,U3d,C,Cp,Cm);
+%[W,B,NSV,AL,SVINDEX,EV,EASTV,EXITF,HV] = dfeval(@solve_svm_qp_t,{L1v,L2v,L3v,L4v},{L1d,L2d,L3d,L4d},{U1v,U2v,U3v,U4v},{U1d,U2d,U3d,U4d},{C,C,C,C},{Cp,Cp,Cp,Cp},{Cm,Cm,Cm,Cm},'Configuration', 'local');
+tic;
+[w1,b1,nsv1,ALPHAS1,svindex1,E1,East1,exitflag1,H1] = solve_svm_qp_t(L1v,L1d,U1v,U1d,C,Cp,Cm);
+[w4,b4,nsv4,ALPHAS4,svindex4,E4,East4,exitflag4,H4] =  solve_svm_qp_t(L4v,L4d,U4v,U4d,C,Cp,Cm);
+[w2,b2,nsv2,ALPHAS2,svindex2,E2,East2,exitflag2,H2] = solve_svm_qp_t(L2v,L2d,U2v,U2d,C,Cp,Cm);
+[w3,b3,nsv3,ALPHAS3,svindex3,E3,East3,exitflag3,H3] =  solve_svm_qp_t(L3v,L3d,U3v,U3d,C,Cp,Cm);
+toc
+times = times  + toc/4;
 
 
+%w1 = W{2};
+%w2 = W{3};
+%w2 = W{3};
+%w2 = W{4};
 
-w1 = W{2};
-w2 = W{3};
-w2 = W{3};
-w2 = W{4};
+%b1 = B{1};
+%b3 = B{2};
+%b2 = B{2};
+%b2 = B{4};
 
-b1 = B{1};
-b3 = B{2};
-b2 = B{2};
-b2 = B{4};
+%nsv1 =  NSV{1};
+%nsv2 =  NSV{2};
+%nsv3 =  NSV{3};
+%nsv4 =  NSV{4};
 
-nsv1 =  NSV{1};
-nsv2 =  NSV{2};
-nsv3 =  NSV{3};
-nsv4 =  NSV{4};
+%ALPHAS1 = AL{1};
+%ALPHAS2 = AL{2};
+%ALPHAS3 = AL{3};
+%ALPHAS4 = AL{4};
 
-ALPHAS1 = AL{1};
-ALPHAS2 = AL{2};
-ALPHAS3 = AL{3};
-ALPHAS4 = AL{4};
+%svindex1 = SVINDEX{1};
+%svindex2 = SVINDEX{2};
+%svindex3 = SVINDEX{3};
+%svindex4 = SVINDEX{4};
 
-svindex1 = SVINDEX{1};
-svindex2 = SVINDEX{2};
-svindex3 = SVINDEX{3};
-svindex4 = SVINDEX{4};
-
-E1 = EV{1};
-E2 = EV{2};
-E3 = EV{3};
-E4 = EV{4};
+%E1 = EV{1};
+%E2 = EV{2};
+%E3 = EV{3};
+%E4 = EV{4};
 %length(E1)
 %length(E2)
 %length(E3)
 %length(E4)
 
 
-East1 = EASTV{1};
-East2 = EASTV{2};
-East3 = EASTV{3};
-East4 = EASTV{4};
+%East1 = EASTV{1};
+%East2 = EASTV{2};
+%East3 = EASTV{3};
+%East4 = EASTV{4};
 
-exitflag1 = EXITF{1};
-exitflag2 = EXITF{2};
-exitflag3 = EXITF{3};
-exitflag4 = EXITF{4};
+%exitflag1 = EXITF{1};
+%exitflag2 = EXITF{2};
+%exitflag3 = EXITF{3};
+%exitflag4 = EXITF{4};
 
-H1 = HV{1};
-H2 = HV{2};
-H3 = HV{3};
-H4 = HV{4};
+%H1 = HV{1};
+%H2 = HV{2};
+%H3 = HV{3};
+%H4 = HV{4};
 
 
  
@@ -174,6 +175,7 @@ ltest2 = length(U1d) + length(U2d);
 %ltotal2 = ltest2 + ltrain2;
 
 %we can made a function out of this
+
 %% Second layer
 %%SV5 = SV1 + SV2
 %%SV6 = SV3 + SV4
@@ -185,21 +187,23 @@ ltest2 = length(U1d) + length(U2d);
 
 %% Solve the second layer
 
-[AL,FVAL,EF] = dfeval(@quadprog,{H5,H6},{f5,f6},{A5,A6},{b5,b6},{Aeq5,Aeq6},{beq5,beq6},{-inf,-inf},{inf,inf},{X5,X6},'Configuration', 'local');
+%[AL,FVAL,EF] = dfeval(@quadprog,{H5,H6},{f5,f6},{A5,A6},{b5,b6},{Aeq5,Aeq6},{beq5,beq6},{-inf,-inf},{inf,inf},{X5,X6},'Configuration', 'local');
 
-ALPHAS5 = AL{1};
-ALPHAS6 = AL{2};
-exitflag5 = EF{1};
-exitflag6 = EF{2};
+%ALPHAS5 = AL{1};
+%ALPHAS6 = AL{2};
+%exitflag5 = EF{1};
+%exitflag6 = EF{2};
 
-%[ALPHAS5,fval,exitflag5]=quadprog(H5,f5,A5,b5,Aeq5,beq5,-inf,inf,X5);
-%[ALPHAS6,fval,exitflag6]=quadprog(H6,f6,A6,b6,Aeq6,beq6,-inf,inf,X6);
+tic;
+[ALPHAS5,fval,exitflag5]=quadprog(H5,f5,A5,b5,Aeq5,beq5,-inf,inf,X5);
+times = times + toc;
+[ALPHAS6,fval,exitflag6]=quadprog(H6,f6,A6,b6,Aeq6,beq6,-inf,inf,X6);
 
 %% LAST LAYER
-
+tic;
 [H7,f7,A7,b7,Aeq7,beq7,X7] = join_sv_results(H5,H6,ALPHAS5,ALPHAS6,[L1d;U1d;L2d;U2d],[L3d;U3d;L4d;U4d],[E1 E2],[E3 E4],[East1 East2],[East3 East4],nplusp*2,nminusp*2,C,Cp,Cm,ltrain2*2,ltest2*2);
-
 [ALPHAS,fval,exitflag]=quadprog(H7,f7,A7,b7,Aeq7,beq7,-inf,inf,X7);
+times  = times + toc;
 
 xt = [x;xnl]; %x for training
 dt = [d;dnl]; %d for training   
@@ -245,5 +249,6 @@ if(tdctive)
     end    
    end 
 end
+
 
 

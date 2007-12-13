@@ -35,8 +35,14 @@ uld  = csm_test_lab;
 %labels_i = svm_classify(w0,b0,ulx);
 
 %transductive
-w0  = solve_svm_qp_t_parallel(lx,ld,ulx,uld,10,5,5);
+tic;
+w0  = solve_svm_qp_t(lx,ld,ulx,uld,10,5,5);
+t = toc;
 
+tic;
+[w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,times]  = solve_svm_qp_t_parallel(lx,ld,ulx,uld,10,5,5);
+toc
+times
 
 %% Results Inductive
 %ri = recall(labels_i,testd)
