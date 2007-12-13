@@ -1595,7 +1595,7 @@ key "Sebastiani02"
 
  many important TC applications are in fact binary categorization problems
  and moreover, as described above we can solve multilabel TC as many binary
- TC task assuming independent categories, which id a valid assumption for
+ TC task assuming independent categories, which is a valid assumption for
  most of the problems.
  
 \end_layout
@@ -3139,7 +3139,7 @@ reference "fig:graf-3-svm"
 \end_inset
 
 .
- For Trasductive SVM there is not practically any change besides that when
+ For Transductive SVM there is not practically any change besides that when
  recreating creating the problem for 
 \noun on
 SVM
@@ -3218,7 +3218,7 @@ Experiments and Results
 \begin_layout Standard
 In this section we present the experimental results for text classification
  task.
- The base algorithm and axuiliar rutines were programmed in Matlab 7.4
+ The base algorithm and auxiliary routines were programmed in Matlab 7.4
 \begin_inset Foot
 status collapsed
 
@@ -3234,7 +3234,7 @@ quadprog
 \emph default
  function which is a convex QP solver.
  In order to fully parallelize the Cascade Architecture we made use of the
- Distribuited Computer Tool Box which enabled us to run the algorithm in
+ Distributed Computer Tool Box which enabled us to run the algorithm in
  all the cores available.
  For the experiments we used a Desktop computer with Processor Intel
 \begin_inset ERT
@@ -3279,7 +3279,7 @@ key "Asuncion+Newman:2007"
 \end_inset
 
 .
- The data set was preprocessed using enlgish stop-words and the Porter stemmer
+ The data set was preprocessed using English stop-words and the Porter stemmer
  algorithm 
 \begin_inset LatexCommand cite
 key "Porter80"
@@ -3349,7 +3349,7 @@ width "33col%"
 special "none"
 height "1in"
 height_special "totalheight"
-status open
+status collapsed
 
 \begin_layout Itemize
 comp.graphics 
@@ -3545,7 +3545,7 @@ width "27col%"
 special "none"
 height "1in"
 height_special "totalheight"
-status open
+status collapsed
 
 \begin_layout Itemize
 talk.religion.misc 
@@ -3621,7 +3621,7 @@ comp.graphics
 \emph default
 .
  We call this an easy task because the terms that appear in the documents
- and accross the entire collection more from each collection are differents,
+ and across the entire collection more from each collection are different,
  so we can expect a nearly separable problem.
  The hard task we chose related news groups were is expected that the most
  important terms are the similar.
@@ -3633,12 +3633,12 @@ omp.sys.ibm.pc.hardware
 \emph on
 comp.sys.mac.hardware 
 \emph default
-for evaluating the SVM effectivness and computation times with aslo 1000
+for evaluating the SVM effectiveness and computation times with also 1000
  messages from each of them.
- The data was splitted in a training set (20%) and testing set (80%) we
- also made some test with fewer training data but with the same amount of
- test data in order to vizualise better the goods of transductive inference
- when only few training data is available.
+ The data was split in a training set (20%) and testing set (80%) we also
+ made some test with fewer training data but with the same amount of test
+ data in order to visualize better the goods of transductive inference when
+ only few training data is available.
 \end_layout
 
 \begin_layout Standard
@@ -3646,7 +3646,7 @@ As performance measure we chose
 \begin_inset Formula $F1$
 \end_inset
 
- as measure of effectivness, we also show the values of precicion and recall
+ as measure of effectiveness, we also show the values of precision and recall
  for the experiments.
  The kernel choice for the SVM was the linear kernel which has been reported
  to be effective for text categorization tasks 
@@ -3656,15 +3656,21 @@ key "Joachims99c,DumaisPHS98"
 \end_inset
 
 , thanks in part to the high dimensional nature of the input vectors.
- The C param was stimated for the two sets using 5-fold cross validation
+ The C parameter was estimated for the two sets using 5-fold cross validation
  with the training set.
- The other parameter defined by Joachims his algorithm is 
+ The other parameter defined by Joachim's algorithm is 
 \begin_inset Formula $num+$
 \end_inset
 
 , the number of test inputs to be labeled intially as positive, in our implement
-ation this number is also half of the totall test set, then ensuring the
- precision and recall break
+ation this number is also half of the totall test set, thus ensuring the
+ precision and recall breakeven.
+\end_layout
+
+\begin_layout Standard
+The Cascade architecture used in the experiments were formed 3 layers of
+ SVM with 4 SVMs in the first 2 in the second and finally 1 in the last
+ layer.
 \end_layout
 
 \begin_layout Standard
@@ -3674,7 +3680,7 @@ re, reduce the impact of the computation time of the TSVM Algoritm.
 \end_layout
 
 \begin_layout Subsection
-Toy Experiment
+Small Scale Experiment
 \end_layout
 
 \begin_layout Standard
@@ -3706,15 +3712,12 @@ reference "tab:Toy-Experiment:-comp.sys.ibm.pc.hardware"
  inductive when few training samples, a very attractive characteristic for
  many real problems.
  Even when the number of training samples is equal to the number of testing
- samples the transductive outperforms the inductive algorithm for the 
-\begin_inset Formula $F1$
-\end_inset
-
-
+ samples the transductive outperforms the inductive algorithm for the .
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status open
@@ -4312,7 +4315,7 @@ TSVM Parallel
 \begin_inset Caption
 
 \begin_layout Standard
-Toy Experiment: 
+Small Scale Experiment: 
 \emph on
 comp.sys.ibm.pc.hardware
 \emph default
@@ -4377,16 +4380,27 @@ Train:192 Test:200 R - P - F1 Inductivo: 0.95 - 0.8120 - 0.8756 Transductivo
 \end_layout
 
 \begin_layout Subsection
-C
+Easy Task
 \end_layout
 
 \begin_layout Standard
 As mentioned above the easy task is an experiment were is expected a linearly
- separable problem
+ separable problem formed by messages from newsgroups with very disjunt
+ topics.
+ The number of features for each vector was 30854 a hihg dimensional problem
+ the with the C = 10 from the 5-fold cross validation Table 
+\begin_inset LatexCommand ref
+reference "tab:Easy-Task:comp.graphics-and"
+
+\end_inset
+
+ shows the results of this expermiments.
+ 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status open
@@ -4402,8 +4416,10 @@ status open
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="5">
+<lyxtabular version="3" rows="4" columns="7">
 <features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
@@ -4414,7 +4430,25 @@ status open
 \begin_inset Text
 
 \begin_layout Standard
-T: 400 S: 1600
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Train
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Unlabeled
 \end_layout
 
 \end_inset
@@ -4471,6 +4505,24 @@ Time (min)
 
 \begin_layout Standard
 SVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+400
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0
 \end_layout
 
 \end_inset
@@ -4526,6 +4578,24 @@ TSVM
 \begin_inset Text
 
 \begin_layout Standard
+400
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
 0.9900
 \end_layout
 
@@ -4553,7 +4623,7 @@ TSVM
 \begin_inset Text
 
 \begin_layout Standard
-857
+1004.6
 \end_layout
 
 \end_inset
@@ -4573,6 +4643,24 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
+400
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
 0.9900
 \end_layout
 
@@ -4600,7 +4688,9 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-??
+
+\color red
+2106.262
 \end_layout
 
 \end_inset
@@ -4633,8 +4723,10 @@ TSVM Parallel
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="5">
+<lyxtabular version="3" rows="4" columns="7">
 <features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
@@ -4645,7 +4737,25 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-T: 100 S: 1600
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Train
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Unlabeled
 \end_layout
 
 \end_inset
@@ -4710,7 +4820,7 @@ SVM
 \begin_inset Text
 
 \begin_layout Standard
-????
+100
 \end_layout
 
 \end_inset
@@ -4719,7 +4829,25 @@ SVM
 \begin_inset Text
 
 \begin_layout Standard
-????
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.9988
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.8573
 \end_layout
 
 \end_inset
@@ -4728,7 +4856,7 @@ SVM
 \begin_inset Text
 
 \begin_layout Standard
-????
+0.9226
 \end_layout
 
 \end_inset
@@ -4737,7 +4865,7 @@ SVM
 \begin_inset Text
 
 \begin_layout Standard
-??
+0.135
 \end_layout
 
 \end_inset
@@ -4757,7 +4885,7 @@ TSVM
 \begin_inset Text
 
 \begin_layout Standard
-????
+100
 \end_layout
 
 \end_inset
@@ -4766,7 +4894,25 @@ TSVM
 \begin_inset Text
 
 \begin_layout Standard
-????
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.925
 \end_layout
 
 \end_inset
@@ -4775,7 +4921,7 @@ TSVM
 \begin_inset Text
 
 \begin_layout Standard
-????
+0.9563
 \end_layout
 
 \end_inset
@@ -4784,7 +4930,7 @@ TSVM
 \begin_inset Text
 
 \begin_layout Standard
-??
+883.54
 \end_layout
 
 \end_inset
@@ -4804,7 +4950,7 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-????
+100
 \end_layout
 
 \end_inset
@@ -4813,7 +4959,25 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-????
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.925
 \end_layout
 
 \end_inset
@@ -4822,7 +4986,7 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-????
+0.9563
 \end_layout
 
 \end_inset
@@ -4831,7 +4995,9 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-??
+
+\color red
+1852.46
 \end_layout
 
 \end_inset
@@ -4864,8 +5030,10 @@ TSVM Parallel
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="5">
+<lyxtabular version="3" rows="4" columns="7">
 <features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
 <column alignment="center" valignment="top" leftline="true" width="0">
@@ -4876,7 +5044,25 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-T: 200 S: 1600
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Train
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Unlabeled
 \end_layout
 
 \end_inset
@@ -4941,7 +5127,25 @@ SVM
 \begin_inset Text
 
 \begin_layout Standard
-????
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????????
 \end_layout
 
 \end_inset
@@ -4968,7 +5172,7 @@ SVM
 \begin_inset Text
 
 \begin_layout Standard
-
+????????
 \end_layout
 
 \end_inset
@@ -4988,7 +5192,25 @@ TSVM
 \begin_inset Text
 
 \begin_layout Standard
-????
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????????
 \end_layout
 
 \end_inset
@@ -5015,7 +5237,7 @@ TSVM
 \begin_inset Text
 
 \begin_layout Standard
-??
+???????
 \end_layout
 
 \end_inset
@@ -5035,7 +5257,25 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-????
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????????
 \end_layout
 
 \end_inset
@@ -5062,7 +5302,7 @@ TSVM Parallel
 \begin_inset Text
 
 \begin_layout Standard
-??
+??????
 \end_layout
 
 \end_inset
@@ -5089,15 +5329,29 @@ TSVM Parallel
 \begin_inset Caption
 
 \begin_layout Standard
-Toy Experiment: 
+The 
+\begin_inset Quotes eld
+\end_inset
+
+Easy
+\begin_inset Quotes erd
+\end_inset
+
+ Task:
 \emph on
-comp.sys.ibm.pc.hardware
+comp.graphics
 \emph default
- and
+ and 
 \emph on
- comp.sys.mac.hardware
+alt.atheism
 \emph default
- with 200 messages from each newsgroup.
+ with 1000 messages from each newsgroup.
+ 
+\begin_inset LatexCommand label
+name "tab:Easy-Task:comp.graphics-and"
+
+\end_inset
+
  
 \end_layout
 
@@ -5113,6 +5367,1042 @@ comp.sys.ibm.pc.hardware
 
 \begin_layout Subsection
 Hard Task
+\end_layout
+
+\begin_layout Standard
+This is task is formed from 2000 messages from the categories of 
+\emph on
+comp.sys.ibm.pc.hardware
+\emph default
+ and
+\emph on
+ comp.sys.mac.hardware
+\emph default
+ which have many equal terms thus making it a possible not linearly separable
+ problem.
+ The number of features extracted for this problem is 26997.
+ The parameter choice for C = 11 and was taken from the same 5-fold cross-valida
+tion with the available training data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="1">
+<features>
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="7">
+<features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Train
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Unlabeled
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $P$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $R$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $F1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Time (min)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+SVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+400
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+TSVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+400
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+??????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+TSVM Parallel
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+400
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+???????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+???????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\color red
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="7">
+<features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Train
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Unlabeled
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $P$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $R$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $F1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Time (min)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+SVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.9988
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.8573
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.9226
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+TSVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.925
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.9563
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+TSVM Parallel
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.925
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0.9563
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\color red
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="7">
+<features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Train
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+#Unlabeled
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $P$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $R$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Formula $F1$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Time (min)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+SVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+????????
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+TSVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+???????
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+TSVM Parallel
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+?????????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+????
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+??????
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Caption
+
+\begin_layout Standard
+The 
+\begin_inset Quotes eld
+\end_inset
+
+Hard
+\begin_inset Quotes erd
+\end_inset
+
+ Task: 
+\emph on
+comp.sys.mac.hardware
+\emph default
+ and c
+\emph on
+omp.sys.ibm.pc.hardware
+\emph default
+ with 1000 messages from each newsgroup.
+ 
+\begin_inset LatexCommand label
+name "tab:Easy-Task:comp.graphics-and"
+
+\end_inset
+
+ C = 11
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion And Future Directions
+\end_layout
+
+\begin_layout Standard
+In this work we have implemented a parallel version of TSVM as described
+ by Joachims 
+\begin_inset LatexCommand cite
+key "Joachims99c"
+
+\end_inset
+
+, an approach that because its annealing heuristics requires many iterations
+ solving a similar problems.
+ Our basic approach in order to speed up the process was to parallelize
+ the SVM solver function using a Cascade architecture.
+ We have shown that this approach speed up the process (????) X times sing
+ just one dual core processor.
+ Is expected then, that with more processor available the process the speed
+ gain will be even more.
+ Also more layer for the architecture could help in the improvement of the
+ computation time.
+ From the tables we can appreciate that sometimes the classification performance
+ gains for using TSVM does not worth the computation time spent even with
+ this parallel approach, for that reason new strategies has to be developed
+ in order to achieve better approaches.
+ One strategy is to probe new heuristics as described by Collobert et al
+ 
+\begin_inset LatexCommand cite
+key "citeulike:935557|Collobert2002"
+
+\end_inset
+
+ and modifying in Joachim's TSVM by reducing iteration in the cycles or
+ interchanging more labels per iteration.
+ This last is important because the annealing heuristic used by Joachim's
+ TSVM is source of the elevated computation time.
+\end_layout
+
+\begin_layout Standard
+A good thing about this approach is that any improvement to the SVM formulation
+ can be directly applied to the SVM, for example the technique of Zanghirati
+ et al.
+ 
+\begin_inset LatexCommand cite
+key "782654"
+
+\end_inset
+
+could be applied to each one of the SVM solvers in order to have multilevel
+ parallelization and further improving the computation performance.
 \end_layout
 
 \begin_layout Standard
