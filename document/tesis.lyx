@@ -264,7 +264,7 @@ Universidad Nacional de Colombia - Sede Medell
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Standard
 POR HACER:
@@ -279,7 +279,7 @@ POR HACER:
 \end_layout
 
 \begin_layout Standard
-- Text Classification Theory
+- Text Classification Theory *
 \end_layout
 
 \begin_layout Standard
@@ -287,7 +287,7 @@ POR HACER:
 \end_layout
 
 \begin_layout Standard
-- Text Categorization with SVM
+- Text Categorization with SVM 
 \end_layout
 
 \begin_layout Standard
@@ -521,7 +521,7 @@ key "GrafCBDV04"
 
 \end_inset
 
- using a transductive learning algortithm.
+ using a transductive learning algorithm.
  The first part, Overview, introduces the basic concepts a Machine Learning,
  Information Retrieval and Text Categorization.
  Later we describe the SVM algorithm and justify the reason of using SVM
@@ -532,7 +532,7 @@ reference "cha:Experiments-and-Results"
 
 \end_inset
 
- we exhibit our experimental set-up and the show the analisys of the results.
+ we exhibit our experimental set-up and the show the analysis of the results.
 \end_layout
 
 \begin_layout Section
@@ -558,10 +558,10 @@ key "Mitchell97"
 \noun on
 ML
 \noun default
- borrows concepts from many areas suchs Statistics, Information Theory,
- Biology and Control Theory, futhermore, given the amount of statistical
- based ML algorithms developed in the last years, many scientists see ML
- as a crossroad between Statistics and Computer Science.
+ borrows concepts from many areas such Statistics, Information Theory, Biology
+ and Control Theory, furthermore, given the amount of statistical based
+ ML algorithms developed in the last years, many scientists see ML as a
+ crossroad between Statistics and Computer Science.
 \end_layout
 
 \begin_layout Standard
@@ -587,11 +587,11 @@ learn
 \begin_inset Formula $T$
 \end_inset
 
- and performace measuer 
+ and performance measurer 
 \begin_inset Formula $P$
 \end_inset
 
-, if its performace at tasks in 
+, if its performance at tasks in 
 \begin_inset Formula $T$
 \end_inset
 
@@ -632,7 +632,7 @@ In other words, the program learns from an experience commonly represented
 
 \begin_layout Standard
 The way in which an actual computer program realizes the task of learning
- from the experience can different, there are serveral modes in which the
+ from the experience can different, there are several modes in which the
  learning task can be accomplished 
 \begin_inset LatexCommand cite
 key "citeulike:755348|Heibrich2001Lkernel"
@@ -647,10 +647,10 @@ key "citeulike:755348|Heibrich2001Lkernel"
 \emph on
 Supervised Learning
 \emph default
-: In wich the program generates an internal representation that maps inputs,
- to desired ouputs.
+: In which the program generates an internal representation that maps inputs,
+ to desired outputs.
  Classification problems can be seen as an instance of this type of learning,
- where the desired output is a binary value stating wheter the input belongs
+ where the desired output is a binary value stating whether the input belongs
  to a specific category.
 \end_layout
 
@@ -667,7 +667,7 @@ Unsupervised Learning:
 \emph on
 Reinforcement Learning
 \emph default
-: In wich the algorithm learns a policy of how to act given an observation
+: In which the algorithm learns a policy of how to act given an observation
  of the world.
 \end_layout
 
@@ -679,7 +679,7 @@ Besides these three main ways of learning, there are others that can be
 \begin_layout Itemize
 
 \emph on
-Semi-supevised Learning
+Semi-supervised Learning
 \emph default
 : Combines both labeled and unlabeled examples to generate the representation.
 \end_layout
@@ -691,13 +691,13 @@ Transductive Learning
 \emph default
 : Similar to Semi-supervised Learning, but does not explicitly construct
  a function: instead, tries to predict new outputs based on training inputs,
- training outputs and test input wich are available while training.
+ training outputs and test input which are available while training.
  
 \end_layout
 
 \begin_layout Standard
-In this thesis we are going to use a restricted definition in order to ilustrate
- the concepts described above.
+In this thesis we are going to use a restricted definition in order to illustrat
+e the concepts described above.
  In these pages machine learning will refer to a generalized regression
  characterizing a set of label events 
 \begin_inset Formula $\left\{ (x_{1},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})\right\} $
@@ -736,7 +736,7 @@ The question of how good the function
  Many of the techniques classified in this field have come from development
  of frameworks in this particular subfield.
  These frameworks generally don't state how good is going to perform an
- algorithm, instead create a probabilistic bound to the performace.
+ algorithm, instead create a probabilistic bound to the performance.
 \end_layout
 
 \begin_layout Standard
@@ -754,7 +754,7 @@ output").
 
  Some of techniques generally classified under ML are Artificial Neural
  Networks, Genetics Algorithm, k-Nearest Neighbor, Bayesian Networks and
- and Support Vector Machines (SVM) and has been succesfully applied to.
+ and Support Vector Machines (SVM) and has been successfully applied to.
 \end_layout
 
 \begin_layout Standard
@@ -849,7 +849,7 @@ Information Retrieval (IR) is branch of computer science whose originally
 \begin_layout Standard
 Information Retrieval (IR) is branch of computer science whose original
  objective was to obtain information from generally large amounts of data.
- Today modern IR deals with content-based document managment task, including
+ Today modern IR deals with content-based document management task, including
  document filtering, translation, summarization, question answering among
  others.
  
@@ -878,7 +878,7 @@ information
 \begin_layout Standard
 IR Systems makes large amounts of text accessible to people that need the
  information.
- A user the apporaches to the system with a vague idea of what is looking
+ A user the approaches to the system with a vague idea of what is looking
  for, so the goal of the system is to provide the information required.
  The user provides generally provides some information about what kind of
  documents is looking for, in the form of keywords.
@@ -891,7 +891,7 @@ reference "fig:ir-kelle"
 
 \end_inset
 
- shows the basic scheme of work of a basic IR sytem.
+ shows the basic scheme of work of a basic IR system.
  
 \end_layout
 
@@ -917,7 +917,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Standard
-Information Retrieval system parts as described in [keller-THESIS]
+Information Retrieval system parts as described in [Keller-THESIS]
 \begin_inset LatexCommand label
 name "fig:ir-kelle"
 
@@ -975,7 +975,7 @@ In today's information society where digital text is becoming more and more
 status collapsed
 
 \begin_layout Standard
-Altough IR task has been already automated only in the last decade Machine
+Although IR task has been already automated only in the last decade Machine
  Learning techniques has been applied to IR systems.
  ML techniques have shown to be very useful even surpassing in performance
  classical classification methods such as 
@@ -1010,16 +1010,16 @@ Usually in a digital library database a set of words that defines the topics
  One of the main problems of this is that only few keywords are associated
  with a defined document, and generally this assignation is made at hand,
  making it expensive and error prone.
- Genrally this querying these systems was limited to the numbers of keywords
+ Generally this querying these systems was limited to the numbers of keywords
  assigned and some metadata like title, author and dates of publication,
  being the user unable to query the whole document, making the retrieval
- task significally harder.
+ task significantly harder.
 \end_layout
 
 \begin_layout Standard
 Nowadays in digital libraries and similar systems where the all the text
  is available in digital form, automatic keyword extraction makes sense
- because these keywords are tigthly associated with the content.
+ because these keywords are tightly associated with the content.
  This keywords are called indexes and the task of associating each document
  with a set of keywords is called 
 \emph on
@@ -1035,7 +1035,7 @@ Indexing is based is predefined group of keywords: the dictionary or vocabulary.
  the dictionary is usually extracted from the set of words present in the
  corpus, and the expensive manual indexing can be avoided by representing
  the documents by the dictionary terms they are made of.
- Given that all the full text is avalaible for querying it, now problem
+ Given that all the full text is available for querying it, now problem
  is to find the best way of representing the text in order to extract the
  more important words, that is, the keywords that define it.
  
@@ -1043,7 +1043,7 @@ Indexing is based is predefined group of keywords: the dictionary or vocabulary.
 
 \begin_layout Standard
 During the last few decades many representation forms have been developed
- ranging from simple word appareance binary representation to a concept
+ ranging from simple word appearance binary representation to a concept
  
 \begin_inset LatexCommand cite
 key "deerwester90indexing"
@@ -1067,8 +1067,8 @@ key "DBLP:conf/icann/KellerB05"
 \end_layout
 
 \begin_layout Standard
-The most common approachg to automatically extact the index terms from a
- corpues is called vector space model 
+The most common approach to automatically extract the index terms from a
+ corpus is called vector space model 
 \begin_inset LatexCommand cite
 key "361220"
 
@@ -1079,7 +1079,7 @@ key "361220"
 \begin_inset Formula $d$
 \end_inset
 
- is representes as a vector
+ is represents as a vector
 \begin_inset Formula $(\theta_{1},...,\theta_{M})$
 \end_inset
 
@@ -1087,7 +1087,7 @@ key "361220"
 \begin_inset Formula $\theta_{j}$
 \end_inset
 
- is a funtion of the frecuancy in 
+ is a function of the frequency in 
 \begin_inset Formula $d$
 \end_inset
 
@@ -1124,7 +1124,7 @@ Binary In which
 \end_layout
 
 \begin_layout Description
-Frecuency In which 
+Frequency In which 
 \begin_inset Formula $\theta_{j}$
 \end_inset
 
@@ -1178,7 +1178,7 @@ key "866292"
 \begin_inset Formula $tf_{j}(d)$
 \end_inset
 
- (term frecuency) is the number of times that the 
+ (term frequency) is the number of times that the 
 \begin_inset Formula $j^{th}$
 \end_inset
 
@@ -1198,7 +1198,7 @@ key "866292"
  The main reason behind this formulation is that in the context of document
  retrieval it is considered that words appearing too frequently across the
  corpus may not be discriminant, therefore this formula gives more importance
- to terms appearing more frecuently in the documents while penalizing the
+ to terms appearing more frequently in the documents while penalizing the
  ones that appears in to many documents.
  The reader may have noticed that this representation of text does not take
  into account the actual order of the words inside the document, despite
@@ -1269,7 +1269,7 @@ approaches for feature selection, others than the design of a stop-list
 
 \begin_layout Standard
 the vector space model representation described above may seem simplistic
- in comparision with the more complex represenation mentioned first, nevertheles
+ in comparison with the more complex representation mentioned first, nevertheles
 s, it seems that for some tasks like text categorization, the classical
  tf-idf works just well and more complex representations of the text do
  not significantly affect the performance of the methods.
@@ -1318,11 +1318,17 @@ key "Joachims98"
 
 \begin_layout Subsection
 Feature Selection and Dimensionality Reduction
+\begin_inset LatexCommand label
+name "sub:Feature-Selection-and"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Due to the fact that the represenation of the text can have impact in any
- retrieval task, any strategy to enhace the representation of text should
+Due to the fact that the representation of the text can have impact in any
+ retrieval task, any strategy to enhance the representation of text should
  be studied.
  With the years, many techniques have been developed in the field of Information
  Retrieval in order to get a better performance on the representation of
@@ -1335,7 +1341,7 @@ key "Joachims98"
 \end_inset
 
 .
- The word stemming process (sometimes called term coflation) consists in
+ The word stemming process (sometimes called term conflation) consists in
  removing the case and flection information from a word 
 \begin_inset LatexCommand cite
 key "Porter80"
@@ -1382,7 +1388,7 @@ engin
 \end_layout
 
 \begin_layout Standard
-Another technique used to avoid innecesary large feature vectors is removed
+Another technique used to avoid unnecessary large feature vectors is removed
  the so-called stop-words, or the words that for their common use is known
  that are not significant for the text.
  Words like 
@@ -1431,7 +1437,7 @@ best
 \begin_inset Formula $M0$
 \end_inset
 
-, that used for document representartion provides better results.
+, that used for document representation provides better results.
  However Joachims 
 \begin_inset LatexCommand cite
 key "Joachims98"
@@ -1446,7 +1452,7 @@ worst
 \begin_inset Quotes erd
 \end_inset
 
- features still contain importan information, therefore suggest that all
+ features still contain important information, therefore suggest that all
  features should be selected, when it is possible.
 \end_layout
 
@@ -1534,7 +1540,7 @@ key "Sebastiani02"
 \end_layout
 
 \begin_layout Standard
-A text categorization task can be performed in many ways, for instace one
+A text categorization task can be performed in many ways, for instance one
  might want to classify a document in just one category (single label case
  or not overlapping categories) or from 
 \begin_inset Formula $0$
@@ -1545,7 +1551,7 @@ A text categorization task can be performed in many ways, for instace one
 \end_inset
 
  categories (multilabel case or overlapping categories).
- A special case of sigle label TC is the binary TC in which each 
+ A special case of single label TC is the binary TC in which each 
 \begin_inset Formula $d_{j}$
 \end_inset
 
@@ -1562,7 +1568,7 @@ A text categorization task can be performed in many ways, for instace one
 \end_layout
 
 \begin_layout Standard
-It is possible to percieve the multilabel case as different problem but
+It is possible to perceive the multilabel case as different problem but
  one can express the multilabeled TC task for a set of categories 
 \begin_inset Formula $\mathcal{C}=\{c_{1},\ldots,c_{k}\}$
 \end_inset
@@ -1571,15 +1577,15 @@ It is possible to percieve the multilabel case as different problem but
 \begin_inset Formula $k$
 \end_inset
 
- binary case problems, this requiers that categories be stochastic independent
- or each other altough some recent development in structured classification
+ binary case problems, this requires that categories be stochastic independent
+ or each other although some recent development in structured classification
  
 \begin_inset LatexCommand cite
 key "Tsochantaridis/etal/05a"
 
 \end_inset
 
- might be useful to tackle multilabel interdependant TC task.
+ might be useful to tackle multilabel interdependent TC task.
  In this work we are going to deal with binary categorization tasks because
  as stated by Sebastiani 
 \begin_inset LatexCommand cite
@@ -1604,11 +1610,11 @@ One question that arises after reading the definition of TC is how to measure
 \begin_inset Formula $\breve{\Phi}$
 \end_inset
 
- (the approximation or hypothesis) matches the unkwon target function 
+ (the approximation or hypothesis) matches the unknown target function 
 \begin_inset Formula $\Phi$
 \end_inset
 
- (efectivness).
+ (effectiveness).
  This is generally measured in terms of the classic IR metrics of precision
  
 \begin_inset Formula $P$
@@ -1631,7 +1637,7 @@ One question that arises after reading the definition of TC is how to measure
 \begin_inset Formula $c_{i}$
 \end_inset
 
- the classificaion is correct (
+ the classification is correct (
 \begin_inset Formula $P(\breve{\Phi}(d_{x},c_{i})=T\,\,|\,\, P(\Phi(d_{x},c_{i})=T)$
 \end_inset
 
@@ -1657,8 +1663,8 @@ One question that arises after reading the definition of TC is how to measure
 \end_layout
 
 \begin_layout Standard
-In binary TC, with we can express the concepts of precisition and recall
- mathematicaly using the numbers of true positive (
+In binary TC, with we can express the concepts of precision and recall mathemati
+cally using the numbers of true positive (
 \begin_inset Formula $TP$
 \end_inset
 
@@ -1676,8 +1682,8 @@ In binary TC, with we can express the concepts of precisition and recall
 
 ) documents classified.
  The true of false value means that the classification was performed correctly
- or not, and the positive or negative define wheter it belonged to the evaluated
- category or not.
+ or not, and the positive or negative define whether it belonged to the
+ evaluated category or not.
  Using these definitions we can write precision 
 \begin_inset Formula $P$
 \end_inset
@@ -1719,8 +1725,8 @@ key "Sebastiani02"
 \end_layout
 
 \begin_layout Standard
-The values of precisition and recall for TC vary in an inverse relation,
- for that reason many articles about TC uses break-even point of 
+The values of precision and recall for TC vary in an inverse relation, for
+ that reason many articles about TC uses break-even point of 
 \begin_inset Formula $P$
 \end_inset
 
@@ -1789,12 +1795,12 @@ Machine Learning Text Categorization Techniques
 \end_layout
 
 \begin_layout Standard
-TODO: List ML Techniques suchas Naive Bayes, SVM, DTress among othes and
+TODO: List ML Techniques such as Naive Bayes, SVM, DTress among others and
  shows some benchmarks.
 \end_layout
 
 \begin_layout Section
-Paralell Machine Learning
+Parallel Machine Learning
 \begin_inset LatexCommand label
 name "sec:Paralell-Machine-Learning"
 
@@ -1805,7 +1811,7 @@ name "sec:Paralell-Machine-Learning"
 
 \begin_layout Standard
 Only recently the topic of parallel implementation of machine learning algorithm
-s have come to importance, altough it is rarely addressed at major machine
+s have come to importance, although it is rarely addressed at major machine
  learning conferences, many factors points out that the importance of this
  factor will increase.
  In his popular weblog
@@ -1829,18 +1835,18 @@ http://hunch.net/~jl/
 \end_inset
 
  describes the main tendencies of computation that impulse the necessity
- of paralell implementation of machine learning algorithms:
+ of parallel implementation of machine learning algorithms:
 \end_layout
 
 \begin_layout Enumerate
-Larger datasets available due to the avalability of more sensors on the
- internet, making processor power a need in other to handle these large
+Larger datasets available due to the availability of more sensors on the
+ Internet, making processor power a need in other to handle these large
  amounts of information.
 \end_layout
 
 \begin_layout Enumerate
 Serial processor speedups are stalled as the result of no having the ability
- to drive chips at ever higher clock rates without excessingly incresing
+ to drive chips at ever higher clock rates without excessively increasing
  the cost.
  The new tendency for improving processor speed is to have more cores per
  processor 
@@ -1870,7 +1876,7 @@ key "Marowka07"
 
 \end_inset
 
- making even more important to take avantage of this architecture and learn
+ making even more important to take advantage of this architecture and learn
  to use it the best way.
  
 \end_layout
@@ -1880,8 +1886,8 @@ With all these precedents the following question arises: how take advantage
  of this trend and use all the parallel computing power of new processor
  for solving machine learning problems? We are in the beginning of the multicore
  era and there is no easy answer to this question, mostly because there
- is not even an unified general approach to take avantage ot this arquitecture,
- altough some basic strategies can be described.
+ is not even an unified general approach to take advantage of this architecture,
+ although some basic strategies can be described.
 \end_layout
 
 \begin_layout Standard
@@ -1890,7 +1896,7 @@ The basic approach is to run the same algorithm with different parameters
  Cluster software like Open Mosix, Condor might be used in this situation.
  As noticed by Langford, this particular approach does not speed up the
  run of a particular machine learning algorithm.
- Other approaches includes the descomposition of the algorithm into statisitical
+ Other approaches includes the decomposition of the algorithm into statistical
  queries 
 \begin_inset LatexCommand cite
 key "167200"
@@ -1905,17 +1911,17 @@ key "conf/nips/ChuKLYBNO06"
 \end_inset
 
 .
- The last and most difficult way is to develop fine-grained parallism, which
- is the way brain actually works.
+ The last and most difficult way is to develop fine-grained parallelism,
+ which is the way brain actually works.
  
 \end_layout
 
 \begin_layout Standard
 We have discussed the evident speed gain using parallel methods for running
- but the question whether the a paralell algorithm fine-grained paralellized
+ but the question whether the a parallel algorithm fine-grained parallelize
  implementation can achieve better performance is still unanswered.
- Another question that arises is if there are methods that not necesarilly
- incur in the complexity of disecting a specific algorithm and then paralleling
+ Another question that arises is if there are methods that not necessarily
+ incur in the complexity of dissecting a specific algorithm and then paralleling
  and still harness parallel architectures.
  Graf et Al.
  
@@ -1924,9 +1930,9 @@ key "GrafCBDV04"
 
 \end_inset
 
- presents the Cascade SVM, an approach for parallelizing the SVM without
- modifying the SVM problem at all but using a pyramid-like array of SVM
- subproblem that are joined in each level until a the solution is found.
+ presents the Cascade SVM, an approach for parallelize the SVM without modifying
+ the SVM problem at all but using a pyramid-like array of SVM subproblem
+ that are joined in each level until a the solution is found.
  This approach is chosen for the experiments of this work and will be discussed
  in depth in chapter 
 \begin_inset LatexCommand ref
@@ -1952,9 +1958,9 @@ key "Vapnik98"
 
 \end_inset
 
- are powerful classification and regresion tools that have been widely applied
- in the solutions of many problem, generally yielding comparable or even
- better performance that other algortihms.
+ are powerful classification and regression tools that have been widely
+ applied in the solutions of many problem, generally yielding comparable
+ or even better performance that other algorithms.
  
 \end_layout
 
@@ -1975,14 +1981,14 @@ key "Vapnik99,vapnik71uniform"
 .
  Roughly, the VC dimension is a metric of how complex a classifier machine
  is, complex classifier has more capacity to fit the training data, thus,
- overfitting is more likely to occur, therefore, is prefered a classifier
+ overfitting is more likely to occur, therefore, is preferred a classifier
  with minimum VC Dimension.
  
 \begin_inset Note Note
 status collapsed
 
 \begin_layout Standard
-Shoud I add the formula of Empirical Risk Minimization
+Should I add the formula of Empirical Risk Minimization
 \end_layout
 
 \end_inset
@@ -2061,7 +2067,7 @@ th example and
 \end_inset
 
  is the corresponded, desired response.
- In this case we are gonna simplifly the setting by stating that 
+ In this case we are gonna simplifier the setting by stating that 
 \begin_inset Formula $d_{i}$
 \end_inset
 
@@ -2077,7 +2083,7 @@ th example and
 \begin_inset Formula $y_{i}=\{+1,-1\}$
 \end_inset
 
- are lineary separable.
+ are linearly separable.
  The equation of a decision hyperplane that separates the data is:
 \end_layout
 
@@ -2193,7 +2199,7 @@ reference "eq:"
 \end_layout
 
 \begin_layout Standard
-Then we can write the discriminat function:
+Then we can write the discriminant function:
 \end_layout
 
 \begin_layout Standard
@@ -2231,7 +2237,7 @@ reference "eq:3"
 
 \end_inset
 
- assing a category for a specific point.
+ assign a category for a specific point.
  
 \end_layout
 
@@ -2287,8 +2293,8 @@ Condition
 \begin_inset Formula $d_{i}(w^{T}x_{i}+b)\geq1$
 \end_inset
 
- spcify that all the data points have to be classified correctly.
- In order to solve this problem we introduce the lagrangian formulation:
+ specify that all the data points have to be classified correctly.
+ In order to solve this problem we introduce the Lagrangian formulation:
 \end_layout
 
 \begin_layout Standard
@@ -2369,9 +2375,9 @@ s.t &  & \alpha_{i}\geq0\,\, and\,\,\,\sum_{i=1}^{N}\alpha_{i}y_{i}=0\nonumber \
 Which is a quadratic programming problem (QP).
  Notice that the dual problem is cast entirely in terms of the training
  data.
- The fact that this is a QP problem is one of the streght of this methodology
+ The fact that this is a QP problem is one of the strength of this methodology
  and also a weakness.
- It's a streght because as 
+ It's a strength because as 
 \family roman
 \series medium
 \shape up
@@ -2404,7 +2410,7 @@ key "Suykens-et-al2002,Joachims/06a"
 
 \end_inset
 
-, with variying degrees of performace.
+, with varying degrees of performance.
  The 
 \begin_inset Formula $x{}_{i}$
 \end_inset
@@ -2428,8 +2434,8 @@ key "Suykens-et-al2002,Joachims/06a"
 \noun off
 \color none
 When all points cannot be shattered by one Hyperplane an error bound is
- added in the form of a nonnegative slack variable, the primal problem described
- in 
+ added in the form of a non negative slack variable, the primal problem
+ described in 
 \begin_inset LatexCommand ref
 reference "eq:min0.5w2"
 
@@ -2521,7 +2527,7 @@ Where
 \end_inset
 
  is any support vector.
- We can also write the discriminat function as follows:
+ We can also write the discriminant function as follows:
 \end_layout
 
 \begin_layout Standard
@@ -2538,7 +2544,7 @@ Many times a linear separator is not enough to classify the data properly,
  geometrically speaking, a more complex surface is needed in order to separate
  the data correctly.
  In order to classify the data a non-liner mapping into a high-dimensional
- feature space where the data is lineary separable, the Cover's theorem
+ feature space where the data is linearly separable, the Cover's theorem
  on separability 
 \begin_inset LatexCommand cite
 key "Cover65a|citeulike:1803784"
@@ -2556,7 +2562,7 @@ Kernel Trick
 
  which consist in the usage of a Kernel function that maps the input data
  into a higher dimensional space.
- The reader may consult the appropiate literature 
+ The reader may consult the appropriate literature 
 \begin_inset LatexCommand cite
 key "citeulike:368926|Haykin1998,citeulike:755348|Heibrich2001Lkernel,citeulike:114719|Cristianini2000introSVM"
 
@@ -2617,6 +2623,12 @@ reference "eq:minwithckernel"
 
 \begin_layout Subsection
 Transductive Learning for SVM
+\begin_inset LatexCommand label
+name "sub:Transductive-Learning-for"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2643,6 +2655,12 @@ status open
 \begin_inset Graphics
 	filename images/joachims-algorithm.jpg
 	scale 42
+
+\end_inset
+
+
+\begin_inset LatexCommand label
+name "fig:alg-tsvm"
 
 \end_inset
 
@@ -2699,11 +2717,11 @@ key "DumaisPHS98"
 
 .
  the TC task using SVM can bee seen geometrically as finding an hyperplane
- that separates two grous of points has (...) [TODO]
+ that separates two groups of points has (...) [TODO]
 \end_layout
 
 \begin_layout Section
-Paralell Methods for Training SVM
+Parallel Methods for Training SVM
 \end_layout
 
 \begin_layout Subsection
@@ -2711,7 +2729,7 @@ Transductive Parallel Linear SVM
 \end_layout
 
 \begin_layout Chapter
-Paralell Methods for Training Transductive SVM 
+Parallel Methods for Training Transductive SVM 
 \begin_inset LatexCommand label
 name "cha:Experiments-and-Results"
 
@@ -2725,10 +2743,10 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-Solving the transductive SVM using the algorithm described by joachims implies
+Solving the transductive SVM using the algorithm described by Joachims implies
  solve many times an SVM inductive optimization problem.
- The algorithm improves the objective function by swintching the labels
- interactively of two unlabeled data points 
+ The algorithm improves the objective function by switching the labels interacti
+vely of two unlabeled data points 
 \begin_inset Formula $x_{i}$
 \end_inset
 
@@ -2742,7 +2760,7 @@ Solving the transductive SVM using the algorithm described by joachims implies
 
 .
  It uses two nested loops to optimize a TSVM which solves a quadratic programmin
-g everytime it changes a label from an unlabeled data.
+g every time it changes a label from an unlabeled data.
  The convergence of the nested loop relies in the fact that there is only
  a finite number of finite number 
 \begin_inset Formula $2^{U}$
@@ -2752,8 +2770,7 @@ g everytime it changes a label from an unlabeled data.
 \begin_inset Formula $U$
 \end_inset
 
- unlabeled points even if it is unlikely that all of them are examinated
- 
+ unlabeled points even if it is unlikely that all of them are examined 
 \begin_inset LatexCommand cite
 key "1248609"
 
@@ -2775,7 +2792,7 @@ TSVM in the worst case have complexity of
 \begin_inset Formula $U$
 \end_inset
 
- labeled points, altough it generally scales to square in most practical
+ labeled points, although it generally scales to square in most practical
  cases 
 \begin_inset LatexCommand cite
 key "Joachims/99a"
@@ -2788,7 +2805,7 @@ key "Joachims/99a"
 \begin_layout Standard
 In order to optimize this kind problem one can try to modify the formulation,
  for instance example solving it in the primal rather than in the dual with
- an alternate technique altough the question of how widely applicable are
+ an alternate technique although the question of how widely applicable are
  these methods are remains to bee seen.
  or use any of the general approaches described in section 
 \begin_inset LatexCommand ref
@@ -2808,7 +2825,7 @@ key "1248601"
 
 \end_inset
 
- Generally this is acomplished through the use of decomposition technique
+ Generally this is accomplished through the use of decomposition technique
  of some kind.
  Another approach is to use a mixture of SVM 
 \begin_inset LatexCommand cite
@@ -2823,7 +2840,7 @@ key "Jacobs:Jordan:Nowlan:Hinton91"
 
 \end_inset
 
- which is easily paralellizable.
+ which is easily parallelizable.
  All these approach modify in some manner the original formulation of the
  problem.
 \end_layout
@@ -2840,9 +2857,10 @@ key "GrafCBDV04,ZhangZY05"
 
 .
  This is the approach selected for the parallelization of TSVM because there
- is no need to modify the original quadratic programming probel and is straightf
-orward to implement altough some small modifications are needed in order
- to be fully adapted to the transuductive algorithm described by Joachims.
+ is no need to modify the original quadratic programming problem and is
+ straightforward to implement although some small modifications are needed
+ in order to be fully adapted to the transductive algorithm described by
+ Joachims.
  
 \end_layout
 
@@ -2871,9 +2889,9 @@ key "Joachims/99a"
 \end_inset
 
 .
- The Cascade SVM is a distributed architecture wjere smaller optimization
+ The Cascade SVM is a distributed architecture where smaller optimization
  problems are solved independently making them easily parallelizable.
- The results of this smaller problems are then esembled in a way that is
+ The results of this smaller problems are then assembled in a way that is
  ensured that it eventually converges to globally optimal solution.
 \end_layout
 
@@ -2926,7 +2944,7 @@ name "fig:svm-cascade"
 
 \begin_layout Standard
 In order to find a minimum using this approach the problem is initialized
- with a number of idependent smaller optimization whose results are combined
+ with a number of independent smaller optimization whose results are combined
  in later stages in a hierarchical fashion as shown in figure 
 \begin_inset LatexCommand ref
 reference "fig:svm-cascade"
@@ -2937,24 +2955,702 @@ reference "fig:svm-cascade"
  The data is split into subsets and everyone of them is evaluated for to
  find support vectors in the first layer, then the results are combined
  two-by-two and entered as training set for the next layer.
- Often a single pass through the cascade produces satsifactory approaches
- 
+ Often a single pass through the cascade produces satisfactory results and
+ if it is not the case, that is, if solution is not the global maximum,
+ the result of the last layer is fed back into the first layer, where each
+ of the SVM of the first layer recieves all the support vectors and test
+ them with fraction of his inputs to check if any of them have toc be incorporat
+ed into the optimization.
+ If this is not the case for all SVM of the input layer, the cascade have
+ converged otherwise it proceeds with another pass through the network.
+ The formal proof of thje convergence can be found in 
+\begin_inset LatexCommand cite
+key "GrafCBDV04"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
 Cascade Transductive SVM
 \end_layout
 
-\begin_layout Subsection
-Data Sets
+\begin_layout Standard
+The original formulation for this cascade SVM is definen for the classical
+ SVM problem so it is necessary to adapt the architechure described above
+ in order to handle properly the TSVM formulation.
+ There are at least two approach for this, the first approach is to make
+ each of thr SVM in the array Transductive, using the algorithm described
+ in Figure 
+\begin_inset LatexCommand ref
+reference "fig:alg-tsvm"
+
+\end_inset
+
+.
+ Even if this might seem obvious ultimatly the loop in each of the SVM will
+ be run in just one processor so the only possible speed up would be in
+ terms of the number of training and testing data available.
+ Also splitting and mergin the subsets might need additional modifications,
+ despite this fact it might be interesting to vizualise the behaviour of
+ this approach for that reason is left as a future work.
 \end_layout
 
-\begin_layout Section
+\begin_layout Standard
+The other approach is parallelize the more computational expensive part
+ of the TSVM algorithm: the 
+\emph on
+solve_svm_qp
+\emph default
+ function which solves the dual problem associated with formulation described
+ in section 
+\begin_inset LatexCommand ref
+reference "sub:Transductive-Learning-for"
+
+\end_inset
+
+.
+ Now for each iteration of the loop the a SVM inductive problem is solved
+ in a parallel manner.
+ We have two goals to achieve with this, in the first place we need to implement
+ an algorithm that is at least is as good as the serial (non parallel) version
+ and also we need to ensure a speed up of the process through the use of
+ the parallel architecture.
+\end_layout
+
+\begin_layout Subsection
+Merging Data Sets for the Transductive Case
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/graf-svm-cascade-of-3.jpg
+	scale 50
+
+\end_inset
+
+
+\begin_inset LatexCommand label
+name "fig:graf-3-svm"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Caption
+
+\begin_layout Standard
+A Cascade with two input sets 
+\begin_inset Formula $D_{1}$
+\end_inset
+
+,
+\begin_inset Formula $D_{2}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $W_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{i}$
+\end_inset
+
+ are objective function, gradient, and kernel matrix, respectively, of 
+\noun on
+SVM
+\noun default
+
+\begin_inset Formula $_{i}$
+\end_inset
+
+ (in vector notation); Gradients of 
+\noun on
+SVM
+\noun default
+
+\begin_inset Formula $_{1}$
+\end_inset
+
+ and 
+\noun on
+SVM
+\noun default
+
+\begin_inset Formula $_{2}$
+\end_inset
+
+ are merged as indicated in 
+\begin_inset LatexCommand ref
+reference "eq:mergin-subsets"
+
+\end_inset
+
+ and are entered into 
+\noun on
+SVM
+\noun default
+
+\begin_inset Formula $_{3}$
+\end_inset
+
+.
+ 
+\begin_inset LatexCommand cite
+key "GrafCBDV04"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this section it is described the procedure to merge two subsets using
+ as example the description in the figure 
+\begin_inset LatexCommand ref
+reference "fig:graf-3-svm"
+
+\end_inset
+
+.
+ For Trasductive SVM there is not practically any change besides that when
+ recreating creating the problem for 
+\noun on
+SVM
+\noun default
+
+\begin_inset Formula $_{3}$
+\end_inset
+
+ we have to take into account two boundaries for the values of 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ instead of one: 
+\begin_inset Formula $C$
+\end_inset
+
+ for 
+\begin_inset Formula $\{a_{1}...\alpha_{L}\}$
+\end_inset
+
+and 
+\begin_inset Formula $C*$
+\end_inset
+
+ for 
+\begin_inset Formula $\{a_{L+1}...\alpha_{L+U}\}$
+\end_inset
+
+.
+ The starting point and gradient for the merged set are defined below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{eqnarray}
+ & W\, & =\frac{1}{2}\left[\begin{array}{c}
+\vec{\alpha_{1}}\\
+\vec{\alpha}_{2}\end{array}\right]^{T}\left[\begin{array}{cc}
+Q_{1} & Q_{12}\\
+Q_{21} & Q_{2}\end{array}\right]\left[\begin{array}{c}
+\vec{\alpha_{1}}\\
+\vec{\alpha}_{2}\end{array}\right]+\left[\begin{array}{c}
+\vec{e_{1}}\\
+\vec{e}_{2}\end{array}\right]^{T}\left[\begin{array}{c}
+\vec{\alpha_{1}}\\
+\vec{\alpha}_{2}\end{array}\right]\nonumber \\
+\label{eq:mergin-subsets}\\\nonumber \\ &  & \vec{G_{3}=}\left[\begin{array}{c}
+\vec{\alpha_{1}}\\
+\vec{\alpha}_{2}\end{array}\right]^{T}\left[\begin{array}{cc}
+Q_{1} & Q_{12}\\
+Q_{21} & Q_{2}\end{array}\right]+\left[\begin{array}{c}
+\vec{e_{1}}\\
+\vec{e}_{2}\end{array}\right]\nonumber \end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With 
+\begin_inset Formula $Q_{12}=Q_{1}Q_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{21}=Q_{2}Q_{1}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Chapter
 Experiments and Results
 \end_layout
 
+\begin_layout Standard
+In this section we present the experimental results for text classification
+ task.
+ The base algorithm and axuiliar rutines were programmed in Matlab 7.4
+\begin_inset Foot
+status collapsed
+
+\begin_layout Standard
+http://www.mathworks.com/
+\end_layout
+
+\end_inset
+
+ using the Matlab 
+\emph on
+quadprog
+\emph default
+ function which is a convex Quadratic Programming solver.
+ In order to fully parallelize the Cascade Architecture we made use of the
+ Distribuited Computer Tool Box enabling us to run the algorithm in all
+ the cores of the computer.
+ For the experiments we used a Desktop computer with Processor with Intel
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+$^{
+\backslash
+textregistered}$
+\end_layout
+
+\end_inset
+
+ Pentium
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+$^{
+\backslash
+textregistered}$
+\end_layout
+
+\end_inset
+
+ Dual Core CPU 3.40GHz with 1.5 GB of RAM.
+\end_layout
+
+\begin_layout Standard
+For the experiments we use a subset of the 20 Newsgroups data set 
+\begin_inset LatexCommand cite
+key "Asuncion+Newman:2007"
+
+\end_inset
+
+.
+ The data set was preprocessed using enlgish stop-words and the Porter stemmer
+ algorithm 
+\begin_inset LatexCommand cite
+key "Porter80"
+
+\end_inset
+
+ in a similar fashion as described in section 
+\begin_inset LatexCommand ref
+reference "sub:Feature-Selection-and"
+
+\end_inset
+
+ and the feature vectors were created using the 
+\emph on
+tf-idf
+\emph default
+ formula.
+ The code was written in Ruby using an already existing implementation of
+ the stemmer algorithm.
+ 
+\end_layout
+
 \begin_layout Section
-Conclusions
+Experiments
+\end_layout
+
+\begin_layout Standard
+The 20 Newsgroup data sets is set is a collection of approximately 20,000
+ newsgroup documents, partitioned evenly across 20 different newsgroups.
+ The collection is organized in the following form:
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features>
+<column alignment="center" valignment="middle" leftline="true" width="0">
+<column alignment="center" valignment="middle" leftline="true" width="0">
+<column alignment="center" valignment="middle" leftline="true" rightline="true" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "33col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Itemize
+comp.graphics 
+\end_layout
+
+\begin_layout Itemize
+comp.os.ms-windows.misc
+\end_layout
+
+\begin_layout Itemize
+comp.sys.ibm.pc.hardware 
+\end_layout
+
+\begin_layout Itemize
+comp.sys.mac.hardware 
+\end_layout
+
+\begin_layout Itemize
+comp.windows.x
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "27col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Itemize
+rec.autos 
+\end_layout
+
+\begin_layout Itemize
+rec.motorcycles 
+\end_layout
+
+\begin_layout Itemize
+rec.sport.baseball 
+\end_layout
+
+\begin_layout Itemize
+rec.sport.hockey
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "27col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Itemize
+sci.crypt 
+\end_layout
+
+\begin_layout Itemize
+sci.electronics 
+\end_layout
+
+\begin_layout Itemize
+sci.med sci.space
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "33col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status collapsed
+
+\begin_layout Itemize
+misc.forsale
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "27col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Itemize
+talk.politics.misc 
+\end_layout
+
+\begin_layout Itemize
+talk.politics.guns 
+\end_layout
+
+\begin_layout Itemize
+talk.politics.mideast
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "27col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Itemize
+talk.religion.misc 
+\end_layout
+
+\begin_layout Itemize
+alt.atheism 
+\end_layout
+
+\begin_layout Itemize
+soc.religion.christian
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+.
+\begin_inset ERT
+status open
+
+\begin_layout Standard
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As we can see the data set is divide by newsgroups topics an can be agrouped
+ into similar categories.
+ For the experiments we define two tasks, an 
+\begin_inset Quotes eld
+\end_inset
+
+easy
+\begin_inset Quotes erd
+\end_inset
+
+ one and an 
+\begin_inset Quotes eld
+\end_inset
+
+hard
+\begin_inset Quotes erd
+\end_inset
+
+ one.
+ For the easy task we took 1000 messages from 
+\emph on
+alt.atheism 
+\emph default
+and 1000 messages from 
+\emph on
+comp.graphics
+\emph default
+.
+ We call this an easy task because the terms that appear in the documents
+ and accross the entire collection more from each collection are differents,
+ so we can expect a nearly separable problem.
+ The hard task we chose related news groups were is expected that the most
+ important terms are the similar.
+ We chose c
+\emph on
+omp.sys.ibm.pc.hardware
+\emph default
+ and 
+\emph on
+comp.sys.mac.hardware 
+\emph default
+for evaluating the SVM effectivness and computation times with aslo 1000
+ messages from each of them.
+ The data was splitted in a training set (20%) and testing set (80%) we
+ also made some test with fewer training data but with the same amount of
+ test data in order to vizualise better the goods of transductive inference
+ when only few training data is available.
+\end_layout
+
+\begin_layout Standard
+As performance measure we chose 
+\begin_inset Formula $F1$
+\end_inset
+
+ as measure of effectivness, we also show the values of precicion and recall
+ for the experiments.
+ The kernel choice for the SVM was the linear kernel which has been reported
+ to be effective for text categorization tasks 
+\begin_inset LatexCommand cite
+key "Joachims99c,DumaisPHS98"
+
+\end_inset
+
+ , thanks in part to the high dimensional nature of the input vectors.
+ Besides the catetegorization performace we are interested in the 
 \end_layout
 
 \begin_layout Standard
