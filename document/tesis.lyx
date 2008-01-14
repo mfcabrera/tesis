@@ -2993,8 +2993,8 @@ reference "fig:alg-tsvm"
  be run in just one processor so the only possible speed up would be in
  terms of the number of training and testing data available.
  Also splitting and mergin the subsets might need additional modifications,
- despite this fact it might be interesting to vizualise the behaviour of
- this approach for that reason is left as a future work.
+ despite this fact, it might be interesting to vizualise the behaviour of
+ this approach and for that reason is left as a future work.
 \end_layout
 
 \begin_layout Standard
@@ -3272,13 +3272,7 @@ key "20news"
 
 \end_inset
 
- data set found in the UCI ML Repository 
-\begin_inset LatexCommand cite
-key "Asuncion+Newman:2007"
-
-\end_inset
-
-.
+ data set found in the UCI ML Repository.
  The data set was preprocessed using English stop-words and the Porter stemmer
  algorithm 
 \begin_inset LatexCommand cite
@@ -3592,7 +3586,7 @@ newline
 \end_layout
 
 \begin_layout Standard
-As we can see the data set is divided by newsgroups topics an can be agrouped
+As we can see the data set is divided by newsgroup topics and can be agrouped
  into similar categories.
  For the experiments we define two tasks, an 
 \begin_inset Quotes eld
@@ -3621,10 +3615,10 @@ comp.graphics
 \emph default
 .
  We call this an easy task because the terms that appear in the documents
- and across the entire collection more from each collection are different,
- so we can expect a nearly separable problem.
+ from each collection are different, so we can expect a nearly separable
+ problem.
  The hard task we chose related news groups were is expected that the most
- important terms are the similar.
+ important terms similar for both collection.
  We chose c
 \emph on
 omp.sys.ibm.pc.hardware
@@ -3656,7 +3650,11 @@ key "Joachims99c,DumaisPHS98"
 \end_inset
 
 , thanks in part to the high dimensional nature of the input vectors.
- The C parameter was estimated for the two sets using 5-fold cross validation
+ The 
+\begin_inset Formula $C$
+\end_inset
+
+ parameter was estimated for the two sets using 5-fold cross validation
  with the training set.
  The other parameter defined by Joachim's algorithm is 
 \begin_inset Formula $num+$
@@ -3665,6 +3663,53 @@ key "Joachims99c,DumaisPHS98"
 , the number of test inputs to be labeled intially as positive, in our implement
 ation this number is also half of the totall test set, thus ensuring the
  precision and recall breakeven.
+ The choice of the parameter 
+\begin_inset Formula $C*$
+\end_inset
+
+is done in multiples by many heuristics being the basic one make it equal
+ to have been proposed for 
+\begin_inset Formula $C$
+\end_inset
+
+.
+ This parameter is of great importance for the computation time of the overall
+ algorithm because the annealing used by Joachim's algorithm, for that reason
+ we wanted to improve the computation time by choosing the right 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+C*
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+ parameter so we tested the implementation effectiveness with the orginal
+ Joachim's heuristic 
+\begin_inset Formula $C=C*$
+\end_inset
+
+ and the one proposed by 
+\begin_inset LatexCommand cite
+key "1248609"
+
+\end_inset
+
+: 
+\begin_inset Formula $UC=LC*$
+\end_inset
+
+ .
+ 
 \end_layout
 
 \begin_layout Standard
