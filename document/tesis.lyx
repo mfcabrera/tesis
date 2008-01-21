@@ -254,6 +254,85 @@ Universidad Nacional de Colombia - Sede Medell
 
 \end_layout
 
+\begin_layout Section*
+\align block
+Resumen
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+Maquinas de Soporte Vectoriales Transductivos (TSVM) han mostrado mejoras
+ en tareas de clasificación donde las características presentan co-ocurrencia
+ y los ejemplos de entrenamiento son pocos en comparación con los datos
+ disponible como es común en problemas de categorización de textos (TC).
+ Aunque la naturaleza del algoritmo de TSVM descrito por Joachims hace difícil
+ que sea tan veloz como una SVM regular, la paralelización de este algoritmo
+ es interesante cuando las ganancias en la efectividad de clasificación
+ es crucial.
+ Resolver el algoritmo de TSVM requiere la solución de múltiples problemas
+ de programación cuadrática que generalmente escalan a 
+\begin_inset Formula $O(n^{3})$
+\end_inset
+
+.
+ Aqui describimos una implementación de un TSVM para problemas de clasificación
+ binaria usando una arquitectura paralela que busca mejorar los tiempos
+ de computo necesarios mientras preserva la efectividad de la clasificación.
+ Para lograr este objetivo adaptamos la arquitectura en cascada desarrollada
+ por Graf et al.
+ para SVM regulares.
+ Adicionalmente probamos una heurística distinta para la elección del parámetro
+ 
+\begin_inset Formula $C*$
+\end_inset
+
+ para el problema de las TSVM La unión de estas estrategias produjeron una
+ implementación que es de 4 a 8 veces mas parida que una TSVM regular para
+ un problema de CT de 2.000 vectores y mas de 30.000 características.
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\end_layout
+
+\begin_layout Section*
+Abstract
+\end_layout
+
+\begin_layout Standard
+\align block
+Transductive Support Vector Machines (TSVM) have shown improvements on classific
+ation tasks such as Text Categorization (TC), where the features present
+ co-occurrence and the training samples are few in comparison with the data
+ available .
+ Altough the nature of the TSVM algorithm as described by Joachim makes
+ is difficult to be as fast as a regular SVM, the parallelization of this
+ algorithm is interesting when the gains in classification performance are
+ crucial.
+ Solving TSVM algorithm requires the solution of multiple quadratic programming
+ problems that generally scales to 
+\begin_inset Formula $O(n^{3})$
+\end_inset
+
+.
+ We describe the implementation of a TSVM Solver for 2-class problem using
+ a parallel architecture which aims to improve the necessary computation
+ times while preserving the classification performance.
+ For this purpose we adapt the parallel cascade architecture for regular
+ SVM described by Graf et al.
+ We also experiment with an alternative heuristic for choice of the 
+\begin_inset Formula $C*$
+\end_inset
+
+ parameter for the TSVM problem.
+ The union of both strategies produced an implementation that is 4x - 8x
+ faster than a regular TSVM for TC problem of 2,000 vectors and more than
+ 30,000 features.
+\end_layout
+
 \begin_layout Standard
 \begin_inset LatexCommand tableofcontents
 
@@ -288,6 +367,10 @@ POR HACER:
 
 \begin_layout Standard
 - Text Categorization with SVM 
+\end_layout
+
+\begin_layout Standard
+- Put figure with cosa
 \end_layout
 
 \begin_layout Standard
@@ -1782,7 +1865,55 @@ This This implies that
 \end_layout
 
 \begin_layout Subsection
-Applications of Text Categorization
+Applications of Automated Text Categorization
+\end_layout
+
+\begin_layout Standard
+One can think that the application of TC are somewhat limited to automated
+ document classification but many problems can be seen as special instances
+ of TC, Sebastini 
+\begin_inset LatexCommand cite
+key "Sebastiani02"
+
+\end_inset
+
+ list some of them:
+\end_layout
+
+\begin_layout Subsubsection
+Document Organization
+\end_layout
+
+\begin_layout Standard
+Maybe the first application that comes to the mind when thinking in TC.
+ Indexing with a controlled vocabulary is an instance of this problem that
+ can be solved with TC techniques.
+ Also any kind of document organization and filing such personal information
+ or enterprise data organization can be viewed as instances of this problem.
+ For example one can think in newspaper ads and the categories in which
+ they should be classified, this is generally done at hand but can be addressed
+ with many of the existing TC techniques.
+ Other applications includes automatic patent classification, automatic
+ news classification under topic sections (e.g Politics, Lifestyles, Sports,
+ etc.).
+\end_layout
+
+\begin_layout Subsubsection
+Text Filtering
+\end_layout
+
+\begin_layout Standard
+Text filtering is the activity of classifying a stream of incoming documents
+ dispatched in an asynchronous way by an information producer to an information
+ consumer 
+\begin_inset LatexCommand cite
+key "Sebastiani02"
+
+\end_inset
+
+, for example a newsfeed where the producer is the news agency and the consumer
+ is the producer is the newspaper or a RSS feed where the producer is the
+ website and the consumer the individual users that syndicate the feed.
 \end_layout
 
 \begin_layout Standard
@@ -2377,18 +2508,9 @@ Which is a quadratic programming problem (QP).
  data.
  The fact that this is a QP problem is one of the strength of this methodology
  and also a weakness.
- It's a strength because as 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\noun off
-\color none
-opposed to others techniques such as Neural Networks, the optimization problem
- is convex and a global optimum is always reached in a finite amount of
- time 
+ It's a strength because as opposed to others techniques such as Neural
+ Networks, the optimization problem is convex and a global optimum is always
+ reached in a finite amount of time 
 \begin_inset LatexCommand cite
 key "Joachims98"
 
@@ -2424,15 +2546,6 @@ key "Suykens-et-al2002,Joachims/06a"
 \end_layout
 
 \begin_layout Standard
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\noun off
-\color none
 When all points cannot be shattered by one Hyperplane an error bound is
  added in the form of a non negative slack variable, the primal problem
  described in 
@@ -3272,7 +3385,13 @@ key "20news"
 
 \end_inset
 
- data set found in the UCI ML Repository.
+ data set found in the UCI ML Repository
+\begin_inset LatexCommand cite
+key "Asuncion+Newman:2007"
+
+\end_inset
+
+.
  The data set was preprocessed using English stop-words and the Porter stemmer
  algorithm 
 \begin_inset LatexCommand cite
@@ -3675,26 +3794,9 @@ is done in multiples by many heuristics being the basic one make it equal
 .
  This parameter is of great importance for the computation time of the overall
  algorithm because the annealing used by Joachim's algorithm, for that reason
- we wanted to improve the computation time by choosing the right 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\noun off
-\color none
-C*
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\noun default
-\color inherit
- parameter so we tested the implementation effectiveness with the orginal
- Joachim's heuristic 
+ we wanted to improve the computation time by choosing the right C* parameter
+ so we tested the implementation effectiveness with the orginal Joachim's
+ heuristic 
 \begin_inset Formula $C=C*$
 \end_inset
 
