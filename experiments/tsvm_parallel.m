@@ -74,7 +74,7 @@ while ((CaN < Cast) || (CaP < Cast)) %loop 1
       end
       in = in - 1;
   end 
-  TTIME = TIME + TOC;
+
   CaN = min(CaN*2,Cast);
   CaP = min(CaP*2,Cast) ; 
 end

@@ -3,10 +3,10 @@
 % also solves linear SVM
 function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,times] = solve_svm_qp_t_parallel(x,d,xnl,dnl,C,Cp,Cm) 
 
-nnorm = length(d);
+nnorm = length(d)
 nplus = length(find(dnl > 0));
 nminus = length(find(dnl < 0));
-ntotal = nnorm + nplus + nminus;
+ntotal = nnorm + nplus + nminus
 tdctive  = false; %% whether 
 
 
@@ -103,13 +103,19 @@ times = 0;
 %length(U2d)
 %PARTE PAR
 %[W,B,NSV,AL,SVINDEX,EV,EASTV,EXITF,HV] = dfeval(@solve_svm_qp_t,{L1v,L2v,L3v,L4v},{L1d,L2d,L3d,L4d},{U1v,U2v,U3v,U4v},{U1d,U2d,U3d,U4d},{C,C,C,C},{Cp,Cp,Cp,Cp},{Cm,Cm,Cm,Cm},'Configuration', 'local');
-tic;
-[w1,b1,nsv1,ALPHAS1,svindex1,E1,East1,exitflag1,H1] = solve_svm_qp_t(L1v,L1d,U1v,U1d,C,Cp,Cm);
-[w4,b4,nsv4,ALPHAS4,svindex4,E4,East4,exitflag4,H4] =  solve_svm_qp_t(L4v,L4d,U4v,U4d,C,Cp,Cm);
-[w2,b2,nsv2,ALPHAS2,svindex2,E2,East2,exitflag2,H2] = solve_svm_qp_t(L2v,L2d,U2v,U2d,C,Cp,Cm);
-[w3,b3,nsv3,ALPHAS3,svindex3,E3,East3,exitflag3,H3] =  solve_svm_qp_t(L3v,L3d,U3v,U3d,C,Cp,Cm);
-toc
-times = times  + toc/4;
+dummyX = zeros(1,length(L1d)+length(U1d));
+[w1,b1,nsv1,ALPHAS1,svindex1,E1,East1,exitflag1,H1] = solve_svm_qp_t(L1v,L1d,U1v,U1d,C,Cp,Cm,dummyX);
+[w4,b4,nsv4,ALPHAS4,svindex4,E4,East4,exitflag4,H4] =  solve_svm_qp_t(L4v,L4d,U4v,U4d,C,Cp,Cm,dummyX);
+[w2,b2,nsv2,ALPHAS2,svindex2,E2,East2,exitflag2,H2] = solve_svm_qp_t(L2v,L2d,U2v,U2d,C,Cp,Cm,dummyX);
+[w3,b3,nsv3,ALPHAS3,svindex3,E3,East3,exitflag3,H3] =  solve_svm_qp_t(L3v,L3d,U3v,U3d,C,Cp,Cm,dummyX);
+
+%% Rebuild  the Q matrix for the next layer
+
+%Second Level layer
+ 
+    
+    
+    
 
 
 %w1 = W{2};
@@ -184,6 +190,30 @@ ltest2 = length(U1d) + length(U2d);
 % CREATE THE PROBLEM FORMULATIOn
 [H5,f5,A5,b5,Aeq5,beq5,X5] = join_sv_results(H1,H2,ALPHAS1,ALPHAS2,[L1d;U1d],[L2d;U2d],E1,E2,East1,East2,nplusp,nminusp,C,Cp,Cm,ltrain2,ltest2);
 [H6,f6,A6,b6,Aeq6,beq6,X6] = join_sv_results(H3,H4,ALPHAS3,ALPHAS3,[L3d;U3d],[L4d;U4d],E3,E4,East3,East4,nplusp,nminusp,C,Cp,Cm,ltrain2,ltest2);
+
+%%
+real_size = psize*2;
+svindex1 = find(svindex1 <= real_size);
+svindex2 = find(svindex2 <= real_size);
+svindex3 = find(svindex3 <= real_size);
+svindex4 = find(svindex4 <= real_size);
+
+
+Layer21_IV = [L1v(svindex1,:);L2v(svindex2,:)];
+
+
+
+%Layer22_IV = [L1v(svindex3);L2v(svindex4)];
+    
+Layer21_ID = [L1d(svindex1,:);L2d(svindex2,:)];
+Layer22_ID = [L1d(svindex3,:);L2d(svindex4,:)];
+    
+length(Layer21_ID)
+length(Layer21_IV)
+
+
+solve_svm_qp_t(Layer21_IV,Layer21_ID,[U1v;U2v],[U1d;U2d],C,Cp,Cm,X5)
+
 
 %% Solve the second layer
 

@@ -1,7 +1,7 @@
 % Solve SVM
 % Altough specialized for Linear TSVM with the right parameters
 % also solves linear SVM
-function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,H] = solve_svm_qp_t(x,d,xnl,dnl,C,Cp,Cm) 
+function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,H] = solve_svm_qp_t(x,d,xnl,dnl,C,Cp,Cm,X0) 
 
 nnorm = length(d)
 nnl = length(dnl);
@@ -69,7 +69,7 @@ exitflag =0;
 
 %% Fetch the support vector and calculate w0 and b0 and the error vector
 
-[ALPHAS,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq); %% TODO: More info from QP Solver
+[ALPHAS,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq,-inf,inf,X0); %% TODO: More info from QP Solver
 %W
 w0= (diag(ALPHAS)*d(:,1))'*x;
 svindex = find(ALPHAS > eps);
