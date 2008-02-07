@@ -289,7 +289,17 @@ Maquinas de Soporte Vectoriales Transductivos (TSVM) han mostrado mejoras
 
  para el problema de las TSVM La unión de estas estrategias produjeron una
  implementación que es de 4 a 8 veces mas parida que una TSVM regular para
- un problema de CT de 2.000 vectores y mas de 30.000 características.
+ un problema de TC de 2.000 vectores y mas de 30.000 características.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang spanish
+Palabras Clave
+\series default
+: Maquinas de Soporte Vectorial,Aprendizaje de Máquina, IA, Clasificación,
+ Recuperacion de Información, Paralelización.
 \end_layout
 
 \begin_layout Standard
@@ -334,6 +344,15 @@ ation tasks such as Text Categorization (TC), where the features present
 \end_layout
 
 \begin_layout Standard
+
+\series bold
+Keywords
+\series default
+: SVM, Classification, Machine Learning, Algorithm, Parallel, Information
+ Retrieval.
+\end_layout
+
+\begin_layout Standard
 \begin_inset LatexCommand tableofcontents
 
 \end_inset
@@ -343,14 +362,14 @@ ation tasks such as Text Categorization (TC), where the features present
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Standard
 POR HACER:
 \end_layout
 
 \begin_layout Standard
-- Abstract and Resume
+- Abstract and Resume *
 \end_layout
 
 \begin_layout Standard
@@ -362,7 +381,7 @@ POR HACER:
 \end_layout
 
 \begin_layout Standard
-- Experment setup
+- Experment setup *
 \end_layout
 
 \begin_layout Standard
@@ -1000,7 +1019,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Standard
-Information Retrieval system parts as described in [Keller-THESIS]
+Parts of an Information Retrieval System 
 \begin_inset LatexCommand label
 name "fig:ir-kelle"
 
@@ -1916,9 +1935,19 @@ key "Sebastiani02"
  website and the consumer the individual users that syndicate the feed.
 \end_layout
 
+\begin_layout Subsubsection*
+Automated Metadata Extraction
+\end_layout
+
 \begin_layout Standard
-TODO: List Applications such as Text Filtering, Automated metadata extraction,
- Recommender Systems, Web Search Improvements.
+In digital libraries, one is usually interested in tagging documents by
+ metadata that describes them under a variety of aspects (e.g., creation date,
+ document type or format, availability, etc.).
+ Some of this metadata is thematic, that is, its role is to describe the
+ semantics of the document by means of bibliographic codes, key words or
+ key phrases.
+ The generation of this metadata may thus be viewed as a problem of document
+ indexing with controlled dictionary, and thus tackled by means of TC techniques.
 \end_layout
 
 \begin_layout Subsection
@@ -1928,6 +1957,18 @@ Machine Learning Text Categorization Techniques
 \begin_layout Standard
 TODO: List ML Techniques such as Naive Bayes, SVM, DTress among others and
  shows some benchmarks.
+\end_layout
+
+\begin_layout Subsubsection*
+Probabilistic Classifiers
+\end_layout
+
+\begin_layout Subsubsection*
+Desition Trees Classifiers
+\end_layout
+
+\begin_layout Subsubsection*
+Support Vector Machines
 \end_layout
 
 \begin_layout Section
