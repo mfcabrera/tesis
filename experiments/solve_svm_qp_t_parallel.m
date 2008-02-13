@@ -3,10 +3,10 @@
 % also solves linear SVM
 function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,times] = solve_svm_qp_t_parallel(x,d,xnl,dnl,C,Cp,Cm) 
 
-nnorm = length(d)
+nnorm = length(d);
 nplus = length(find(dnl > 0));
 nminus = length(find(dnl < 0));
-ntotal = nnorm + nplus + nminus
+ntotal = nnorm + nplus + nminus;
 tdctive  = false; %% whether 
 
 
@@ -54,7 +54,7 @@ end
 % TRAIN WITH 4 MACHINES
 
 %% SPLIT UNLABELED DATA
-nplus;
+
 nplusp = nplus/4
 nminusp = nminus/4;
 
@@ -97,7 +97,7 @@ L4d = [ d(psize*3+1:psize*4,:); d(psize*7+1:psize*8,:)];
 
 
 %% NOW Solve the first 4 SVMs
-times = 0;
+
 % TO PARALELIZE 
 %length(U3d)
 %length(U2d)
@@ -113,7 +113,7 @@ dummyX = zeros(1,length(L1d)+length(U1d));
 
 %Second Level layer
  
-    
+
     
     
 
@@ -192,21 +192,26 @@ ltest2 = length(U1d) + length(U2d);
 [H6,f6,A6,b6,Aeq6,beq6,X6] = join_sv_results(H3,H4,ALPHAS3,ALPHAS3,[L3d;U3d],[L4d;U4d],E3,E4,East3,East4,nplusp,nminusp,C,Cp,Cm,ltrain2,ltest2);
 
 %%
-real_size = psize*2;
-svindex1 = find(svindex1 <= real_size);
-svindex2 = find(svindex2 <= real_size);
-svindex3 = find(svindex3 <= real_size);
-svindex4 = find(svindex4 <= real_size);
+real_size = psize*2
 
+svindex1l = find(svindex1 <= real_size);
+svindex2l = find(svindex2 <= real_size);
+svindex3l = find(svindex3 <= real_size);
+svindex4l = find(svindex4 <= real_size);
 
-Layer21_IV = [L1v(svindex1,:);L2v(svindex2,:)];
+svindex1u = find(svindex1 > real_size+1) - real_size;
+svindex2u = find(svindex2 > real_size+1) - real_size;
+svindex3u = find(svindex3 > real_size+1) - real_size;
+svindex4u = find(svindex4 > real_size+1) - real_size;
 
+disp(svindex1u);
 
-
+Layer21_IV = [L1v(svindex1l,:);L2v(svindex2l,:)];
+Layer21_LV = [U1v(svindex1u,:);U2v(svindex2u,:)];
 %Layer22_IV = [L1v(svindex3);L2v(svindex4)];
     
-Layer21_ID = [L1d(svindex1,:);L2d(svindex2,:)];
-Layer22_ID = [L1d(svindex3,:);L2d(svindex4,:)];
+Layer21_ID = [L1d(svindex1l,:);L2d(svindex2l,:)];
+Layer22_ID = [L1d(svindex3l,:);L2d(svindex4l,:)];
     
 length(Layer21_ID)
 length(Layer21_IV)

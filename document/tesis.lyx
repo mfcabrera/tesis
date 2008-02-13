@@ -362,7 +362,7 @@ Keywords
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Standard
 POR HACER:
@@ -1955,12 +1955,62 @@ Machine Learning Text Categorization Techniques
 \end_layout
 
 \begin_layout Standard
+The construction of Text Classifiers using an inductive approach have been
+ tackled using differents strategies, we are going to metion some of the
+ most popular approaches included the technique that we will use through
+ the rest of the text.
+ There are two ways of classify a item in a category, the 
+\begin_inset Quotes eld
+\end_inset
+
+hard
+\begin_inset Quotes erd
+\end_inset
+
+ (automated) way which is basically a binary approach and the 
+\begin_inset Quotes eld
+\end_inset
+
+soft
+\begin_inset Quotes erd
+\end_inset
+
+ o ranking (semiautomated).
+\end_layout
+
+\begin_layout Standard
+A ranking classifier is generally acomplished defining a function 
+\begin_inset Formula $CSV_{i}\,:\, D\rightarrow[0,1]$
+\end_inset
+
+ that, given a document 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+returns a categorization status value for the 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ category, returns a categorization status value for it (how much the classier
+ believes that the documenbt belong to that category) whereas the hard approiach
+ only accepts or reject a document under a defned category.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
 TODO: List ML Techniques such as Naive Bayes, SVM, DTress among others and
  shows some benchmarks.
 \end_layout
 
 \begin_layout Subsubsection*
 Probabilistic Classifiers
+\end_layout
+
+\begin_layout Standard
+The probabilistic based text classifiers are very popular, 
 \end_layout
 
 \begin_layout Subsubsection*
