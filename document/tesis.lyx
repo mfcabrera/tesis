@@ -66,14 +66,10 @@ s for Automated Text Categorization
 
 \begin_layout Author
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Standard
 
-DRAFT
-\backslash
-
-\backslash
  
 \backslash
 
@@ -1991,13 +1987,9 @@ returns a categorization status value for the
 \begin_inset Formula $c_{i}$
 \end_inset
 
- category, returns a categorization status value for it (how much the classier
- believes that the documenbt belong to that category) whereas the hard approiach
- only accepts or reject a document under a defned category.
-\end_layout
-
-\begin_layout Standard
-
+ category (how much the classier believes that the documenbt belong to that
+ category) whereas the hard approiach only accepts or reject a document
+ under a defned category.
 \end_layout
 
 \begin_layout Standard
