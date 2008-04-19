@@ -178,7 +178,7 @@ dummyX = zeros(1,length(L1d)+length(U1d));
 
 ltrain2 = length(L1d) + length(L2d);
 ltest2 = length(U1d) + length(U2d);
-%ltotal2 = ltest2 + ltrain2;
+ltotal2 = ltest2 + ltrain2;
 
 %we can made a function out of this
 
@@ -192,7 +192,11 @@ ltest2 = length(U1d) + length(U2d);
 [H6,f6,A6,b6,Aeq6,beq6,X6] = join_sv_results(H3,H4,ALPHAS3,ALPHAS3,[L3d;U3d],[L4d;U4d],E3,E4,East3,East4,nplusp,nminusp,C,Cp,Cm,ltrain2,ltest2);
 
 %%
-real_size = psize*2
+
+
+%% Eliminate the early non-support vectors
+
+real_size = psize*2;
 
 svindex1l = find(svindex1 <= real_size);
 svindex2l = find(svindex2 <= real_size);
@@ -204,20 +208,59 @@ svindex2u = find(svindex2 > real_size+1) - real_size;
 svindex3u = find(svindex3 > real_size+1) - real_size;
 svindex4u = find(svindex4 > real_size+1) - real_size;
 
-disp(svindex1u);
 
-Layer21_IV = [L1v(svindex1l,:);L2v(svindex2l,:)];
-Layer21_LV = [U1v(svindex1u,:);U2v(svindex2u,:)];
+% Variable Name Format: Layer_{LayerNumber}{SV_Number}_{Labeled or Un Labeled}{Vector or D (class)}
+Layer21_LV = [L1v(svindex1l,:);L2v(svindex2l,:)];
+Layer21_UV = [U1v(svindex1u,:);U2v(svindex2u,:)];
+Layer21_LD = [L1d(svindex1l,:);L2d(svindex2l,:)];
+Layer21_UD = [U1d(svindex1u,:);U2d(svindex2u,:)];
+
+Layer22_LV = [L3v(svindex3l,:);L3v(svindex3l,:)];
+Layer22_UV = [U3v(svindex3u,:);U3v(svindex3u,:)];
+Layer22_LD = [L4d(svindex4l,:);L4d(svindex4l,:)];
+Layer22_UD = [U4d(svindex4u,:);U4d(svindex4u,:)];
+
+
 %Layer22_IV = [L1v(svindex3);L2v(svindex4)];
-    
-Layer21_ID = [L1d(svindex1l,:);L2d(svindex2l,:)];
-Layer22_ID = [L1d(svindex3l,:);L2d(svindex4l,:)];
-    
-length(Layer21_ID)
-length(Layer21_IV)
+%disp('Size of Layer21_LV');
+%disp(length(Layer21_LV(1,:)));
+%disp(length(Layer21_LD(:,1)));
+%disp(length(Layer21_UV(1,:)));
+%disp(length(Layer21_UD(:,1)));
+%disp('X5 = ');
+%disp(length(X5));
+
+%% FIXME:  HACK:Dirty hack, we do not calculate the X0 again from the svs , we just eliminate
+%   resize the original 
+layer21l_size = length(Layer21_LD(:,1));
+layer21u_size =  length(Layer21_UD(:,1));
+layer22l_size = length(Layer22_LD(:,1));
+layer22u_size =  length(Layer22_UD(:,1));
+
+X0_21 = X5(1: layer21l_size + layer21u_size);
+X0_22 = X6(1: layer22l_size + layer22u_size);
+
+[w5,b5,nsv5,ALPHAS5,svindex5,E5,East5,exitflag5,H5] = solve_svm_qp_t(Layer21_LV,Layer21_LD,Layer21_UV,Layer21_UD,C,Cp,Cm,X0_21);
+[w6,b6,nsv6,ALPHAS6,svindex6,E6,East6,exitflag6,H6] = solve_svm_qp_t(Layer22_LV,Layer22_LD,Layer22_UV,Layer22_UD,C,Cp,Cm,X0_22);
+
+%% Remove one more time early support vectors
+%% Solve the last Layer with the reduced vectors 
+
+sv5lnumber = length(svindex1l) + length(svindex2l);
+sv6lnumber = length(svindex3l) + length(svindex4l);
+sv5unumber = length(svindex1u) + length(svindex2u);
+sv6unumber = length(svindex3u) + length(svindex4u);
+
+% Tengo que unir 6 y7 en uno solo y correrlo!
+svindex5l  = find(svindex5 <= sv5lnumber);
+svindex6l =  find(svindex6 <= sv6lnumber);
+
+svindex5u  = find(svindex5 > sv5unumber) - sv5unumber; 
+svindex6u =  find(svindex6 > sv6unumber) - sv6unumber;
 
 
-solve_svm_qp_t(Layer21_IV,Layer21_ID,[U1v;U2v],[U1d;U2d],C,Cp,Cm,X5)
+
+
 
 
 %% Solve the second layer
@@ -229,16 +272,14 @@ solve_svm_qp_t(Layer21_IV,Layer21_ID,[U1v;U2v],[U1d;U2d],C,Cp,Cm,X5)
 %exitflag5 = EF{1};
 %exitflag6 = EF{2};
 
-tic;
-[ALPHAS5,fval,exitflag5]=quadprog(H5,f5,A5,b5,Aeq5,beq5,-inf,inf,X5);
-times = times + toc;
-[ALPHAS6,fval,exitflag6]=quadprog(H6,f6,A6,b6,Aeq6,beq6,-inf,inf,X6);
+%[ALPHAS5,fval,exitflag5]=quadprog(H5,f5,A5,b5,Aeq5,beq5,-inf,inf,X5);
+%[ALPHAS6,fval,exitflag6]=quadprog(H6,f6,A6,b6,Aeq6,beq6,-inf,inf,X6);
 
 %% LAST LAYER
-tic;
-[H7,f7,A7,b7,Aeq7,beq7,X7] = join_sv_results(H5,H6,ALPHAS5,ALPHAS6,[L1d;U1d;L2d;U2d],[L3d;U3d;L4d;U4d],[E1 E2],[E3 E4],[East1 East2],[East3 East4],nplusp*2,nminusp*2,C,Cp,Cm,ltrain2*2,ltest2*2);
-[ALPHAS,fval,exitflag]=quadprog(H7,f7,A7,b7,Aeq7,beq7,-inf,inf,X7);
-times  = times + toc;
+
+%[H7,f7,A7,b7,Aeq7,beq7,X7] = join_sv_results(H5,H6,ALPHAS5,ALPHAS6,[L1d;U1d;L2d;U2d],[L3d;U3d;L4d;U4d],[E1 E2],[E3 E4],[East1 East2],[East3 East4],nplusp*2,nminusp*2,C,Cp,Cm,ltrain2*2,ltest2*2);
+%[ALPHAS,fval,exitflag]=quadprog(H7,f7,A7,b7,Aeq7,beq7,-inf,inf,X7);
+
 
 xt = [x;xnl]; %x for training
 dt = [d;dnl]; %d for training   

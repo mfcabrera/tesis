@@ -26,7 +26,7 @@ East = zeros(1,nnl);
 
 
 if(nplus > 0 && nminus > 0) 
-    tdctive  = true;  
+    tdctive  = true ;
 end
     
 %Transductive???|
@@ -75,7 +75,7 @@ w0= (diag(ALPHAS)*d(:,1))'*x;
 svindex = find(ALPHAS > eps);
 if(numel(svindex) > 0)
     nsv = length(find(ALPHAS > eps));
-    b0 = 1 - w0*x(svindex(1),:)' % Calculted with any svm
+    b0 = 1 - w0*x(svindex(1),:)'  ;% Calculted with any svm
 else
     b0 = 0;
     nsv = 0;
