@@ -251,16 +251,28 @@ sv6lnumber = length(svindex3l) + length(svindex4l);
 sv5unumber = length(svindex1u) + length(svindex2u);
 sv6unumber = length(svindex3u) + length(svindex4u);
 
-% Tengo que unir 6 y7 en uno solo y correrlo!
+% Tengo que unir 5 y 6 en uno solo y correrlo!
 svindex5l  = find(svindex5 <= sv5lnumber);
 svindex6l =  find(svindex6 <= sv6lnumber);
 
 svindex5u  = find(svindex5 > sv5unumber) - sv5unumber; 
 svindex6u =  find(svindex6 > sv6unumber) - sv6unumber;
 
+% Join the sets 
+
+Layer3LV = [Layer21_LV(svindex5l,:);Layer22_LV(svindex6l,:)];
+Layer3UV = [Layer21_UV(svindex5u,:);Layer22_UV(svindex6u,:)];
+Layer3LD = [Layer21_LD(svindex5l,:);Layer22_LD(svindex6l,:)];
+Layer3UD = [Layer21_UD(svindex5u,:);Layer22_UD(svindex6u,:)];
 
 
+%% FIXME:  HACK:Dirty hack, we do not calculate the X0 again from the svs , we just eliminate
+%   resize the original 
+layer3l_size = length(Layer3LD(:,1));
+layer3u_size =  length(Layer3UD(:,1));
+X03= X5(1: layer3l_size + layer3u_size);
 
+[w5,b5,nsv5,ALPHAS5,svindex5,E5,East5,exitflag5,H5] = solve_svm_qp_t(Layer21_LV,Layer21_LD,Layer21_UV,Layer21_UD,C,Cp,Cm,X0_21);
 
 
 %% Solve the second layer
