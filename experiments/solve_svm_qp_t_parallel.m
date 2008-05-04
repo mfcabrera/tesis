@@ -256,7 +256,7 @@ svindex5l  = find(svindex5 <= sv5lnumber);
 svindex6l =  find(svindex6 <= sv6lnumber);
 
 disp('svindex5l and svindex5u');
-svindex5u  = find(svindex5 > sv5unumber) - sv5unumber;
+svindex5u  = find(svindex5 > sv5unumber);
 svindex6u =  find(svindex6 > sv6unumber);
 
 disp(svindex6u);
