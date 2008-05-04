@@ -255,8 +255,12 @@ sv6unumber = length(svindex3u) + length(svindex4u);
 svindex5l  = find(svindex5 <= sv5lnumber);
 svindex6l =  find(svindex6 <= sv6lnumber);
 
-svindex5u  = find(svindex5 > sv5unumber) - sv5unumber; 
-svindex6u =  find(svindex6 > sv6unumber) - sv6unumber;
+disp('svindex5l and svindex5u');
+svindex5u  = find(svindex5 > sv5unumber) - sv5unumber;
+svindex6u =  find(svindex6 > sv6unumber);
+
+disp(svindex6u);
+disp(sv6unumber);
 
 % Join the sets 
 
@@ -272,7 +276,7 @@ layer3l_size = length(Layer3LD(:,1));
 layer3u_size =  length(Layer3UD(:,1));
 X03= X5(1: layer3l_size + layer3u_size);
 
-[w5,b5,nsv5,ALPHAS5,svindex5,E5,East5,exitflag5,H5] = solve_svm_qp_t(Layer21_LV,Layer21_LD,Layer21_UV,Layer21_UD,C,Cp,Cm,X0_21);
+[w7,b7,nsv7,ALPHAS7,svindex7,E7,East7,exitflag7,H7] = solve_svm_qp_t(Layer3LV,Layer3LD,Layer3UV,LayerUD,C,Cp,Cm,X0_3);
 
 
 %% Solve the second layer
