@@ -29,6 +29,10 @@ PDF=miguel_resume.pdf
 SRC=miguel_resume.tex
 
 
+NAME_ESCO=miguel_resume_co_spanish.dvi
+PDF_ESCO=miguel_resume_co_spanish.pdf
+SRC_ESCO=miguel_resume_co_spanish.tex
+
 ##############################
 # Basic Compile Instructions #
 ##############################
@@ -42,3 +46,7 @@ pdf:	$(PDF)
 $(PDF): $(SRC)  
 	pdflatex $(SRC) && evince $(PDF)
 
+
+pdf_esco:$(PDF_ESCO)
+$(PDF_ESCO): $(SRC_ESCO)  
+	pdflatex $(SRC_ESCO) && evince $(PDF_ESCO)
