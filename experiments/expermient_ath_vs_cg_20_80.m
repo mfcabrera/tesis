@@ -5,15 +5,15 @@
 %load('csm_test_vec.data');
 %load('csm_test_lab.data');
 
-%load('ath_vs_cg_test_vec.data');
-%ath_vs_cg_test_vec_sp = sparse(ath_vs_cg_test_vec);
-%clear ath_vs_cg_test_vec;
-%load('ath_vs_cg_test_lab.data');
+load('ath_vs_cg_test_vec.data');
+ath_vs_cg_test_vec_sp = sparse(ath_vs_cg_test_vec);
+clear ath_vs_cg_test_vec;
+load('ath_vs_cg_test_lab.data');
 
-%load('ath_vs_cg_train_vec.data');
-%ath_vs_cg_train_vec_sp = sparse(ath_vs_cg_train_vec);
-%clear ath_vs_cg_train_vec;
-%load('ath_vs_cg_train_lab.data');
+load('ath_vs_cg_train_vec.data');
+ath_vs_cg_train_vec_sp = sparse(ath_vs_cg_train_vec);
+clear ath_vs_cg_train_vec;
+load('ath_vs_cg_train_lab.data');
 
 
 

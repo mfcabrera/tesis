@@ -1,9 +1,10 @@
+%%
 % Solve SVM
 % Altough specialized for Linear TSVM with the right parameters
 % also solves linear SVM
 function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,times] = solve_svm_qp_t_parallel(x,d,xnl,dnl,C,Cp,Cm) 
 
-nnorm = length(d);
+nnorm = length(d)
 nplus = length(find(dnl > 0));
 nminus = length(find(dnl < 0));
 ntotal = nnorm + nplus + nminus;
@@ -198,19 +199,20 @@ ltotal2 = ltest2 + ltrain2;
 
 real_size = psize*2;
 
-svindex1l = find(svindex1 <= real_size);
-svindex2l = find(svindex2 <= real_size);
-svindex3l = find(svindex3 <= real_size);
-svindex4l = find(svindex4 <= real_size);
+svindex1l = svindex1(find(svindex1 <= real_size));
+svindex2l = svindex2(find(svindex2 <= real_size));
+svindex3l = svindex3(find(svindex3 <= real_size));
+svindex4l = svindex4(find(svindex4 <= real_size));
 
-svindex1u = find(svindex1 > real_size+1) - real_size;
-svindex2u = find(svindex2 > real_size+1) - real_size;
-svindex3u = find(svindex3 > real_size+1) - real_size;
-svindex4u = find(svindex4 > real_size+1) - real_size;
+svindex1u = svindex1(find(svindex1 > real_size+1)) - real_size;
+svindex2u = svindex2(find(svindex2 > real_size+1)) - real_size;
+svindex3u = svindex3(find(svindex3 > real_size+1)) - real_size;
+svindex4u = svindex4(find(svindex4 > real_size+1)) - real_size;
 
 
 % Variable Name Format: Layer_{LayerNumber}{SV_Number}_{Labeled or Un Labeled}{Vector or D (class)}
-Layer21_LV = [L1v(svindex1l,:);L2v(svindex2l,:)];
+%% Añadirle los sizes de estos locos aca
+Layer21_LV = [L1v(svindex1l,:);L2v(svindex2l,:)];   
 Layer21_UV = [U1v(svindex1u,:);U2v(svindex2u,:)];
 Layer21_LD = [L1d(svindex1l,:);L2d(svindex2l,:)];
 Layer21_UD = [U1d(svindex1u,:);U2d(svindex2u,:)];
@@ -232,10 +234,13 @@ Layer22_UD = [U4d(svindex4u,:);U4d(svindex4u,:)];
 
 %% FIXME:  HACK:Dirty hack, we do not calculate the X0 again from the svs , we just eliminate
 %   resize the original 
-layer21l_size = length(Layer21_LD(:,1));
-layer21u_size =  length(Layer21_UD(:,1));
-layer22l_size = length(Layer22_LD(:,1));
-layer22u_size =  length(Layer22_UD(:,1));
+layer21l_size = length(Layer21_LD(:,1))
+layer21u_size =  length(Layer21_UD(:,1))
+layer22l_size = length(Layer22_LD(:,1))
+layer22u_size =  length(Layer22_UD(:,1))
+
+layer21size = layer21l_size + layer21u_size;
+layer22size = layer22l_size +layer22u_size;
 
 X0_21 = X5(1: layer21l_size + layer21u_size);
 X0_22 = X6(1: layer22l_size + layer22u_size);
@@ -245,25 +250,18 @@ X0_22 = X6(1: layer22l_size + layer22u_size);
 
 %% Remove one more time early support vectors
 %% Solve the last Layer with the reduced vectors 
-
-sv5lnumber = length(svindex1l) + length(svindex2l);
-sv6lnumber = length(svindex3l) + length(svindex4l);
-sv5unumber = length(svindex1u) + length(svindex2u);
-sv6unumber = length(svindex3u) + length(svindex4u);
-
 % Tengo que unir 5 y 6 en uno solo y correrlo!
-svindex5l  = find(svindex5 <= sv5lnumber);
-svindex6l =  find(svindex6 <= sv6lnumber);
 
-disp('svindex5l and svindex5u');
-svindex5u  = find(svindex5 > sv5unumber);
-svindex6u =  find(svindex6 > sv6unumber);
+svindex5l = svindex5(find(svindex5 <= layer21l_size))
+svindex6l = svindex6(find(svindex6 <= layer22l_size))
+disp('svindex5u and svindex5u');
+svindex5u  = svindex5(find(svindex5 > layer21l_size + 1)) - layer21l_size
+svindex6u = svindex6(find(svindex6 > layer22l_size + 1))  - layer22l_size
 
-disp(svindex6u);
-disp(sv6unumber);
+
+
 
 % Join the sets 
-
 Layer3LV = [Layer21_LV(svindex5l,:);Layer22_LV(svindex6l,:)];
 Layer3UV = [Layer21_UV(svindex5u,:);Layer22_UV(svindex6u,:)];
 Layer3LD = [Layer21_LD(svindex5l,:);Layer22_LD(svindex6l,:)];
@@ -274,9 +272,10 @@ Layer3UD = [Layer21_UD(svindex5u,:);Layer22_UD(svindex6u,:)];
 %   resize the original 
 layer3l_size = length(Layer3LD(:,1));
 layer3u_size =  length(Layer3UD(:,1));
-X03= X5(1: layer3l_size + layer3u_size);
+X3 = [X5;X6];
+X0_3= X3(1:(layer3l_size + layer3u_size));
 
-[w7,b7,nsv7,ALPHAS7,svindex7,E7,East7,exitflag7,H7] = solve_svm_qp_t(Layer3LV,Layer3LD,Layer3UV,LayerUD,C,Cp,Cm,X0_3);
+[w7,b7,nsv7,ALPHAS7,svindex7,E7,East7,exitflag7,H7] = solve_svm_qp_t(Layer3LV,Layer3LD,Layer3UV,Layer3UD,C,Cp,Cm,X0_3);
 
 
 %% Solve the second layer
@@ -296,15 +295,19 @@ X03= X5(1: layer3l_size + layer3u_size);
 %[H7,f7,A7,b7,Aeq7,beq7,X7] = join_sv_results(H5,H6,ALPHAS5,ALPHAS6,[L1d;U1d;L2d;U2d],[L3d;U3d;L4d;U4d],[E1 E2],[E3 E4],[East1 East2],[East3 East4],nplusp*2,nminusp*2,C,Cp,Cm,ltrain2*2,ltest2*2);
 %[ALPHAS,fval,exitflag]=quadprog(H7,f7,A7,b7,Aeq7,beq7,-inf,inf,X7);
 
+disp('Y Cual es el tamanyo de los aphas?');
+length(ALPHAS7)
+
 
 xt = [x;xnl]; %x for training
 dt = [d;dnl]; %d for training   
-w0= (diag(ALPHAS)*dt(:,1))'*xt;
-svindex = find(ALPHAS > eps);
+w0 = w7;
+%w0= (diag(ALPHAS)*dt(:,1))'*xt;
+svindex = find(ALPHAS7 > eps);
 
-if(numel(svindex) > 0)
-    nsv = length(find(ALPHAS > eps));
-    b0 = 1 - w0*x(svindex(1),:)' % Calculted with any svm
+if(numel(svindex7) > 0)
+    nsv = length(find(ALPHAS7 > eps));
+    b0 = 1 - w0*x(svindex7(1),:)' % Calculted with any svm
 else
     b0 = 0;
     nsv = 0;

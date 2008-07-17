@@ -115,8 +115,5 @@ if(tdctive)
     end    
    end 
 end
-aja=1
-length(East)
-length(E)
 
 
