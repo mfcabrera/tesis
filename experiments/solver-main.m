@@ -1,4 +1,4 @@
-%% Transductive Solver
+ %% Transductive Solver
 %%
 %%
 
@@ -12,7 +12,7 @@ A = -diag(ones(length(Y),1));
 %%A = [A;labels'];
 b = zeros(length(labels),1);
 %Aeq*x = beq.
-Aeq = [labels'];
+Aeq = [labels']; 
 beq = [0];
 
 

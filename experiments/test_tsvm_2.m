@@ -9,10 +9,10 @@ load('csm_test_lab.data');
 %ld = csm_train_lab;
 
 
-lx = csm_train_vec(1:32,:);
-lx = [lx;csm_train_vec(101:132,:)];
-ld  = csm_train_lab(1:32,:);
-ld = [ld;csm_train_lab(101:132,:)];
+lx = csm_train_vec(1:16,:);
+lx = [lx;csm_train_vec(101:116,:)];
+ld  = csm_train_lab(1:16,:);
+ld = [ld;csm_train_lab(101:116,:)];
 
 
 ulx = csm_test_vec;
@@ -28,20 +28,21 @@ x = csm_train_vec; %% train vectors
 testd = csm_test_lab; %% train data
 
 %inductive
-%tic;
-%[w0,b0,nsv] = solve_svm_qp_t(lx,ld,0,0,10,0,0);
-%abels_i = svm_classify(w0,b0,ulx);
-%tinducitve = toc
+tic;
+[w0,b0,nsv] = solve_svm_qp_t(lx,ld,0,0,10,0,0,0);
+labels_i = svm_classify(w0,b0,ulx);
+tinducitve = toc
 
 %transductive
 tic;
-labels_t = tsvm(lx,ld,ulx,10,10);
+labels_t = tsvm(lx,ld,ulx,10,5);
 ttrans = toc
 
-tic;
 %transductive parallell
-labels_tp = tsvm_parallel(lx,ld,ulx,10,10);
-ttrans_p = toc
+%tic;
+%labels_tp = tsvm_parallel(lx,ld,ulx,10,5);
+%ttrans_p = toc;
+
 
 %% Results Inductive
 ri = recall(labels_i,testd)
@@ -58,6 +59,6 @@ ft = (2*rt*pt)/(rt+pt)
 %rtp = recall(labels_tp,testd)
 %ptp = precision(labels_tp,testd)
 %ftp = (2*rtp*ptp)/(rtp+ptp)
-
+%transductive parallell%transductive parallell%transductive parallell%
 
 

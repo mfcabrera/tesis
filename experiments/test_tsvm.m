@@ -7,7 +7,7 @@ load('csm_test_lab.data');
 
 lx = csm_train_vec;
 ld = csm_train_lab;
-
+ 
 %lx = [lx;csm_train_vec(101:110,:)];
 %lx  = csm_train_lab(1:10,:);
 %ld = [ld;csm_train_lab(101:110,:)];
@@ -21,7 +21,7 @@ x = csm_train_vec; %% train vectors
 testd = csm_test_lab; %% train data
 
 %inductive
-[w0,b0,nsv] = solve_svm_qp_t(lx,ld,0,0,10,0,0);
+[w0,b0,nsv] = solve_svm_qp_t(lx,ld,0,0,10,0,0,0);
 labels_i = svm_classify(w0,b0,ulx);
 
 %transductive

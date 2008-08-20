@@ -2,13 +2,14 @@
 % Solve SVM
 % Altough specialized for Linear TSVM with the right parameters
 % also solves linear SVM
-function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,times] = solve_svm_qp_t_parallel(x,d,xnl,dnl,C,Cp,Cm) 
+function [w0,b0,nsv,ALPHAS1234orig,svindex,E,East,exitflag7,times] = solve_svm_qp_t_parallel(x,d,xnl,dnl,C,Cp,Cm) 
 
 nnorm = length(d)
 nplus = length(find(dnl > 0));
 nminus = length(find(dnl < 0));
-ntotal = nnorm + nplus + nminus;
+ntotal = nnorm + nplus + nminus
 tdctive  = false; %% whether 
+times = 0
 
 
 %% Dummy values
@@ -92,7 +93,7 @@ L3v = [ x(psize*2+1:psize*3,:); x(psize*6+1:psize*7,:)];
 L3d = [ d(psize*2+1:psize*3,:); d(psize*6+1:psize*7,:)];
 %PART 4
 L4v = [ x(psize*3+1:psize*4,:); x(psize*7+1:psize*8,:)];
-L4d = [ d(psize*3+1:psize*4,:); d(psize*7+1:psize*8,:)];
+L4d = [ d(psize*3+1:psize*4,:); d(psize*7+1:psize*8,:)]; 
 
 %% FIRST LAYER OF SVM
 
@@ -114,9 +115,7 @@ dummyX = zeros(1,length(L1d)+length(U1d));
 
 %Second Level layer
  
-
-    
-    
+   
 
 
 %w1 = W{2};
@@ -177,6 +176,9 @@ dummyX = zeros(1,length(L1d)+length(U1d));
 % [w4,b4,nsv4,ALPHAS4,svindex4,E4,East4,exitflag4,H4] = solve_svm_qp_t(C);
 % TO PARALELIZE 
 
+ALPHAS1234orig = [ALPHAS1' ALPHAS2' ALPHAS3'  ALPHAS4'];
+%ALPHAS1234orig = ALPHAS1234orig';
+
 ltrain2 = length(L1d) + length(L2d);
 ltest2 = length(U1d) + length(U2d);
 ltotal2 = ltest2 + ltrain2;
@@ -189,6 +191,10 @@ ltotal2 = ltest2 + ltrain2;
 % LETS JOIN THE SV 
 %l = length(H1)/2;
 % CREATE THE PROBLEM FORMULATIOn
+
+%ALPHAS = [ALPHAS1; ALPHAS2; ALPHAS3; ALPHAS4]    
+
+
 [H5,f5,A5,b5,Aeq5,beq5,X5] = join_sv_results(H1,H2,ALPHAS1,ALPHAS2,[L1d;U1d],[L2d;U2d],E1,E2,East1,East2,nplusp,nminusp,C,Cp,Cm,ltrain2,ltest2);
 [H6,f6,A6,b6,Aeq6,beq6,X6] = join_sv_results(H3,H4,ALPHAS3,ALPHAS3,[L3d;U3d],[L4d;U4d],E3,E4,East3,East4,nplusp,nminusp,C,Cp,Cm,ltrain2,ltest2);
 
@@ -223,6 +229,8 @@ Layer22_LD = [L4d(svindex4l,:);L4d(svindex4l,:)];
 Layer22_UD = [U4d(svindex4u,:);U4d(svindex4u,:)];
 
 
+svindex12l = [svindex1l;svindex2l+real_size]
+
 %Layer22_IV = [L1v(svindex3);L2v(svindex4)];
 %disp('Size of Layer21_LV');
 %disp(length(Layer21_LV(1,:)));
@@ -252,11 +260,14 @@ X0_22 = X6(1: layer22l_size + layer22u_size);
 %% Solve the last Layer with the reduced vectors 
 % Tengo que unir 5 y 6 en uno solo y correrlo!
 
-svindex5l = svindex5(find(svindex5 <= layer21l_size))
-svindex6l = svindex6(find(svindex6 <= layer22l_size))
+
+ALPHAS56orig = [ALPHAS5;ALPHAS6]
+
+svindex5l = svindex5(find(svindex5 <= layer21l_size));
+svindex6l = svindex6(find(svindex6 <= layer22l_size));
 disp('svindex5u and svindex5u');
-svindex5u  = svindex5(find(svindex5 > layer21l_size + 1)) - layer21l_size
-svindex6u = svindex6(find(svindex6 > layer22l_size + 1))  - layer22l_size
+svindex5u  = svindex5(find(svindex5 > layer21l_size + 1)) - layer21l_size;
+svindex6u = svindex6(find(svindex6 > layer22l_size + 1))  - layer22l_size;
 
 
 
@@ -278,6 +289,18 @@ X0_3= X3(1:(layer3l_size + layer3u_size));
 [w7,b7,nsv7,ALPHAS7,svindex7,E7,East7,exitflag7,H7] = solve_svm_qp_t(Layer3LV,Layer3LD,Layer3UV,Layer3UD,C,Cp,Cm,X0_3);
 
 
+ALPHAS56orig(:) = 0.0000;
+ALPHAS56orig(svindex7) = ALPHAS7(svindex7);
+
+
+svindex56 = [svindex5;svindex5+length(svindex6)];
+ALPHAS1234orig(:) = 0.0000;
+ALPHAS1234orig(svindex56) = ALPHAS56orig(svindex56);
+length(ALPHAS1234orig);
+ 
+
+
+
 %% Solve the second layer
 
 %[AL,FVAL,EF] = dfeval(@quadprog,{H5,H6},{f5,f6},{A5,A6},{b5,b6},{Aeq5,Aeq6},{beq5,beq6},{-inf,-inf},{inf,inf},{X5,X6},'Configuration', 'local');
@@ -295,26 +318,23 @@ X0_3= X3(1:(layer3l_size + layer3u_size));
 %[H7,f7,A7,b7,Aeq7,beq7,X7] = join_sv_results(H5,H6,ALPHAS5,ALPHAS6,[L1d;U1d;L2d;U2d],[L3d;U3d;L4d;U4d],[E1 E2],[E3 E4],[East1 East2],[East3 East4],nplusp*2,nminusp*2,C,Cp,Cm,ltrain2*2,ltest2*2);
 %[ALPHAS,fval,exitflag]=quadprog(H7,f7,A7,b7,Aeq7,beq7,-inf,inf,X7);
 
-disp('Y Cual es el tamanyo de los aphas?');
-length(ALPHAS7)
-
 
 xt = [x;xnl]; %x for training
 dt = [d;dnl]; %d for training   
-w0 = w7;
-%w0= (diag(ALPHAS)*dt(:,1))'*xt;
-svindex = find(ALPHAS7 > eps);
+%w0 = w7;
+w0= (diag(ALPHAS1234orig)*dt(:,1))'*xt;
+svindex = find(ALPHAS1234orig > eps);
 
-if(numel(svindex7) > 0)
-    nsv = length(find(ALPHAS7 > eps));
-    b0 = 1 - w0*x(svindex7(1),:)' % Calculted with any svm
+if(numel(svindex) > 0)
+    nsv = length(svindex);
+    b0 = 1 - w0*x(svindex(1),:)' % Calculted with any svm
 else
     b0 = 0;
     nsv = 0;
 end
 
 for i = 1:nnorm
-    if(ALPHAS(i) <= eps)
+    if(ALPHAS1234orig(i) <= eps)
         E(i) = 0;
     else
         
@@ -329,7 +349,7 @@ for i = 1:nnorm
 end
 if(tdctive) 
    for i = (nnorm+1):(nplus+nminus)
-    if(ALPHAS(i) <= eps)
+    if(ALPHAS1234orig(i) <= eps)
         E(i-nnorm) = 0;
     else
 %       length(xt(i,:)')

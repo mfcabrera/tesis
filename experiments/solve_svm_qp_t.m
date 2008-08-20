@@ -9,6 +9,9 @@ nplus = length(find(dnl > 0));
 nminus = length(find(dnl < 0));
 tdctive  = false; %% whether 
 
+if(X0 == 0)
+    X0 = zeros(1,nnorm+nplus+nminus);    
+end
 
 %% Dummy values
 %nnorm
@@ -33,13 +36,10 @@ end
 if(tdctive) 
     x = [x;xnl]; %x for training
     d = [d;dnl]; %d for training   
-else
-    x = x;
-    d= d;
 end
 
 Y = diag(d);  %% di (labels)
-n = length(d) % number of training data
+n = length(d); % number of training data
 H = Y*(x*x')*Y; %% Linear Kernel 
 f = -1*ones(nnorm,1)';
 
@@ -66,10 +66,11 @@ beq = [0];
 
 faval = 0;
 exitflag =0;
+X0 = zeros(1,nnorm+nminus+nplus);
 
 %% Fetch the support vector and calculate w0 and b0 and the error vector
 
-[ALPHAS,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq,-inf,inf,X0); %% TODO: More info from QP Solver
+[ALPHAS,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq); %,-inf,inf,X0); %% TODO: More info from QP Solver
 %W
 w0= (diag(ALPHAS)*d(:,1))'*x;
 svindex = find(ALPHAS > eps);
@@ -90,12 +91,11 @@ for i = 1:nnorm
        
     else
         
-      e = 1 - d(i)*(w0*x(i,:)' + b0);
-      
+      e = 1 - d(i)*(w0*x(i,:)' + b0);     
 
        
     E(i) = e;
-    end
+    end 
     
 end
 if(tdctive) 
@@ -106,14 +106,15 @@ if(tdctive)
 %       length(xt(i,:)')
 %      length(dt(i,:)')
 %      length(w0)
-       e = 1 - d(i)*(w0*x(i,:)' + b0) ;
+       e = 1 - d(i)*(w0*x(i,:)' + b0); 
        
-       if(e < 0) % never happens, only happens when ALPHA(i) == 0
-           e = 0;   % here just for checkin   
-       end
-     East(i-nnorm) = e; 
+     % if(e < 0) % never happens, only happens when ALPHA(i) == 0
+     %      e = 0;   % here just for checkin   
+     % end
+    % East(i-nnorm) = abs(e); 
     end    
    end 
 end
 
 
+East

@@ -10,7 +10,8 @@
 function [predicted_labels] = tsvm(x,d,xnl,C,Cast) 
 
 %% Solve the liner inductive case for the trainining case
-[w0,b0,nsv,ALPHAS,svindex,E,East] = solve_svm_qp_t(x,d,0,0,C,0,0);
+
+[w0,b0,nsv,ALPHAS,svindex,E,East] = solve_svm_qp_t(x,d,0,0,C,0,0,0);
 
 
 %% Classify the test valyues using <w,b>. The num+ test example with the
@@ -35,7 +36,7 @@ length(neglidx);
 
 yast = zeros(1,ntest)';
 yast(poslidx) = 1;
-yast(neglidx) = -1;
+yast(neglidx) = -1; 
 l(poslidx);
 
 CaP = 10e-3; %% some small numbers
@@ -44,7 +45,7 @@ CaN = 10e-3;
 %% Main looop
 while ((CaN < Cast) || (CaP < Cast)) %loop 1
   
-  [w1,b1,nsv,ALPHAS,svindex,E,East,outflag] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN);
+  [w1,b1,nsv,ALPHAS,svindex,E,East,outflag] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN,0);
   
   in = 1;
   while(in > 0)
@@ -55,13 +56,14 @@ while ((CaN < Cast) || (CaP < Cast)) %loop 1
                    %INSIDE=666
                    yast(m) = -yast(m); %% take a positive and negative test
                    yast(i) = -yast(i); %% switch their labels and retrain
-                   [w1,b1,nsv,ALPHAS,svindex,E,East,outflag] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN); 
-                   if(outflag == 0)
+                   [w1,b1,nsv,ALPHAS,svindex,E,East,outflag] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN,0); 
+                  % if(outflag == 0)
+                       
                          % can be solved with this values of C
                          % so we augment them.
-                         CaN = min(CaN*2,Cast);
-                         CaP = min(CaP*2,Cast); 
-                   end
+                    %     CaN = min(CaN*2,Cast);
+                   %      CaP = min(CaP*2,Cast); 
+                  % end
                    in = in + 1;
                end    
                

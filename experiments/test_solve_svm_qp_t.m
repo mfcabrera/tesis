@@ -33,7 +33,7 @@ uld = [uld;csm_test_lab(101:150,:)];
 C  = 8;
 Cp = 10;
 Cm = 10;
-
+ 
 
 [w0,b0,nsv] = solve_svm_qp_t(lx,ld,0,0,10,0,0);
 %nsv
