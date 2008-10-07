@@ -3,21 +3,26 @@
 % also solves linear SVM
 function [w0,b0,nsv,ALPHAS,svindex,E,East,exitflag,H] = solve_svm_qp_t(x,d,xnl,dnl,C,Cp,Cm,X0) 
 
+
+fprintf ( 'Entering SOLVE_SVM_QP_T \n')
+fprintf ( '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n')
+
+
 nnorm = length(d)
 nnl = length(dnl);
 nplus = length(find(dnl > 0));
 nminus = length(find(dnl < 0));
-tdctive  = false; %% whether 
+tdctive  = false; %% whether is transductive or not
 
 if(X0 == 0)
     X0 = zeros(1,nnorm+nplus+nminus);    
 end
 
-%% Dummy values
+%% Dummy values for epsilon  and Epsilo askt
 %nnorm
 %nplus+nminus
 E = zeros(1,nnorm);
-le =  length(E)
+le =  length(E);
 East = zeros(1,nnl);
 %%b0 is the offset
 %%b is the matrix b in
@@ -25,8 +30,6 @@ East = zeros(1,nnl);
 
 %%  Formula A*x = b.
 %   For now normal Transductive
-
-
 
 if(nplus > 0 && nminus > 0) 
     tdctive  = true ;
@@ -52,13 +55,17 @@ if(tdctive)
     b = zeros(nnorm+nminus+nplus,1);
     b = [b;C.*ones(nnorm,1);Cp.*ones(nplus,1); Cm.*ones(nminus,1) ];
     %A = [A;diag(ones(nplus,1))];
-else
-    
+else    
     A = -diag(ones(nnorm,1));
     A = [A;-A]; %Error bound
     b = zeros(nnorm,1);
     b = [b;C.*ones(nnorm,1)];
 end
+
+% Add small amount of zero order regularization
+% to avoid problems when Hessian is badly conditioned.
+H = H + 1e-10*eye(size(H));
+
 
 % Formula Aeq*x = beq.
 Aeq = [d'];
@@ -70,8 +77,11 @@ X0 = zeros(1,nnorm+nminus+nplus);
 
 %% Fetch the support vector and calculate w0 and b0 and the error vector
 
-[ALPHAS,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq); %,-inf,inf,X0); %% TODO: More info from QP Solver
+[ALPHAS,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq);%,-inf,inf,X0); %% TODO: More info from QP Solver
 %W
+if(exitflag ~= 1)
+  fprintf ( 'Cannot solve this problem\n')
+end
 w0= (diag(ALPHAS)*d(:,1))'*x;
 svindex = find(ALPHAS > eps);
 if(numel(svindex) > 0)
@@ -83,7 +93,7 @@ else
 end
    
 
-%% calculate the error for all both E and Easkt
+%% calculate the E? for all both E and Easkt
 for i = 1:nnorm
  %    i = i
     if(ALPHAS(i) <= eps)
@@ -92,7 +102,9 @@ for i = 1:nnorm
     else
         
       e = 1 - d(i)*(w0*x(i,:)' + b0);     
-
+      if(e == 0)
+            e = 0;
+      end
        
     E(i) = e;
     end 
@@ -106,15 +118,20 @@ if(tdctive)
 %       length(xt(i,:)')
 %      length(dt(i,:)')
 %      length(w0)
-       e = 1 - d(i)*(w0*x(i,:)' + b0); 
+       e = 1 - d(i)*(w0*x(i,:)' + b0);
+    
+     %  if(e == 0)
+     %       e = 0;
+     %  end
        
-     % if(e < 0) % never happens, only happens when ALPHA(i) == 0
-     %      e = 0;   % here just for checkin   
-     % end
-    % East(i-nnorm) = abs(e); 
+       
+     if(e < 0) 
+           e = 0;  
+      end
+     East(i-nnorm) = e; 
     end    
    end 
 end
 
 
-East
+%East

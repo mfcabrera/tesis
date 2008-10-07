@@ -381,7 +381,11 @@ POR HACER:
 \end_layout
 
 \begin_layout Standard
-- Text Categorization with SVM 
+- Text Categorizatione with SVM 
+\end_layout
+
+\begin_layout Standard
+- SVM Trasductive data
 \end_layout
 
 \begin_layout Standard
@@ -2310,7 +2314,7 @@ key "vapnik71uniform"
 
 \end_inset
 
- and on the principle of empirical risk minimization developed by Vapnik
+ and on the principle of structural risk minimization developed by Vapnik
  
 \begin_inset LatexCommand cite
 key "Vapnik99,vapnik71uniform"
@@ -3579,7 +3583,13 @@ and
 \end_inset
 
 .
- The starting point and gradient for the merged set are defined below:
+ Also, the process of elimination of early non-support vector machine that
+ is made on both groups, the labeled and the unlabeled data.
+ 
+\end_layout
+
+\begin_layout Standard
+The starting point and gradient for the merged set are defined below:
 \end_layout
 
 \begin_layout Standard
@@ -3619,6 +3629,21 @@ With
 
 .
  
+\end_layout
+
+\begin_layout Standard
+One thing that should be noted is the error values handling.
+ As the reader can see in 
+\begin_inset LatexCommand ref
+reference "fig:alg-tsvm"
+
+\end_inset
+
+ the desicion wheter to swap the values of the labels for each uncategorized
+ data depends on the error of the classification of that particular value
+ but as in each layer we eliminate them in the process, we have to keep
+ a record of the classification error of the eliminated unlabeled vector
+ because we are going to use in the descision of the second loop.
 \end_layout
 
 \begin_layout Chapter
@@ -4128,10 +4153,10 @@ Small Scale Experiment
 \end_layout
 
 \begin_layout Standard
-With the objetive of prove the methods and their performance a first test
- with few training and test samples was carried out first, the number of
- features is also less than the full problem formulation because only a
- fraction of these were preprocessed for this initial test.
+With the objetive of prove the methods and their performance, a test with
+ few training and test samples was carried out first, the number of features
+ is also less than the full problem formulation because only a fraction
+ of these were preprocessed for this initial test.
  For this toy experiments the hard task was performed with 200 testing messages,
  100 from c
 \emph on

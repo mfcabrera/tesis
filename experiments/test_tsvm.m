@@ -5,8 +5,8 @@ load('csm_train_lab.data');
 load('csm_test_vec.data');
 load('csm_test_lab.data');
 
-lx = csm_train_vec;
-ld = csm_train_lab;
+%lx = csm_train_vec;
+%ld = csm_train_lab;
  
 %lx = [lx;csm_train_vec(101:110,:)];
 %lx  = csm_train_lab(1:10,:);

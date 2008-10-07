@@ -51,8 +51,7 @@ while ((CaN < Cast) || (CaP < Cast)) %loop 1
   tic;
   in = 1;
   while(in > 0)
-    ntest
-      for(m = 1:ntest)
+    for(m = 1:ntest)
         for(i = 1:ntest)
                if(yast(m)*yast(i) < 0) && (East(i) > eps) && ( (East(m) + East(i)) > 2)
                    %INSIDE=666
@@ -61,7 +60,7 @@ while ((CaN < Cast) || (CaP < Cast)) %loop 1
 
                    [w1,b1,nsv,ALPHAS,svindex,E,East,outflag,t] = solve_svm_qp_t_parallel(x,d,xnl,yast,C,CaP,CaN); 
  
-                   if(outflag == 0)
+                   if(outflag ~= 1) 
                          % can be solved with this values of C
                          % so we augment them.
                          CaN = min(CaN*2,Cast);

@@ -58,7 +58,7 @@ end
 %% SPLIT UNLABELED DATA
 
 nplusp = nplus/4
-nminusp = nminus/4;
+nminusp = nminus/4
 
 plus_idx = find(dnl > eps);
 minus_idx = find(dnl < eps);
@@ -104,69 +104,67 @@ L4d = [ d(psize*3+1:psize*4,:); d(psize*7+1:psize*8,:)];
 %length(U3d)
 %length(U2d)
 %PARTE PAR
-%[W,B,NSV,AL,SVINDEX,EV,EASTV,EXITF,HV] = dfeval(@solve_svm_qp_t,{L1v,L2v,L3v,L4v},{L1d,L2d,L3d,L4d},{U1v,U2v,U3v,U4v},{U1d,U2d,U3d,U4d},{C,C,C,C},{Cp,Cp,Cp,Cp},{Cm,Cm,Cm,Cm},'Configuration', 'local');
 dummyX = zeros(1,length(L1d)+length(U1d));
-[w1,b1,nsv1,ALPHAS1,svindex1,E1,East1,exitflag1,H1] = solve_svm_qp_t(L1v,L1d,U1v,U1d,C,Cp,Cm,dummyX);
-[w4,b4,nsv4,ALPHAS4,svindex4,E4,East4,exitflag4,H4] =  solve_svm_qp_t(L4v,L4d,U4v,U4d,C,Cp,Cm,dummyX);
-[w2,b2,nsv2,ALPHAS2,svindex2,E2,East2,exitflag2,H2] = solve_svm_qp_t(L2v,L2d,U2v,U2d,C,Cp,Cm,dummyX);
-[w3,b3,nsv3,ALPHAS3,svindex3,E3,East3,exitflag3,H3] =  solve_svm_qp_t(L3v,L3d,U3v,U3d,C,Cp,Cm,dummyX);
+[W,B,NSV,AL,SVINDEX,EV,EASTV,EXITF,HV] = dfeval(@solve_svm_qp_t,{L1v,L2v,L3v,L4v},{L1d,L2d,L3d,L4d},{U1v,U2v,U3v,U4v},{U1d,U2d,U3d,U4d},{C,C,C,C},{Cp,Cp,Cp,Cp},{Cm,Cm,Cm,Cm},{dummyX,dummyX,dummyX,dummyX},'Configuration', 'local');
+%[w1,b1,nsv1,ALPHAS1,svindex1,E1,East1,exitflag1,H1] = solve_svm_qp_t(L1v,L1d,U1v,U1d,C,Cp,Cm,dummyX);
+%[w4,b4,nsv4,ALPHAS4,svindex4,E4,East4,exitflag4,H4] =  solve_svm_qp_t(L4v,L4d,U4v,U4d,C,Cp,Cm,dummyX);
+%[w2,b2,nsv2,ALPHAS2,svindex2,E2,East2,exitflag2,H2] = solve_svm_qp_t(L2v,L2d,U2v,U2d,C,Cp,Cm,dummyX);
+%[w3,b3,nsv3,ALPHAS3,svindex3,E3,East3,exitflag3,H3] =  solve_svm_qp_t(L3v,L3d,U3v,U3d,C,Cp,Cm,dummyX);
 
 %% Rebuild  the Q matrix for the next layer
 
 %Second Level layer
- 
-   
 
 
-%w1 = W{2};
-%w2 = W{3};
-%w2 = W{3};
-%w2 = W{4};
+w1 = W{2};
+w2 = W{3};
+w2 = W{3};
+w2 = W{4};
 
-%b1 = B{1};
-%b3 = B{2};
-%b2 = B{2};
-%b2 = B{4};
+b1 = B{1};
+b3 = B{2};
+b2 = B{2};
+b2 = B{4};
 
-%nsv1 =  NSV{1};
-%nsv2 =  NSV{2};
-%nsv3 =  NSV{3};
-%nsv4 =  NSV{4};
+nsv1 =  NSV{1};
+nsv2 =  NSV{2};
+nsv3 =  NSV{3};
+nsv4 =  NSV{4};
 
-%ALPHAS1 = AL{1};
-%ALPHAS2 = AL{2};
-%ALPHAS3 = AL{3};
-%ALPHAS4 = AL{4};
+ALPHAS1 = AL{1};
+ALPHAS2 = AL{2};
+ALPHAS3 = AL{3};
+ALPHAS4 = AL{4};
 
-%svindex1 = SVINDEX{1};
-%svindex2 = SVINDEX{2};
-%svindex3 = SVINDEX{3};
-%svindex4 = SVINDEX{4};
+svindex1 = SVINDEX{1};
+svindex2 = SVINDEX{2};
+svindex3 = SVINDEX{3};
+svindex4 = SVINDEX{4};
 
-%E1 = EV{1};
-%E2 = EV{2};
-%E3 = EV{3};
-%E4 = EV{4};
+E1 = EV{1};
+E2 = EV{2};
+E3 = EV{3};
+E4 = EV{4};
 %length(E1)
 %length(E2)
 %length(E3)
 %length(E4)
 
 
-%East1 = EASTV{1};
-%East2 = EASTV{2};
-%East3 = EASTV{3};
-%East4 = EASTV{4};
+East1 = EASTV{1};
+East2 = EASTV{2};
+East3 = EASTV{3};
+East4 = EASTV{4};
 
-%exitflag1 = EXITF{1};
-%exitflag2 = EXITF{2};
-%exitflag3 = EXITF{3};
-%exitflag4 = EXITF{4};
+exitflag1 = EXITF{1};
+exitflag2 = EXITF{2};
+exitflag3 = EXITF{3};
+exitflag4 = EXITF{4};
 
-%H1 = HV{1};
-%H2 = HV{2};
-%H3 = HV{3};
-%H4 = HV{4};
+H1 = HV{1};
+H2 = HV{2};
+H3 = HV{3};
+H4 = HV{4};
 
 
  
@@ -261,7 +259,7 @@ X0_22 = X6(1: layer22l_size + layer22u_size);
 % Tengo que unir 5 y 6 en uno solo y correrlo!
 
 
-ALPHAS56orig = [ALPHAS5;ALPHAS6]
+ALPHAS56orig = [ALPHAS5;ALPHAS6];
 
 svindex5l = svindex5(find(svindex5 <= layer21l_size));
 svindex6l = svindex6(find(svindex6 <= layer22l_size));

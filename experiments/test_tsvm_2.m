@@ -9,33 +9,37 @@ load('csm_test_lab.data');
 %ld = csm_train_lab;
 
 
-lx = csm_train_vec(1:16,:);
-lx = [lx;csm_train_vec(101:116,:)];
-ld  = csm_train_lab(1:16,:);
-ld = [ld;csm_train_lab(101:116,:)];
+lx = csm_train_vec;
+%lx = [lx;csm_train_vec(101:196,:)];
+ld  = csm_train_lab; %(1:96,:);
+%ld = [ld;csm_train_lab(101:196,:)];
 
-
-ulx = csm_test_vec;
-%ulx = [ulx;csm_test_vec(101:199,:)];
-uld  = csm_test_lab;
-%uld = [uld;csm_test_lab(101:199,:)];
 
 %ulx = csm_test_vec;
-%uld = csm_test_lab;
+%ulx = [ulx;csm_test_vec(101:199,:)];
+%uld  = csm_test_lab;
+%uld = [uld;csm_test_lab(101:199,:)];
 
-d = csm_train_lab; %% train labels
-x = csm_train_vec; %% train vectors
+ulx = csm_test_vec;
+uld = csm_test_lab;
+
+%d = csm_train_lab; %% train labels
+%x = csm_train_vec; %% train vectors
 testd = csm_test_lab; %% train data
 
 %inductive
+
+fprintf ( 'Solving Inductive \n')
 tic;
 [w0,b0,nsv] = solve_svm_qp_t(lx,ld,0,0,10,0,0,0);
 labels_i = svm_classify(w0,b0,ulx);
 tinducitve = toc
 
+
 %transductive
+fprintf ( 'Solving transductive\n')
 tic;
-labels_t = tsvm(lx,ld,ulx,10,5);
+labels_t = tsvm(lx,ld,ulx,10,10);
 ttrans = toc
 
 %transductive parallell
