@@ -1,4 +1,4 @@
-#LyX 1.5.3 created this file. For more info see http://www.lyx.org/
+#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
 \lyxformat 276
 \begin_document
 \begin_header
@@ -278,14 +278,9 @@ Maquinas de Soporte Vectoriales Transductivos (TSVM) han mostrado mejoras
  Para lograr este objetivo adaptamos la arquitectura en cascada desarrollada
  por Graf et al.
  para SVM regulares.
- Adicionalmente probamos una heurística distinta para la elección del parámetro
- 
-\begin_inset Formula $C*$
-\end_inset
-
- para el problema de las TSVM La unión de estas estrategias produjeron una
- implementación que es de 4 a 8 veces mas parida que una TSVM regular para
- un problema de TC de 2.000 vectores y mas de 30.000 características.
+ La unión de estas estrategias produjo una implementación que es de 2 a
+ 7 veces mas rápida que una TSVM regular para un problema de TC de 2.000
+ vectores y mas de 30.000 características.
 \end_layout
 
 \begin_layout Standard
@@ -329,14 +324,23 @@ ation tasks such as Text Categorization (TC), where the features present
  times while preserving the classification performance.
  For this purpose we adapt the parallel cascade architecture for regular
  SVM described by Graf et al.
- We also experiment with an alternative heuristic for choice of the 
+\begin_inset Note Comment
+status collapsed
+
+\begin_layout Standard
+\align block
+We also experiment with an alternative heuristic for choice of the 
 \begin_inset Formula $C*$
 \end_inset
 
- parameter for the TSVM problem.
- The union of both strategies produced an implementation that is 4x - 8x
- faster than a regular TSVM for TC problem of 2,000 vectors and more than
- 30,000 features.
+ parameter for the TSVM problem
+\end_layout
+
+\end_inset
+
+.
+ This strategy produced an implementation that is 2x - 7x faster than a
+ regular TSVM for a TC problem of 2,000 vectors and more than 30,000 features.
 \end_layout
 
 \begin_layout Standard
@@ -344,7 +348,7 @@ ation tasks such as Text Categorization (TC), where the features present
 \series bold
 Keywords
 \series default
-: SVM, Classification, Machine Learning, Algorithm, Parallel, Information
+: SVM, Classification, Machine Learning, Algorithm, Parallel, Infomrmation
  Retrieval.
 \end_layout
 
@@ -2609,7 +2613,6 @@ Then the margin of separation is equal then to
 \end_inset
 
  .
- Figure [TALES#1] shows this approach.
  Now our problem becomes maximize 
 \begin_inset Formula $\frac{2}{w}$
 \end_inset
@@ -4202,7 +4205,7 @@ reference "tab:Toy-Experiment:-comp.sys.ibm.pc.hardware"
 ) the number of training samples varies for each test so we can appreciate
  the difference in the performance of the methods.
  T stand for number of training samples and S for number of testing samples.
- We can appreciate that transductive algorithm perform much better than
+ We can appreciate that transduction algorithm perform much better than
  inductive when few training samples, a very attractive characteristic for
  many real problems.
  Even when the number of training samples is equal to the number of testing
@@ -6502,7 +6505,7 @@ We can notice how the classical SVM algorithm is always faster that the
  performance is very similar, while the difference in speed of the algorithm
  is really huge.
  However when the training data decreases and more there is more unlabeled
- data the differences in classification performace begin to be more noticiable,
+ data the differences in classification performance begin to be more noticeable,
  even with this 
 \begin_inset Quotes eld
 \end_inset
@@ -7859,24 +7862,24 @@ name "tab:Hard-Task:comp.graphics-and"
 \begin_layout Standard
 As expected, the TSVM performed better than the classic linear SVM, however
  due to the nature of the data, the classification performance difference
- between the two the TSVM and the SVM was not really substancial.
- Another thing to notice is that this example is somewhat counterintuitive,
+ between the two the TSVM and the SVM was not really substantial.
+ Another thing to notice is that this example is somewhat counter-intuitive,
  because you could expect that for more training data available the difference
  between the classification performance between the classical and the transducti
 ve SVM would increase.
  However the opposite happened, when more training data was available, the
- difference between their performace decreased.
+ difference between their performance decreased.
  Another result of the experiment, that surprised us but we knew it could
- happend was the for the 100-200 setup the transductive parallel svm had
+ happen was the for the 100-200 setup the transductive parallel SVM had
  a little bit more classification performance than the non-parallel version.
- Even with this particularities in general terms the expected ocurred, the
- classification performance of the transductive setting was higher than
+ Even with this particularities in general terms the expected occurred,
+ the classification performance of the transductive setting was higher than
  the inductive one, and the parallel version of the TSVM run almost 3 times
  faster than the non transductive one.
 \end_layout
 
 \begin_layout Section
-Conclusion And Future Directiont
+Conclusion And Future Direction
 \end_layout
 
 \begin_layout Standard
@@ -7910,7 +7913,7 @@ POR HACER:
 
 \begin_layout Standard
 In this work we have implemented a parallel version of TSVM as described
- by Joachims 
+ by Joachims' 
 \begin_inset LatexCommand cite
 key "Joachims99c"
 
@@ -7920,8 +7923,8 @@ key "Joachims99c"
  solving a similar problems.
  Our approach, in order to speed up the process, was to parallelize the
  SVM solver function using a Cascade architecture.
- We have shown that this approach speed up the process 1-7 times using just
- one dual core processor.
+ We have shown that this approach speed up the process 2 to 7 times using
+ just one dual core processor.
  This architecture scales very well, therefore is expected that, with more
  processors available the the speed gains will be even more noticeable.
  In addition, more layers in basic architecture could help in the improvement
@@ -7946,8 +7949,8 @@ From the data tables one could argue that the classification performance
 Regarding the classification performance of the TSVM algorithm we noticed
  something particular, the best C for the C* for the transductive setting
  does not generally match in the sense that the best C parameter for the
- inductive problem does not produce the best classification performace in
- the transductive problem for the given set of data.
+ inductive problem does not produce the best classification performance
+ in the transductive problem for the given set of data.
  However, we have chosen the parameter that works best for the inductive
  setting.
 \end_layout
@@ -7964,12 +7967,12 @@ However it is truth that more optimization strategies have to be developed
 \begin_layout Standard
 Maybe the most obvious approach is that given that the data is split in
  equal parts (subsets), and per each iteration only one of the parts is
- modified (iterchaging the labels of two of the entries) there is not need
- recalculate the other parts of the algorith and they can be reused.
+ modified (i the labels of two of the entries) there is not need recalculate
+ the other parts of the n and they can be reused.
  For example in our particular case, we calculated 7 distinct SVM problems
- (as our architecture o 3 layers consited in 4-2-1 SVMs respectively), using
- caching we wold only need to calculate all of them once at the begining
- and then only when a pair of of vector fell of different SVM problem.
+ (as our architecture o 3 layers t in 4-2-1 e respectively), using caching
+ we wold only need to calculate all of them once at the r and then only
+ when a pair of of vector fell of different SVM problem.
  For the most of the iterations we would only need to calculate 3 problems.
  
 \end_layout
@@ -7999,7 +8002,7 @@ key "782654"
 \end_inset
 
 could be applied to each one of the SVM solvers in order to have multilevel
- parallelization and further improving the computation performance.
+ parallelization, further improving the computation performance.
 \end_layout
 
 \begin_layout Standard
