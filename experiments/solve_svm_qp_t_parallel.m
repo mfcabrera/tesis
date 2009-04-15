@@ -116,8 +116,8 @@ dummyX = zeros(1,length(L1d)+length(U1d));
 %Second Level layer
 
 
-w1 = W{2};
-w2 = W{3};
+w1 = W{1};
+w2 = W{2};
 w2 = W{3};
 w2 = W{4};
 
@@ -251,8 +251,43 @@ layer22size = layer22l_size +layer22u_size;
 X0_21 = X5(1: layer21l_size + layer21u_size);
 X0_22 = X6(1: layer22l_size + layer22u_size);
 
-[w5,b5,nsv5,ALPHAS5,svindex5,E5,East5,exitflag5,H5] = solve_svm_qp_t(Layer21_LV,Layer21_LD,Layer21_UV,Layer21_UD,C,Cp,Cm,X0_21);
-[w6,b6,nsv6,ALPHAS6,svindex6,E6,East6,exitflag6,H6] = solve_svm_qp_t(Layer22_LV,Layer22_LD,Layer22_UV,Layer22_UD,C,Cp,Cm,X0_22);
+
+% SECOND LAYER
+
+[W,B,NSV,AL,SVINDEX,EV,EASTV,EXITF,HV] = dfeval(@solve_svm_qp_t,{Layer21_LV,Layer22_LV},{Layer21_LD,Layer22_LD},{Layer21_UV,Layer22_UV},{Layer21_UD,Layer22_UD},{C,C},{Cp,Cp},{Cm,Cm},{dummyX,dummyX},'Configuration', 'local');
+
+%[w5,b5,nsv5,ALPHAS5,svindex5,E5,East5,exitflag5,H5] = solve_svm_qp_t(Layer21_LV,Layer21_LD,Layer21_UV,Layer21_UD,C,Cp,Cm,X0_21);
+%[w6,b6,nsv6,ALPHAS6,svindex6,E6,East6,exitflag6,H6] = solve_svm_qp_t(Layer22_LV,Layer22_LD,Layer22_UV,Layer22_UD,C,Cp,Cm,X0_22);
+w5 = W{1};
+w6 = W{2};
+
+b5 = B{1};
+b6 = B{2};
+
+nsv5 =  NSV{1};
+nsv6 =  NSV{2};
+
+ALPHAS5 = AL{1};
+ALPHAS6 = AL{2};
+
+svindex5 = SVINDEX{1};
+svindex6 = SVINDEX{2};
+
+E5 = EV{1};
+E6 = EV{2};
+
+East5 = EASTV{1};
+East6 = EASTV{2};
+
+exitflag5 = EXITF{1};
+exitflag6 = EXITF{2};
+
+H5 = HV{1};
+H6 = HV{2};
+
+
+
+
 
 %% Remove one more time early support vectors
 %% Solve the last Layer with the reduced vectors 

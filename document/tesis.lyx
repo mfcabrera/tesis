@@ -1,4 +1,4 @@
-#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
+#LyX 1.5.6 created this file. For more info see http://www.lyx.org/
 \lyxformat 276
 \begin_document
 \begin_header
@@ -308,9 +308,9 @@ Abstract
 Transductive Support Vector Machines (TSVM) have shown improvements on classific
 ation tasks such as Text Categorization (TC), where the features present
  co-occurrence and the training samples are few in comparison with the data
- available .
+ available.
  Although the nature of the TSVM algorithm as described by Joachim makes
- is difficult to be as fast as a regular SVM, the parallelization of this
+ it difficult to be as fast as a regular SVM, the parallelization of this
  algorithm is interesting when the gains in classification performance are
  crucial.
  Solving TSVM algorithm requires the solution of multiple quadratic programming

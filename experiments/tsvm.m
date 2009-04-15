@@ -58,7 +58,7 @@ while ((CaN < Cast) || (CaP < Cast)) %loop 1
                    yast(m) = -yast(m); %% take a positive and negative test
                    yast(i) = -yast(i); %% switch their labels and retrain
                    [w1,b1,nsv,ALPHAS,svindex,E,East,outflag] = solve_svm_qp_t(x,d,xnl,yast,C,CaP,CaN,0); 
-                   if(outflag == 0)                       
+                   if(outflag ~= 1)                       
                         % can be solved with this values of C
                         % so we augment them.
                         CaN = min(CaN*2,Cast);

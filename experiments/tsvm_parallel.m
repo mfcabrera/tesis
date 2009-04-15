@@ -63,6 +63,7 @@ while ((CaN < Cast) || (CaP < Cast)) %loop 1
                    if(outflag ~= 1) 
                          % can be solved with this values of C
                          % so we augment them.
+                         fprintf('Augmenting CaN and CAP');
                          CaN = min(CaN*2,Cast);
                          CaP = min(CaP*2,Cast); 
                    end

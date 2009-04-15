@@ -29,7 +29,7 @@
         end
       length(test_labels)
      
-    [w0,b0,nsv,ALPHAS,svindex,E,East] = solve_svm_qp_t(train_data,train_labels,0,0,C,0,0);
+    [w0,b0,nsv,ALPHAS,svindex,E,East] = solve_svm_qp_t(train_data,train_labels,0,0,C,0,0,0);
     prfmce(i) = svm_test(w0,b0,test_data,test_labels);
       train_data = [];
       train_labels = [];
