@@ -1,7 +1,26 @@
 % This is LLNCS.DEM the demonstration file of
 % the LaTeX macro package from Springer-Verlag
-% for Lecture Notes in Computer Science, version 1.1
-\documentstyle{llncs}
+% for Lecture Notes in Computer Science, version 1.
+
+
+%% \usepackage[T1]{fontenc}
+%% \usepackage[latin9]{inputenc}
+%% \usepackage{geometry}
+%% \geometry{verbose,letterpaper,tmargin=5cm,bmargin=3cm,lmargin=3cm,rmargin=3cm,headheight=5cm,headsep=1cm}
+%% \pagestyle{headings}
+%% \usepackage{array}
+%% \usepackage{verbatim}
+%% \usepackage{longtable}
+%% \usepackage{varioref}
+%% \usepackage{float}
+%% \usepackage{amsmath}
+%% \usepackage{color}
+%% \usepackage{graphicx}
+%% \usepackage{amssymb}
+
+
+\documentstyle[graphicx,amsmath,float,array]{llncs}
+
 %
 \begin{document}
 
@@ -9,8 +28,11 @@
 
 \author{Miguel Fernando Cabrera and Jairo Espinosa Oviedo}
 
-\institute{Universidad Nacional de Colombia - Sede Medell\'{i}n,  Medell\'{i}n, Colombia
+\institute{Universidad Nacional de Colombia - Sede Medell\'{i}n,
+  Medell\'{i}n, Colombia
+  {\it \{mfcabrer,jespinov\}}@unal.edu.co 
 }
+
 
 \maketitle
 
@@ -29,7 +51,277 @@ which aims to improve the necessary computation times while preserving
 the classification performance. This strategy produced an implementation 
 that is 2x - 7x faster than a regular TSVM for a TC problem of 2,000 vectors 
 and more than 30,000 features.
+
+{\bf Keywords:} SVM, Text Classification, Machine Learning, Algorithm,
+Parallel Algorithm, Information Retrieval,Artificial Intelligence
+
 \end{abstract}
+
+
+
+\section{Introduction}
+
+Text classification is a key aspect of text filtering, document management
+and retrieval tasks. Besides basic document classification for some
+kind of digital library, many problems can be seen as instances of
+the Text Categorization (TC) problem . Spam detection, Web search
+improvement and automated metadata generation are just a few examples
+of this \cite{Sebastiani02}.  Some of those tasks can be achieved
+by human beings, but a manual classification is at best expensive
+and practically impossible for large amounts of documents found today
+in modern information systems.
+
+A TC technique uses example documents that have been previously categorized
+in classes by an authority in order to learn a model that, with an
+associated error value, can automatically predict the class that the
+authority would have given to future documents. 
+
+Support Vector Machines \cite{Vapnik98} are powerful tools for classifying
+large data sets, and due the nature of the classical text representation
+models, it has been applied successfully in automated document classification
+tasks \cite{Joachims98,Joachims99c}. An special type of SVM, based
+on Transductive inference (TSVM), has demonstrated to be more effective
+for document classification than the common inductive inference based
+SVM \cite{Joachims99c}.
+
+One characteristic of the SVM is that, in its formal definition, the
+computation and memory storage requirements increase rapidly with
+the number of training vectors. This is due the fact that the SVM
+classification problem is a Quadratic Programming problem (QP) that
+finds the support vectors in all training data set. Solvers of this
+kind of problem generally scales to $O(n^{3})$ making it a very computationally
+expensive problem.
+
+%% One approach to cope with this limitation is to divide the problem
+%% into chunks \cite{Joachims/99a,osunaetal97} and train those sub-problems.
+%% Even with these optimizations, the problem still has large computational
+%% requirements, and the required time to train grows sufficiently enough
+%% for making it not useful for real-time training when using large data
+%% sets. The implementation of Transductive inference for a SVM requires
+%% to solve the same problem many times over generally large data sets,
+%% until finding the optimal classifier. This makes the scaling problem
+%% for Transductive SVM even more difficult, therefore, methods for optimizing
+%% the training process need to be developed.
+
+%% Taking advantage actual trends in processor technologies, where the
+%% multi-core processor is becoming the norm \cite{Marowka07,1069628|Geer05}
+%% parallel implementation of such algorithm along with other optimization
+%% will help make the application of this technique practical in real
+%% world situations. Also, as an extra motivation, empirical results
+%% have showed that some parallel settings for SVM have achieved better
+%% generalization than their classic counterparts for some problems \cite{citeulike:935557|Collobert2002}.
+
+This paper describes an implementation of a parallel SVM with the
+cascade model described in \cite{GrafCBDV04} using a Transductive
+learning algorithm. 
+%% The first part, Overview, introduces the basic
+%% concepts a Machine Learning, Information Retrieval and Text Categorization.
+%% Later we describe the SVM algorithm and justify the reason of using
+%% SVM for text classification over other techniques. In chapter \ref{cha:Experiments-and-Results}
+%% we exhibit our experimental set-up and the show the analysis of the
+%% results.
+
+
+%
+\section{Models of Text and Text Representation\label{sub:Models-of-Text}}
+%
+
+Usually in a digital library database a set of words that defines
+the topics or the main characteristics of a document is manually defined.
+The main objective of this is to help the search of the physical document
+(e.g books, papers,etc.). This list of terms or keywords enables the
+user to query documents related to one or more concepts. One of the
+main problems of this is that only few keywords are associated with
+a defined document, and generally this assignation is made at hand,
+making it expensive and error prone. Generally this querying these
+systems was limited to the numbers of keywords assigned and some metadata
+like title, author and dates of publication, being the user unable
+to query the whole document, making the retrieval task significantly
+harder.
+
+Nowadays in digital libraries and similar systems where the all the
+text is available in digital form, automatic keyword extraction makes
+sense because these keywords are tightly associated with the content.
+This keywords are called indexes and the task of associating each
+document with a set of keywords is called \emph{indexing}. 
+
+Indexing is based is predefined group of keywords: the dictionary
+or vocabulary. As mentioned above, in a digitalized text database
+(also called a corpus) the dictionary is usually extracted from the
+set of words present in the corpus, and the expensive manual indexing
+can be avoided by representing the documents by the dictionary terms
+they are made of. Given that all the full text is available for querying
+it, now problem is to find the best way of representing the text in
+order to extract the more important words, that is, the keywords that
+define it. 
+
+During the last few decades many representation forms have been developed
+ranging from simple word appearance binary representation to a concept
+\cite{deerwester90indexing}, probabilistic \cite{keller-theme} and
+even Neural Networks \cite{DBLP:conf/icann/KellerB05} based ones. 
+
+The most common approach to automatically extract the index terms
+from a corpus is called vector space model \cite{361220}. In this
+model each document $d$ is represents as a vector$(\theta_{1},...,\theta_{M})$
+where $\theta_{j}$ is a function of the frequency in $d$ of the
+$j^{th}$ word of a chosen dictionary $M$. 
+
+Based in this definition various forms of $\theta(j)$have been defined:
+
+\begin{description}
+\item [{Binary}] In which $\theta_{j}$ is equal to 1 if the $j^{th}$
+word appears in the document or 0 otherwise.
+\item [{Frequency}] In which $\theta_{j}$ is equal to the number of times
+$j^{th}$ word appears in the document.
+\item [{\emph{tf-idf}}] In which $\theta_{j}$ is equal to the \emph{tf-idf}
+formula:
+\end{description}
+\begin{equation}
+\theta_{j}=tf_{j}(d)\centerdot log(\frac{N}{df_{j}}),\,\,\,\,\forall j\in\{1,\ldots,M\}\label{eq:tf-idf}\end{equation}
+
+
+The equation \ref{eq:tf-idf} was defined proposed by Salton and Buckley
+\cite{866292} and it is the more complex of the three. the $tf_{j}(d)$
+(term frequency) is the number of times that the $j^{th}$ word appears
+in the document $d$, $df_{j}$ is the number of documents the term
+appears in all the corpus and $N$ is the total number of documents
+in the corpus. 
+%% The main reason behind this formulation is that in
+%% the context of document retrieval it is considered that words appearing
+%% too frequently across the corpus may not be discriminant, therefore
+%% this formula gives more importance to terms appearing more frequently
+%% in the documents while penalizing the ones that appears in to many
+%% documents. The reader may have noticed that this representation of
+%% text does not take into account the actual order of the words inside
+%% the document, despite this, vector space model have performed well
+%% and it still used with some variations in the majority of IR systems.
+
+the vector space model representation described above may seem simplistic
+in comparison with the more complex representations mentioned first,
+nevertheless, it seems that for some tasks like text categorization,
+the classical tf-idf works just well and more complex representations
+of the text do not significantly affect the performance of the methods.
+
+%
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.2]{images/joachims-text-vect}
+\par\end{centering}
+
+\caption{Representing text as a feature vector \cite{Joachims98}}
+
+\end{figure}
+
+
+\section{Support Vector Machines}
+
+Support Vector Machines (SVMs) \cite{Vapnik98} are powerful classification
+and regression tools that have been widely applied in the solutions
+of many problem, generally yielding comparable or even better performance
+that other algorithms. 
+
+The SVM algorithm is based on the concept of VC Dimension\cite{vapnik71uniform}
+and on the principle of structural risk minimization developed by
+Vapnik \cite{Vapnik99,vapnik71uniform}. Roughly, the VC dimension
+is a metric of how complex a classifier machine is, complex classifier
+has more capacity to fit the training data, thus, overfitting is more
+likely to occur, therefore, is preferred a classifier with minimum
+VC Dimension. 
+
+The basic idea of empirical risk minimization principle is to find
+an hypothesis $s$ from an hypothesis space $S$ for which the lowest
+probability of error is guaranteed for a given set of training examples. 
+
+For linear classification problems this is equivalent to find the
+discrimination function that maximizes the distances within the classes,
+assuring the lowest probability of error\cite{citeulike:368926|Haykin1998}.
+The aim of the Support Vector classification is to devise a computationally
+efficient way of learning the optimal separating hyperplanes in high
+dimensional feature space \cite{citeulike:114719|Cristianini2000introSVM}.
+
+
+\section{SVM and Text Categorization}
+
+The usage of SVM was first introduced by Joachims \cite{Joachims98,Joachims99c}
+and similar setups have been used in posterior literature\cite{DumaisPHS98}.
+the TC task using SVM can bee seen geometrically as finding an hyperplane
+(decision surface) that separates two groups of points. Each point
+is a vector representation of a document which can be done using any
+of the models described back in section \ref{sub:Models-of-Text}.
+As argued by Joachims \cite{Joachims98}, SVMs offer two important
+advantages for TC:
+
+\begin{itemize}
+\item Doing term selection is generally not needed, because SVM are robust
+to overfitting problems and can scale up to high dimensions.
+\item No human and machine effort in parameter tuning on a validation set
+is needed, as there is a theoretical default choice of parameter settings.
+\end{itemize}
+These two characteristics makes the SVMs attractive for tackling this
+kind of problems. In real life scenarios, TC problems involves high
+dimensional data and large amount of computing processing. As mentioned
+before, the fact that SVM need a lot of calculation power for training
+makes it an important motivation for using a parallel algorithm when
+training SVM.
+
+
+\section{Transductive Learning for SVM and Text Categorization\label{sub:Transductive-Learning-for}}
+
+So far with the formulations described in the last section we are
+using what is called inductive learning, in other words we start from
+a set of examples, and based on them we try to find a classificator
+function that classifies correctly the data. This is called Inference
+learning, that is, going from particular examples to a general hypothesis.
+The Transductive setting on the other hand, tries to use the known
+distribution of the test data in order produce a classifier. 
+
+This setting has a clear application when we don\textquoteright{}t
+care about the particular function; we only need to classify a given
+set of examples (i.e test set) with as few errors as possible. The
+Transductive inference uses the training examples previously labeled
+and the unclassified examples to generate an optimal partition and
+labeling of the unclassified examples, using the prior knowledge provided
+by the distribution of the unclassified examples.
+
+The goal of the TSVM or Transductive learner is to select a function
+$hL=L(S_{train},S_{test})$ from the hypothesis space $H$ using $S_{train}$
+and $S_{test}$ such that the expected number of erroneous predictions
+on the test and the training samples is minimized. But, why not use
+the learning rule obtained by means of the training examples to classify
+the test examples? The problem arises when a small training set is
+use. The classifier will have a \textquotedblleft{}poor\textquotedblright{}
+generalization due to the lack of knowledge about the distribution
+of points in the space $X$. 
+
+The classifier function estimated with very few points will lead to
+disappointing results. Unlike of the inductive setting, the Transductive
+setting uses the location of the test examples when defining the structure.
+Such structure corresponds to a structure of possible hypothesis solution.
+Using prior knowledge about the nature of testing data provides extra
+information to built an appropriate structure. The structure is build
+based on the margin on both the training and the test data.
+
+The setting of transductive svm for TC was introduced by Joachims
+\cite{Joachims99c}. The basic setup consists in a set of training examples: $\left\{
+(\overrightarrow{x_{1}},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})\right\}$, and each f them
+consists of a document vector $\overrightarrow{x}$ 
+
+
+%
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.42]{images/joachims-algorithm}\label{fig:alg-tsvm}
+\par\end{centering}
+
+\caption{Algorithm for training Transductive Support Vector Machines \cite{Joachims99c}}
+
+
+\end{figure}
+
+
+For a complete description and a in depth study of the Joachims' approach see the nominal paper \cite{Joachims99c}
+and work of Collobert \cite{1248609}.
+
 
 %
 \section{Fixed-Period Problems: The Sublinear Case}
@@ -403,39 +695,43 @@ have obtained lower bound on the number of subharmonics of period $kT$,
 based on symmetry considerations and on pinching estimates, as in
 Sect.~5.2 of this article.
 
+
+\bibliography{biblio}{}
+\bibliographystyle{plain}
+
 %
 % ---- Bibliography ----
 %
-\begin{thebibliography}{5}
-%
-\bibitem {clar:eke}
-Clarke, F., Ekeland, I.:
-Nonlinear oscillations and
-boundary-value problems for Hamiltonian systems.
-Arch. Rat. Mech. Anal. {\bf 78} (1982) 315--333
-%
-\bibitem {clar:eke:2}
-Clarke, F., Ekeland, I.:
-Solutions p\'{e}riodiques, du
-p\'{e}riode donn\'{e}e, des \'{e}quations hamiltoniennes.
-Note CRAS Paris {\bf 287} (1978) 1013--1015
-%
-\bibitem {mich:tar}
-Michalek, R., Tarantello, G.:
-Subharmonic solutions with prescribed minimal
-period for nonautonomous Hamiltonian systems.
-J. Diff. Eq. {\bf 72} (1988) 28--55
-%
-\bibitem {tar}
-Tarantello, G.:
-Subharmonic solutions for Hamiltonian
-systems via a $\bbbz_{p}$ pseudoindex theory.
-Annali di Matematica Pura (to appear)
-%
-\bibitem {rab}
-Rabinowitz, P.:
-On subharmonic solutions of a Hamiltonian system.
-Comm. Pure Appl. Math. {\bf 33} (1980) 609--633
-\end{thebibliography}
+%% \begin{thebibliography}{5}
+%% %
+%% \bibitem {clar:eke}
+%% Clarke, F., Ekeland, I.:
+%% Nonlinear oscillations and
+%% boundary-value problems for Hamiltonian systems.
+%% Arch. Rat. Mech. Anal. {\bf 78} (1982) 315--333
+%% %
+%% \bibitem {clar:eke:2}
+%% Clarke, F., Ekeland, I.:
+%% Solutions p\'{e}riodiques, du
+%% p\'{e}riode donn\'{e}e, des \'{e}quations hamiltoniennes.
+%% Note CRAS Paris {\bf 287} (1978) 1013--1015
+%% %
+%% \bibitem {mich:tar}
+%% Michalek, R., Tarantello, G.:
+%% Subharmonic solutions with prescribed minimal
+%% period for nonautonomous Hamiltonian systems.
+%% J. Diff. Eq. {\bf 72} (1988) 28--55
+%% %
+%% \bibitem {tar}
+%% Tarantello, G.:
+%% Subharmonic solutions for Hamiltonian
+%% systems via a $\bbbz_{p}$ pseudoindex theory.
+%% Annali di Matematica Pura (to appear)
+%% %
+%% \bibitem {rab}
+%% Rabinowitz, P.:
+%% On subharmonic solutions of a Hamiltonian system.
+%% Comm. Pure Appl. Math. {\bf 33} (1980) 609--633
+%% \end{thebibliography}
 %
 \end{document}

@@ -1,0 +1,131 @@
+\begin{thebibliography}{10}
+
+\bibitem{citeulike:935557|Collobert2002}
+R.~Collobert, S.~Bengio, and Y.~Bengio.
+\newblock A parallel mixture of svms for very large scale problems.
+\newblock In {\em Advances in Neural Information Processing Systems}. MIT
+  Press, 2002.
+
+\bibitem{1248609}
+Ronan Collobert, Fabian Sinz, Jason Weston, and L\'{e}on Bottou.
+\newblock Large scale transductive svms.
+\newblock {\em J. Mach. Learn. Res.}, 7:1687--1712, 2006.
+
+\bibitem{citeulike:114719|Cristianini2000introSVM}
+Nello Cristianini and John Shawe-Taylor.
+\newblock {\em An Introduction to Support Vector Machines and Other
+  Kernel-based Learning Methods}.
+\newblock {Cambridge University Press}, March 2000.
+
+\bibitem{deerwester90indexing}
+Scott~C. Deerwester, Susan~T. Dumais, Thomas~K. Landauer, George~W. Furnas, and
+  Richard~A. Harshman.
+\newblock Indexing by latent semantic analysis.
+\newblock {\em Journal of the American Society of Information Science},
+  41(6):391--407, 1990.
+
+\bibitem{DumaisPHS98}
+Susan Dumais, John Platt, David Heckerman, and Mehran Sahami.
+\newblock Inductive learning algorithms and representations for text
+  categorization.
+\newblock In {\em CIKM '98: Proceedings of the seventh international conference
+  on Information and knowledge management}, pages 148--155, New York, NY, USA,
+  1998. ACM Press.
+
+\bibitem{EspinosaJ2003}
+Jorge Espinosa.
+\newblock Kernel methods for improving text search engines, msc thesis, 2003.
+
+\bibitem{1069628|Geer05}
+David Geer.
+\newblock Industry trends: Chip makers turn to multicore processors.
+\newblock {\em Computer}, 38(5):11--13, 2005.
+
+\bibitem{GrafCBDV04}
+Hans~Peter Graf, Eric Cosatto, L{\'e}on Bottou, Igor Dourdanovic, and Vladimir
+  Vapnik.
+\newblock Parallel support vector machines: The cascade {SVM}.
+\newblock In {\em NIPS}, 2004.
+
+\bibitem{citeulike:368926|Haykin1998}
+Simon Haykin.
+\newblock {\em Neural Networks: A Comprehensive Foundation (2nd Edition)}.
+\newblock {Prentice Hall}, July 1998.
+
+\bibitem{Joachims/99a}
+T.~Joachims.
+\newblock Making large-scale {SVM} learning practical.
+\newblock In B.~Sch{\"o}lkopf, C.~Burges, and A.~Smola, editors, {\em Advances
+  in Kernel Methods - Support Vector Learning}, chapter~11, pages 169--184. MIT
+  Press, Cambridge, MA, 1999.
+
+\bibitem{Joachims98}
+Thorsten Joachims.
+\newblock Text categorization with suport vector machines: Learning with many
+  relevant features.
+\newblock In {\em ECML '98: Proceedings of the 10th European Conference on
+  Machine Learning}, pages 137--142, London, UK, 1998. Springer-Verlag.
+
+\bibitem{Joachims99c}
+Thorsten Joachims.
+\newblock Transductive inference for text classification using support vector
+  machines.
+\newblock In {\em International Conference on Machine Learning (ICML)}, pages
+  200--209, Bled, Slowenien, 1999.
+
+\bibitem{keller-theme}
+Mikaela Keller and Samy Bengio.
+\newblock Theme topic mixture model: A graphical model for document
+  representation.
+
+\bibitem{DBLP:conf/icann/KellerB05}
+Mikaela Keller and Samy Bengio.
+\newblock A neural network for text representation.
+\newblock In {\em ICANN (2)}, pages 667--672, 2005.
+
+\bibitem{Marowka07}
+Ami Marowka.
+\newblock Parallel computing on any desktop.
+\newblock {\em Commun. ACM}, 50(9):74--78, 2007.
+
+\bibitem{osunaetal97}
+Edgar Osuna, Robert Freund, and Federico Girosi.
+\newblock Training support vector machines: an application to face detection.
+\newblock In {\em CVPR '97: Proceedings of the 1997 Conference on Computer
+  Vision and Pattern Recognition (CVPR '97)}, page 130, Washington, DC, USA,
+  1997. IEEE Computer Society.
+
+\bibitem{361220}
+G.~Salton, A.~Wong, and C.~S. Yang.
+\newblock A vector space model for automatic indexing.
+\newblock {\em Commun. ACM}, 18(11):613--620, 1975.
+
+\bibitem{866292}
+Gerard Salton and Chris Buckley.
+\newblock Term weighting approaches in automatic text retrieval.
+\newblock Technical report, Ithaca, NY, USA, 1987.
+
+\bibitem{Sebastiani02}
+Fabrizio Sebastiani.
+\newblock Machine learning in automated text categorization.
+\newblock {\em ACM Comput. Surv.}, 34(1):1--47, 2002.
+
+\bibitem{Vapnik98}
+V.~N. Vapnik.
+\newblock {\em Statistical Learning Theory.}
+\newblock John\_Wiley, September 1998.
+
+\bibitem{Vapnik99}
+V.~N. Vapnik.
+\newblock {\em The Nature of Statistical Learning Theory (Stat's for Eng. and
+  Inf. Sci.)}.
+\newblock Springer Verlag, 1999.
+
+\bibitem{vapnik71uniform}
+V.~N. Vapnik and A.~Ya. Chervonenkis.
+\newblock On the uniform convergence of relative frequencies of events to their
+  probabilities.
+\newblock {\em Theory of Probability and its Applications}, 16(2):264--280,
+  1971.
+
+\end{thebibliography}
