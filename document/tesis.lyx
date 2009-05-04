@@ -501,7 +501,7 @@ Text classification is a key aspect of text filtering, document management
  and retrieval tasks.
  Besides basic document classification for some kind of digital library,
  many problems can be seen as instances of the Text Categorization (TC)
- problem .
+ problem.
  Spam detection, Web search improvement and automated metadata generation
  are just a few examples of this
 \begin_inset Note Note
@@ -822,14 +822,14 @@ e the concepts described above.
 \begin_inset Formula $\Phi:X\rightarrow Y$
 \end_inset
 
- from event to label .
- Many researcher has used this setting with success 
+ from event to label.
+ Many researchers have used this setting with success 
 \begin_inset LatexCommand cite
 key "Berger2001"
 
 \end_inset
 
- .
+.
  The reader will notice the similarity between this definition and the definitio
 n of text categorization described in section 
 \begin_inset LatexCommand vref
@@ -869,7 +869,7 @@ output").
 
  Some of techniques generally classified under ML are Artificial Neural
  Networks, Genetics Algorithm, k-Nearest Neighbor, Bayesian Networks and
- and Support Vector Machines (SVM) and has been successfully applied to.
+ and Support Vector Machines (SVM).
 \end_layout
 
 \begin_layout Standard
@@ -2411,12 +2411,12 @@ Let us consider a training sample
 \end_inset
 
 th example and 
-\begin_inset Formula $d_{i}$
+\begin_inset Formula $y_{i}$
 \end_inset
 
  is the corresponded, desired response.
  In this case we are gonna simplifier the setting by stating that 
-\begin_inset Formula $d_{i}$
+\begin_inset Formula $y_{i}$
 \end_inset
 
  can only take two values 
