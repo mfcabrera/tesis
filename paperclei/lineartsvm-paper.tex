@@ -64,7 +64,7 @@ Parallel Algorithm, Information Retrieval,Artificial Intelligence
 Text classification is a key aspect of text filtering, document management
 and retrieval tasks. Besides basic document classification for some
 kind of digital library, many problems can be seen as instances of
-the Text Categorization (TC) problem . Spam detection, Web search
+the Text Categorization (TC) problem. Spam detection, Web search
 improvement and automated metadata generation are just a few examples
 of this \cite{Sebastiani02}.  Some of those tasks can be achieved
 by human beings, but a manual classification is at best expensive
@@ -145,15 +145,15 @@ sense because these keywords are tightly associated with the content.
 This keywords are called indexes and the task of associating each
 document with a set of keywords is called \emph{indexing}. 
 
-Indexing is based is predefined group of keywords: the dictionary
-or vocabulary. As mentioned above, in a digitalized text database
-(also called a corpus) the dictionary is usually extracted from the
-set of words present in the corpus, and the expensive manual indexing
-can be avoided by representing the documents by the dictionary terms
-they are made of. Given that all the full text is available for querying
-it, now problem is to find the best way of representing the text in
-order to extract the more important words, that is, the keywords that
-define it. 
+%% Indexing is based is predefined group of keywords: the dictionary
+%% or vocabulary. As mentioned above, in a digitalized text database
+%% (also called a corpus) the dictionary is usually extracted from the
+%% set of words present in the corpus, and the expensive manual indexing
+%% can be avoided by representing the documents by the dictionary terms
+%% they are made of. Given that all the full text is available for querying
+%% it, now problem is to find the best way of representing the text in
+%% order to extract the more important words, that is, the keywords that
+%% define it. 
 
 During the last few decades many representation forms have been developed
 ranging from simple word appearance binary representation to a concept
@@ -203,14 +203,14 @@ the classical tf-idf works just well and more complex representations
 of the text do not significantly affect the performance of the methods.
 
 %
-\begin{figure}
-\begin{centering}
-\includegraphics[scale=0.2]{images/joachims-text-vect}
-\par\end{centering}
+%% \Begin{figure}
+%% \begin{centering}
+%% \includegraphics[scale=0.2]{images/joachims-text-vect}
+%% \par\end{centering}
 
-\caption{Representing text as a feature vector \cite{Joachims98}}
+%% \caption{Representing text as a feature vector \cite{Joachims98}}
 
-\end{figure}
+%% \end{figure}
 
 
 \section{Support Vector Machines}
@@ -283,44 +283,78 @@ and the unclassified examples to generate an optimal partition and
 labeling of the unclassified examples, using the prior knowledge provided
 by the distribution of the unclassified examples.
 
+
 The goal of the TSVM or Transductive learner is to select a function
 $hL=L(S_{train},S_{test})$ from the hypothesis space $H$ using $S_{train}$
 and $S_{test}$ such that the expected number of erroneous predictions
-on the test and the training samples is minimized. But, why not use
-the learning rule obtained by means of the training examples to classify
-the test examples? The problem arises when a small training set is
-use. The classifier will have a \textquotedblleft{}poor\textquotedblright{}
-generalization due to the lack of knowledge about the distribution
-of points in the space $X$. 
+on the test and the training samples is minimized. 
 
-The classifier function estimated with very few points will lead to
+The setting of transductive SVM for TC was introduced by Joachims
+\cite{Joachims99c} based on the Work of Vapnik \cite{Vapnik98}. It consists in a set of training examples: $\left\{
+(\overrightarrow{x_{1}},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})\right\}$, and each f them
+consists of a document vector $\overrightarrow{x}$ and a binary label $y \in
+\{-1,1\}$. The main difference with the inductive setting is that the
+learning is also given a set of i.i.d sample set of $j$ test examples {
+  $\overrightarrow{x*}_{n+1},...,\overrightarrow{x*}_{j} }$  from the same
+distribution. The transductive learning $L$ aims to find the function $h_L$
+that  minimize 
+
+\begin{equation}
+\[R(L)=\int\frac{1}{k}\sum_{i=1}^{k}\Theta(h_{L}(\overrightarrow{x_{i}^{*}}),y_{i}^{*})dP(\overrightarrow{x_{i}^{*}},y_{1})...dP(\overrightarrow{x_{k}^{*}},y_{k})\]
+\end{equation}
+
+$\Theta(a,b)$ is $0$ when $a=b$, $1$ otherwise. Vapnik \cite{Vapnik98} gives
+the bounds on the training error:
+
+\begin{equation}
+  R_{train}=\frac{1}{n}\sum_{i=1}^{n}\Theta(h(\overrightarrow{x_{i}}),y_{i}^{})
+\end{equation}
+
+and the test error:
+
+\begin{equation}
+R_{test}=\frac{1}{k}\sum_{i=1}^{k}\Theta(h(\overrightarrow{x_{i}^{*}}),y_{i}^{true})
+\end{equation}
+
+This leads to the following optimization problem (here with slack variables
+for handling non-separable cases)
+
+\begin{multline*}
+Minimize\, over\,(y_{1}^{*},...,y_{n}^{*},\overrightarrow{\omega},b,\xi_{1},...,\xi_{n},\xi_{1}^{*},...,\xi_{k}^{*}):\\
+\frac{1}{2}\Vert\overrightarrow{\omega}\Vert^{2}+C\sum_{i=0}^{n}\xi_{i}\\
+subject\, to\,\,\,\,\,\,\,\,\,\,\,\,\forall_{i=1}^{n}:y_{i}[\overrightarrow{\omega}\cdot\overrightarrow{x_{i}}+b]\geq1-\xi_{i}\\
+\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\forall_{j=1}^{k}:y_{j}^{*}[\overrightarrow{\omega}\cdot\overrightarrow{x_{j}^{*}}+b]\geq1-\xi_{j}^{*}\\
+\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\forall_{i=1}^{n}:\xi_{i}>0\\
+\forall_{j=1}^{k}:\xi_{i}^{*}>0\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\end{multline*}
+
+
+The algorithm in page \ref{fig:alg-tsvm} solves the minimization problem defined above. For a complete description and a in depth study of the Joachims' approach see the nominal paper \cite{Joachims99c}
+and work of Collobert \cite{1248609}.
+
+One could think then, why not use just the learning rule obtained by means of the training examples to classify
+the test examples? Well, this formulation becomes handy when a only small
+training set, wich is generally the case for text document. If a inductive
+setup is used when there are only few training samples the classifier will have a \textquotedblleft{}poor\textquotedblright{}
+generalization due to the lack of knowledge about the distribution
+of points in the space $H$. A classifier function estimated with very few points will lead to
 disappointing results. Unlike of the inductive setting, the Transductive
 setting uses the location of the test examples when defining the structure.
 Such structure corresponds to a structure of possible hypothesis solution.
 Using prior knowledge about the nature of testing data provides extra
-information to built an appropriate structure. The structure is build
+information to built an appropriate structure. The structure is built
 based on the margin on both the training and the test data.
 
-The setting of transductive svm for TC was introduced by Joachims
-\cite{Joachims99c}. The basic setup consists in a set of training examples: $\left\{
-(\overrightarrow{x_{1}},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})\right\}$, and each f them
-consists of a document vector $\overrightarrow{x}$ 
 
 
-%
 \begin{figure}[H]
 \begin{centering}
-\includegraphics[scale=0.42]{images/joachims-algorithm}\label{fig:alg-tsvm}
+\includegraphics[scale=0.3]{images/joachims-algorithm}\label{fig:alg-tsvm}
 \par\end{centering}
-
 \caption{Algorithm for training Transductive Support Vector Machines \cite{Joachims99c}}
-
-
 \end{figure}
 
 
-For a complete description and a in depth study of the Joachims' approach see the nominal paper \cite{Joachims99c}
-and work of Collobert \cite{1248609}.
+
 
 
 %
