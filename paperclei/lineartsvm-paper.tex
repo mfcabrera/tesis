@@ -14,7 +14,7 @@
 %% \usepackage{varioref}
 %% \usepackage{float}
 %% \usepackage{amsmath}
-%% \usepackage{color}
+%% \usepackage{color} %%^^&&&&&&**** +++
 %% \usepackage{graphicx}
 %% \usepackage{amssymb}
 
@@ -325,26 +325,23 @@ Minimize\, over\,(y_{1}^{*},...,y_{n}^{*},\overrightarrow{\omega},b,\xi_{1},...,
 subject\, to\,\,\,\,\,\,\,\,\,\,\,\,\forall_{i=1}^{n}:y_{i}[\overrightarrow{\omega}\cdot\overrightarrow{x_{i}}+b]\geq1-\xi_{i}\\
 \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\forall_{j=1}^{k}:y_{j}^{*}[\overrightarrow{\omega}\cdot\overrightarrow{x_{j}^{*}}+b]\geq1-\xi_{j}^{*}\\
 \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\forall_{i=1}^{n}:\xi_{i}>0\\
-\forall_{j=1}^{k}:\xi_{i}^{*}>0\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\end{multline*}
-
+\forall_{j=1}^{k}:\xi_{i}^{*}>0\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,
+\end{multline*} 
 
 The algorithm in page \ref{fig:alg-tsvm} solves the minimization problem defined above. For a complete description and a in depth study of the Joachims' approach see the nominal paper \cite{Joachims99c}
 and work of Collobert \cite{1248609}.
 
-One could think then, why not use just the learning rule obtained by means of the training examples to classify
+Based on the above, one could think then, why not use just the learning rule obtained by means of the training examples to classify
 the test examples? Well, this formulation becomes handy when a only small
-training set, wich is generally the case for text document. If a inductive
-setup is used when there are only few training samples the classifier will have a \textquotedblleft{}poor\textquotedblright{}
+training set, wich is generally the case for document cateogorization tasks,
+is available. If a inductive setup is used when there are only few training samples the classifier will have a \textquotedblleft{}poor\textquotedblright{}
 generalization due to the lack of knowledge about the distribution
 of points in the space $H$. A classifier function estimated with very few points will lead to
 disappointing results. Unlike of the inductive setting, the Transductive
 setting uses the location of the test examples when defining the structure.
 Such structure corresponds to a structure of possible hypothesis solution.
 Using prior knowledge about the nature of testing data provides extra
-information to built an appropriate structure. The structure is built
-based on the margin on both the training and the test data.
-
-
+information to built an appropriate structure. 
 
 \begin{figure}[H]
 \begin{centering}
@@ -354,7 +351,117 @@ based on the margin on both the training and the test data.
 \end{figure}
 
 
+%
+\section{Parallel Methods for Training Transductive SVM \label{cha:Experiments-and-Results}}
+%
+Solving the Transductive SVM using the algorithm described by Joachims
+implies solve many times an SVM inductive optimization problem. The
+algorithm improves the objective function by switching the labels
+interactively of two unlabeled data points $x_{i}$ and $x_{j}$ with
+$\xi_{i}+\xi_{j}>2$. It uses two nested loops to optimize a TSVM
+which solves a quadratic programming every time it changes a label
+from an unlabeled data. The convergence of the nested loop relies
+in the fact that there is only a finite number $2^{U}$ ways of labeling
+of $U$ unlabeled points and it is unlikely that all of them are examined
+\cite{1248609}. However because the heuristic only swaps the label
+of two unlabeled examples at each nested loop iteration it might need
+(and in fact it does) many iterations to reach a minimum which makes
+it intractable for big data sets in practice.
 
+TSVM in the worst case have complexity of $O(L+U)^{3}$ with $U$
+labeled points, although it generally scales to square in most practical
+cases \cite{Joachims/99a} thus still intractable for large data sets.
+
+n order to optimize this kind problem one can try to modify the formulation,
+for instance example solving it in the primal rather than in the dual
+with an alternate technique although the question of how widely applicable
+are these methods are remains to bee seen. or use any of the general
+approaches described in section \ref{sec:Paralell-Machine-Learning}
+that makes use of the computation power given by the new multicore
+processors. 
+
+For the specific case of SVM and TSVM one could try to modify the
+problem in a way that makes it easily parallelizable \cite{1248601}
+Generally this is accomplished through the use of decomposition technique
+of some kind. Another approach is to use a mixture of SVM \cite{citeulike:935557|Collobert2002}
+in order to to train each of them with a subset and them using the
+mixture of expert approach \cite{Jacobs:Jordan:Nowlan:Hinton91} which
+is easily parallelizable. All these approach modify in some manner
+the original formulation of the problem.
+
+A recent approach called the Cascade SVM consist in an array of SVM
+solvers arranged in pyramid form. This structure allows an easy parallelization
+and does not modify the original formulation at all \cite{GrafCBDV04,ZhangZY05}.
+This is the approach selected for the parallelization of TSVM because
+there is no need to modify the original quadratic programming problem
+and is straightforward to implement. Some small modifications are
+needed in order to be fully adapted to the Transductive algorithm
+described by Joachims. 
+
+
+\section{The Cascade SVM}
+
+The Cascade SVM was described by Graf et al \cite{GrafCBDV04} and
+further explored by Zhang et al \cite{ZhangZY05} and is based in
+the strategy of early elimination of non-support vectors from the
+training set \cite{Joachims/99a}. The Cascade SVM is a distributed
+architecture where smaller optimization problems are solved independently
+making them easily parallelizable. The results of this smaller problems
+are then assembled in a way that is ensured that it eventually converges
+to globally optimal solution.
+
+%
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{images/graf-svm-cascade}
+\par\end{centering}
+
+\caption{Schematic of a Cascade architecture \cite{GrafCBDV04}}
+\label{fig:svm-cascade}
+\end{figure}
+
+
+In order to find a minimum using this approach the problem is initialized
+with a number of independent smaller optimization whose results are
+combined in later stages in a hierarchical fashion as shown in figure
+\ref{fig:svm-cascade}. The data is split into subsets and everyone
+of them is evaluated for to find support vectors in the first layer,
+then the results are combined two-by-two and entered as training set
+for the next layer. Often a single pass through the cascade produces
+satisfactory results and if it is not the case, that is, if solution
+is not the global maximum, the result of the last layer is fed back
+into the first layer, where each of the SVM of the first layer receives
+all the support vectors and test them with fraction of his inputs
+to check if any of them have to be incorporated into the optimization.
+If this is not the case for all SVM of the input layer, the cascade
+have converged otherwise it proceeds with another pass through the
+network. The formal proof of the convergence can be found in \cite{GrafCBDV04}.
+
+
+\subsection{Cascade Transductive SVM}
+
+The original formulation for this cascade SVM is defined for the classical
+SVM problem so it is necessary to adapt the architecture described
+above in order to handle properly the TSVM formulation. There are
+at least two approach for this, the first approach is to make each
+of theSVM in the array Transductive, using the algorithm described
+in Figure \ref{fig:alg-tsvm}. Even if this might seem obvious ultimatly
+the loop in each of the SVM will be run in just one processor so the
+only possible speed up would be in terms of the number of training
+and testing data available. Also splitting and mergin the subsets
+might need additional modifications, despite this fact, it might be
+interesting to vizualise the behaviour of this approach and for that
+reason is left as a future work.
+
+The other approach is parallelize the more computational expensive
+part of the TSVM algorithm: the \emph{solve\_svm\_qp} function which
+solves the dual problem associated with formulation described in section
+\ref{sub:Transductive-Learning-for}. Now for each iteration of the
+loop the a SVM inductive problem is solved in a parallel manner. We
+have two goals to achieve with this, in the first place we need to
+implement an algorithm that is at least is as good as the serial (non
+parallel) version and also we need to ensure a speed up of the process
+through the use of the parallel architecture.
 
 
 %
