@@ -6,8 +6,6 @@ I was expecting an "="---line 219 of file biblio.bib
  :  isbn = {0-542-04581-8},Kernel 
  :                                Methods for Improving Text Search Engines
 I'm skipping whatever remains of this entry
-Warning--entry type for "EspinosaJ2003" isn't style-file defined
---line 224 of file biblio.bib
 I was expecting a `,' or a `}'---line 584 of file biblio.bib
  : 
  : @article{782654,
@@ -15,52 +13,47 @@ I was expecting a `,' or a `}'---line 584 of file biblio.bib
 I'm skipping whatever remains of this entry
 A bad cross reference---entry "DBLP:conf/icann/KellerB05"
 refers to entry "DBLP:conf/icann/2005-2", which doesn't exist
-Warning--I didn't find a database entry for "clar:eke"
-Warning--I didn't find a database entry for "rab"
-Warning--I didn't find a database entry for "clar:eke:2"
-Warning--I didn't find a database entry for "mich:tar"
-Warning--I didn't find a database entry for "tar"
 Warning--I didn't find a database entry for "DBLP:conf/icann/2005-2"
-Warning--empty institution in 866292
-You've used 22 entries,
+Warning--empty journal in Porter80
+You've used 16 entries,
             2118 wiz_defined-function locations,
-            659 strings with 7732 characters,
-and the built_in function-call counts, 7339 in all, are:
-= -- 728
-> -- 302
-< -- 7
-+ -- 124
-- -- 97
-* -- 464
-:= -- 1185
-add.period$ -- 69
-call.type$ -- 22
-change.case$ -- 110
+            613 strings with 6724 characters,
+and the built_in function-call counts, 5846 in all, are:
+= -- 591
+> -- 209
+< -- 8
++ -- 87
+- -- 67
+* -- 352
+:= -- 898
+add.period$ -- 50
+call.type$ -- 16
+change.case$ -- 78
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 313
-empty$ -- 619
-format.name$ -- 97
-if$ -- 1585
+cite$ -- 17
+duplicate$ -- 260
+empty$ -- 504
+format.name$ -- 67
+if$ -- 1295
 int.to.chr$ -- 0
-int.to.str$ -- 22
-missing$ -- 23
-newline$ -- 111
-num.names$ -- 46
-pop$ -- 145
+int.to.str$ -- 16
+missing$ -- 16
+newline$ -- 82
+num.names$ -- 34
+pop$ -- 110
 preamble$ -- 1
-purify$ -- 91
+purify$ -- 64
 quote$ -- 0
-skip$ -- 219
+skip$ -- 202
 stack$ -- 0
-substring$ -- 433
-swap$ -- 77
-text.length$ -- 7
+substring$ -- 413
+swap$ -- 86
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 80
+type$ -- 60
 warning$ -- 1
-while$ -- 73
-width$ -- 24
-write$ -- 241
+while$ -- 60
+width$ -- 18
+write$ -- 176
 (There were 3 error messages)

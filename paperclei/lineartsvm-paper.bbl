@@ -1,21 +1,14 @@
 \begin{thebibliography}{10}
 
-\bibitem{citeulike:935557|Collobert2002}
-R.~Collobert, S.~Bengio, and Y.~Bengio.
-\newblock A parallel mixture of svms for very large scale problems.
-\newblock In {\em Advances in Neural Information Processing Systems}. MIT
-  Press, 2002.
+\bibitem{Asuncion+Newman:2007}
+D.J.~Newman A.~Asuncion.
+\newblock {UCI} machine learning repository, 2007.
+\newblock http://www.ics.uci.edu/$\sim$mlearn/MLRepository.html.
 
 \bibitem{1248609}
 Ronan Collobert, Fabian Sinz, Jason Weston, and L\'{e}on Bottou.
 \newblock Large scale transductive svms.
 \newblock {\em J. Mach. Learn. Res.}, 7:1687--1712, 2006.
-
-\bibitem{citeulike:114719|Cristianini2000introSVM}
-Nello Cristianini and John Shawe-Taylor.
-\newblock {\em An Introduction to Support Vector Machines and Other
-  Kernel-based Learning Methods}.
-\newblock {Cambridge University Press}, March 2000.
 
 \bibitem{deerwester90indexing}
 Scott~C. Deerwester, Susan~T. Dumais, Thomas~K. Landauer, George~W. Furnas, and
@@ -32,25 +25,18 @@ Susan Dumais, John Platt, David Heckerman, and Mehran Sahami.
   on Information and knowledge management}, pages 148--155, New York, NY, USA,
   1998. ACM Press.
 
-\bibitem{EspinosaJ2003}
-Jorge Espinosa.
-\newblock Kernel methods for improving text search engines, msc thesis, 2003.
-
-\bibitem{1069628|Geer05}
-David Geer.
-\newblock Industry trends: Chip makers turn to multicore processors.
-\newblock {\em Computer}, 38(5):11--13, 2005.
-
 \bibitem{GrafCBDV04}
 Hans~Peter Graf, Eric Cosatto, L{\'e}on Bottou, Igor Dourdanovic, and Vladimir
   Vapnik.
 \newblock Parallel support vector machines: The cascade {SVM}.
 \newblock In {\em NIPS}, 2004.
 
-\bibitem{citeulike:368926|Haykin1998}
-Simon Haykin.
-\newblock {\em Neural Networks: A Comprehensive Foundation (2nd Edition)}.
-\newblock {Prentice Hall}, July 1998.
+\bibitem{ZhangZY05}
+Jing~Yang Jian-Pei~Zhang, Zhong-Wei~Li.
+\newblock A parallel svm training algorithm on large-scale classification
+  problems.
+\newblock In {\em Machine Learning and Cybernetics, 2005}, pages 1637 -- 1641,
+  2005.
 
 \bibitem{Joachims/99a}
 T.~Joachims.
@@ -73,37 +59,19 @@ Thorsten Joachims.
 \newblock In {\em International Conference on Machine Learning (ICML)}, pages
   200--209, Bled, Slowenien, 1999.
 
-\bibitem{keller-theme}
-Mikaela Keller and Samy Bengio.
-\newblock Theme topic mixture model: A graphical model for document
-  representation.
-
 \bibitem{DBLP:conf/icann/KellerB05}
 Mikaela Keller and Samy Bengio.
 \newblock A neural network for text representation.
 \newblock In {\em ICANN (2)}, pages 667--672, 2005.
 
-\bibitem{Marowka07}
-Ami Marowka.
-\newblock Parallel computing on any desktop.
-\newblock {\em Commun. ACM}, 50(9):74--78, 2007.
+\bibitem{20news}
+K.~Lang.
+\newblock 20 newsgroups data set.
 
-\bibitem{osunaetal97}
-Edgar Osuna, Robert Freund, and Federico Girosi.
-\newblock Training support vector machines: an application to face detection.
-\newblock In {\em CVPR '97: Proceedings of the 1997 Conference on Computer
-  Vision and Pattern Recognition (CVPR '97)}, page 130, Washington, DC, USA,
-  1997. IEEE Computer Society.
-
-\bibitem{361220}
-G.~Salton, A.~Wong, and C.~S. Yang.
-\newblock A vector space model for automatic indexing.
-\newblock {\em Commun. ACM}, 18(11):613--620, 1975.
-
-\bibitem{866292}
-Gerard Salton and Chris Buckley.
-\newblock Term weighting approaches in automatic text retrieval.
-\newblock Technical report, Ithaca, NY, USA, 1987.
+\bibitem{Porter80}
+M.~F. Porter.
+\newblock An algorithm for suffix stripping.
+\newblock pages 313--316, 1997.
 
 \bibitem{Sebastiani02}
 Fabrizio Sebastiani.
