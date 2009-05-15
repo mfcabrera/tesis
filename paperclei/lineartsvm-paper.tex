@@ -17,14 +17,14 @@
 %% \usepackage{color} %%^^&&&&&&**** +++
 %% \usepackage{graphicx}
 %% \usepackage{amssymb}
-
+%tzuf3110
 
 \documentstyle[graphicx,amsmath,float,array]{llncs}
 
 %
 \begin{document}
 
-\title{Parallel Transductive Linear SVM for Text Classification}
+\title{Parallel Transductive Linear SVM for Text Categorization}
 
 \author{Miguel Fernando Cabrera and Jairo Espinosa Oviedo}
 
@@ -60,9 +60,8 @@ Parallel Algorithm, Information Retrieval,Artificial Intelligence
 \section{Introduction}
 
 Text classification is a key aspect of text filtering, document management
-and retrieval tasks. Besides basic document classification for some
-kind of digital library, many problems can be seen as instances of
-the Text Categorization (TC) problem. Spam detection, Web search
+and retrieval tasks. Besides basic document classification many problems can be seen as instances of
+a Text Categorization (TC) problem. Spam detection, Web search
 improvement and automated metadata generation are just a few examples
 of this \cite{Sebastiani02}.  Some of those tasks can be achieved
 by human beings, but a manual classification is at best expensive
@@ -238,7 +237,7 @@ probability of error is guaranteed for a given set of training examples.
 \section{SVM and Text Categorization}
 
 The usage of SVM for TC  was first introduced by Joachims \cite{Joachims98,Joachims99c}
-and similar setups have been used in posterior literature\cite{DumaisPHS98}.
+and similar setups have been used in posterior literature \cite{DumaisPHS98}.
 the TC task using SVM can bee seen geometrically as finding an hyperplane
 (decision surface) that separates two groups of points. Each point
 is a vector representation of a document which can be done using any
@@ -253,8 +252,9 @@ to overfitting problems and can scale up to high dimensions.
 is needed, as there is a theoretical default choice of parameter settings.
 \end{itemize}
 These two characteristics makes the SVMs attractive for tackling this
-kind of problems. In real life scenarios, TC problems involves high
-dimensional data and large amount of computing processing. 
+kind of problems. 
+%In real life scenarios, TC problems involves high
+%dimensional data and large amount of computing processing. 
 %% As mentioned
 %% before, the fact that SVM need a lot of calculation power for training
 %% makes it an important motivation for using a parallel algorithm when
@@ -262,13 +262,13 @@ dimensional data and large amount of computing processing.
 
 \section{Transductive Learning for SVM and Text Categorization\label{sub:Transductive-Learning-for}}
 
-So far with the formulations described in the last section we are
-using what is called inductive learning, in other words we start from
-a set of examples, and based on them we try to find a classificator
-function that classifies correctly the data. This is called Inference
-learning, that is, going from particular examples to a general hypothesis.
-The Transductive setting on the other hand, tries to use the known
-distribution of the test data in order produce a classifier. 
+%% So far with the formulations described in the last sections we are
+%% using what is called inductive learning, in other words we start from
+%% a set of examples, and based on them we try to find a classificator
+%% function that classifies correctly the data. %% This is called Inference
+%% %% learning, that is, going from particular examples to a general hypothesis.
+%% The Transductive setting on the other hand, tries to use the known
+%% distribution of the test data in order produce a classifier. 
 
 %% This setting has a clear application when we don\textquoteright{}t
 %% care about the particular function; we only need to classify a given
@@ -370,7 +370,7 @@ cases \cite{Joachims/99a} thus still intractable for large data sets.
 %% is easily parallelizable. All these approach modify in some manner
 %% the original formulation of the problem.
 
-A recent approach called the Cascade SVM, consist in an array of SVM
+A recent approach called the Cascade SVM, consists in an array of SVM
 solvers arranged in pyramid form. This structure allows an easy parallelization
 and does not modify the original formulation at all \cite{GrafCBDV04,ZhangZY05}.
 This is the approach selected for the parallelization of TSVM because
@@ -446,7 +446,7 @@ through the use of the parallel architecture.
 %
 \begin{figure}
 \begin{centering}
-\includegraphics[scale=0.5]{images/graf-svm-cascade-of-3}\label{fig:graf-3-svm}
+\includegraphics[scale=0.35]{images/graf-svm-cascade-of-3}\label{fig:graf-3-svm}
 \par\end{centering}
 \begin{centering}
 \caption{A Cascade with two input sets $D_{1}$,$D_{2}$. $W_{i}$, $G_{i}$
@@ -522,67 +522,69 @@ in Ruby using an already existing implementation of the stemmer algorithm.
 
 The 20 Newsgroup data sets is set is a collection of approximately
 20,000 newsgroup documents, partitioned evenly across 20 different
-newsgroups. The collection is organized in the following form:\\ 
+newsgroups. The collection is organized in categories ranging from computer
+related topics (e.g comp.sys.ibm.pc.hardware, comp.windows.x, etc.) to
+politics (talk.politics.misc,  talk.politics.guns,etc).
 
-\begin{tabular}{|c|c|c|}
-\hline 
-%
-\begin{minipage}[t][1\totalheight][c]{0.36\columnwidth}%
-\begin{itemize}
-\item comp.graphics 
-\item comp.os.ms-windows.misc
-\item comp.sys.ibm.pc.hardware 
-\item comp.sys.mac.hardware 
-\item comp.windows.x
-\end{itemize}
-%
-\end{minipage} & %
-\begin{minipage}[t][1\totalheight][c]{0.30\columnwidth}%
-\begin{itemize}
-\item rec.autos 
-\item rec.motorcycles 
-\item rec.sport.baseball 
-\item rec.sport.hockey
-\end{itemize}
-%
-\end{minipage} & %
-\begin{minipage}[t][1\totalheight][c]{0.30\columnwidth}%
-\begin{itemize}
-\item sci.crypt 
-\item sci.electronics 
-\item sci.med sci.space
-\end{itemize}
-%
-\end{minipage}\tabularnewline
-\hline 
-%
-\begin{minipage}[t][1\totalheight][c]{0.25\columnwidth}%
-\begin{itemize}
-\item misc.forsale
-\end{itemize}
-%
-\end{minipage} & %
-\begin{minipage}[t][1\totalheight][c]{0.32\columnwidth}%
-\begin{itemize}
-\item talk.politics.misc 
-\item talk.politics.guns 
-\item talk.politics.mideast
-\end{itemize}
-%
-\end{minipage} & %
-\begin{minipage}[t][1\totalheight][c]{0.32\columnwidth}%
-\begin{itemize}
-\item talk.religion.misc 
-\item alt.atheism 
-\item soc.religion.christian
-\end{itemize}
-%
-\end{minipage}\tabularnewline
-\hline
-\end{tabular}
+%% \begin{tabular}{|c|c|c|}
+%% \hline 
+%% %
+%% \begin{minipage}[t][1\totalheight][c]{0.36\columnwidth}%
+%% \begin{itemize}
+%% \item comp.graphics 
+%% \item comp.os.ms-windows.misc
+%% \item comp.sys.ibm.pc.hardware 
+%% \item comp.sys.mac.hardware 
+%% \item comp.windows.x
+%% \end{itemize}
+%% %
+%% \end{minipage} & %
+%% \begin{minipage}[t][1\totalheight][c]{0.30\columnwidth}%
+%% \begin{itemize}
+%% \item rec.autos 
+%% \item rec.motorcycles 
+%% \item rec.sport.baseball 
+%% \item rec.sport.hockey
+%% \end{itemize}
+%% %
+%% \end{minipage} & %
+%% \begin{minipage}[t][1\totalheight][c]{0.30\columnwidth}%
+%% \begin{itemize}
+%% \item sci.crypt 
+%% \item sci.electronics 
+%% \item sci.med sci.space
+%% \end{itemize}
+%% %
+%% \end{minipage}\tabularnewline
+%% \hline 
+%% %
+%% \begin{minipage}[t][1\totalheight][c]{0.25\columnwidth}%
+%% \begin{itemize}
+%% \item misc.forsale
+%% \end{itemize}
+%% %
+%% \end{minipage} & %
+%% \begin{minipage}[t][1\totalheight][c]{0.32\columnwidth}%
+%% \begin{itemize}
+%% \item talk.politics.misc 
+%% \item talk.politics.guns 
+%% \item talk.politics.mideast
+%% \end{itemize}
+%% %
+%% \end{minipage} & %
+%% \begin{minipage}[t][1\totalheight][c]{0.32\columnwidth}%
+%% \begin{itemize}
+%% \item talk.religion.misc 
+%% \item alt.atheism 
+%% \item soc.religion.christian
+%% \end{itemize}
+%% %
+%% \end{minipage}\tabularnewline
+%% \hline
+%% \end{tabular}
 \\
 
-As we can see the data set is divided by newsgroup topics and can
+The data set is divided by newsgroup topics and can
 be grouped into similar categories. For the experiments we define
 two tasks, an {}``easy'' one and an {}``hard'' one. For the easy
 task we took 1000 messages from \emph{alt.atheism }and 1000 messages
@@ -619,10 +621,10 @@ to $C$. %% This parameter is of great importance for the computation
 %% by choosing the right C{*} parameter so we tested the implementation
 %% effectiveness with the original Joachim's heuristic $C=C*$.
 %
-\begin{comment}
-and the one proposed by \cite{1248609}: $UC=LC*$ . 
-\end{comment}
-{}
+%% \begin{comment}
+%% and the one proposed by \cite{1248609}: $UC=LC*$ . 
+%% \end{comment}
+%% {}
 
 The Cascade architecture used in the experiments were formed 3 layers
 of SVM with 4 SVMs in the first 2 in the second and finally 1 in the
@@ -705,72 +707,70 @@ shows the results of the experiments.
 
 %
 \begin{table}
-\begin{longtable}{c}
+\begin{longtable}
+%% \begin{tabular}{|c|c|c|c|c|c||c|}
+%% \hline 
+%%  & \#Labeled & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
+%% \hline
+%% \hline 
+%% SVM & 200 & N/A & 0.9245 & 1.0 & 0.9608 & 0.0137\tabularnewline
+%% \hline 
+%% TSVM & 200 & 200 & 0.9847 & 0.9847 & 0.9847 & 10.2205\tabularnewline
+%% \hline 
+%% TSVM Parallel & 200 & 200 & 0.9847 & 0.9847 & 0.9847 & \textcolor{red}{7.2050}\tabularnewline
+%% \hline
+%% \end{tabular} \\
 \begin{tabular}{|c|c|c|c|c|c||c|}
-\hline 
- & \#Labeled & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
 \hline
-\hline 
-SVM & 200 & N/A & 0.9245 & 1.0 & 0.9608 & 0.0137\tabularnewline
-\hline 
-TSVM & 200 & 200 & 0.9847 & 0.9847 & 0.9847 & 10.2205\tabularnewline
-\hline 
-TSVM Parallel & 200 & 200 & 0.9847 & 0.9847 & 0.9847 & \textcolor{red}{7.2050}\tabularnewline
-\hline
-\end{tabular}\tabularnewline
-\tabularnewline
-\begin{tabular}{|c|c|c|c|c|c||c|}
-\hline 
- & \#Train & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
+ & \#Train\ \ \ \ & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
 \hline 
 SVM & 200 & N/A & 0.9384 & 1 & 0.9682 & 0.0135\tabularnewline
 \hline 
 TSVM & 200 & 400 & 0.9823 & 0.9823 & 0.9823 & 44.4103\tabularnewline
 \hline 
-TSVM Parallel & 200 & 400 & 0.9823 & 0.9823 & 0.9823 & \textcolor{red}{15.3406}\tabularnewline
+TSVM Parallel & 200 & 400 & 0.9823 & 0.9823 & 0.9823 & 15.3406\tabularnewline
 \hline
-\end{tabular}\tabularnewline
+\end{tabular}\\
 \tabularnewline
 \tabularnewline
 \begin{tabular}{|c|c|c|c|c|c||c|}
 \hline 
- & \#Train & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
+ & \#Train\ \ \ \ & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
 \hline 
 SVM & 100 & N/A & 0.9062 & 1 & 0.9508 & 0.0135\tabularnewline
 \hline 
 TSVM & 100 & 400 & 0.9823 & 0.9823 & 0.9823 & 32.1135\tabularnewline
 \hline 
-TSVM Parallel & 100 & 400 & 0.9823 & 0.9823 & 0.9823 & \textcolor{red}{11.0953}\tabularnewline
+TSVM Parallel & 100 & 400 & 0.9823 & 0.9823 & 0.9823 & \textbf{11.0953}\tabularnewline
 \hline
-\end{tabular}\tabularnewline
+\end{tabular} \\
+\tabularnewline
 \tabularnewline
 \begin{tabular}{|c|c|c|c|c|c||c|}
 \hline 
- & \#Train & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
+ & \#Train\ \ \ \ & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
 \hline
 \hline 
 SVM & 100 & N/A & 0.9975 & 0.8957 & 0.9438 & 0.0135\tabularnewline
 \hline 
 TSVM & 100 & 800 & 0.9798 & 0.9798 & 0.9798 & 214.2297\tabularnewline
 \hline 
-TSVM Parallel & 100 & 800 & 0.9798 & 0.9798 & 0.9798 & \textcolor{red}{68.4745 }\tabularnewline
+TSVM Parallel & 100 & 800 & 0.9798 & 0.9798 & 0.9798 & 	\textbf{68.4745}\tabularnewline
 \hline
-\end{tabular}\tabularnewline
+\end{tabular}\\
+\tabularnewline
 \tabularnewline
 \begin{tabular}{|c|c|c|c|c|c||c|}
 \hline 
- & \#Train & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
+ & \#Train\ \ \ \ & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
 \hline
 \hline 
 SVM & 100 & 0 & 0.8966 & 0.9975 & 0.9444 & 0.0135\tabularnewline
 \hline 
 TSVM & 100 & 1600 & 0.9800 & 0.9800 & 0.9800 & 278.3236%
-\begin{comment}
-228.3235
-\end{comment}
-{}\tabularnewline
+\tabularnewline
 \hline 
-TSVM Parallel & 100 & 1600 & 0.9800 & 0.9800 & 0.9800 & 41.53950\tabularnewline
+TSVM Parallel & 100 & 1600 & 0.9800 & 0.9800 & 0.9800 & \textbf{41.53950}\tabularnewline
 \hline
 \end{tabular}\tabularnewline
 \end{longtable}
@@ -818,9 +818,9 @@ the available training data.
 
 %
 \begin{table}
-\begin{longtable}{c}
+\begin{longtable}
 \begin{tabular}{|c|c|c|c|c|c||c|}
-\hline 
+\hline
  & \#Train & \#Unlabeled & $P$  & $R$  & $F1$  & Time (min)\tabularnewline
 \hline 
 SVM & 100 & N/A & 0.7400 & 0.8916 & 0.8087 & 0.0025\tabularnewline
@@ -829,7 +829,8 @@ TSVM & 100 & 200 & 0.8600 & 0.8600 & 0.8600 & 1.5370\tabularnewline
 \hline 
 TSVM Parallel & 100 & 200 & 0.8700 & 0.8700 & 0.8700 & 1.4863\tabularnewline
 \hline
-\end{tabular}\tabularnewline
+\end{tabular} \\
+\tabularnewline
 \tabularnewline
 \begin{tabular}{|c|c|c|c|c|c||c|}
 \hline 
@@ -841,7 +842,8 @@ TSVM & 100 & 400 & 0.8550 & 0.8550 & 0.8550 & 6.0628\tabularnewline
 \hline 
 TSVM Parallel & 100 & 400 & 0.8550 & 0.8550 & 0.8550 & 4.3323\tabularnewline
 \hline
-\end{tabular}\tabularnewline
+\end{tabular} \\
+\tabularnewline
 \tabularnewline
 \begin{tabular}{|c|c|c|c|c|c||c|}
 \hline 
@@ -854,7 +856,8 @@ TSVM & 100 & 800 & 0.8200 & 0.8200 & 0.8200 & 31.0015\tabularnewline
 \hline 
 TSVM Parallel & 100 & 800 & 0.8200 & 0.8200 & 0.8200 & 19.5472\tabularnewline
 \hline
-\end{tabular}\tabularnewline
+\end{tabular} \\
+\tabularnewline
 \tabularnewline
 \begin{tabular}{|c|c|c|c|c|c||c|}
 \hline 
