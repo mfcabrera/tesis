@@ -49,11 +49,11 @@ problems that generally scales to $O(n^{3})$. We describe the implementation
 of a TSVM Solver for 2-class problem using a parallel architecture
 which aims to improve the necessary computation times while preserving
 the classification performance. This strategy produced an implementation 
-that is 2x - 7x faster than a regular TSVM for a TC problem of 2,000 vectors 
+that is 2x to 7x faster than a regular TSVM for a TC problem of 2,000 vectors 
 and more than 30,000 features.
 
 {\bf Keywords:} SVM, Text Classification, Machine Learning, Algorithm,
-Parallel Algorithm, Information Retrieval,Artificial Intelligence
+Parallel Algorithm, Information Retrieval, Artificial Intelligence
 
 \end{abstract}
 
@@ -74,7 +74,7 @@ in modern information systems.
 %% authority would have given to future documents. 
 
 Support Vector Machines \cite{Vapnik98} are powerful tools for classifying
-large data sets, and due the nature of the classical text representation
+large data sets, and due to the nature of the classical text representation
 models, it has been applied successfully in automated document classification
 tasks \cite{Joachims98,Joachims99c}. An special type of SVM, based
 on Transductive inference (TSVM), has demonstrated to be more effective
@@ -119,18 +119,20 @@ learning algorithm.
 %% results.
 
 %
-\section{Models of Text and Text Representation\label{sub:Models-of-Text}}
+ \section{Models of Text and Text Representation\label{sub:Models-of-Text}}
 %
 
-Usually in a digital library database a set of words that defines
-the topics or the main characteristics of a document is manually defined.
-The main objective of this is to help the search of the physical document
-(e.g books, papers,etc.). This list of terms or keywords enables the
-user to query documents related to one or more concepts. One of the
-main problems of this is that only few keywords are associated with
-a defined document, and generally this assignation is made at hand,
-making it expensive and error prone.
-%%% Generally this querying these
+ Usually in a digital library database a set of words that defines
+ the topics or the main characteristics of a document is manually defined.
+ The main objective of this is to help the search of the physical document
+ (e.g books, papers,etc.). This list of terms or keywords enables the
+ user to query documents related to one or more concepts. One of the
+ main problems of this is that only few keywords are associated with
+ a defined document, and generally this assignation is made by hand,
+ making it expensive and error prone.
+%%%%%%%%%%%%%%%%%%%% HASTA AQUI SI
+
+%%  Generally this querying these
 %% systems was limited to the numbers of keywords assigned and some metadata
 %% like title, author and dates of publication, being the user unable
 %% to query the whole document, making the retrieval task significantly
@@ -150,11 +152,12 @@ making it expensive and error prone.
 %% order to extract the more important words, that is, the keywords that
 %% define it. 
 
-During the last few decades many representation forms have been developed
-ranging from simple word appearance binary representation to a concept
-\cite{deerwester90indexing}, probabilistic and
-even Neural Networks \cite{DBLP:conf/icann/KellerB05} based ones. 
-%% \cite{keller-theme} \cite{361220}
+%% %%%YES
+ During the last few decades many representation forms have been developed
+ ranging from simple word appearance binary representation to a concept
+ \cite{deerwester90indexing}, probabilistic and
+ even Neural Networks \cite{DBLP:conf/icann/KellerB05} based ones. 
+ \cite{keller-theme} \cite{361220}
 
 The most common approach to automatically extract the index terms
 from a corpus is called vector space model. In this
@@ -166,7 +169,10 @@ Based in this definition various forms of $\theta(j)$have been defined,
 however the most popular ones are the variations of [{\emph{tf-idf}}]  In
 which $\theta_{j}$ is equal to the formula:
 \begin{equation}
-\theta_{j}=tf_{j}(d)\centerdot log(\frac{N}{df_{j}}),\,\,\,\,\forall j\in\{1,\ldots,M\}\label{eq:tf-idf}\end{equation}
+  \theta_{j}=tf_{j}(d)\centerdot log(\frac{N}{df_{j}}),\,\,\,\,\forall
+  j\in\{1,\ldots,M\}\label{eq:tf-idf}
+\end{equation}
+%%%%%ENDYES
 
 %% \begin{description}
 %% \item [{Binary}] In which $\theta_{j}$ is equal to 1 if the $j^{th}$
@@ -178,10 +184,14 @@ which $\theta_{j}$ is equal to the formula:
 %% \end{description}
 %% The equation \ref{eq:tf-idf} was defined proposed by Salton and Buckley
 %% \cite{866292}. 
-The $tf_{j}(d)$ (term frequency) is the number of times that the $j^{th}$ word appears
-in the document $d$, $df_{j}$ is the number of documents the term
-appears in all the corpus and $N$ is the total number of documents
-in the corpus. 
+%%%%%%YES
+
+ The $tf_{j}(d)$ (term frequency) is the number of times that the $j^{th}$ word appears
+ in the document $d$, $df_{j}$ is the number of documents the term
+ appears in all the corpus and $N$ is the total number of documents
+ in the corpus. 
+
+%%%%%%%ENDYES
 %% The main reason behind this formulation is that in
 %% the context of document retrieval it is considered that words appearing
 %% too frequently across the corpus may not be discriminant, therefore
@@ -213,22 +223,22 @@ in the corpus.
 
 Support Vector Machines (SVMs) \cite{Vapnik98} are powerful classification
 and regression tools that have been widely applied in the solutions
-of many problem, generally yielding comparable or even better performance
-that other algorithms. 
+of many problems, generally yielding comparable or even better performance
+than other algorithms. 
 
-The SVM algorithm is based on the concept of VC Dimension\cite{vapnik71uniform}
+The SVM algorithm is based on the concept of the VC Dimension\cite{vapnik71uniform}
 and on the principle of structural risk minimization developed by
 Vapnik \cite{Vapnik99,vapnik71uniform}. Roughly, the VC dimension
 is a metric of how complex a classifier machine is, complex classifier
 has more capacity to fit the training data, thus, overfitting is more
-likely to occur, therefore, is preferred a classifier with minimum
+likely to occur, therefore, it is preferred a classifier with minimum
 VC Dimension. 
 
 The basic idea of empirical risk minimization principle is to find
 an hypothesis $s$ from an hypothesis space $S$ for which the lowest
 probability of error is guaranteed for a given set of training examples. 
-%% For linear classification problems this is equivalent to find the
-%% discrimination function that maximizes the distances within the classes,
+For linear classification problems this is equivalent to find the
+% discrimination function that maximizes the distances within the classes,
 %% assuring the lowest probability of error\cite{citeulike:368926|Haykin1998}.
 %% The aim of the Support Vector classification is to devise a computationally
 %% efficient way of learning the optimal separating hyperplanes in high
@@ -237,11 +247,14 @@ probability of error is guaranteed for a given set of training examples.
 \section{SVM and Text Categorization}
 
 The usage of SVM for TC  was first introduced by Joachims \cite{Joachims98,Joachims99c}
-and similar setups have been used in posterior literature \cite{DumaisPHS98}.
-the TC task using SVM can bee seen geometrically as finding an hyperplane
+and similar setups have been used in recent literature \cite{DumaisPHS98}.
+The TC task using SVM can bee seen geometrically as finding an hyperplane
 (decision surface) that separates two groups of points. Each point
-is a vector representation of a document which can be done using any
-of the models described back in section \ref{sub:Models-of-Text}.
+is a vector representation of a document based on the terms that the document
+contains. This can can be done using any of the models used in information
+retrieval, such as binary, term frequency ($tf$), or  the popular term
+frecuency - inverse document frequency ($tf-idf$) among others \cite{Sebastiani02,866292}.
+% described back in section  \ref{sub:Models-of-Text}.
 As argued by Joachims \cite{Joachims98}, SVMs offer two important
 advantages for TC:
 
@@ -283,11 +296,11 @@ and $S_{test}$ such that the expected number of erroneous predictions
 on the test and the training samples is minimized. 
 
 The setting of transductive SVM for TC was introduced by Joachims
-\cite{Joachims99c} based on the Work of Vapnik \cite{Vapnik98}. It consists in a set of training examples: $\left\{
-(\overrightarrow{x_{1}},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})\right\}$, and each f them
+\cite{Joachims99c} based on the Work of Vapnik \cite{Vapnik98}. It consists on a set of training examples: $\left\{
+(\overrightarrow{x_{1}},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})\right\}$, and each of them
 consists of a document vector $\overrightarrow{x}$ and a binary label $y \in
 \{-1,1\}$. The main difference with the inductive setting is that the
-learning is also given a set of i.i.d sample set of $j$ test examples {
+learning is also given a set of i.i.d samples of $j$ test examples {
   $\overrightarrow{x*}_{n+1},...,\overrightarrow{x*}_{j} }$  from the same
 distribution. The transductive learning  function $L$ aims to find the function $h_L$
 that  minimize 
@@ -321,8 +334,8 @@ subject\, to\,\,\,\,\,\,\,\,\,\,\,\,\forall_{i=1}^{n}:y_{i}[\overrightarrow{\ome
 \forall_{j=1}^{k}:\xi_{i}^{*}>0\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,
 \end{multline*} 
 
-The algorithm in page \ref{fig:alg-tsvm} solves the minimization problem defined above. For a complete description and a in depth study of the Joachims' approach see the nominal paper \cite{Joachims99c}
-and work of Collobert \cite{1248609}.
+The algorithm shown on figure 1 solves the minimization problem defined above. For a complete description and an in-depth study of the Joachims' approach see the seminal paper \cite{Joachims99c}
+and the work of Collobert \cite{1248609}.
 %% Based on the above, one could think then, why not use just the learning rule obtained by means of the training examples to classify
 %% the test examples? Well, this formulation becomes handy when a only small
 %% training set, wich is generally the case for document cateogorization tasks,
@@ -335,10 +348,10 @@ and work of Collobert \cite{1248609}.
 %% information to built an appropriate structure. 
 
 %
-\section{Parallel Methods for Training Transductive SVM \label{cha:Experiments-and-Results}}
+\section{Parallel Methods for Training Transductive SVM}
 %
 Solving the Transductive SVM using the algorithm described by Joachims
-implies solve many times an SVM inductive optimization problem. The
+implies to solve  many times an SVM inductive optimization problem. The
 algorithm improves the objective function by switching the labels
 interactively of two unlabeled data points $x_{i}$ and $x_{j}$ with
 $\xi_{i}+\xi_{j}>2$. It uses two nested loops to optimize a TSVM
@@ -375,9 +388,9 @@ solvers arranged in pyramid form. This structure allows an easy parallelization
 and does not modify the original formulation at all \cite{GrafCBDV04,ZhangZY05}.
 This is the approach selected for the parallelization of TSVM because
 there is no need to modify the original quadratic programming problem
-and is straightforward to implement. Some small modifications are
-needed in order to be fully adapted to the Transductive algorithm
-described by Joachims. 
+and it is straightforward to implement. %% Some small modifications are
+%% needed in order to be fully adapted to the Transductive algorithm
+%% described by Joachims. 
 %
 \begin{figure}[H]
 \begin{centering}
@@ -387,12 +400,12 @@ described by Joachims.
 \end{figure}
 \section{The Cascade SVM}
 The Cascade SVM was described by Graf et al \cite{GrafCBDV04} and
-further explored by Zhang et al \cite{ZhangZY05} and is based in
+further explored by Zhang et al \cite{ZhangZY05} and it is based on
 the strategy of early elimination of non-support vectors from the
 training set \cite{Joachims/99a}. The Cascade SVM is a distributed
 architecture where smaller optimization problems are solved independently
 making them easily parallelizable. The results of this smaller problems
-are then assembled in a way that is ensured that it eventually converges
+are then assembled in a way that it is ensured that it eventually converges
 to globally optimal solution.
 
 In order to find a minimum using this approach the problem is initialized
@@ -400,7 +413,7 @@ with a number of independent smaller optimization whose results are
 combined in later stages in a hierarchical fashion %as shown in figure
 %\ref{fig:svm-cascade}. 
 
-The data is split into subsets and everyone of them is evaluated for to find support vectors in the first layer,
+The data is split into subsets and each one of them is evaluated to find support vectors in the first layer,
 then the results are combined two-by-two and entered as training set
 for the next layer. 
 %% Often a single pass through the cascade produces
@@ -436,7 +449,7 @@ through the use of the parallel architecture.
 %% There are
 %% at least two approach for this, the first approach is to make each
 %% of theSVM in the array Transductive, using the algorithm described
-%% in Figure \ref{fig:alg-tsvm}. Even if this might seem obvious ultimatly
+%% in Figuremerge\ref{fig:alg-tsvm}. Even if this might seem obvious ultimatly
 %% the loop in each of the SVM will be run in just one processor so the
 %% only possible speed up would be in terms of the number of training
 %% and testing data available. Also splitting and mergin the subsets
@@ -461,13 +474,13 @@ in \ref{eq:mergin-subsets} and are entered into \noun{SVM}$_{3}$.
 \section{Merging Data Sets for the Transductive Case}
 
 In this section it is described the procedure to merge two subsets
-using as example the description in the figure \ref{fig:graf-3-svm}.
-For Transductive SVM there is not practically any change besides that
-when recreating creating the problem for \noun{SVM}$_{3}$ we have
+using as example the description in the figure shown in section \ref{fig:graf-3-svm}.
+For Transductive SVM there is not any major change besides that
+when recreating the problem for \noun{SVM} we have
 to take into account two boundaries for the values of $\alpha_{i}$
 instead of one: $C$ for $\{a_{1}...\alpha_{L}\}$and $C*$ for $\{a_{L+1}...\alpha_{L+U}\}$.
 Also, the process of elimination of early non-support vector machine
-that is made on both groups, the labeled and the unlabeled data. 
+ is made on both groups, the labeled and the unlabeled data. 
 
 The starting point and gradient for the merged set are defined below:
 
@@ -516,8 +529,9 @@ Dual Core CPU 3.40GHz with 1.5 GB of RAM.
 
 For the experiments we use a subset of the 20 Newsgroups \cite{20news}
 data set found in the UCI ML Repository\cite{Asuncion+Newman:2007}.
-The data set was preprocessed using English stop-words and the Porter
-stemmer algorithm \cite{Porter80}. The code was written
+We used the classic tf-idf weight to create the document vectors
+\cite{361220,866292} and then it was preprocessed using English stop-words
+and the Porter stemmer algorithm \cite{Porter80}. The code was written
 in Ruby using an already existing implementation of the stemmer algorithm. 
 
 The 20 Newsgroup data sets is set is a collection of approximately
@@ -728,7 +742,7 @@ SVM & 200 & N/A & 0.9384 & 1 & 0.9682 & 0.0135\tabularnewline
 \hline 
 TSVM & 200 & 400 & 0.9823 & 0.9823 & 0.9823 & 44.4103\tabularnewline
 \hline 
-TSVM Parallel & 200 & 400 & 0.9823 & 0.9823 & 0.9823 & 15.3406\tabularnewline
+TSVM Parallel & 200 & 400 & 0.9823 & 0.9823 & 0.9823 & \textbf{15.3406}\tabularnewline
 \hline
 \end{tabular}\\
 \tabularnewline
@@ -827,7 +841,7 @@ SVM & 100 & N/A & 0.7400 & 0.8916 & 0.8087 & 0.0025\tabularnewline
 \hline 
 TSVM & 100 & 200 & 0.8600 & 0.8600 & 0.8600 & 1.5370\tabularnewline
 \hline 
-TSVM Parallel & 100 & 200 & 0.8700 & 0.8700 & 0.8700 & 1.4863\tabularnewline
+TSVM Parallel & 100 & 200 & 0.8700 & 0.8700 & 0.8700 & \textbf{1.4863}\tabularnewline
 \hline
 \end{tabular} \\
 \tabularnewline
@@ -840,7 +854,7 @@ SVM & 100 & N/A & 0.8830 & 0.7550 & 0.8140 & 0.0025\tabularnewline
 \hline 
 TSVM & 100 & 400 & 0.8550 & 0.8550 & 0.8550 & 6.0628\tabularnewline
 \hline 
-TSVM Parallel & 100 & 400 & 0.8550 & 0.8550 & 0.8550 & 4.3323\tabularnewline
+TSVM Parallel & 100 & 400 & 0.8550 & 0.8550 & 0.8550 & \textbf{4.3323}\tabularnewline
 \hline
 \end{tabular} \\
 \tabularnewline
@@ -854,7 +868,7 @@ SVM & 100 & N/A & 0.7350 & 0.8724 & 0.7978 & 0.0025\tabularnewline
 \hline 
 TSVM & 100 & 800 & 0.8200 & 0.8200 & 0.8200 & 31.0015\tabularnewline
 \hline 
-TSVM Parallel & 100 & 800 & 0.8200 & 0.8200 & 0.8200 & 19.5472\tabularnewline
+TSVM Parallel & 100 & 800 & 0.8200 & 0.8200 & 0.8200 & \textbf{19.5472}\tabularnewline
 \hline
 \end{tabular} \\
 \tabularnewline
@@ -868,7 +882,7 @@ SVM & 100 & 0 & 0.7362 & 0.8624 & 0.7943 & 0.0135\tabularnewline
 \hline 
 TSVM & 100 & 1600 & 0.8187 & 0.8187 & 0.8187 & 221.5013\tabularnewline
 \hline 
-TSVM Parallel & 100 & 1600 & 0.8187 & 0.8187 & 0.8187 & 86.1924\tabularnewline
+TSVM Parallel & 100 & 1600 & 0.8187 & 0.8187 & 0.8187 & \textbf{86.1924}\tabularnewline
 \hline
 \end{tabular}\tabularnewline
 \tabularnewline
@@ -901,18 +915,18 @@ one.
 \section{Conclusions and Future Directions}
 
 In this work we have implemented a parallel version of TSVM as described
-by Joachims' \cite{Joachims99c}, an approach that because its annealing
-heuristics requires many iterations solving a similar problems. Our
-approach, in order to speed up the process, was to parallelize the
+by Joachims \cite{Joachims99c}, an approach that because its annealing
+heuristics requires many iterations solving similar QP problems. Our
+approach to speed up the process  was to parallelize the
 SVM solver function using a Cascade architecture. We have shown that
 this approach speed up the process 2 to 7 times using just one dual
-core processor. This architecture scales very well, therefore is expected
-that, with more processors available the the speed gains will be even
-more noticeable. In addition, more layers in the  basic architecture could
+core processor. As this architecture scales very well is expected
+that, with more processors availabl,e the the speed gains will be even
+more noticeable. In addition, more layers in the basic architecture could
 help in the improvement of the computation time. 
 
 From the data tables one could argue that the classification performance
-gains for using TSVM does not worth the computation time spent even
+gains from using TSVM does not worth the computation time spent even
 with this parallel approach. However this last statement is in someway
 subjective, as the trade-off between speed and classification performance
 depends in nature of the problem, it would be possible that we would
@@ -921,19 +935,18 @@ Also, if more and more processors/cores available (as it is the actual
 trend) the speed gains could be much more noticeable. 
 
 Regarding the classification performance of the TSVM algorithm we
-noticed something particular, the best C for the C{*} for the transductive
+noticed something particular, the best C for the inductive setting and the C{*} for the transductive
 setting does not generally match in the sense that the best C parameter
-for the inductive problem does not produce the best classification
-performance in the transductive problem for the given set of data.
+does not produce the best classification performance in the transductive case for a given set of data.
 However, we have chosen the parameter that works best for the inductive
 setting.
 
-It is truth that more optimization strategies have to be developed
-in order to make this algorithm really usable in real world situation.
-Now, with a parallel and scalable version of the transductive algorithm
-a series of strategies could be explored in order to further optimize
-the computation time, however the implementation of such strategies
-is outside the scope of this work.
+%It is truth that more optimization strategies have to be developed
+%in order to make this algorithm really usable in real world situation.
+%Now, with a parallel and scalable version of the transductive algorithm
+%a series of strategies could be explored in order to further optimize
+%the computation time, however the implementation of such strategies
+%is outside the scope of this work.
  % and are mentioned here as a possible
 %future work.
 
