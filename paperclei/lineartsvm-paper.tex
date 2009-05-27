@@ -156,8 +156,7 @@ learning algorithm.
  During the last few decades many representation forms have been developed
  ranging from simple word appearance binary representation to a concept
  \cite{deerwester90indexing}, probabilistic and
- even Neural Networks \cite{DBLP:conf/icann/KellerB05} based ones. 
- \cite{keller-theme} \cite{361220}
+ even Neural Networks  based ones \cite{keller-theme} \cite{361220}.
 
 The most common approach to automatically extract the index terms
 from a corpus is called vector space model. In this
@@ -440,11 +439,11 @@ SVM problem so it is necessary to adapt the architecture described
 above in order to handle properly the TSVM formulation. 
 The approach we chose was to  parallelize the more computational expensive
 part of the TSVM algorithm: the \emph{solve\_svm\_qp} function which
-solves the dual problem associated with formulation described in section 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% \ref{sub:Transductive-Learning-for}.
+solves the dual problem associated with formulation described in section 5. %%%%%%%%%%%%%%%%%%%%%%%%%%%% \ref{sub:Transductive-Learning-for}.
 Now for each iteration of the loop the a SVM inductive problem is solved in a parallel manner. We
-have two goals to achieve with this, in the first place we need to
+aim two goals with this, in the first place, we need to
 implement an algorithm that is at least is as good as the serial (non
-parallel) version and also we need to ensure a speed up of the process
+parallel) version and also we need to ensure the speed up of the process
 through the use of the parallel architecture.
 %% There are
 %% at least two approach for this, the first approach is to make each
@@ -473,10 +472,10 @@ in \ref{eq:mergin-subsets} and are entered into \noun{SVM}$_{3}$.
 %
 \section{Merging Data Sets for the Transductive Case}
 
-In this section it is described the procedure to merge two subsets
-using as example the description in the figure shown in section \ref{fig:graf-3-svm}.
+In this section, we describe the procedure to merge two subsets
+using as example the description in the figure shown in figure 2.
 For Transductive SVM there is not any major change besides that
-when recreating the problem for \noun{SVM} we have
+when creating the problem for \noun{SVM} we have
 to take into account two boundaries for the values of $\alpha_{i}$
 instead of one: $C$ for $\{a_{1}...\alpha_{L}\}$and $C*$ for $\{a_{L+1}...\alpha_{L+U}\}$.
 Also, the process of elimination of early non-support vector machine
@@ -534,7 +533,7 @@ We used the classic tf-idf weight to create the document vectors
 and the Porter stemmer algorithm \cite{Porter80}. The code was written
 in Ruby using an already existing implementation of the stemmer algorithm. 
 
-The 20 Newsgroup data sets is set is a collection of approximately
+The 20 Newsgroup data sets is a collection of approximately
 20,000 newsgroup documents, partitioned evenly across 20 different
 newsgroups. The collection is organized in categories ranging from computer
 related topics (e.g comp.sys.ibm.pc.hardware, comp.windows.x, etc.) to
@@ -600,16 +599,16 @@ politics (talk.politics.misc,  talk.politics.guns,etc).
 
 The data set is divided by newsgroup topics and can
 be grouped into similar categories. For the experiments we define
-two tasks, an {}``easy'' one and an {}``hard'' one. For the easy
+two tasks, an {}``easy'' one and a {}``hard'' one. For the easy
 task we took 1000 messages from \emph{alt.atheism }and 1000 messages
 from \emph{comp.graphics}. We call this an easy task because the terms
 that appear in the documents from each collection are different, so
-we can expect a nearly separable problem. The hard task we chose related
-news groups were is expected that the most important terms similar
+we can expect a fully separable problem. For the hard task we chose related
+news groups where it is expected that the most important terms are similar
 for both collection. We chose c\emph{omp.sys.ibm.pc.hardware} and
 \emph{comp.sys.mac.hardware }for evaluating the SVM effectiveness
 and computation times with also 1000 messages from each of them. The
-data was split in a training set (20\%) and testing or ulabeled set
+data was split in a training set (20\%) and testing or unlabeled set
 (80\%). 
 %% The unlabeled set for the TSVM was used as the testing set
 %% for the classic SVM. We also made some test with fewer training data
@@ -627,7 +626,7 @@ validation with the training set. The other parameter defined by Joachim's
 algorithm is $num+$, the number of test inputs to be labeled initially
 as positive, in our implementation this number is also half of the
 total test set, thus ensuring the precision and recall break-even.
-The choice of the parameter $C*$is done using many heuristics, however
+The choice of the parameter $C*$ is done using many heuristics, however
 we use the one proposed by Joachims which consists in making it equal
 to $C$. %% This parameter is of great importance for the computation
 %% time of the overall algorithm because the annealing used by Joachim's
@@ -640,8 +639,8 @@ to $C$. %% This parameter is of great importance for the computation
 %% \end{comment}
 %% {}
 
-The Cascade architecture used in the experiments were formed 3 layers
-of SVM with 4 SVMs in the first 2 in the second and finally 1 in the
+The Cascade architecture used in the experiments was formed with 3 layers
+of SVM with 4 SVMs in the first, 2 in the second and finally 1 in the
 last layer.
 
 Besides the categorization performance, we are interested in the computation
@@ -712,10 +711,10 @@ Algorithm.
 %% \end{table}
 \subsection{Easy Task}
 
-As mentioned above the easy task is an experiment were is expected
+As mentioned above the easy task is an experiment were it is expected
 a linear separable problem formed by messages from newsgroups with
 very disjoint topics. The number of features for each vector was 30854,
-a high dimensional problem the with the parameter C = 10 from the
+a high dimensional problem the with the parameter $C$ = 10 from the
 5-fold cross validation. Table \ref{tab:Easy-Task:comp.graphics-and}
 shows the results of the experiments. 
 
@@ -790,7 +789,7 @@ TSVM Parallel & 100 & 1600 & 0.9800 & 0.9800 & 0.9800 & \textbf{41.53950}\tabula
 \end{longtable}
 
 \caption{The {}``Easy'' Task:\emph{ comp.graphics} and \emph{alt.atheism}.
-Using C=10 \label{tab:Easy-Task:comp.graphics-and} }
+Using $C$=10 \label{tab:Easy-Task:comp.graphics-and} }
 
 \end{table}
 
@@ -799,9 +798,9 @@ the Transductive implementation and for this specific problem, which
 is expected to be almost linear separable, with few unlabeled data
 the classification performance is very similar, while the difference
 in speed of the algorithm is really huge. However when the training
-data decreases and more there is more unlabeled data the differences
+data decreases and there is more unlabeled data the differences
 in classification performance begin to be more noticeable, even with
-this {}``easy'' problem. Regarding the speed, is obvious by the
+this {}``easy'' problem. Regarding the speed, it is obvious by the
 results that that the standard SVC algorithm is by far faster than
 its transductive counterparts, therefore we are going to discuss the
 differences between the transductive and its parallel version. For
@@ -823,11 +822,11 @@ the calculations on the Transductive SVM problem.
 
 \subsection{Hard Task}
 
-This is task is formed from 2000 messages from the categories of \emph{comp.sys.ibm.pc.hardware}
+This  task is created with 2000 messages from the categories of \emph{comp.sys.ibm.pc.hardware}
 and\emph{ comp.sys.mac.hardware} which have many equal terms thus
 making it a possible not linearly separable problem. The number of
 features extracted for this problem is 26997. The parameter choice
-for C = 9 and was taken from the same 5-fold cross-validation with
+for $C$ = 9 and was taken from the same 5-fold cross-validation with
 the available training data.
 
 %
@@ -891,7 +890,7 @@ TSVM Parallel & 100 & 1600 & 0.8187 & 0.8187 & 0.8187 & \textbf{86.1924}\tabular
 \end{longtable}
 
 \caption{The {}``Hard'' Task:\emph{ }of \emph{comp.sys.ibm.pc.hardware} and\emph{
-comp.sys.mac.hardware}. Using C=9 \label{tab:Hard-Task:comp.graphics-and} }
+comp.sys.mac.hardware}. Using $C$=9 \label{tab:Hard-Task:comp.graphics-and} }
 
 \end{table}
 
@@ -935,43 +934,42 @@ Also, if more and more processors/cores available (as it is the actual
 trend) the speed gains could be much more noticeable. 
 
 Regarding the classification performance of the TSVM algorithm we
-noticed something particular, the best C for the inductive setting and the C{*} for the transductive
-setting does not generally match in the sense that the best C parameter
+noticed something particular, the best $C$ for the inductive setting and the $C{*}$ for the transductive
+setting does not generally match in the sense that the best $C$ parameter
 does not produce the best classification performance in the transductive case for a given set of data.
 However, we have chosen the parameter that works best for the inductive
 setting.
 
-%It is truth that more optimization strategies have to be developed
-%in order to make this algorithm really usable in real world situation.
-%Now, with a parallel and scalable version of the transductive algorithm
-%a series of strategies could be explored in order to further optimize
-%the computation time, however the implementation of such strategies
-%is outside the scope of this work.
- % and are mentioned here as a possible
-%future work.
+It is true that more optimization strategies have to be developed
+in order to make this algorithm really usable on a real world situation.
+Now, with a parallel and scalable version of the transductive algorithm
+a series of strategies could be explored in order to further optimize
+the computation time, however the implementation of such strategies
+is outside of the scope of this work and they are mentioned here as a possible
+future work.
 
-%% Maybe the most obvious approach is that given that the data is split
-%% in equal parts (subsets), and per each iteration only one of the parts
-%% is modified (i the labels of two of the entries) there is not need
-%% recalculate the other parts of the n and they can be reused. For example
-%% in our particular case, we calculated 7 distinct SVM problems (as
-%% our architecture o 3 layers t in 4-2-1 e respectively), using caching
-%% we wold only need to calculate all of them once at the r and then
-%% only when a pair of of vector fell of different SVM problem. For the
-%% most of the iterations we would only need to calculate 3 problems. 
+Maybe the most obvious approach is that given that the data is split
+in equal parts (subsets), and per each iteration only one of the parts
+is modified (i the labels of two of the entries) there is not need
+recalculate the other parts of the n and they can be reused. For example
+in our particular case, we calculated 7 distinct SVM problems (as
+our architecture o 3 layers t in 4-2-1 e respectively), using caching
+we wold only need to calculate all of them once at the r and then
+only when a pair of of vector fell of different SVM problem. For the
+most of the iterations we would only need to calculate 3 problems. 
 
-%% Another strategy would be try new improved heuristics as described
-%% by Collobert et al \cite{citeulike:935557|Collobert2002} and modifying
-%% in Joachims' TSVM by reducing iteration in the cycles or interchanging
-%% more labels per iteration. This last is important because the annealing
-%% heuristic used by Joachim's TSVM is source of the elevated computation
-%% time.
+Another strategy would be try new improved heuristics as described
+by Collobert et al \cite{citeulike:935557|Collobert2002} and modifying
+in Joachims' TSVM by reducing iteration in the cycles or interchanging
+more labels per iteration. This last is important because the annealing
+heuristic used by Joachims' TSVM is source of the elevated computation
+time.
 
-%% A good thing about this approach is that any improvement to the SVM
-%% formulation can be directly applied to the SVM, for example the technique
-%% of Zanghirati et al. \cite{782654}could be applied to each one of
-%% the SVM solvers in order to have multilevel parallelization, further
-%% improving the computation performance.
+A good thing about this approach is that any improvement to the SVM
+formulation can be directly applied to the SVM, for example the technique
+of Zanghirati et al. \cite{782654}could be applied to each one of
+the SVM solvers in order to have multilevel parallelization, further
+improving the computation performance.
 
 \bibliography{biblio}{}
 \bibliographystyle{plain}

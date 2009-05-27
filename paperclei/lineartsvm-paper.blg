@@ -2,47 +2,50 @@ This is BibTeX, Version 0.99c (Web2C 7.5.6)
 The top-level auxiliary file: lineartsvm-paper.aux
 The style file: plain.bst
 Database file #1: biblio.bib
+A bad cross reference---entry "DBLP:conf/icann/KellerB05"
+refers to entry "DBLP:conf/icann/2005-2", which doesn't exist
+Warning--I didn't find a database entry for "DBLP:conf/icann/2005-2"
 Warning--empty journal in Porter80
 Warning--empty institution in 866292
-You've used 16 entries,
+You've used 21 entries,
             2118 wiz_defined-function locations,
-            611 strings with 6553 characters,
-and the built_in function-call counts, 5590 in all, are:
-= -- 570
-> -- 199
-< -- 7
-+ -- 83
-- -- 63
-* -- 336
-:= -- 873
-add.period$ -- 50
-call.type$ -- 16
-change.case$ -- 77
+            643 strings with 7476 characters,
+and the built_in function-call counts, 7332 in all, are:
+= -- 736
+> -- 284
+< -- 8
++ -- 119
+- -- 91
+* -- 451
+:= -- 1151
+add.period$ -- 65
+call.type$ -- 21
+change.case$ -- 106
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 245
-empty$ -- 478
-format.name$ -- 63
-if$ -- 1225
+cite$ -- 23
+duplicate$ -- 311
+empty$ -- 623
+format.name$ -- 91
+if$ -- 1600
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 15
-newline$ -- 82
-num.names$ -- 34
-pop$ -- 104
+int.to.str$ -- 21
+missing$ -- 19
+newline$ -- 106
+num.names$ -- 44
+pop$ -- 139
 preamble$ -- 1
-purify$ -- 62
+purify$ -- 86
 quote$ -- 0
-skip$ -- 187
+skip$ -- 240
 stack$ -- 0
-substring$ -- 389
-swap$ -- 75
-text.length$ -- 7
+substring$ -- 491
+swap$ -- 91
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 60
+type$ -- 80
 warning$ -- 2
-while$ -- 59
-width$ -- 18
-write$ -- 176
-(There were 2 warnings)
+while$ -- 74
+width$ -- 23
+write$ -- 227
+(There was 1 error message)

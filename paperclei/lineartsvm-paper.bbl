@@ -5,10 +5,23 @@ D.J.~Newman A.~Asuncion.
 \newblock {UCI} machine learning repository, 2007.
 \newblock http://www.ics.uci.edu/$\sim$mlearn/MLRepository.html.
 
+\bibitem{citeulike:935557|Collobert2002}
+R.~Collobert, S.~Bengio, and Y.~Bengio.
+\newblock A parallel mixture of svms for very large scale problems.
+\newblock In {\em Advances in Neural Information Processing Systems}. MIT
+  Press, 2002.
+
 \bibitem{1248609}
 Ronan Collobert, Fabian Sinz, Jason Weston, and L\'{e}on Bottou.
 \newblock Large scale transductive svms.
 \newblock {\em J. Mach. Learn. Res.}, 7:1687--1712, 2006.
+
+\bibitem{deerwester90indexing}
+Scott~C. Deerwester, Susan~T. Dumais, Thomas~K. Landauer, George~W. Furnas, and
+  Richard~A. Harshman.
+\newblock Indexing by latent semantic analysis.
+\newblock {\em Journal of the American Society of Information Science},
+  41(6):391--407, 1990.
 
 \bibitem{DumaisPHS98}
 Susan Dumais, John Platt, David Heckerman, and Mehran Sahami.
@@ -52,6 +65,16 @@ Thorsten Joachims.
 \newblock In {\em International Conference on Machine Learning (ICML)}, pages
   200--209, Bled, Slowenien, 1999.
 
+\bibitem{keller-theme}
+Mikaela Keller and Samy Bengio.
+\newblock Theme topic mixture model: A graphical model for document
+  representation.
+
+\bibitem{DBLP:conf/icann/KellerB05}
+Mikaela Keller and Samy Bengio.
+\newblock A neural network for text representation.
+\newblock In {\em ICANN (2)}, pages 667--672, 2005.
+
 \bibitem{20news}
 K.~Lang.
 \newblock 20 newsgroups data set.
@@ -93,5 +116,11 @@ V.~N. Vapnik and A.~Ya. Chervonenkis.
   probabilities.
 \newblock {\em Theory of Probability and its Applications}, 16(2):264--280,
   1971.
+
+\bibitem{782654}
+G.~Zanghirati and L.~Zanni.
+\newblock A parallel solver for large quadratic programs in training support
+  vector machines.
+\newblock {\em Parallel Comput.}, 29(4):535--551, 2003.
 
 \end{thebibliography}
